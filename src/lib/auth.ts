@@ -36,7 +36,7 @@ export const authOptions: NextAuthOptions = {
             update: {},
           })
 
-          return { id: user.id, email: user.email ?? '' }
+          return { id: user.id, email: user.email ?? '', name: user.name ?? '' }
         } catch (err) {
           console.error('authorize error:', err)
           return null
@@ -46,16 +46,38 @@ export const authOptions: NextAuthOptions = {
   ],
   session: { strategy: 'jwt' },
   secret: process.env.NEXTAUTH_SECRET,
+  jwt: {
+    secret: process.env.NEXTAUTH_SECRET,
+  },
+  cookies: {
+    sessionToken: {
+      name: process.env.NODE_ENV === 'production'
+        ? '__Secure-next-auth.session-token'
+        : 'next-auth.session-token',
+      options: {
+        httpOnly: true,
+        sameSite: 'lax',
+        path: '/',
+        secure: process.env.NODE_ENV === 'production',
+      },
+    },
+  },
   callbacks: {
+    async jwt({ token, user }) {
+      if (user) {
+        token.sub = user.id
+        token.email = user.email
+      }
+      return token
+    },
     async session({ session, token }) {
-      if (session.user && token.sub) {
+      if (token.sub) {
         session.user.id = token.sub
       }
+      if (token.email) {
+        session.user.email = token.email as string
+      }
       return session
-    },
-    async jwt({ token, user }) {
-      if (user) token.sub = user.id
-      return token
     },
   },
   pages: {
