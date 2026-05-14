@@ -4,7 +4,7 @@ services:
     runtime: node
     region: singapore
     plan: free
-    buildCommand: npm install --include=dev && npx prisma generate && NODE_OPTIONS=--max-old-space-size=400 npm run build:webpack && cp -r .next/static .next/standalone/.next/static && cp -r public .next/standalone/public
+    buildCommand: npm install --include=dev && npx prisma generate && npx prisma db push --accept-data-loss && NODE_OPTIONS=--max-old-space-size=400 npm run build:webpack && cp -r .next/static .next/standalone/.next/static && cp -r public .next/standalone/public
     startCommand: sh scripts/start.sh
     healthCheckPath: /
     envVars:
