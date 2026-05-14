@@ -1,3 +1,3 @@
 #!/bin/sh
 echo "Starting Next.js server..."
-node .next/standalone/server.js
+HOSTNAME=0.0.0.0 node .next/standalone/server.js
