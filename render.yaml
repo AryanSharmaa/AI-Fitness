@@ -11,9 +11,7 @@ services:
       - key: NODE_ENV
         value: production
       - key: DATABASE_URL
-        fromDatabase:
-          name: fitmind-db
-          property: connectionString
+        sync: false
       - key: NEXTAUTH_URL
         sync: false
       - key: NEXTAUTH_SECRET
@@ -24,9 +22,3 @@ services:
         sync: false
       - key: EMAIL_FROM
         sync: false
-
-databases:
-  - name: fitmind-db
-    databaseName: fitmind_ai
-    region: singapore
-    plan: free
