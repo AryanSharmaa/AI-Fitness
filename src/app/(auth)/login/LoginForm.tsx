@@ -50,7 +50,7 @@ export default function LoginForm() {
         callbackUrl: '/dashboard',
       })
       if (res?.ok && !res?.error) {
-        router.push('/dashboard')
+        window.location.href = '/dashboard'
       } else {
         toast.error('Invalid or expired code. Please try again.')
         setOtp('')
