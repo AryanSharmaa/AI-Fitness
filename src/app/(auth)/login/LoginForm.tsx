@@ -47,11 +47,12 @@ export default function LoginForm() {
         email,
         otp,
         redirect: false,
+        callbackUrl: '/dashboard',
       })
-      if (res?.ok) {
+      if (res?.ok && !res?.error) {
         router.push('/dashboard')
       } else {
-        toast.error('Invalid or expired code. Try again.')
+        toast.error('Invalid or expired code. Please try again.')
         setOtp('')
       }
     } catch {

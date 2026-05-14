@@ -12,32 +12,35 @@ export const authOptions: NextAuthOptions = {
         otp: { label: 'OTP', type: 'text' },
       },
       async authorize(credentials) {
-        if (!credentials?.email || !credentials?.otp) return null
-        const email = credentials.email.toLowerCase().trim()
-        const otp = credentials.otp.trim()
+        try {
+          if (!credentials?.email || !credentials?.otp) return null
+          const email = credentials.email.toLowerCase().trim()
+          const otp = credentials.otp.trim()
 
-        const record = await prisma.verificationToken.findFirst({
-          where: {
-            identifier: email,
-            token: otp,
-            expires: { gt: new Date() },
-          },
-        })
-        if (!record) return null
+          const record = await prisma.verificationToken.findFirst({
+            where: {
+              identifier: email,
+              token: otp,
+              expires: { gt: new Date() },
+            },
+          })
+          if (!record) return null
 
-        // Delete used token
-        await prisma.verificationToken.deleteMany({
-          where: { identifier: email },
-        })
+          await prisma.verificationToken.deleteMany({
+            where: { identifier: email },
+          })
 
-        // Upsert user
-        const user = await prisma.user.upsert({
-          where: { email },
-          create: { email },
-          update: {},
-        })
+          const user = await prisma.user.upsert({
+            where: { email },
+            create: { email },
+            update: {},
+          })
 
-        return { id: user.id, email: user.email ?? '' }
+          return { id: user.id, email: user.email ?? '' }
+        } catch (err) {
+          console.error('authorize error:', err)
+          return null
+        }
       },
     }),
   ],
@@ -57,6 +60,7 @@ export const authOptions: NextAuthOptions = {
   },
   pages: {
     signIn: '/login',
+    error: '/login',
   },
 }
 
