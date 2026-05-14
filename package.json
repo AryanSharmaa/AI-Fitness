@@ -4,9 +4,8 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
-    "build:webpack": "next build --webpack",
-    "start": "next start",
+    "build": "next build --webpack",
+    "start": "next start -p ${PORT:-10000}",
     "lint": "eslint"
   },
   "dependencies": {
