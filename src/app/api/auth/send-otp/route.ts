@@ -45,7 +45,7 @@ export async function POST(req: NextRequest) {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        from: process.env.EMAIL_FROM || 'FitMind AI <onboarding@resend.dev>',
+        from: 'FitMind AI <onboarding@resend.dev>',
         to: normalizedEmail,
         subject: 'Your FitMind AI login code',
         html: `
