@@ -1,21 +1,11 @@
 import { NextAuthOptions } from 'next-auth'
-import GoogleProvider from 'next-auth/providers/google'
+import CredentialsProvider from 'next-auth/providers/credentials'
 import EmailProvider from 'next-auth/providers/email'
-import { PrismaAdapter } from '@next-auth/prisma-adapter'
-// @ts-ignore — prisma-adapter works with the generated client
 import { prisma } from './prisma'
+import bcrypt from 'bcryptjs'
 
 export const authOptions: NextAuthOptions = {
-  adapter: PrismaAdapter(prisma) as any,
   providers: [
-    ...(process.env.GOOGLE_CLIENT_ID && process.env.GOOGLE_CLIENT_SECRET
-      ? [
-          GoogleProvider({
-            clientId: process.env.GOOGLE_CLIENT_ID,
-            clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-          }),
-        ]
-      : []),
     EmailProvider({
       server: {
         host: process.env.EMAIL_SERVER_HOST || 'smtp.resend.com',
@@ -29,7 +19,18 @@ export const authOptions: NextAuthOptions = {
     }),
   ],
   session: { strategy: 'jwt' },
+  secret: process.env.NEXTAUTH_SECRET,
   callbacks: {
+    async signIn({ user }) {
+      if (!user.email) return false
+      // Upsert user in DB
+      await prisma.user.upsert({
+        where: { email: user.email },
+        create: { email: user.email, name: user.name ?? null },
+        update: {},
+      })
+      return true
+    },
     async session({ session, token }) {
       if (session.user && token.sub) {
         session.user.id = token.sub
@@ -37,7 +38,11 @@ export const authOptions: NextAuthOptions = {
       return session
     },
     async jwt({ token, user }) {
-      if (user) token.sub = user.id
+      if (user?.email) {
+        // Look up the real DB id
+        const dbUser = await prisma.user.findUnique({ where: { email: user.email } })
+        if (dbUser) token.sub = dbUser.id
+      }
       return token
     },
   },
