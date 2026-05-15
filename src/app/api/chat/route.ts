@@ -98,7 +98,9 @@ export async function POST(req: NextRequest) {
           controller.close()
         } catch (err) {
           console.error('Chat stream error:', err)
-          controller.enqueue(encoder.encode(`data: ${JSON.stringify({ error: 'AI error' })}\n\n`))
+          const errMsg = err instanceof Error ? err.message : 'AI error'
+          controller.enqueue(encoder.encode(`data: ${JSON.stringify({ chunk: `Sorry, something went wrong: ${errMsg}` })}\n\n`))
+          controller.enqueue(encoder.encode(`data: ${JSON.stringify({ done: true, agentUsed: 'main' })}\n\n`))
           controller.close()
         }
       },
