@@ -3,9 +3,9 @@ import { getServerSession } from 'next-auth'
 import { authOptions } from '@/lib/auth'
 import { prisma } from '@/lib/prisma'
 import { estimateMealNutrition, getDailyCalorieTarget, getNextMealAdjustment } from '@/lib/engines/nutrition'
-import { GoogleGenerativeAI } from '@google/generative-ai'
+import { GoogleGenAI } from '@google/genai'
 
-const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY || '')
+const ai = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY || '' })
 
 export async function POST(req: NextRequest) {
   const session = await getServerSession(authOptions)
@@ -48,11 +48,11 @@ export async function POST(req: NextRequest) {
       dailyTarget
     )
 
-    const model = genAI.getGenerativeModel({ model: 'gemini-1.5-flash' })
-    const result = await model.generateContent([{
-      text: `You are a non-judgmental Indian fitness nutrition coach. Be brief, warm, and practical.\n\nUser logged: "${description}" for ${mealType}. Estimated: ~${nutrition.estimatedCalories} cal, ${nutrition.estimatedProtein}g protein. Today's total so far: ~${todayTotal} cal out of ${dailyTarget} target. Give a 1-2 sentence non-judgmental feedback and the adjustment note: "${adjustment}"`,
-    }])
-    aiAnalysis = result.response.text()
+    const result = await ai.models.generateContent({
+      model: 'gemini-1.5-flash',
+      contents: `You are a non-judgmental Indian fitness nutrition coach. Be brief, warm, and practical.\n\nUser logged: "${description}" for ${mealType}. Estimated: ~${nutrition.estimatedCalories} cal, ${nutrition.estimatedProtein}g protein. Today's total so far: ~${todayTotal} cal out of ${dailyTarget} target. Give a 1-2 sentence non-judgmental feedback and the adjustment note: "${adjustment}"`,
+    })
+    aiAnalysis = result.text ?? ''
   } catch {}
 
   const log = await prisma.foodLog.create({
