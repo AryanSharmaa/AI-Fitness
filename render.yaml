@@ -6,7 +6,7 @@ services:
     plan: free
     autoDeploy: true
     buildCommand: npm install --include=dev && npx prisma generate && NODE_OPTIONS=--max-old-space-size=400 npm run build
-    startCommand: sh scripts/start.sh
+    startCommand: npx next start -p $PORT
     healthCheckPath: /
     envVars:
       - key: NODE_ENV
