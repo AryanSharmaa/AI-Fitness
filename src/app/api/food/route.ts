@@ -5,7 +5,7 @@ import { prisma } from '@/lib/prisma'
 import { estimateMealNutrition, getDailyCalorieTarget, getNextMealAdjustment } from '@/lib/engines/nutrition'
 import { GoogleGenAI } from '@google/genai'
 
-const ai = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY || '' })
+const ai = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY || '', httpOptions: { apiVersion: 'v1' } })
 
 export async function POST(req: NextRequest) {
   const session = await getServerSession(authOptions)

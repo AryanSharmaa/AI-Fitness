@@ -2,7 +2,7 @@ import { GoogleGenAI } from '@google/genai'
 import { SYSTEM_PROMPTS, classifyIntent, TodayContext } from './prompts'
 import { UserProfile } from '@/types'
 
-const ai = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY || '' })
+const ai = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY || '', httpOptions: { apiVersion: 'v1' } })
 const MODEL = 'gemini-1.5-flash'
 
 export interface AgentMessage {
