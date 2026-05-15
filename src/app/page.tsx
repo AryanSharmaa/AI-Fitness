@@ -2,6 +2,7 @@ import Link from 'next/link'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
+import HeroButtons from '@/components/landing/HeroButtons'
 
 const FEATURES = [
   {
@@ -71,14 +72,7 @@ export default function LandingPage() {
             Not a rigid program. Not guilt trips. FitMind AI adapts to your night shifts,
             festival weeks, binge episodes, and missed workouts — and still gets you to your goal.
           </p>
-          <div className="flex flex-col sm:flex-row gap-3 justify-center">
-            <Button size="lg" asChild className="text-base px-8">
-              <Link href="/login">Start Free →</Link>
-            </Button>
-            <Button size="lg" variant="outline" asChild className="text-base px-8">
-              <Link href="/chat">Try AI Demo</Link>
-            </Button>
-          </div>
+          <HeroButtons />
           <p className="text-xs text-muted-foreground mt-4">No credit card · No app download</p>
         </div>
       </section>
