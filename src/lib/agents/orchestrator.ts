@@ -3,7 +3,7 @@ import { SYSTEM_PROMPTS, classifyIntent, TodayContext } from './prompts'
 import { UserProfile } from '@/types'
 
 // Fast model for all responses — low rate-limit pressure on free tier
-const MODEL = 'mistralai/mistral-7b-instruct:free'
+const MODEL = 'meta-llama/llama-3.1-8b-instruct:free'
 
 let _client: OpenAI | null = null
 function getClient(): OpenAI {

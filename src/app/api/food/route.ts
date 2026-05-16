@@ -58,7 +58,7 @@ export async function POST(req: NextRequest) {
     )
 
     const result = await getClient().chat.completions.create({
-      model: 'mistralai/mistral-7b-instruct:free',
+      model: 'meta-llama/llama-3.1-8b-instruct:free',
       max_tokens: 256,
       messages: [
         { role: 'system', content: 'You are a non-judgmental Indian fitness nutrition coach. Be brief, warm, and practical.' },
