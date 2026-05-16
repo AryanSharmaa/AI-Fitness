@@ -3,9 +3,13 @@ import { getServerSession } from 'next-auth'
 import { authOptions } from '@/lib/auth'
 import { prisma } from '@/lib/prisma'
 import { estimateMealNutrition, getDailyCalorieTarget, getNextMealAdjustment } from '@/lib/engines/nutrition'
-import { GoogleGenAI } from '@google/genai'
+import Groq from 'groq-sdk'
 
-const ai = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY || '' })
+let _groq: Groq | null = null
+function getGroq(): Groq {
+  if (!_groq) _groq = new Groq({ apiKey: process.env.GROQ_API_KEY || '' })
+  return _groq
+}
 
 export async function POST(req: NextRequest) {
   const session = await getServerSession(authOptions)
@@ -48,12 +52,15 @@ export async function POST(req: NextRequest) {
       dailyTarget
     )
 
-    const result = await ai.models.generateContent({
-      model: 'gemini-2.0-flash',
-      contents: `User logged: "${description}" for ${mealType}. Estimated: ~${nutrition.estimatedCalories} cal, ${nutrition.estimatedProtein}g protein. Today's total so far: ~${todayTotal} cal out of ${dailyTarget} target. Give a 1-2 sentence non-judgmental feedback and the adjustment note: "${adjustment}"`,
-      config: { systemInstruction: 'You are a non-judgmental Indian fitness nutrition coach. Be brief, warm, and practical.' },
+    const result = await getGroq().chat.completions.create({
+      model: 'llama-3.3-70b-versatile',
+      max_tokens: 256,
+      messages: [
+        { role: 'system', content: 'You are a non-judgmental Indian fitness nutrition coach. Be brief, warm, and practical.' },
+        { role: 'user', content: `User logged: "${description}" for ${mealType}. Estimated: ~${nutrition.estimatedCalories} cal, ${nutrition.estimatedProtein}g protein. Today's total so far: ~${todayTotal} cal out of ${dailyTarget} target. Give a 1-2 sentence non-judgmental feedback and the adjustment note: "${adjustment}"` },
+      ],
     })
-    aiAnalysis = result.text ?? ''
+    aiAnalysis = result.choices[0]?.message?.content ?? ''
   } catch {}
 
   const log = await prisma.foodLog.create({
