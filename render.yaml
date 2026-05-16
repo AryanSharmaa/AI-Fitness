@@ -17,7 +17,7 @@ services:
         sync: false
       - key: NEXTAUTH_SECRET
         generateValue: true
-      - key: GROQ_API_KEY
+      - key: OPENROUTER_API_KEY
         sync: false
       - key: RESEND_API_KEY
         sync: false

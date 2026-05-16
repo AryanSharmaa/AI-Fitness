@@ -3,12 +3,17 @@ import { getServerSession } from 'next-auth'
 import { authOptions } from '@/lib/auth'
 import { prisma } from '@/lib/prisma'
 import { estimateMealNutrition, getDailyCalorieTarget, getNextMealAdjustment } from '@/lib/engines/nutrition'
-import Groq from 'groq-sdk'
+import OpenAI from 'openai'
 
-let _groq: Groq | null = null
-function getGroq(): Groq {
-  if (!_groq) _groq = new Groq({ apiKey: process.env.GROQ_API_KEY || '' })
-  return _groq
+let _client: OpenAI | null = null
+function getClient(): OpenAI {
+  if (!_client) {
+    _client = new OpenAI({
+      baseURL: 'https://openrouter.ai/api/v1',
+      apiKey: process.env.OPENROUTER_API_KEY || '',
+    })
+  }
+  return _client
 }
 
 export async function POST(req: NextRequest) {
@@ -52,8 +57,8 @@ export async function POST(req: NextRequest) {
       dailyTarget
     )
 
-    const result = await getGroq().chat.completions.create({
-      model: 'llama-3.3-70b-versatile',
+    const result = await getClient().chat.completions.create({
+      model: 'meta-llama/llama-3.3-70b-instruct:free',
       max_tokens: 256,
       messages: [
         { role: 'system', content: 'You are a non-judgmental Indian fitness nutrition coach. Be brief, warm, and practical.' },

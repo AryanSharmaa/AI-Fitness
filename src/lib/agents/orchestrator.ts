@@ -1,12 +1,18 @@
-import Groq from 'groq-sdk'
+import OpenAI from 'openai'
 import { SYSTEM_PROMPTS, classifyIntent, TodayContext } from './prompts'
 import { UserProfile } from '@/types'
 
-const MODEL = 'llama-3.3-70b-versatile'
-let _groq: Groq | null = null
-function getGroq(): Groq {
-  if (!_groq) _groq = new Groq({ apiKey: process.env.GROQ_API_KEY || '' })
-  return _groq
+// OpenRouter — free models, email signup only (openrouter.ai)
+const MODEL = 'meta-llama/llama-3.3-70b-instruct:free'
+let _client: OpenAI | null = null
+function getClient(): OpenAI {
+  if (!_client) {
+    _client = new OpenAI({
+      baseURL: 'https://openrouter.ai/api/v1',
+      apiKey: process.env.OPENROUTER_API_KEY || '',
+    })
+  }
+  return _client
 }
 
 export interface AgentMessage {
@@ -35,9 +41,9 @@ export interface MemoryExtract {
   patterns: string | null
 }
 
-// ─── Core Groq caller ─────────────────────────────────────────────────────────
-async function callGroq(systemPrompt: string, userContent: string): Promise<string> {
-  const response = await getGroq().chat.completions.create({
+// ─── Core caller ──────────────────────────────────────────────────────────────
+async function callAI(systemPrompt: string, userContent: string): Promise<string> {
+  const response = await getClient().chat.completions.create({
     model: MODEL,
     max_tokens: 1024,
     messages: [
@@ -65,7 +71,7 @@ async function runSafetyCheck(message: string): Promise<{ safe: boolean; respons
     'swollen', 'broken', 'fracture', 'nausea', 'nauseous',
   ]
   if (!safetyWords.some(w => message.toLowerCase().includes(w))) return { safe: true }
-  const response = await callGroq(SYSTEM_PROMPTS.safety(), `User says: ${message}`)
+  const response = await callAI(SYSTEM_PROMPTS.safety(), `User says: ${message}`)
   return { safe: false, response }
 }
 
@@ -75,12 +81,12 @@ async function refinePlanIfNeeded(
   plan: string,
   originalRequest: string
 ): Promise<string> {
-  const critique = await callGroq(
+  const critique = await callAI(
     SYSTEM_PROMPTS.critic(profile),
     `Original request: ${originalRequest}\n\nProposed plan:\n${plan}`
   )
   if (critique.trim().toUpperCase().startsWith('APPROVED')) return plan
-  return callGroq(
+  return callAI(
     SYSTEM_PROMPTS.planner(profile),
     `Original request: ${originalRequest}\n\nPlan to revise:\n${plan}\n\nFeedback:\n${critique}`
   )
@@ -92,7 +98,7 @@ export async function extractMemory(
   aiResponse: string
 ): Promise<MemoryExtract | null> {
   try {
-    const raw = await callGroq(
+    const raw = await callAI(
       SYSTEM_PROMPTS.memoryExtract(),
       `User: ${userMessage}\nCoach: ${aiResponse}`
     )
@@ -122,7 +128,7 @@ export async function orchestrateStream(
 
   // daily_plan: non-streaming with critic pass
   if (intent === 'daily_plan') {
-    const draft = await callGroq(
+    const draft = await callAI(
       SYSTEM_PROMPTS.dailyPlan(input.profile, input.recentBehavior, input.todayContext || {}),
       userContent
     )
@@ -141,7 +147,7 @@ export async function orchestrateStream(
     }
   })()
 
-  const stream = await getGroq().chat.completions.create({
+  const stream = await getClient().chat.completions.create({
     model: MODEL,
     max_tokens: 1024,
     stream: true,
@@ -178,7 +184,7 @@ export async function orchestrate(input: OrchestratorInput): Promise<{
 
   switch (intent) {
     case 'daily_plan': {
-      const draft = await callGroq(
+      const draft = await callAI(
         SYSTEM_PROMPTS.dailyPlan(input.profile, input.recentBehavior, input.todayContext || {}),
         userContent
       )
@@ -186,19 +192,19 @@ export async function orchestrate(input: OrchestratorInput): Promise<{
       break
     }
     case 'behavior_correction':
-      response = await callGroq(SYSTEM_PROMPTS.behaviorCorrection(input.profile, input.recentBehavior), userContent)
+      response = await callAI(SYSTEM_PROMPTS.behaviorCorrection(input.profile, input.recentBehavior), userContent)
       break
     case 'food_log':
-      response = await callGroq(SYSTEM_PROMPTS.foodLog(input.profile, input.userMessage), userContent)
+      response = await callAI(SYSTEM_PROMPTS.foodLog(input.profile, input.userMessage), userContent)
       break
     case 'edge_case':
-      response = await callGroq(SYSTEM_PROMPTS.edgeCase(input.profile, input.userMessage, input.recentBehavior), userContent)
+      response = await callAI(SYSTEM_PROMPTS.edgeCase(input.profile, input.userMessage, input.recentBehavior), userContent)
       break
     case 'discipline_check':
-      response = await callGroq(SYSTEM_PROMPTS.disciplineCoach(input.profile, input.recentBehavior), userContent)
+      response = await callAI(SYSTEM_PROMPTS.disciplineCoach(input.profile, input.recentBehavior), userContent)
       break
     default:
-      response = await callGroq(SYSTEM_PROMPTS.main(input.profile, input.recentBehavior), userContent)
+      response = await callAI(SYSTEM_PROMPTS.main(input.profile, input.recentBehavior), userContent)
       agentUsed = 'main'
   }
 
