@@ -3,9 +3,9 @@ import { getServerSession } from 'next-auth'
 import { authOptions } from '@/lib/auth'
 import { prisma } from '@/lib/prisma'
 import { estimateMealNutrition, getDailyCalorieTarget, getNextMealAdjustment } from '@/lib/engines/nutrition'
-import { GoogleGenAI } from '@google/genai'
+import Anthropic from '@anthropic-ai/sdk'
 
-const ai = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY || '', httpOptions: { apiVersion: 'v1' } })
+const anthropic = new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY })
 
 export async function POST(req: NextRequest) {
   const session = await getServerSession(authOptions)
@@ -48,11 +48,17 @@ export async function POST(req: NextRequest) {
       dailyTarget
     )
 
-    const result = await ai.models.generateContent({
-      model: 'gemini-1.5-flash',
-      contents: `You are a non-judgmental Indian fitness nutrition coach. Be brief, warm, and practical.\n\nUser logged: "${description}" for ${mealType}. Estimated: ~${nutrition.estimatedCalories} cal, ${nutrition.estimatedProtein}g protein. Today's total so far: ~${todayTotal} cal out of ${dailyTarget} target. Give a 1-2 sentence non-judgmental feedback and the adjustment note: "${adjustment}"`,
+    const result = await anthropic.messages.create({
+      model: 'claude-haiku-4-5-20251001',
+      max_tokens: 256,
+      system: 'You are a non-judgmental Indian fitness nutrition coach. Be brief, warm, and practical.',
+      messages: [{
+        role: 'user',
+        content: `User logged: "${description}" for ${mealType}. Estimated: ~${nutrition.estimatedCalories} cal, ${nutrition.estimatedProtein}g protein. Today's total so far: ~${todayTotal} cal out of ${dailyTarget} target. Give a 1-2 sentence non-judgmental feedback and the adjustment note: "${adjustment}"`,
+      }],
     })
-    aiAnalysis = result.text ?? ''
+    const block = result.content[0]
+    aiAnalysis = block.type === 'text' ? block.text : ''
   } catch {}
 
   const log = await prisma.foodLog.create({

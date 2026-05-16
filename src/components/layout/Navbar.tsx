@@ -7,7 +7,7 @@ import {
   DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger
 } from '@/components/ui/dropdown-menu'
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
-import { MessageCircle, LayoutDashboard, UtensilsCrossed, Dumbbell, TrendingUp, Menu } from 'lucide-react'
+import { MessageCircle, LayoutDashboard, UtensilsCrossed, Dumbbell, TrendingUp, Menu, X } from 'lucide-react'
 import { useState } from 'react'
 
 const NAV_LINKS = [
@@ -27,7 +27,7 @@ export default function Navbar() {
   return (
     <nav className="sticky top-0 z-50 border-b bg-background/95 backdrop-blur">
       <div className="max-w-6xl mx-auto px-4 h-16 flex items-center justify-between">
-        <Link href="/" className="font-bold text-xl text-primary">
+        <Link href="/" className="font-bold text-xl text-primary" onClick={() => setMobileOpen(false)}>
           FitMind AI
         </Link>
 
@@ -51,45 +51,48 @@ export default function Navbar() {
               ))}
             </div>
 
-            {/* User menu */}
+            {/* User menu + mobile toggle */}
             <div className="flex items-center gap-2">
               <DropdownMenu>
-                <DropdownMenuTrigger>
+                <DropdownMenuTrigger className="rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring">
                   <Avatar className="h-8 w-8 cursor-pointer">
                     <AvatarImage src={session.user?.image || ''} />
-                    <AvatarFallback>{session.user?.name?.[0] || 'U'}</AvatarFallback>
+                    <AvatarFallback>{session.user?.name?.[0]?.toUpperCase() || session.user?.email?.[0]?.toUpperCase() || 'U'}</AvatarFallback>
                   </Avatar>
                 </DropdownMenuTrigger>
                 <DropdownMenuContent align="end">
-                  <DropdownMenuItem className="text-sm text-muted-foreground">
+                  <DropdownMenuItem className="text-sm text-muted-foreground cursor-default" disabled>
                     {session.user?.email}
                   </DropdownMenuItem>
                   <DropdownMenuItem onClick={() => router.push('/dashboard')}>
                     Dashboard
                   </DropdownMenuItem>
-                  <DropdownMenuItem onClick={() => signOut({ callbackUrl: '/' })}>
+                  <DropdownMenuItem onClick={() => signOut({ callbackUrl: '/' })} variant="destructive">
                     Sign out
                   </DropdownMenuItem>
                 </DropdownMenuContent>
               </DropdownMenu>
 
-              {/* Mobile menu button */}
-              <Button
-                variant="ghost"
-                size="icon-sm"
-                className="md:hidden"
-                onClick={() => setMobileOpen(!mobileOpen)}
+              {/* Mobile hamburger */}
+              <button
+                className="md:hidden p-2 rounded-md hover:bg-accent transition-colors"
+                onClick={() => setMobileOpen(v => !v)}
+                aria-label="Toggle menu"
               >
-                <Menu className="h-5 w-5" />
-              </Button>
+                {mobileOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+              </button>
             </div>
           </>
         )}
 
         {!session && (
           <div className="flex gap-2">
-            <Button variant="ghost" onClick={() => router.push('/login')}>Login</Button>
-            <Button onClick={() => router.push('/login')}>Get Started</Button>
+            <Button variant="ghost" asChild>
+              <Link href="/login">Login</Link>
+            </Button>
+            <Button asChild>
+              <Link href="/login">Get Started</Link>
+            </Button>
           </div>
         )}
       </div>

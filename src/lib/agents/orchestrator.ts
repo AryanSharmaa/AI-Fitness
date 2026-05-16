@@ -1,9 +1,11 @@
-import { GoogleGenAI } from '@google/genai'
+import Anthropic from '@anthropic-ai/sdk'
 import { SYSTEM_PROMPTS, classifyIntent, TodayContext } from './prompts'
 import { UserProfile } from '@/types'
 
-const ai = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY || '', httpOptions: { apiVersion: 'v1' } })
-const MODEL = 'gemini-1.5-flash'
+const client = new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY })
+
+const MODEL_FAST = 'claude-haiku-4-5-20251001'
+const MODEL_MAIN = 'claude-haiku-4-5-20251001'
 
 export interface AgentMessage {
   role: 'user' | 'assistant'
@@ -31,13 +33,16 @@ export interface MemoryExtract {
   patterns: string | null
 }
 
-// ─── Core Gemini caller ───────────────────────────────────────────────────────
-async function callGemini(systemPrompt: string, userContent: string): Promise<string> {
-  const response = await ai.models.generateContent({
-    model: MODEL,
-    contents: `${systemPrompt}\n\n---\n\n${userContent}`,
+// ─── Core Claude caller ───────────────────────────────────────────────────────
+async function callClaude(systemPrompt: string, userContent: string): Promise<string> {
+  const response = await client.messages.create({
+    model: MODEL_FAST,
+    max_tokens: 1024,
+    system: systemPrompt,
+    messages: [{ role: 'user', content: userContent }],
   })
-  return response.text ?? ''
+  const block = response.content[0]
+  return block.type === 'text' ? block.text : ''
 }
 
 // ─── Build conversation context string ───────────────────────────────────────
@@ -57,7 +62,7 @@ async function runSafetyCheck(message: string): Promise<{ safe: boolean; respons
     'swollen', 'broken', 'fracture', 'nausea', 'nauseous',
   ]
   if (!safetyWords.some(w => message.toLowerCase().includes(w))) return { safe: true }
-  const response = await callGemini(SYSTEM_PROMPTS.safety(), `User says: ${message}`)
+  const response = await callClaude(SYSTEM_PROMPTS.safety(), `User says: ${message}`)
   return { safe: false, response }
 }
 
@@ -67,12 +72,12 @@ async function refinePlanIfNeeded(
   plan: string,
   originalRequest: string
 ): Promise<string> {
-  const critique = await callGemini(
+  const critique = await callClaude(
     SYSTEM_PROMPTS.critic(profile),
     `Original request: ${originalRequest}\n\nProposed plan:\n${plan}`
   )
   if (critique.trim().toUpperCase().startsWith('APPROVED')) return plan
-  return callGemini(
+  return callClaude(
     SYSTEM_PROMPTS.planner(profile),
     `Original request: ${originalRequest}\n\nPlan to revise:\n${plan}\n\nFeedback:\n${critique}`
   )
@@ -84,7 +89,7 @@ export async function extractMemory(
   aiResponse: string
 ): Promise<MemoryExtract | null> {
   try {
-    const raw = await callGemini(
+    const raw = await callClaude(
       SYSTEM_PROMPTS.memoryExtract(),
       `User: ${userMessage}\nCoach: ${aiResponse}`
     )
@@ -114,7 +119,7 @@ export async function orchestrateStream(
 
   // daily_plan: non-streaming with critic pass
   if (intent === 'daily_plan') {
-    const draft = await callGemini(
+    const draft = await callClaude(
       SYSTEM_PROMPTS.dailyPlan(input.profile, input.recentBehavior, input.todayContext || {}),
       userContent
     )
@@ -133,14 +138,20 @@ export async function orchestrateStream(
     }
   })()
 
-  const stream = await ai.models.generateContentStream({
-    model: MODEL,
-    contents: `${systemPrompt}\n\n---\n\n${userContent}`,
+  const stream = client.messages.stream({
+    model: MODEL_MAIN,
+    max_tokens: 1024,
+    system: systemPrompt,
+    messages: [{ role: 'user', content: userContent }],
   })
 
-  for await (const chunk of stream) {
-    const text = chunk.text
-    if (text) onChunk(text)
+  for await (const event of stream) {
+    if (
+      event.type === 'content_block_delta' &&
+      event.delta.type === 'text_delta'
+    ) {
+      onChunk(event.delta.text)
+    }
   }
 
   return { agentUsed: intent }
@@ -165,7 +176,7 @@ export async function orchestrate(input: OrchestratorInput): Promise<{
 
   switch (intent) {
     case 'daily_plan': {
-      const draft = await callGemini(
+      const draft = await callClaude(
         SYSTEM_PROMPTS.dailyPlan(input.profile, input.recentBehavior, input.todayContext || {}),
         userContent
       )
@@ -173,19 +184,19 @@ export async function orchestrate(input: OrchestratorInput): Promise<{
       break
     }
     case 'behavior_correction':
-      response = await callGemini(SYSTEM_PROMPTS.behaviorCorrection(input.profile, input.recentBehavior), userContent)
+      response = await callClaude(SYSTEM_PROMPTS.behaviorCorrection(input.profile, input.recentBehavior), userContent)
       break
     case 'food_log':
-      response = await callGemini(SYSTEM_PROMPTS.foodLog(input.profile, input.userMessage), userContent)
+      response = await callClaude(SYSTEM_PROMPTS.foodLog(input.profile, input.userMessage), userContent)
       break
     case 'edge_case':
-      response = await callGemini(SYSTEM_PROMPTS.edgeCase(input.profile, input.userMessage, input.recentBehavior), userContent)
+      response = await callClaude(SYSTEM_PROMPTS.edgeCase(input.profile, input.userMessage, input.recentBehavior), userContent)
       break
     case 'discipline_check':
-      response = await callGemini(SYSTEM_PROMPTS.disciplineCoach(input.profile, input.recentBehavior), userContent)
+      response = await callClaude(SYSTEM_PROMPTS.disciplineCoach(input.profile, input.recentBehavior), userContent)
       break
     default:
-      response = await callGemini(SYSTEM_PROMPTS.main(input.profile, input.recentBehavior), userContent)
+      response = await callClaude(SYSTEM_PROMPTS.main(input.profile, input.recentBehavior), userContent)
       agentUsed = 'main'
   }
 
