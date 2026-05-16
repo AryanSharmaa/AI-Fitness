@@ -73,7 +73,7 @@ export default function PricingPage() {
               ))}
             </ul>
             <Button className="w-full" asChild>
-              <Link href="/login">Start Free Trial</Link>
+              <Link href="/upgrade">Upgrade to Pro →</Link>
             </Button>
             <p className="text-xs text-muted-foreground text-center mt-3">7-day free trial. No card required.</p>
           </CardContent>

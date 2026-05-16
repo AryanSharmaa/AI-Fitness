@@ -158,6 +158,25 @@ exports.Prisma.UserScalarFieldEnum = {
   updatedAt: 'updatedAt'
 };
 
+exports.Prisma.SubscriptionScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  plan: 'plan',
+  status: 'status',
+  razorpaySubId: 'razorpaySubId',
+  razorpayPaymentId: 'razorpayPaymentId',
+  currentPeriodEnd: 'currentPeriodEnd',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.WaterLogScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  date: 'date',
+  amount: 'amount'
+};
+
 exports.Prisma.UserProfileScalarFieldEnum = {
   id: 'id',
   userId: 'userId',
@@ -306,6 +325,8 @@ exports.Prisma.ModelName = {
   Session: 'Session',
   VerificationToken: 'VerificationToken',
   User: 'User',
+  Subscription: 'Subscription',
+  WaterLog: 'WaterLog',
   UserProfile: 'UserProfile',
   FoodLog: 'FoodLog',
   WorkoutLog: 'WorkoutLog',

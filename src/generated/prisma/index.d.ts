@@ -34,6 +34,16 @@ export type VerificationToken = $Result.DefaultSelection<Prisma.$VerificationTok
  */
 export type User = $Result.DefaultSelection<Prisma.$UserPayload>
 /**
+ * Model Subscription
+ * 
+ */
+export type Subscription = $Result.DefaultSelection<Prisma.$SubscriptionPayload>
+/**
+ * Model WaterLog
+ * 
+ */
+export type WaterLog = $Result.DefaultSelection<Prisma.$WaterLogPayload>
+/**
  * Model UserProfile
  * 
  */
@@ -239,6 +249,26 @@ export class PrismaClient<
     * ```
     */
   get user(): Prisma.UserDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.subscription`: Exposes CRUD operations for the **Subscription** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Subscriptions
+    * const subscriptions = await prisma.subscription.findMany()
+    * ```
+    */
+  get subscription(): Prisma.SubscriptionDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.waterLog`: Exposes CRUD operations for the **WaterLog** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more WaterLogs
+    * const waterLogs = await prisma.waterLog.findMany()
+    * ```
+    */
+  get waterLog(): Prisma.WaterLogDelegate<ExtArgs, ClientOptions>;
 
   /**
    * `prisma.userProfile`: Exposes CRUD operations for the **UserProfile** model.
@@ -767,6 +797,8 @@ export namespace Prisma {
     Session: 'Session',
     VerificationToken: 'VerificationToken',
     User: 'User',
+    Subscription: 'Subscription',
+    WaterLog: 'WaterLog',
     UserProfile: 'UserProfile',
     FoodLog: 'FoodLog',
     WorkoutLog: 'WorkoutLog',
@@ -791,7 +823,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "account" | "session" | "verificationToken" | "user" | "userProfile" | "foodLog" | "workoutLog" | "message" | "behaviorLog" | "streak" | "plan" | "mealLibrary" | "workoutLibrary"
+      modelProps: "account" | "session" | "verificationToken" | "user" | "subscription" | "waterLog" | "userProfile" | "foodLog" | "workoutLog" | "message" | "behaviorLog" | "streak" | "plan" | "mealLibrary" | "workoutLibrary"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -1088,6 +1120,154 @@ export namespace Prisma {
           count: {
             args: Prisma.UserCountArgs<ExtArgs>
             result: $Utils.Optional<UserCountAggregateOutputType> | number
+          }
+        }
+      }
+      Subscription: {
+        payload: Prisma.$SubscriptionPayload<ExtArgs>
+        fields: Prisma.SubscriptionFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.SubscriptionFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SubscriptionPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.SubscriptionFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SubscriptionPayload>
+          }
+          findFirst: {
+            args: Prisma.SubscriptionFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SubscriptionPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.SubscriptionFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SubscriptionPayload>
+          }
+          findMany: {
+            args: Prisma.SubscriptionFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SubscriptionPayload>[]
+          }
+          create: {
+            args: Prisma.SubscriptionCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SubscriptionPayload>
+          }
+          createMany: {
+            args: Prisma.SubscriptionCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.SubscriptionCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SubscriptionPayload>[]
+          }
+          delete: {
+            args: Prisma.SubscriptionDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SubscriptionPayload>
+          }
+          update: {
+            args: Prisma.SubscriptionUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SubscriptionPayload>
+          }
+          deleteMany: {
+            args: Prisma.SubscriptionDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.SubscriptionUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.SubscriptionUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SubscriptionPayload>[]
+          }
+          upsert: {
+            args: Prisma.SubscriptionUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SubscriptionPayload>
+          }
+          aggregate: {
+            args: Prisma.SubscriptionAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateSubscription>
+          }
+          groupBy: {
+            args: Prisma.SubscriptionGroupByArgs<ExtArgs>
+            result: $Utils.Optional<SubscriptionGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.SubscriptionCountArgs<ExtArgs>
+            result: $Utils.Optional<SubscriptionCountAggregateOutputType> | number
+          }
+        }
+      }
+      WaterLog: {
+        payload: Prisma.$WaterLogPayload<ExtArgs>
+        fields: Prisma.WaterLogFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.WaterLogFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$WaterLogPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.WaterLogFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$WaterLogPayload>
+          }
+          findFirst: {
+            args: Prisma.WaterLogFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$WaterLogPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.WaterLogFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$WaterLogPayload>
+          }
+          findMany: {
+            args: Prisma.WaterLogFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$WaterLogPayload>[]
+          }
+          create: {
+            args: Prisma.WaterLogCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$WaterLogPayload>
+          }
+          createMany: {
+            args: Prisma.WaterLogCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.WaterLogCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$WaterLogPayload>[]
+          }
+          delete: {
+            args: Prisma.WaterLogDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$WaterLogPayload>
+          }
+          update: {
+            args: Prisma.WaterLogUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$WaterLogPayload>
+          }
+          deleteMany: {
+            args: Prisma.WaterLogDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.WaterLogUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.WaterLogUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$WaterLogPayload>[]
+          }
+          upsert: {
+            args: Prisma.WaterLogUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$WaterLogPayload>
+          }
+          aggregate: {
+            args: Prisma.WaterLogAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateWaterLog>
+          }
+          groupBy: {
+            args: Prisma.WaterLogGroupByArgs<ExtArgs>
+            result: $Utils.Optional<WaterLogGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.WaterLogCountArgs<ExtArgs>
+            result: $Utils.Optional<WaterLogCountAggregateOutputType> | number
           }
         }
       }
@@ -1869,6 +2049,8 @@ export namespace Prisma {
     session?: SessionOmit
     verificationToken?: VerificationTokenOmit
     user?: UserOmit
+    subscription?: SubscriptionOmit
+    waterLog?: WaterLogOmit
     userProfile?: UserProfileOmit
     foodLog?: FoodLogOmit
     workoutLog?: WorkoutLogOmit
@@ -1966,6 +2148,7 @@ export namespace Prisma {
     behaviorLogs: number
     streaks: number
     plans: number
+    waterLogs: number
   }
 
   export type UserCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -1977,6 +2160,7 @@ export namespace Prisma {
     behaviorLogs?: boolean | UserCountOutputTypeCountBehaviorLogsArgs
     streaks?: boolean | UserCountOutputTypeCountStreaksArgs
     plans?: boolean | UserCountOutputTypeCountPlansArgs
+    waterLogs?: boolean | UserCountOutputTypeCountWaterLogsArgs
   }
 
   // Custom InputTypes
@@ -2044,6 +2228,13 @@ export namespace Prisma {
    */
   export type UserCountOutputTypeCountPlansArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: PlanWhereInput
+  }
+
+  /**
+   * UserCountOutputType without action
+   */
+  export type UserCountOutputTypeCountWaterLogsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: WaterLogWhereInput
   }
 
 
@@ -5452,6 +5643,8 @@ export namespace Prisma {
     behaviorLogs?: boolean | User$behaviorLogsArgs<ExtArgs>
     streaks?: boolean | User$streaksArgs<ExtArgs>
     plans?: boolean | User$plansArgs<ExtArgs>
+    subscription?: boolean | User$subscriptionArgs<ExtArgs>
+    waterLogs?: boolean | User$waterLogsArgs<ExtArgs>
     _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["user"]>
 
@@ -5496,6 +5689,8 @@ export namespace Prisma {
     behaviorLogs?: boolean | User$behaviorLogsArgs<ExtArgs>
     streaks?: boolean | User$streaksArgs<ExtArgs>
     plans?: boolean | User$plansArgs<ExtArgs>
+    subscription?: boolean | User$subscriptionArgs<ExtArgs>
+    waterLogs?: boolean | User$waterLogsArgs<ExtArgs>
     _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type UserIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
@@ -5513,6 +5708,8 @@ export namespace Prisma {
       behaviorLogs: Prisma.$BehaviorLogPayload<ExtArgs>[]
       streaks: Prisma.$StreakPayload<ExtArgs>[]
       plans: Prisma.$PlanPayload<ExtArgs>[]
+      subscription: Prisma.$SubscriptionPayload<ExtArgs> | null
+      waterLogs: Prisma.$WaterLogPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -5925,6 +6122,8 @@ export namespace Prisma {
     behaviorLogs<T extends User$behaviorLogsArgs<ExtArgs> = {}>(args?: Subset<T, User$behaviorLogsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$BehaviorLogPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     streaks<T extends User$streaksArgs<ExtArgs> = {}>(args?: Subset<T, User$streaksArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$StreakPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     plans<T extends User$plansArgs<ExtArgs> = {}>(args?: Subset<T, User$plansArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PlanPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    subscription<T extends User$subscriptionArgs<ExtArgs> = {}>(args?: Subset<T, User$subscriptionArgs<ExtArgs>>): Prisma__SubscriptionClient<$Result.GetResult<Prisma.$SubscriptionPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    waterLogs<T extends User$waterLogsArgs<ExtArgs> = {}>(args?: Subset<T, User$waterLogsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$WaterLogPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -6565,6 +6764,49 @@ export namespace Prisma {
   }
 
   /**
+   * User.subscription
+   */
+  export type User$subscriptionArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Subscription
+     */
+    select?: SubscriptionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Subscription
+     */
+    omit?: SubscriptionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SubscriptionInclude<ExtArgs> | null
+    where?: SubscriptionWhereInput
+  }
+
+  /**
+   * User.waterLogs
+   */
+  export type User$waterLogsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the WaterLog
+     */
+    select?: WaterLogSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the WaterLog
+     */
+    omit?: WaterLogOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: WaterLogInclude<ExtArgs> | null
+    where?: WaterLogWhereInput
+    orderBy?: WaterLogOrderByWithRelationInput | WaterLogOrderByWithRelationInput[]
+    cursor?: WaterLogWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: WaterLogScalarFieldEnum | WaterLogScalarFieldEnum[]
+  }
+
+  /**
    * User without action
    */
   export type UserDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -6580,6 +6822,2205 @@ export namespace Prisma {
      * Choose, which related nodes to fetch as well
      */
     include?: UserInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model Subscription
+   */
+
+  export type AggregateSubscription = {
+    _count: SubscriptionCountAggregateOutputType | null
+    _min: SubscriptionMinAggregateOutputType | null
+    _max: SubscriptionMaxAggregateOutputType | null
+  }
+
+  export type SubscriptionMinAggregateOutputType = {
+    id: string | null
+    userId: string | null
+    plan: string | null
+    status: string | null
+    razorpaySubId: string | null
+    razorpayPaymentId: string | null
+    currentPeriodEnd: Date | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type SubscriptionMaxAggregateOutputType = {
+    id: string | null
+    userId: string | null
+    plan: string | null
+    status: string | null
+    razorpaySubId: string | null
+    razorpayPaymentId: string | null
+    currentPeriodEnd: Date | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type SubscriptionCountAggregateOutputType = {
+    id: number
+    userId: number
+    plan: number
+    status: number
+    razorpaySubId: number
+    razorpayPaymentId: number
+    currentPeriodEnd: number
+    createdAt: number
+    updatedAt: number
+    _all: number
+  }
+
+
+  export type SubscriptionMinAggregateInputType = {
+    id?: true
+    userId?: true
+    plan?: true
+    status?: true
+    razorpaySubId?: true
+    razorpayPaymentId?: true
+    currentPeriodEnd?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type SubscriptionMaxAggregateInputType = {
+    id?: true
+    userId?: true
+    plan?: true
+    status?: true
+    razorpaySubId?: true
+    razorpayPaymentId?: true
+    currentPeriodEnd?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type SubscriptionCountAggregateInputType = {
+    id?: true
+    userId?: true
+    plan?: true
+    status?: true
+    razorpaySubId?: true
+    razorpayPaymentId?: true
+    currentPeriodEnd?: true
+    createdAt?: true
+    updatedAt?: true
+    _all?: true
+  }
+
+  export type SubscriptionAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Subscription to aggregate.
+     */
+    where?: SubscriptionWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Subscriptions to fetch.
+     */
+    orderBy?: SubscriptionOrderByWithRelationInput | SubscriptionOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: SubscriptionWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Subscriptions from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Subscriptions.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned Subscriptions
+    **/
+    _count?: true | SubscriptionCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: SubscriptionMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: SubscriptionMaxAggregateInputType
+  }
+
+  export type GetSubscriptionAggregateType<T extends SubscriptionAggregateArgs> = {
+        [P in keyof T & keyof AggregateSubscription]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateSubscription[P]>
+      : GetScalarType<T[P], AggregateSubscription[P]>
+  }
+
+
+
+
+  export type SubscriptionGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: SubscriptionWhereInput
+    orderBy?: SubscriptionOrderByWithAggregationInput | SubscriptionOrderByWithAggregationInput[]
+    by: SubscriptionScalarFieldEnum[] | SubscriptionScalarFieldEnum
+    having?: SubscriptionScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: SubscriptionCountAggregateInputType | true
+    _min?: SubscriptionMinAggregateInputType
+    _max?: SubscriptionMaxAggregateInputType
+  }
+
+  export type SubscriptionGroupByOutputType = {
+    id: string
+    userId: string
+    plan: string
+    status: string
+    razorpaySubId: string | null
+    razorpayPaymentId: string | null
+    currentPeriodEnd: Date | null
+    createdAt: Date
+    updatedAt: Date
+    _count: SubscriptionCountAggregateOutputType | null
+    _min: SubscriptionMinAggregateOutputType | null
+    _max: SubscriptionMaxAggregateOutputType | null
+  }
+
+  type GetSubscriptionGroupByPayload<T extends SubscriptionGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<SubscriptionGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof SubscriptionGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], SubscriptionGroupByOutputType[P]>
+            : GetScalarType<T[P], SubscriptionGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type SubscriptionSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    userId?: boolean
+    plan?: boolean
+    status?: boolean
+    razorpaySubId?: boolean
+    razorpayPaymentId?: boolean
+    currentPeriodEnd?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["subscription"]>
+
+  export type SubscriptionSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    userId?: boolean
+    plan?: boolean
+    status?: boolean
+    razorpaySubId?: boolean
+    razorpayPaymentId?: boolean
+    currentPeriodEnd?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["subscription"]>
+
+  export type SubscriptionSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    userId?: boolean
+    plan?: boolean
+    status?: boolean
+    razorpaySubId?: boolean
+    razorpayPaymentId?: boolean
+    currentPeriodEnd?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["subscription"]>
+
+  export type SubscriptionSelectScalar = {
+    id?: boolean
+    userId?: boolean
+    plan?: boolean
+    status?: boolean
+    razorpaySubId?: boolean
+    razorpayPaymentId?: boolean
+    currentPeriodEnd?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }
+
+  export type SubscriptionOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "userId" | "plan" | "status" | "razorpaySubId" | "razorpayPaymentId" | "currentPeriodEnd" | "createdAt" | "updatedAt", ExtArgs["result"]["subscription"]>
+  export type SubscriptionInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }
+  export type SubscriptionIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }
+  export type SubscriptionIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }
+
+  export type $SubscriptionPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "Subscription"
+    objects: {
+      user: Prisma.$UserPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      userId: string
+      plan: string
+      status: string
+      razorpaySubId: string | null
+      razorpayPaymentId: string | null
+      currentPeriodEnd: Date | null
+      createdAt: Date
+      updatedAt: Date
+    }, ExtArgs["result"]["subscription"]>
+    composites: {}
+  }
+
+  type SubscriptionGetPayload<S extends boolean | null | undefined | SubscriptionDefaultArgs> = $Result.GetResult<Prisma.$SubscriptionPayload, S>
+
+  type SubscriptionCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<SubscriptionFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: SubscriptionCountAggregateInputType | true
+    }
+
+  export interface SubscriptionDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['Subscription'], meta: { name: 'Subscription' } }
+    /**
+     * Find zero or one Subscription that matches the filter.
+     * @param {SubscriptionFindUniqueArgs} args - Arguments to find a Subscription
+     * @example
+     * // Get one Subscription
+     * const subscription = await prisma.subscription.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends SubscriptionFindUniqueArgs>(args: SelectSubset<T, SubscriptionFindUniqueArgs<ExtArgs>>): Prisma__SubscriptionClient<$Result.GetResult<Prisma.$SubscriptionPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one Subscription that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {SubscriptionFindUniqueOrThrowArgs} args - Arguments to find a Subscription
+     * @example
+     * // Get one Subscription
+     * const subscription = await prisma.subscription.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends SubscriptionFindUniqueOrThrowArgs>(args: SelectSubset<T, SubscriptionFindUniqueOrThrowArgs<ExtArgs>>): Prisma__SubscriptionClient<$Result.GetResult<Prisma.$SubscriptionPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Subscription that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SubscriptionFindFirstArgs} args - Arguments to find a Subscription
+     * @example
+     * // Get one Subscription
+     * const subscription = await prisma.subscription.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends SubscriptionFindFirstArgs>(args?: SelectSubset<T, SubscriptionFindFirstArgs<ExtArgs>>): Prisma__SubscriptionClient<$Result.GetResult<Prisma.$SubscriptionPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Subscription that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SubscriptionFindFirstOrThrowArgs} args - Arguments to find a Subscription
+     * @example
+     * // Get one Subscription
+     * const subscription = await prisma.subscription.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends SubscriptionFindFirstOrThrowArgs>(args?: SelectSubset<T, SubscriptionFindFirstOrThrowArgs<ExtArgs>>): Prisma__SubscriptionClient<$Result.GetResult<Prisma.$SubscriptionPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more Subscriptions that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SubscriptionFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all Subscriptions
+     * const subscriptions = await prisma.subscription.findMany()
+     * 
+     * // Get first 10 Subscriptions
+     * const subscriptions = await prisma.subscription.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const subscriptionWithIdOnly = await prisma.subscription.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends SubscriptionFindManyArgs>(args?: SelectSubset<T, SubscriptionFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SubscriptionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a Subscription.
+     * @param {SubscriptionCreateArgs} args - Arguments to create a Subscription.
+     * @example
+     * // Create one Subscription
+     * const Subscription = await prisma.subscription.create({
+     *   data: {
+     *     // ... data to create a Subscription
+     *   }
+     * })
+     * 
+     */
+    create<T extends SubscriptionCreateArgs>(args: SelectSubset<T, SubscriptionCreateArgs<ExtArgs>>): Prisma__SubscriptionClient<$Result.GetResult<Prisma.$SubscriptionPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many Subscriptions.
+     * @param {SubscriptionCreateManyArgs} args - Arguments to create many Subscriptions.
+     * @example
+     * // Create many Subscriptions
+     * const subscription = await prisma.subscription.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends SubscriptionCreateManyArgs>(args?: SelectSubset<T, SubscriptionCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many Subscriptions and returns the data saved in the database.
+     * @param {SubscriptionCreateManyAndReturnArgs} args - Arguments to create many Subscriptions.
+     * @example
+     * // Create many Subscriptions
+     * const subscription = await prisma.subscription.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many Subscriptions and only return the `id`
+     * const subscriptionWithIdOnly = await prisma.subscription.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends SubscriptionCreateManyAndReturnArgs>(args?: SelectSubset<T, SubscriptionCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SubscriptionPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a Subscription.
+     * @param {SubscriptionDeleteArgs} args - Arguments to delete one Subscription.
+     * @example
+     * // Delete one Subscription
+     * const Subscription = await prisma.subscription.delete({
+     *   where: {
+     *     // ... filter to delete one Subscription
+     *   }
+     * })
+     * 
+     */
+    delete<T extends SubscriptionDeleteArgs>(args: SelectSubset<T, SubscriptionDeleteArgs<ExtArgs>>): Prisma__SubscriptionClient<$Result.GetResult<Prisma.$SubscriptionPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one Subscription.
+     * @param {SubscriptionUpdateArgs} args - Arguments to update one Subscription.
+     * @example
+     * // Update one Subscription
+     * const subscription = await prisma.subscription.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends SubscriptionUpdateArgs>(args: SelectSubset<T, SubscriptionUpdateArgs<ExtArgs>>): Prisma__SubscriptionClient<$Result.GetResult<Prisma.$SubscriptionPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more Subscriptions.
+     * @param {SubscriptionDeleteManyArgs} args - Arguments to filter Subscriptions to delete.
+     * @example
+     * // Delete a few Subscriptions
+     * const { count } = await prisma.subscription.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends SubscriptionDeleteManyArgs>(args?: SelectSubset<T, SubscriptionDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Subscriptions.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SubscriptionUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many Subscriptions
+     * const subscription = await prisma.subscription.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends SubscriptionUpdateManyArgs>(args: SelectSubset<T, SubscriptionUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Subscriptions and returns the data updated in the database.
+     * @param {SubscriptionUpdateManyAndReturnArgs} args - Arguments to update many Subscriptions.
+     * @example
+     * // Update many Subscriptions
+     * const subscription = await prisma.subscription.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more Subscriptions and only return the `id`
+     * const subscriptionWithIdOnly = await prisma.subscription.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends SubscriptionUpdateManyAndReturnArgs>(args: SelectSubset<T, SubscriptionUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SubscriptionPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one Subscription.
+     * @param {SubscriptionUpsertArgs} args - Arguments to update or create a Subscription.
+     * @example
+     * // Update or create a Subscription
+     * const subscription = await prisma.subscription.upsert({
+     *   create: {
+     *     // ... data to create a Subscription
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the Subscription we want to update
+     *   }
+     * })
+     */
+    upsert<T extends SubscriptionUpsertArgs>(args: SelectSubset<T, SubscriptionUpsertArgs<ExtArgs>>): Prisma__SubscriptionClient<$Result.GetResult<Prisma.$SubscriptionPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of Subscriptions.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SubscriptionCountArgs} args - Arguments to filter Subscriptions to count.
+     * @example
+     * // Count the number of Subscriptions
+     * const count = await prisma.subscription.count({
+     *   where: {
+     *     // ... the filter for the Subscriptions we want to count
+     *   }
+     * })
+    **/
+    count<T extends SubscriptionCountArgs>(
+      args?: Subset<T, SubscriptionCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], SubscriptionCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a Subscription.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SubscriptionAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends SubscriptionAggregateArgs>(args: Subset<T, SubscriptionAggregateArgs>): Prisma.PrismaPromise<GetSubscriptionAggregateType<T>>
+
+    /**
+     * Group by Subscription.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SubscriptionGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends SubscriptionGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: SubscriptionGroupByArgs['orderBy'] }
+        : { orderBy?: SubscriptionGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, SubscriptionGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetSubscriptionGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the Subscription model
+   */
+  readonly fields: SubscriptionFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for Subscription.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__SubscriptionClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    user<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the Subscription model
+   */
+  interface SubscriptionFieldRefs {
+    readonly id: FieldRef<"Subscription", 'String'>
+    readonly userId: FieldRef<"Subscription", 'String'>
+    readonly plan: FieldRef<"Subscription", 'String'>
+    readonly status: FieldRef<"Subscription", 'String'>
+    readonly razorpaySubId: FieldRef<"Subscription", 'String'>
+    readonly razorpayPaymentId: FieldRef<"Subscription", 'String'>
+    readonly currentPeriodEnd: FieldRef<"Subscription", 'DateTime'>
+    readonly createdAt: FieldRef<"Subscription", 'DateTime'>
+    readonly updatedAt: FieldRef<"Subscription", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * Subscription findUnique
+   */
+  export type SubscriptionFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Subscription
+     */
+    select?: SubscriptionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Subscription
+     */
+    omit?: SubscriptionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SubscriptionInclude<ExtArgs> | null
+    /**
+     * Filter, which Subscription to fetch.
+     */
+    where: SubscriptionWhereUniqueInput
+  }
+
+  /**
+   * Subscription findUniqueOrThrow
+   */
+  export type SubscriptionFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Subscription
+     */
+    select?: SubscriptionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Subscription
+     */
+    omit?: SubscriptionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SubscriptionInclude<ExtArgs> | null
+    /**
+     * Filter, which Subscription to fetch.
+     */
+    where: SubscriptionWhereUniqueInput
+  }
+
+  /**
+   * Subscription findFirst
+   */
+  export type SubscriptionFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Subscription
+     */
+    select?: SubscriptionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Subscription
+     */
+    omit?: SubscriptionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SubscriptionInclude<ExtArgs> | null
+    /**
+     * Filter, which Subscription to fetch.
+     */
+    where?: SubscriptionWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Subscriptions to fetch.
+     */
+    orderBy?: SubscriptionOrderByWithRelationInput | SubscriptionOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Subscriptions.
+     */
+    cursor?: SubscriptionWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Subscriptions from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Subscriptions.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Subscriptions.
+     */
+    distinct?: SubscriptionScalarFieldEnum | SubscriptionScalarFieldEnum[]
+  }
+
+  /**
+   * Subscription findFirstOrThrow
+   */
+  export type SubscriptionFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Subscription
+     */
+    select?: SubscriptionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Subscription
+     */
+    omit?: SubscriptionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SubscriptionInclude<ExtArgs> | null
+    /**
+     * Filter, which Subscription to fetch.
+     */
+    where?: SubscriptionWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Subscriptions to fetch.
+     */
+    orderBy?: SubscriptionOrderByWithRelationInput | SubscriptionOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Subscriptions.
+     */
+    cursor?: SubscriptionWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Subscriptions from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Subscriptions.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Subscriptions.
+     */
+    distinct?: SubscriptionScalarFieldEnum | SubscriptionScalarFieldEnum[]
+  }
+
+  /**
+   * Subscription findMany
+   */
+  export type SubscriptionFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Subscription
+     */
+    select?: SubscriptionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Subscription
+     */
+    omit?: SubscriptionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SubscriptionInclude<ExtArgs> | null
+    /**
+     * Filter, which Subscriptions to fetch.
+     */
+    where?: SubscriptionWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Subscriptions to fetch.
+     */
+    orderBy?: SubscriptionOrderByWithRelationInput | SubscriptionOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing Subscriptions.
+     */
+    cursor?: SubscriptionWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Subscriptions from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Subscriptions.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Subscriptions.
+     */
+    distinct?: SubscriptionScalarFieldEnum | SubscriptionScalarFieldEnum[]
+  }
+
+  /**
+   * Subscription create
+   */
+  export type SubscriptionCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Subscription
+     */
+    select?: SubscriptionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Subscription
+     */
+    omit?: SubscriptionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SubscriptionInclude<ExtArgs> | null
+    /**
+     * The data needed to create a Subscription.
+     */
+    data: XOR<SubscriptionCreateInput, SubscriptionUncheckedCreateInput>
+  }
+
+  /**
+   * Subscription createMany
+   */
+  export type SubscriptionCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many Subscriptions.
+     */
+    data: SubscriptionCreateManyInput | SubscriptionCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * Subscription createManyAndReturn
+   */
+  export type SubscriptionCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Subscription
+     */
+    select?: SubscriptionSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the Subscription
+     */
+    omit?: SubscriptionOmit<ExtArgs> | null
+    /**
+     * The data used to create many Subscriptions.
+     */
+    data: SubscriptionCreateManyInput | SubscriptionCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SubscriptionIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * Subscription update
+   */
+  export type SubscriptionUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Subscription
+     */
+    select?: SubscriptionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Subscription
+     */
+    omit?: SubscriptionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SubscriptionInclude<ExtArgs> | null
+    /**
+     * The data needed to update a Subscription.
+     */
+    data: XOR<SubscriptionUpdateInput, SubscriptionUncheckedUpdateInput>
+    /**
+     * Choose, which Subscription to update.
+     */
+    where: SubscriptionWhereUniqueInput
+  }
+
+  /**
+   * Subscription updateMany
+   */
+  export type SubscriptionUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update Subscriptions.
+     */
+    data: XOR<SubscriptionUpdateManyMutationInput, SubscriptionUncheckedUpdateManyInput>
+    /**
+     * Filter which Subscriptions to update
+     */
+    where?: SubscriptionWhereInput
+    /**
+     * Limit how many Subscriptions to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * Subscription updateManyAndReturn
+   */
+  export type SubscriptionUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Subscription
+     */
+    select?: SubscriptionSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the Subscription
+     */
+    omit?: SubscriptionOmit<ExtArgs> | null
+    /**
+     * The data used to update Subscriptions.
+     */
+    data: XOR<SubscriptionUpdateManyMutationInput, SubscriptionUncheckedUpdateManyInput>
+    /**
+     * Filter which Subscriptions to update
+     */
+    where?: SubscriptionWhereInput
+    /**
+     * Limit how many Subscriptions to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SubscriptionIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * Subscription upsert
+   */
+  export type SubscriptionUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Subscription
+     */
+    select?: SubscriptionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Subscription
+     */
+    omit?: SubscriptionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SubscriptionInclude<ExtArgs> | null
+    /**
+     * The filter to search for the Subscription to update in case it exists.
+     */
+    where: SubscriptionWhereUniqueInput
+    /**
+     * In case the Subscription found by the `where` argument doesn't exist, create a new Subscription with this data.
+     */
+    create: XOR<SubscriptionCreateInput, SubscriptionUncheckedCreateInput>
+    /**
+     * In case the Subscription was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<SubscriptionUpdateInput, SubscriptionUncheckedUpdateInput>
+  }
+
+  /**
+   * Subscription delete
+   */
+  export type SubscriptionDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Subscription
+     */
+    select?: SubscriptionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Subscription
+     */
+    omit?: SubscriptionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SubscriptionInclude<ExtArgs> | null
+    /**
+     * Filter which Subscription to delete.
+     */
+    where: SubscriptionWhereUniqueInput
+  }
+
+  /**
+   * Subscription deleteMany
+   */
+  export type SubscriptionDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Subscriptions to delete
+     */
+    where?: SubscriptionWhereInput
+    /**
+     * Limit how many Subscriptions to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * Subscription without action
+   */
+  export type SubscriptionDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Subscription
+     */
+    select?: SubscriptionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Subscription
+     */
+    omit?: SubscriptionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SubscriptionInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model WaterLog
+   */
+
+  export type AggregateWaterLog = {
+    _count: WaterLogCountAggregateOutputType | null
+    _avg: WaterLogAvgAggregateOutputType | null
+    _sum: WaterLogSumAggregateOutputType | null
+    _min: WaterLogMinAggregateOutputType | null
+    _max: WaterLogMaxAggregateOutputType | null
+  }
+
+  export type WaterLogAvgAggregateOutputType = {
+    amount: number | null
+  }
+
+  export type WaterLogSumAggregateOutputType = {
+    amount: number | null
+  }
+
+  export type WaterLogMinAggregateOutputType = {
+    id: string | null
+    userId: string | null
+    date: Date | null
+    amount: number | null
+  }
+
+  export type WaterLogMaxAggregateOutputType = {
+    id: string | null
+    userId: string | null
+    date: Date | null
+    amount: number | null
+  }
+
+  export type WaterLogCountAggregateOutputType = {
+    id: number
+    userId: number
+    date: number
+    amount: number
+    _all: number
+  }
+
+
+  export type WaterLogAvgAggregateInputType = {
+    amount?: true
+  }
+
+  export type WaterLogSumAggregateInputType = {
+    amount?: true
+  }
+
+  export type WaterLogMinAggregateInputType = {
+    id?: true
+    userId?: true
+    date?: true
+    amount?: true
+  }
+
+  export type WaterLogMaxAggregateInputType = {
+    id?: true
+    userId?: true
+    date?: true
+    amount?: true
+  }
+
+  export type WaterLogCountAggregateInputType = {
+    id?: true
+    userId?: true
+    date?: true
+    amount?: true
+    _all?: true
+  }
+
+  export type WaterLogAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which WaterLog to aggregate.
+     */
+    where?: WaterLogWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of WaterLogs to fetch.
+     */
+    orderBy?: WaterLogOrderByWithRelationInput | WaterLogOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: WaterLogWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` WaterLogs from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` WaterLogs.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned WaterLogs
+    **/
+    _count?: true | WaterLogCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: WaterLogAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: WaterLogSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: WaterLogMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: WaterLogMaxAggregateInputType
+  }
+
+  export type GetWaterLogAggregateType<T extends WaterLogAggregateArgs> = {
+        [P in keyof T & keyof AggregateWaterLog]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateWaterLog[P]>
+      : GetScalarType<T[P], AggregateWaterLog[P]>
+  }
+
+
+
+
+  export type WaterLogGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: WaterLogWhereInput
+    orderBy?: WaterLogOrderByWithAggregationInput | WaterLogOrderByWithAggregationInput[]
+    by: WaterLogScalarFieldEnum[] | WaterLogScalarFieldEnum
+    having?: WaterLogScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: WaterLogCountAggregateInputType | true
+    _avg?: WaterLogAvgAggregateInputType
+    _sum?: WaterLogSumAggregateInputType
+    _min?: WaterLogMinAggregateInputType
+    _max?: WaterLogMaxAggregateInputType
+  }
+
+  export type WaterLogGroupByOutputType = {
+    id: string
+    userId: string
+    date: Date
+    amount: number
+    _count: WaterLogCountAggregateOutputType | null
+    _avg: WaterLogAvgAggregateOutputType | null
+    _sum: WaterLogSumAggregateOutputType | null
+    _min: WaterLogMinAggregateOutputType | null
+    _max: WaterLogMaxAggregateOutputType | null
+  }
+
+  type GetWaterLogGroupByPayload<T extends WaterLogGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<WaterLogGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof WaterLogGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], WaterLogGroupByOutputType[P]>
+            : GetScalarType<T[P], WaterLogGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type WaterLogSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    userId?: boolean
+    date?: boolean
+    amount?: boolean
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["waterLog"]>
+
+  export type WaterLogSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    userId?: boolean
+    date?: boolean
+    amount?: boolean
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["waterLog"]>
+
+  export type WaterLogSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    userId?: boolean
+    date?: boolean
+    amount?: boolean
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["waterLog"]>
+
+  export type WaterLogSelectScalar = {
+    id?: boolean
+    userId?: boolean
+    date?: boolean
+    amount?: boolean
+  }
+
+  export type WaterLogOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "userId" | "date" | "amount", ExtArgs["result"]["waterLog"]>
+  export type WaterLogInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }
+  export type WaterLogIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }
+  export type WaterLogIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }
+
+  export type $WaterLogPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "WaterLog"
+    objects: {
+      user: Prisma.$UserPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      userId: string
+      date: Date
+      amount: number
+    }, ExtArgs["result"]["waterLog"]>
+    composites: {}
+  }
+
+  type WaterLogGetPayload<S extends boolean | null | undefined | WaterLogDefaultArgs> = $Result.GetResult<Prisma.$WaterLogPayload, S>
+
+  type WaterLogCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<WaterLogFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: WaterLogCountAggregateInputType | true
+    }
+
+  export interface WaterLogDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['WaterLog'], meta: { name: 'WaterLog' } }
+    /**
+     * Find zero or one WaterLog that matches the filter.
+     * @param {WaterLogFindUniqueArgs} args - Arguments to find a WaterLog
+     * @example
+     * // Get one WaterLog
+     * const waterLog = await prisma.waterLog.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends WaterLogFindUniqueArgs>(args: SelectSubset<T, WaterLogFindUniqueArgs<ExtArgs>>): Prisma__WaterLogClient<$Result.GetResult<Prisma.$WaterLogPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one WaterLog that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {WaterLogFindUniqueOrThrowArgs} args - Arguments to find a WaterLog
+     * @example
+     * // Get one WaterLog
+     * const waterLog = await prisma.waterLog.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends WaterLogFindUniqueOrThrowArgs>(args: SelectSubset<T, WaterLogFindUniqueOrThrowArgs<ExtArgs>>): Prisma__WaterLogClient<$Result.GetResult<Prisma.$WaterLogPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first WaterLog that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {WaterLogFindFirstArgs} args - Arguments to find a WaterLog
+     * @example
+     * // Get one WaterLog
+     * const waterLog = await prisma.waterLog.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends WaterLogFindFirstArgs>(args?: SelectSubset<T, WaterLogFindFirstArgs<ExtArgs>>): Prisma__WaterLogClient<$Result.GetResult<Prisma.$WaterLogPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first WaterLog that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {WaterLogFindFirstOrThrowArgs} args - Arguments to find a WaterLog
+     * @example
+     * // Get one WaterLog
+     * const waterLog = await prisma.waterLog.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends WaterLogFindFirstOrThrowArgs>(args?: SelectSubset<T, WaterLogFindFirstOrThrowArgs<ExtArgs>>): Prisma__WaterLogClient<$Result.GetResult<Prisma.$WaterLogPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more WaterLogs that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {WaterLogFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all WaterLogs
+     * const waterLogs = await prisma.waterLog.findMany()
+     * 
+     * // Get first 10 WaterLogs
+     * const waterLogs = await prisma.waterLog.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const waterLogWithIdOnly = await prisma.waterLog.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends WaterLogFindManyArgs>(args?: SelectSubset<T, WaterLogFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$WaterLogPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a WaterLog.
+     * @param {WaterLogCreateArgs} args - Arguments to create a WaterLog.
+     * @example
+     * // Create one WaterLog
+     * const WaterLog = await prisma.waterLog.create({
+     *   data: {
+     *     // ... data to create a WaterLog
+     *   }
+     * })
+     * 
+     */
+    create<T extends WaterLogCreateArgs>(args: SelectSubset<T, WaterLogCreateArgs<ExtArgs>>): Prisma__WaterLogClient<$Result.GetResult<Prisma.$WaterLogPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many WaterLogs.
+     * @param {WaterLogCreateManyArgs} args - Arguments to create many WaterLogs.
+     * @example
+     * // Create many WaterLogs
+     * const waterLog = await prisma.waterLog.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends WaterLogCreateManyArgs>(args?: SelectSubset<T, WaterLogCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many WaterLogs and returns the data saved in the database.
+     * @param {WaterLogCreateManyAndReturnArgs} args - Arguments to create many WaterLogs.
+     * @example
+     * // Create many WaterLogs
+     * const waterLog = await prisma.waterLog.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many WaterLogs and only return the `id`
+     * const waterLogWithIdOnly = await prisma.waterLog.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends WaterLogCreateManyAndReturnArgs>(args?: SelectSubset<T, WaterLogCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$WaterLogPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a WaterLog.
+     * @param {WaterLogDeleteArgs} args - Arguments to delete one WaterLog.
+     * @example
+     * // Delete one WaterLog
+     * const WaterLog = await prisma.waterLog.delete({
+     *   where: {
+     *     // ... filter to delete one WaterLog
+     *   }
+     * })
+     * 
+     */
+    delete<T extends WaterLogDeleteArgs>(args: SelectSubset<T, WaterLogDeleteArgs<ExtArgs>>): Prisma__WaterLogClient<$Result.GetResult<Prisma.$WaterLogPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one WaterLog.
+     * @param {WaterLogUpdateArgs} args - Arguments to update one WaterLog.
+     * @example
+     * // Update one WaterLog
+     * const waterLog = await prisma.waterLog.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends WaterLogUpdateArgs>(args: SelectSubset<T, WaterLogUpdateArgs<ExtArgs>>): Prisma__WaterLogClient<$Result.GetResult<Prisma.$WaterLogPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more WaterLogs.
+     * @param {WaterLogDeleteManyArgs} args - Arguments to filter WaterLogs to delete.
+     * @example
+     * // Delete a few WaterLogs
+     * const { count } = await prisma.waterLog.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends WaterLogDeleteManyArgs>(args?: SelectSubset<T, WaterLogDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more WaterLogs.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {WaterLogUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many WaterLogs
+     * const waterLog = await prisma.waterLog.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends WaterLogUpdateManyArgs>(args: SelectSubset<T, WaterLogUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more WaterLogs and returns the data updated in the database.
+     * @param {WaterLogUpdateManyAndReturnArgs} args - Arguments to update many WaterLogs.
+     * @example
+     * // Update many WaterLogs
+     * const waterLog = await prisma.waterLog.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more WaterLogs and only return the `id`
+     * const waterLogWithIdOnly = await prisma.waterLog.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends WaterLogUpdateManyAndReturnArgs>(args: SelectSubset<T, WaterLogUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$WaterLogPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one WaterLog.
+     * @param {WaterLogUpsertArgs} args - Arguments to update or create a WaterLog.
+     * @example
+     * // Update or create a WaterLog
+     * const waterLog = await prisma.waterLog.upsert({
+     *   create: {
+     *     // ... data to create a WaterLog
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the WaterLog we want to update
+     *   }
+     * })
+     */
+    upsert<T extends WaterLogUpsertArgs>(args: SelectSubset<T, WaterLogUpsertArgs<ExtArgs>>): Prisma__WaterLogClient<$Result.GetResult<Prisma.$WaterLogPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of WaterLogs.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {WaterLogCountArgs} args - Arguments to filter WaterLogs to count.
+     * @example
+     * // Count the number of WaterLogs
+     * const count = await prisma.waterLog.count({
+     *   where: {
+     *     // ... the filter for the WaterLogs we want to count
+     *   }
+     * })
+    **/
+    count<T extends WaterLogCountArgs>(
+      args?: Subset<T, WaterLogCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], WaterLogCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a WaterLog.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {WaterLogAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends WaterLogAggregateArgs>(args: Subset<T, WaterLogAggregateArgs>): Prisma.PrismaPromise<GetWaterLogAggregateType<T>>
+
+    /**
+     * Group by WaterLog.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {WaterLogGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends WaterLogGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: WaterLogGroupByArgs['orderBy'] }
+        : { orderBy?: WaterLogGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, WaterLogGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetWaterLogGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the WaterLog model
+   */
+  readonly fields: WaterLogFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for WaterLog.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__WaterLogClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    user<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the WaterLog model
+   */
+  interface WaterLogFieldRefs {
+    readonly id: FieldRef<"WaterLog", 'String'>
+    readonly userId: FieldRef<"WaterLog", 'String'>
+    readonly date: FieldRef<"WaterLog", 'DateTime'>
+    readonly amount: FieldRef<"WaterLog", 'Int'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * WaterLog findUnique
+   */
+  export type WaterLogFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the WaterLog
+     */
+    select?: WaterLogSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the WaterLog
+     */
+    omit?: WaterLogOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: WaterLogInclude<ExtArgs> | null
+    /**
+     * Filter, which WaterLog to fetch.
+     */
+    where: WaterLogWhereUniqueInput
+  }
+
+  /**
+   * WaterLog findUniqueOrThrow
+   */
+  export type WaterLogFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the WaterLog
+     */
+    select?: WaterLogSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the WaterLog
+     */
+    omit?: WaterLogOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: WaterLogInclude<ExtArgs> | null
+    /**
+     * Filter, which WaterLog to fetch.
+     */
+    where: WaterLogWhereUniqueInput
+  }
+
+  /**
+   * WaterLog findFirst
+   */
+  export type WaterLogFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the WaterLog
+     */
+    select?: WaterLogSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the WaterLog
+     */
+    omit?: WaterLogOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: WaterLogInclude<ExtArgs> | null
+    /**
+     * Filter, which WaterLog to fetch.
+     */
+    where?: WaterLogWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of WaterLogs to fetch.
+     */
+    orderBy?: WaterLogOrderByWithRelationInput | WaterLogOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for WaterLogs.
+     */
+    cursor?: WaterLogWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` WaterLogs from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` WaterLogs.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of WaterLogs.
+     */
+    distinct?: WaterLogScalarFieldEnum | WaterLogScalarFieldEnum[]
+  }
+
+  /**
+   * WaterLog findFirstOrThrow
+   */
+  export type WaterLogFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the WaterLog
+     */
+    select?: WaterLogSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the WaterLog
+     */
+    omit?: WaterLogOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: WaterLogInclude<ExtArgs> | null
+    /**
+     * Filter, which WaterLog to fetch.
+     */
+    where?: WaterLogWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of WaterLogs to fetch.
+     */
+    orderBy?: WaterLogOrderByWithRelationInput | WaterLogOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for WaterLogs.
+     */
+    cursor?: WaterLogWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` WaterLogs from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` WaterLogs.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of WaterLogs.
+     */
+    distinct?: WaterLogScalarFieldEnum | WaterLogScalarFieldEnum[]
+  }
+
+  /**
+   * WaterLog findMany
+   */
+  export type WaterLogFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the WaterLog
+     */
+    select?: WaterLogSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the WaterLog
+     */
+    omit?: WaterLogOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: WaterLogInclude<ExtArgs> | null
+    /**
+     * Filter, which WaterLogs to fetch.
+     */
+    where?: WaterLogWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of WaterLogs to fetch.
+     */
+    orderBy?: WaterLogOrderByWithRelationInput | WaterLogOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing WaterLogs.
+     */
+    cursor?: WaterLogWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` WaterLogs from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` WaterLogs.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of WaterLogs.
+     */
+    distinct?: WaterLogScalarFieldEnum | WaterLogScalarFieldEnum[]
+  }
+
+  /**
+   * WaterLog create
+   */
+  export type WaterLogCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the WaterLog
+     */
+    select?: WaterLogSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the WaterLog
+     */
+    omit?: WaterLogOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: WaterLogInclude<ExtArgs> | null
+    /**
+     * The data needed to create a WaterLog.
+     */
+    data: XOR<WaterLogCreateInput, WaterLogUncheckedCreateInput>
+  }
+
+  /**
+   * WaterLog createMany
+   */
+  export type WaterLogCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many WaterLogs.
+     */
+    data: WaterLogCreateManyInput | WaterLogCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * WaterLog createManyAndReturn
+   */
+  export type WaterLogCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the WaterLog
+     */
+    select?: WaterLogSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the WaterLog
+     */
+    omit?: WaterLogOmit<ExtArgs> | null
+    /**
+     * The data used to create many WaterLogs.
+     */
+    data: WaterLogCreateManyInput | WaterLogCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: WaterLogIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * WaterLog update
+   */
+  export type WaterLogUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the WaterLog
+     */
+    select?: WaterLogSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the WaterLog
+     */
+    omit?: WaterLogOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: WaterLogInclude<ExtArgs> | null
+    /**
+     * The data needed to update a WaterLog.
+     */
+    data: XOR<WaterLogUpdateInput, WaterLogUncheckedUpdateInput>
+    /**
+     * Choose, which WaterLog to update.
+     */
+    where: WaterLogWhereUniqueInput
+  }
+
+  /**
+   * WaterLog updateMany
+   */
+  export type WaterLogUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update WaterLogs.
+     */
+    data: XOR<WaterLogUpdateManyMutationInput, WaterLogUncheckedUpdateManyInput>
+    /**
+     * Filter which WaterLogs to update
+     */
+    where?: WaterLogWhereInput
+    /**
+     * Limit how many WaterLogs to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * WaterLog updateManyAndReturn
+   */
+  export type WaterLogUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the WaterLog
+     */
+    select?: WaterLogSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the WaterLog
+     */
+    omit?: WaterLogOmit<ExtArgs> | null
+    /**
+     * The data used to update WaterLogs.
+     */
+    data: XOR<WaterLogUpdateManyMutationInput, WaterLogUncheckedUpdateManyInput>
+    /**
+     * Filter which WaterLogs to update
+     */
+    where?: WaterLogWhereInput
+    /**
+     * Limit how many WaterLogs to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: WaterLogIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * WaterLog upsert
+   */
+  export type WaterLogUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the WaterLog
+     */
+    select?: WaterLogSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the WaterLog
+     */
+    omit?: WaterLogOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: WaterLogInclude<ExtArgs> | null
+    /**
+     * The filter to search for the WaterLog to update in case it exists.
+     */
+    where: WaterLogWhereUniqueInput
+    /**
+     * In case the WaterLog found by the `where` argument doesn't exist, create a new WaterLog with this data.
+     */
+    create: XOR<WaterLogCreateInput, WaterLogUncheckedCreateInput>
+    /**
+     * In case the WaterLog was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<WaterLogUpdateInput, WaterLogUncheckedUpdateInput>
+  }
+
+  /**
+   * WaterLog delete
+   */
+  export type WaterLogDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the WaterLog
+     */
+    select?: WaterLogSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the WaterLog
+     */
+    omit?: WaterLogOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: WaterLogInclude<ExtArgs> | null
+    /**
+     * Filter which WaterLog to delete.
+     */
+    where: WaterLogWhereUniqueInput
+  }
+
+  /**
+   * WaterLog deleteMany
+   */
+  export type WaterLogDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which WaterLogs to delete
+     */
+    where?: WaterLogWhereInput
+    /**
+     * Limit how many WaterLogs to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * WaterLog without action
+   */
+  export type WaterLogDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the WaterLog
+     */
+    select?: WaterLogSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the WaterLog
+     */
+    omit?: WaterLogOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: WaterLogInclude<ExtArgs> | null
   }
 
 
@@ -16844,6 +19285,31 @@ export namespace Prisma {
   export type UserScalarFieldEnum = (typeof UserScalarFieldEnum)[keyof typeof UserScalarFieldEnum]
 
 
+  export const SubscriptionScalarFieldEnum: {
+    id: 'id',
+    userId: 'userId',
+    plan: 'plan',
+    status: 'status',
+    razorpaySubId: 'razorpaySubId',
+    razorpayPaymentId: 'razorpayPaymentId',
+    currentPeriodEnd: 'currentPeriodEnd',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
+  };
+
+  export type SubscriptionScalarFieldEnum = (typeof SubscriptionScalarFieldEnum)[keyof typeof SubscriptionScalarFieldEnum]
+
+
+  export const WaterLogScalarFieldEnum: {
+    id: 'id',
+    userId: 'userId',
+    date: 'date',
+    amount: 'amount'
+  };
+
+  export type WaterLogScalarFieldEnum = (typeof WaterLogScalarFieldEnum)[keyof typeof WaterLogScalarFieldEnum]
+
+
   export const UserProfileScalarFieldEnum: {
     id: 'id',
     userId: 'userId',
@@ -17322,6 +19788,8 @@ export namespace Prisma {
     behaviorLogs?: BehaviorLogListRelationFilter
     streaks?: StreakListRelationFilter
     plans?: PlanListRelationFilter
+    subscription?: XOR<SubscriptionNullableScalarRelationFilter, SubscriptionWhereInput> | null
+    waterLogs?: WaterLogListRelationFilter
   }
 
   export type UserOrderByWithRelationInput = {
@@ -17341,6 +19809,8 @@ export namespace Prisma {
     behaviorLogs?: BehaviorLogOrderByRelationAggregateInput
     streaks?: StreakOrderByRelationAggregateInput
     plans?: PlanOrderByRelationAggregateInput
+    subscription?: SubscriptionOrderByWithRelationInput
+    waterLogs?: WaterLogOrderByRelationAggregateInput
   }
 
   export type UserWhereUniqueInput = Prisma.AtLeast<{
@@ -17363,6 +19833,8 @@ export namespace Prisma {
     behaviorLogs?: BehaviorLogListRelationFilter
     streaks?: StreakListRelationFilter
     plans?: PlanListRelationFilter
+    subscription?: XOR<SubscriptionNullableScalarRelationFilter, SubscriptionWhereInput> | null
+    waterLogs?: WaterLogListRelationFilter
   }, "id" | "email">
 
   export type UserOrderByWithAggregationInput = {
@@ -17389,6 +19861,133 @@ export namespace Prisma {
     image?: StringNullableWithAggregatesFilter<"User"> | string | null
     createdAt?: DateTimeWithAggregatesFilter<"User"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"User"> | Date | string
+  }
+
+  export type SubscriptionWhereInput = {
+    AND?: SubscriptionWhereInput | SubscriptionWhereInput[]
+    OR?: SubscriptionWhereInput[]
+    NOT?: SubscriptionWhereInput | SubscriptionWhereInput[]
+    id?: StringFilter<"Subscription"> | string
+    userId?: StringFilter<"Subscription"> | string
+    plan?: StringFilter<"Subscription"> | string
+    status?: StringFilter<"Subscription"> | string
+    razorpaySubId?: StringNullableFilter<"Subscription"> | string | null
+    razorpayPaymentId?: StringNullableFilter<"Subscription"> | string | null
+    currentPeriodEnd?: DateTimeNullableFilter<"Subscription"> | Date | string | null
+    createdAt?: DateTimeFilter<"Subscription"> | Date | string
+    updatedAt?: DateTimeFilter<"Subscription"> | Date | string
+    user?: XOR<UserScalarRelationFilter, UserWhereInput>
+  }
+
+  export type SubscriptionOrderByWithRelationInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    plan?: SortOrder
+    status?: SortOrder
+    razorpaySubId?: SortOrderInput | SortOrder
+    razorpayPaymentId?: SortOrderInput | SortOrder
+    currentPeriodEnd?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    user?: UserOrderByWithRelationInput
+  }
+
+  export type SubscriptionWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    userId?: string
+    AND?: SubscriptionWhereInput | SubscriptionWhereInput[]
+    OR?: SubscriptionWhereInput[]
+    NOT?: SubscriptionWhereInput | SubscriptionWhereInput[]
+    plan?: StringFilter<"Subscription"> | string
+    status?: StringFilter<"Subscription"> | string
+    razorpaySubId?: StringNullableFilter<"Subscription"> | string | null
+    razorpayPaymentId?: StringNullableFilter<"Subscription"> | string | null
+    currentPeriodEnd?: DateTimeNullableFilter<"Subscription"> | Date | string | null
+    createdAt?: DateTimeFilter<"Subscription"> | Date | string
+    updatedAt?: DateTimeFilter<"Subscription"> | Date | string
+    user?: XOR<UserScalarRelationFilter, UserWhereInput>
+  }, "id" | "userId">
+
+  export type SubscriptionOrderByWithAggregationInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    plan?: SortOrder
+    status?: SortOrder
+    razorpaySubId?: SortOrderInput | SortOrder
+    razorpayPaymentId?: SortOrderInput | SortOrder
+    currentPeriodEnd?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    _count?: SubscriptionCountOrderByAggregateInput
+    _max?: SubscriptionMaxOrderByAggregateInput
+    _min?: SubscriptionMinOrderByAggregateInput
+  }
+
+  export type SubscriptionScalarWhereWithAggregatesInput = {
+    AND?: SubscriptionScalarWhereWithAggregatesInput | SubscriptionScalarWhereWithAggregatesInput[]
+    OR?: SubscriptionScalarWhereWithAggregatesInput[]
+    NOT?: SubscriptionScalarWhereWithAggregatesInput | SubscriptionScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"Subscription"> | string
+    userId?: StringWithAggregatesFilter<"Subscription"> | string
+    plan?: StringWithAggregatesFilter<"Subscription"> | string
+    status?: StringWithAggregatesFilter<"Subscription"> | string
+    razorpaySubId?: StringNullableWithAggregatesFilter<"Subscription"> | string | null
+    razorpayPaymentId?: StringNullableWithAggregatesFilter<"Subscription"> | string | null
+    currentPeriodEnd?: DateTimeNullableWithAggregatesFilter<"Subscription"> | Date | string | null
+    createdAt?: DateTimeWithAggregatesFilter<"Subscription"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"Subscription"> | Date | string
+  }
+
+  export type WaterLogWhereInput = {
+    AND?: WaterLogWhereInput | WaterLogWhereInput[]
+    OR?: WaterLogWhereInput[]
+    NOT?: WaterLogWhereInput | WaterLogWhereInput[]
+    id?: StringFilter<"WaterLog"> | string
+    userId?: StringFilter<"WaterLog"> | string
+    date?: DateTimeFilter<"WaterLog"> | Date | string
+    amount?: IntFilter<"WaterLog"> | number
+    user?: XOR<UserScalarRelationFilter, UserWhereInput>
+  }
+
+  export type WaterLogOrderByWithRelationInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    date?: SortOrder
+    amount?: SortOrder
+    user?: UserOrderByWithRelationInput
+  }
+
+  export type WaterLogWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: WaterLogWhereInput | WaterLogWhereInput[]
+    OR?: WaterLogWhereInput[]
+    NOT?: WaterLogWhereInput | WaterLogWhereInput[]
+    userId?: StringFilter<"WaterLog"> | string
+    date?: DateTimeFilter<"WaterLog"> | Date | string
+    amount?: IntFilter<"WaterLog"> | number
+    user?: XOR<UserScalarRelationFilter, UserWhereInput>
+  }, "id">
+
+  export type WaterLogOrderByWithAggregationInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    date?: SortOrder
+    amount?: SortOrder
+    _count?: WaterLogCountOrderByAggregateInput
+    _avg?: WaterLogAvgOrderByAggregateInput
+    _max?: WaterLogMaxOrderByAggregateInput
+    _min?: WaterLogMinOrderByAggregateInput
+    _sum?: WaterLogSumOrderByAggregateInput
+  }
+
+  export type WaterLogScalarWhereWithAggregatesInput = {
+    AND?: WaterLogScalarWhereWithAggregatesInput | WaterLogScalarWhereWithAggregatesInput[]
+    OR?: WaterLogScalarWhereWithAggregatesInput[]
+    NOT?: WaterLogScalarWhereWithAggregatesInput | WaterLogScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"WaterLog"> | string
+    userId?: StringWithAggregatesFilter<"WaterLog"> | string
+    date?: DateTimeWithAggregatesFilter<"WaterLog"> | Date | string
+    amount?: IntWithAggregatesFilter<"WaterLog"> | number
   }
 
   export type UserProfileWhereInput = {
@@ -18303,6 +20902,8 @@ export namespace Prisma {
     behaviorLogs?: BehaviorLogCreateNestedManyWithoutUserInput
     streaks?: StreakCreateNestedManyWithoutUserInput
     plans?: PlanCreateNestedManyWithoutUserInput
+    subscription?: SubscriptionCreateNestedOneWithoutUserInput
+    waterLogs?: WaterLogCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateInput = {
@@ -18322,6 +20923,8 @@ export namespace Prisma {
     behaviorLogs?: BehaviorLogUncheckedCreateNestedManyWithoutUserInput
     streaks?: StreakUncheckedCreateNestedManyWithoutUserInput
     plans?: PlanUncheckedCreateNestedManyWithoutUserInput
+    subscription?: SubscriptionUncheckedCreateNestedOneWithoutUserInput
+    waterLogs?: WaterLogUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserUpdateInput = {
@@ -18341,6 +20944,8 @@ export namespace Prisma {
     behaviorLogs?: BehaviorLogUpdateManyWithoutUserNestedInput
     streaks?: StreakUpdateManyWithoutUserNestedInput
     plans?: PlanUpdateManyWithoutUserNestedInput
+    subscription?: SubscriptionUpdateOneWithoutUserNestedInput
+    waterLogs?: WaterLogUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateInput = {
@@ -18360,6 +20965,8 @@ export namespace Prisma {
     behaviorLogs?: BehaviorLogUncheckedUpdateManyWithoutUserNestedInput
     streaks?: StreakUncheckedUpdateManyWithoutUserNestedInput
     plans?: PlanUncheckedUpdateManyWithoutUserNestedInput
+    subscription?: SubscriptionUncheckedUpdateOneWithoutUserNestedInput
+    waterLogs?: WaterLogUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type UserCreateManyInput = {
@@ -18390,6 +20997,137 @@ export namespace Prisma {
     image?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type SubscriptionCreateInput = {
+    id?: string
+    plan?: string
+    status?: string
+    razorpaySubId?: string | null
+    razorpayPaymentId?: string | null
+    currentPeriodEnd?: Date | string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    user: UserCreateNestedOneWithoutSubscriptionInput
+  }
+
+  export type SubscriptionUncheckedCreateInput = {
+    id?: string
+    userId: string
+    plan?: string
+    status?: string
+    razorpaySubId?: string | null
+    razorpayPaymentId?: string | null
+    currentPeriodEnd?: Date | string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type SubscriptionUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    plan?: StringFieldUpdateOperationsInput | string
+    status?: StringFieldUpdateOperationsInput | string
+    razorpaySubId?: NullableStringFieldUpdateOperationsInput | string | null
+    razorpayPaymentId?: NullableStringFieldUpdateOperationsInput | string | null
+    currentPeriodEnd?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    user?: UserUpdateOneRequiredWithoutSubscriptionNestedInput
+  }
+
+  export type SubscriptionUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    plan?: StringFieldUpdateOperationsInput | string
+    status?: StringFieldUpdateOperationsInput | string
+    razorpaySubId?: NullableStringFieldUpdateOperationsInput | string | null
+    razorpayPaymentId?: NullableStringFieldUpdateOperationsInput | string | null
+    currentPeriodEnd?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type SubscriptionCreateManyInput = {
+    id?: string
+    userId: string
+    plan?: string
+    status?: string
+    razorpaySubId?: string | null
+    razorpayPaymentId?: string | null
+    currentPeriodEnd?: Date | string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type SubscriptionUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    plan?: StringFieldUpdateOperationsInput | string
+    status?: StringFieldUpdateOperationsInput | string
+    razorpaySubId?: NullableStringFieldUpdateOperationsInput | string | null
+    razorpayPaymentId?: NullableStringFieldUpdateOperationsInput | string | null
+    currentPeriodEnd?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type SubscriptionUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    plan?: StringFieldUpdateOperationsInput | string
+    status?: StringFieldUpdateOperationsInput | string
+    razorpaySubId?: NullableStringFieldUpdateOperationsInput | string | null
+    razorpayPaymentId?: NullableStringFieldUpdateOperationsInput | string | null
+    currentPeriodEnd?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type WaterLogCreateInput = {
+    id?: string
+    date?: Date | string
+    amount: number
+    user: UserCreateNestedOneWithoutWaterLogsInput
+  }
+
+  export type WaterLogUncheckedCreateInput = {
+    id?: string
+    userId: string
+    date?: Date | string
+    amount: number
+  }
+
+  export type WaterLogUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
+    amount?: IntFieldUpdateOperationsInput | number
+    user?: UserUpdateOneRequiredWithoutWaterLogsNestedInput
+  }
+
+  export type WaterLogUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
+    amount?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type WaterLogCreateManyInput = {
+    id?: string
+    userId: string
+    date?: Date | string
+    amount: number
+  }
+
+  export type WaterLogUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
+    amount?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type WaterLogUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
+    amount?: IntFieldUpdateOperationsInput | number
   }
 
   export type UserProfileCreateInput = {
@@ -19463,6 +22201,17 @@ export namespace Prisma {
     none?: PlanWhereInput
   }
 
+  export type SubscriptionNullableScalarRelationFilter = {
+    is?: SubscriptionWhereInput | null
+    isNot?: SubscriptionWhereInput | null
+  }
+
+  export type WaterLogListRelationFilter = {
+    every?: WaterLogWhereInput
+    some?: WaterLogWhereInput
+    none?: WaterLogWhereInput
+  }
+
   export type AccountOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
@@ -19492,6 +22241,10 @@ export namespace Prisma {
   }
 
   export type PlanOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type WaterLogOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
@@ -19537,6 +22290,98 @@ export namespace Prisma {
     _count?: NestedIntNullableFilter<$PrismaModel>
     _min?: NestedDateTimeNullableFilter<$PrismaModel>
     _max?: NestedDateTimeNullableFilter<$PrismaModel>
+  }
+
+  export type SubscriptionCountOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    plan?: SortOrder
+    status?: SortOrder
+    razorpaySubId?: SortOrder
+    razorpayPaymentId?: SortOrder
+    currentPeriodEnd?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type SubscriptionMaxOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    plan?: SortOrder
+    status?: SortOrder
+    razorpaySubId?: SortOrder
+    razorpayPaymentId?: SortOrder
+    currentPeriodEnd?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type SubscriptionMinOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    plan?: SortOrder
+    status?: SortOrder
+    razorpaySubId?: SortOrder
+    razorpayPaymentId?: SortOrder
+    currentPeriodEnd?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type IntFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel>
+    in?: number[] | ListIntFieldRefInput<$PrismaModel>
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel>
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntFilter<$PrismaModel> | number
+  }
+
+  export type WaterLogCountOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    date?: SortOrder
+    amount?: SortOrder
+  }
+
+  export type WaterLogAvgOrderByAggregateInput = {
+    amount?: SortOrder
+  }
+
+  export type WaterLogMaxOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    date?: SortOrder
+    amount?: SortOrder
+  }
+
+  export type WaterLogMinOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    date?: SortOrder
+    amount?: SortOrder
+  }
+
+  export type WaterLogSumOrderByAggregateInput = {
+    amount?: SortOrder
+  }
+
+  export type IntWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel>
+    in?: number[] | ListIntFieldRefInput<$PrismaModel>
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel>
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntWithAggregatesFilter<$PrismaModel> | number
+    _count?: NestedIntFilter<$PrismaModel>
+    _avg?: NestedFloatFilter<$PrismaModel>
+    _sum?: NestedIntFilter<$PrismaModel>
+    _min?: NestedIntFilter<$PrismaModel>
+    _max?: NestedIntFilter<$PrismaModel>
   }
 
   export type FloatNullableFilter<$PrismaModel = never> = {
@@ -19892,17 +22737,6 @@ export namespace Prisma {
     aiResponse?: SortOrder
   }
 
-  export type IntFilter<$PrismaModel = never> = {
-    equals?: number | IntFieldRefInput<$PrismaModel>
-    in?: number[] | ListIntFieldRefInput<$PrismaModel>
-    notIn?: number[] | ListIntFieldRefInput<$PrismaModel>
-    lt?: number | IntFieldRefInput<$PrismaModel>
-    lte?: number | IntFieldRefInput<$PrismaModel>
-    gt?: number | IntFieldRefInput<$PrismaModel>
-    gte?: number | IntFieldRefInput<$PrismaModel>
-    not?: NestedIntFilter<$PrismaModel> | number
-  }
-
   export type StreakCountOrderByAggregateInput = {
     id?: SortOrder
     userId?: SortOrder
@@ -19938,22 +22772,6 @@ export namespace Prisma {
   export type StreakSumOrderByAggregateInput = {
     currentDays?: SortOrder
     bestDays?: SortOrder
-  }
-
-  export type IntWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: number | IntFieldRefInput<$PrismaModel>
-    in?: number[] | ListIntFieldRefInput<$PrismaModel>
-    notIn?: number[] | ListIntFieldRefInput<$PrismaModel>
-    lt?: number | IntFieldRefInput<$PrismaModel>
-    lte?: number | IntFieldRefInput<$PrismaModel>
-    gt?: number | IntFieldRefInput<$PrismaModel>
-    gte?: number | IntFieldRefInput<$PrismaModel>
-    not?: NestedIntWithAggregatesFilter<$PrismaModel> | number
-    _count?: NestedIntFilter<$PrismaModel>
-    _avg?: NestedFloatFilter<$PrismaModel>
-    _sum?: NestedIntFilter<$PrismaModel>
-    _min?: NestedIntFilter<$PrismaModel>
-    _max?: NestedIntFilter<$PrismaModel>
   }
   export type JsonFilter<$PrismaModel = never> =
     | PatchUndefined<
@@ -20249,6 +23067,19 @@ export namespace Prisma {
     connect?: PlanWhereUniqueInput | PlanWhereUniqueInput[]
   }
 
+  export type SubscriptionCreateNestedOneWithoutUserInput = {
+    create?: XOR<SubscriptionCreateWithoutUserInput, SubscriptionUncheckedCreateWithoutUserInput>
+    connectOrCreate?: SubscriptionCreateOrConnectWithoutUserInput
+    connect?: SubscriptionWhereUniqueInput
+  }
+
+  export type WaterLogCreateNestedManyWithoutUserInput = {
+    create?: XOR<WaterLogCreateWithoutUserInput, WaterLogUncheckedCreateWithoutUserInput> | WaterLogCreateWithoutUserInput[] | WaterLogUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: WaterLogCreateOrConnectWithoutUserInput | WaterLogCreateOrConnectWithoutUserInput[]
+    createMany?: WaterLogCreateManyUserInputEnvelope
+    connect?: WaterLogWhereUniqueInput | WaterLogWhereUniqueInput[]
+  }
+
   export type AccountUncheckedCreateNestedManyWithoutUserInput = {
     create?: XOR<AccountCreateWithoutUserInput, AccountUncheckedCreateWithoutUserInput> | AccountCreateWithoutUserInput[] | AccountUncheckedCreateWithoutUserInput[]
     connectOrCreate?: AccountCreateOrConnectWithoutUserInput | AccountCreateOrConnectWithoutUserInput[]
@@ -20309,6 +23140,19 @@ export namespace Prisma {
     connectOrCreate?: PlanCreateOrConnectWithoutUserInput | PlanCreateOrConnectWithoutUserInput[]
     createMany?: PlanCreateManyUserInputEnvelope
     connect?: PlanWhereUniqueInput | PlanWhereUniqueInput[]
+  }
+
+  export type SubscriptionUncheckedCreateNestedOneWithoutUserInput = {
+    create?: XOR<SubscriptionCreateWithoutUserInput, SubscriptionUncheckedCreateWithoutUserInput>
+    connectOrCreate?: SubscriptionCreateOrConnectWithoutUserInput
+    connect?: SubscriptionWhereUniqueInput
+  }
+
+  export type WaterLogUncheckedCreateNestedManyWithoutUserInput = {
+    create?: XOR<WaterLogCreateWithoutUserInput, WaterLogUncheckedCreateWithoutUserInput> | WaterLogCreateWithoutUserInput[] | WaterLogUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: WaterLogCreateOrConnectWithoutUserInput | WaterLogCreateOrConnectWithoutUserInput[]
+    createMany?: WaterLogCreateManyUserInputEnvelope
+    connect?: WaterLogWhereUniqueInput | WaterLogWhereUniqueInput[]
   }
 
   export type NullableDateTimeFieldUpdateOperationsInput = {
@@ -20437,6 +23281,30 @@ export namespace Prisma {
     deleteMany?: PlanScalarWhereInput | PlanScalarWhereInput[]
   }
 
+  export type SubscriptionUpdateOneWithoutUserNestedInput = {
+    create?: XOR<SubscriptionCreateWithoutUserInput, SubscriptionUncheckedCreateWithoutUserInput>
+    connectOrCreate?: SubscriptionCreateOrConnectWithoutUserInput
+    upsert?: SubscriptionUpsertWithoutUserInput
+    disconnect?: SubscriptionWhereInput | boolean
+    delete?: SubscriptionWhereInput | boolean
+    connect?: SubscriptionWhereUniqueInput
+    update?: XOR<XOR<SubscriptionUpdateToOneWithWhereWithoutUserInput, SubscriptionUpdateWithoutUserInput>, SubscriptionUncheckedUpdateWithoutUserInput>
+  }
+
+  export type WaterLogUpdateManyWithoutUserNestedInput = {
+    create?: XOR<WaterLogCreateWithoutUserInput, WaterLogUncheckedCreateWithoutUserInput> | WaterLogCreateWithoutUserInput[] | WaterLogUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: WaterLogCreateOrConnectWithoutUserInput | WaterLogCreateOrConnectWithoutUserInput[]
+    upsert?: WaterLogUpsertWithWhereUniqueWithoutUserInput | WaterLogUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: WaterLogCreateManyUserInputEnvelope
+    set?: WaterLogWhereUniqueInput | WaterLogWhereUniqueInput[]
+    disconnect?: WaterLogWhereUniqueInput | WaterLogWhereUniqueInput[]
+    delete?: WaterLogWhereUniqueInput | WaterLogWhereUniqueInput[]
+    connect?: WaterLogWhereUniqueInput | WaterLogWhereUniqueInput[]
+    update?: WaterLogUpdateWithWhereUniqueWithoutUserInput | WaterLogUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: WaterLogUpdateManyWithWhereWithoutUserInput | WaterLogUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: WaterLogScalarWhereInput | WaterLogScalarWhereInput[]
+  }
+
   export type AccountUncheckedUpdateManyWithoutUserNestedInput = {
     create?: XOR<AccountCreateWithoutUserInput, AccountUncheckedCreateWithoutUserInput> | AccountCreateWithoutUserInput[] | AccountUncheckedCreateWithoutUserInput[]
     connectOrCreate?: AccountCreateOrConnectWithoutUserInput | AccountCreateOrConnectWithoutUserInput[]
@@ -20559,6 +23427,66 @@ export namespace Prisma {
     deleteMany?: PlanScalarWhereInput | PlanScalarWhereInput[]
   }
 
+  export type SubscriptionUncheckedUpdateOneWithoutUserNestedInput = {
+    create?: XOR<SubscriptionCreateWithoutUserInput, SubscriptionUncheckedCreateWithoutUserInput>
+    connectOrCreate?: SubscriptionCreateOrConnectWithoutUserInput
+    upsert?: SubscriptionUpsertWithoutUserInput
+    disconnect?: SubscriptionWhereInput | boolean
+    delete?: SubscriptionWhereInput | boolean
+    connect?: SubscriptionWhereUniqueInput
+    update?: XOR<XOR<SubscriptionUpdateToOneWithWhereWithoutUserInput, SubscriptionUpdateWithoutUserInput>, SubscriptionUncheckedUpdateWithoutUserInput>
+  }
+
+  export type WaterLogUncheckedUpdateManyWithoutUserNestedInput = {
+    create?: XOR<WaterLogCreateWithoutUserInput, WaterLogUncheckedCreateWithoutUserInput> | WaterLogCreateWithoutUserInput[] | WaterLogUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: WaterLogCreateOrConnectWithoutUserInput | WaterLogCreateOrConnectWithoutUserInput[]
+    upsert?: WaterLogUpsertWithWhereUniqueWithoutUserInput | WaterLogUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: WaterLogCreateManyUserInputEnvelope
+    set?: WaterLogWhereUniqueInput | WaterLogWhereUniqueInput[]
+    disconnect?: WaterLogWhereUniqueInput | WaterLogWhereUniqueInput[]
+    delete?: WaterLogWhereUniqueInput | WaterLogWhereUniqueInput[]
+    connect?: WaterLogWhereUniqueInput | WaterLogWhereUniqueInput[]
+    update?: WaterLogUpdateWithWhereUniqueWithoutUserInput | WaterLogUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: WaterLogUpdateManyWithWhereWithoutUserInput | WaterLogUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: WaterLogScalarWhereInput | WaterLogScalarWhereInput[]
+  }
+
+  export type UserCreateNestedOneWithoutSubscriptionInput = {
+    create?: XOR<UserCreateWithoutSubscriptionInput, UserUncheckedCreateWithoutSubscriptionInput>
+    connectOrCreate?: UserCreateOrConnectWithoutSubscriptionInput
+    connect?: UserWhereUniqueInput
+  }
+
+  export type UserUpdateOneRequiredWithoutSubscriptionNestedInput = {
+    create?: XOR<UserCreateWithoutSubscriptionInput, UserUncheckedCreateWithoutSubscriptionInput>
+    connectOrCreate?: UserCreateOrConnectWithoutSubscriptionInput
+    upsert?: UserUpsertWithoutSubscriptionInput
+    connect?: UserWhereUniqueInput
+    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutSubscriptionInput, UserUpdateWithoutSubscriptionInput>, UserUncheckedUpdateWithoutSubscriptionInput>
+  }
+
+  export type UserCreateNestedOneWithoutWaterLogsInput = {
+    create?: XOR<UserCreateWithoutWaterLogsInput, UserUncheckedCreateWithoutWaterLogsInput>
+    connectOrCreate?: UserCreateOrConnectWithoutWaterLogsInput
+    connect?: UserWhereUniqueInput
+  }
+
+  export type IntFieldUpdateOperationsInput = {
+    set?: number
+    increment?: number
+    decrement?: number
+    multiply?: number
+    divide?: number
+  }
+
+  export type UserUpdateOneRequiredWithoutWaterLogsNestedInput = {
+    create?: XOR<UserCreateWithoutWaterLogsInput, UserUncheckedCreateWithoutWaterLogsInput>
+    connectOrCreate?: UserCreateOrConnectWithoutWaterLogsInput
+    upsert?: UserUpsertWithoutWaterLogsInput
+    connect?: UserWhereUniqueInput
+    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutWaterLogsInput, UserUpdateWithoutWaterLogsInput>, UserUncheckedUpdateWithoutWaterLogsInput>
+  }
+
   export type UserCreateNestedOneWithoutProfileInput = {
     create?: XOR<UserCreateWithoutProfileInput, UserUncheckedCreateWithoutProfileInput>
     connectOrCreate?: UserCreateOrConnectWithoutProfileInput
@@ -20653,14 +23581,6 @@ export namespace Prisma {
     create?: XOR<UserCreateWithoutStreaksInput, UserUncheckedCreateWithoutStreaksInput>
     connectOrCreate?: UserCreateOrConnectWithoutStreaksInput
     connect?: UserWhereUniqueInput
-  }
-
-  export type IntFieldUpdateOperationsInput = {
-    set?: number
-    increment?: number
-    decrement?: number
-    multiply?: number
-    divide?: number
   }
 
   export type UserUpdateOneRequiredWithoutStreaksNestedInput = {
@@ -20864,6 +23784,22 @@ export namespace Prisma {
     _max?: NestedDateTimeNullableFilter<$PrismaModel>
   }
 
+  export type NestedIntWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel>
+    in?: number[] | ListIntFieldRefInput<$PrismaModel>
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel>
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntWithAggregatesFilter<$PrismaModel> | number
+    _count?: NestedIntFilter<$PrismaModel>
+    _avg?: NestedFloatFilter<$PrismaModel>
+    _sum?: NestedIntFilter<$PrismaModel>
+    _min?: NestedIntFilter<$PrismaModel>
+    _max?: NestedIntFilter<$PrismaModel>
+  }
+
   export type NestedFloatFilter<$PrismaModel = never> = {
     equals?: number | FloatFieldRefInput<$PrismaModel>
     in?: number[] | ListFloatFieldRefInput<$PrismaModel>
@@ -20942,22 +23878,6 @@ export namespace Prisma {
     gte?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
     not?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
   }
-
-  export type NestedIntWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: number | IntFieldRefInput<$PrismaModel>
-    in?: number[] | ListIntFieldRefInput<$PrismaModel>
-    notIn?: number[] | ListIntFieldRefInput<$PrismaModel>
-    lt?: number | IntFieldRefInput<$PrismaModel>
-    lte?: number | IntFieldRefInput<$PrismaModel>
-    gt?: number | IntFieldRefInput<$PrismaModel>
-    gte?: number | IntFieldRefInput<$PrismaModel>
-    not?: NestedIntWithAggregatesFilter<$PrismaModel> | number
-    _count?: NestedIntFilter<$PrismaModel>
-    _avg?: NestedFloatFilter<$PrismaModel>
-    _sum?: NestedIntFilter<$PrismaModel>
-    _min?: NestedIntFilter<$PrismaModel>
-    _max?: NestedIntFilter<$PrismaModel>
-  }
   export type NestedJsonFilter<$PrismaModel = never> =
     | PatchUndefined<
         Either<Required<NestedJsonFilterBase<$PrismaModel>>, Exclude<keyof Required<NestedJsonFilterBase<$PrismaModel>>, 'path'>>,
@@ -20998,6 +23918,8 @@ export namespace Prisma {
     behaviorLogs?: BehaviorLogCreateNestedManyWithoutUserInput
     streaks?: StreakCreateNestedManyWithoutUserInput
     plans?: PlanCreateNestedManyWithoutUserInput
+    subscription?: SubscriptionCreateNestedOneWithoutUserInput
+    waterLogs?: WaterLogCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutAccountsInput = {
@@ -21016,6 +23938,8 @@ export namespace Prisma {
     behaviorLogs?: BehaviorLogUncheckedCreateNestedManyWithoutUserInput
     streaks?: StreakUncheckedCreateNestedManyWithoutUserInput
     plans?: PlanUncheckedCreateNestedManyWithoutUserInput
+    subscription?: SubscriptionUncheckedCreateNestedOneWithoutUserInput
+    waterLogs?: WaterLogUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutAccountsInput = {
@@ -21050,6 +23974,8 @@ export namespace Prisma {
     behaviorLogs?: BehaviorLogUpdateManyWithoutUserNestedInput
     streaks?: StreakUpdateManyWithoutUserNestedInput
     plans?: PlanUpdateManyWithoutUserNestedInput
+    subscription?: SubscriptionUpdateOneWithoutUserNestedInput
+    waterLogs?: WaterLogUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutAccountsInput = {
@@ -21068,6 +23994,8 @@ export namespace Prisma {
     behaviorLogs?: BehaviorLogUncheckedUpdateManyWithoutUserNestedInput
     streaks?: StreakUncheckedUpdateManyWithoutUserNestedInput
     plans?: PlanUncheckedUpdateManyWithoutUserNestedInput
+    subscription?: SubscriptionUncheckedUpdateOneWithoutUserNestedInput
+    waterLogs?: WaterLogUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type UserCreateWithoutSessionsInput = {
@@ -21086,6 +24014,8 @@ export namespace Prisma {
     behaviorLogs?: BehaviorLogCreateNestedManyWithoutUserInput
     streaks?: StreakCreateNestedManyWithoutUserInput
     plans?: PlanCreateNestedManyWithoutUserInput
+    subscription?: SubscriptionCreateNestedOneWithoutUserInput
+    waterLogs?: WaterLogCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutSessionsInput = {
@@ -21104,6 +24034,8 @@ export namespace Prisma {
     behaviorLogs?: BehaviorLogUncheckedCreateNestedManyWithoutUserInput
     streaks?: StreakUncheckedCreateNestedManyWithoutUserInput
     plans?: PlanUncheckedCreateNestedManyWithoutUserInput
+    subscription?: SubscriptionUncheckedCreateNestedOneWithoutUserInput
+    waterLogs?: WaterLogUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutSessionsInput = {
@@ -21138,6 +24070,8 @@ export namespace Prisma {
     behaviorLogs?: BehaviorLogUpdateManyWithoutUserNestedInput
     streaks?: StreakUpdateManyWithoutUserNestedInput
     plans?: PlanUpdateManyWithoutUserNestedInput
+    subscription?: SubscriptionUpdateOneWithoutUserNestedInput
+    waterLogs?: WaterLogUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutSessionsInput = {
@@ -21156,6 +24090,8 @@ export namespace Prisma {
     behaviorLogs?: BehaviorLogUncheckedUpdateManyWithoutUserNestedInput
     streaks?: StreakUncheckedUpdateManyWithoutUserNestedInput
     plans?: PlanUncheckedUpdateManyWithoutUserNestedInput
+    subscription?: SubscriptionUncheckedUpdateOneWithoutUserNestedInput
+    waterLogs?: WaterLogUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type AccountCreateWithoutUserInput = {
@@ -21438,6 +24374,55 @@ export namespace Prisma {
 
   export type PlanCreateManyUserInputEnvelope = {
     data: PlanCreateManyUserInput | PlanCreateManyUserInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type SubscriptionCreateWithoutUserInput = {
+    id?: string
+    plan?: string
+    status?: string
+    razorpaySubId?: string | null
+    razorpayPaymentId?: string | null
+    currentPeriodEnd?: Date | string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type SubscriptionUncheckedCreateWithoutUserInput = {
+    id?: string
+    plan?: string
+    status?: string
+    razorpaySubId?: string | null
+    razorpayPaymentId?: string | null
+    currentPeriodEnd?: Date | string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type SubscriptionCreateOrConnectWithoutUserInput = {
+    where: SubscriptionWhereUniqueInput
+    create: XOR<SubscriptionCreateWithoutUserInput, SubscriptionUncheckedCreateWithoutUserInput>
+  }
+
+  export type WaterLogCreateWithoutUserInput = {
+    id?: string
+    date?: Date | string
+    amount: number
+  }
+
+  export type WaterLogUncheckedCreateWithoutUserInput = {
+    id?: string
+    date?: Date | string
+    amount: number
+  }
+
+  export type WaterLogCreateOrConnectWithoutUserInput = {
+    where: WaterLogWhereUniqueInput
+    create: XOR<WaterLogCreateWithoutUserInput, WaterLogUncheckedCreateWithoutUserInput>
+  }
+
+  export type WaterLogCreateManyUserInputEnvelope = {
+    data: WaterLogCreateManyUserInput | WaterLogCreateManyUserInput[]
     skipDuplicates?: boolean
   }
 
@@ -21730,6 +24715,257 @@ export namespace Prisma {
     updatedAt?: DateTimeFilter<"Plan"> | Date | string
   }
 
+  export type SubscriptionUpsertWithoutUserInput = {
+    update: XOR<SubscriptionUpdateWithoutUserInput, SubscriptionUncheckedUpdateWithoutUserInput>
+    create: XOR<SubscriptionCreateWithoutUserInput, SubscriptionUncheckedCreateWithoutUserInput>
+    where?: SubscriptionWhereInput
+  }
+
+  export type SubscriptionUpdateToOneWithWhereWithoutUserInput = {
+    where?: SubscriptionWhereInput
+    data: XOR<SubscriptionUpdateWithoutUserInput, SubscriptionUncheckedUpdateWithoutUserInput>
+  }
+
+  export type SubscriptionUpdateWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    plan?: StringFieldUpdateOperationsInput | string
+    status?: StringFieldUpdateOperationsInput | string
+    razorpaySubId?: NullableStringFieldUpdateOperationsInput | string | null
+    razorpayPaymentId?: NullableStringFieldUpdateOperationsInput | string | null
+    currentPeriodEnd?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type SubscriptionUncheckedUpdateWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    plan?: StringFieldUpdateOperationsInput | string
+    status?: StringFieldUpdateOperationsInput | string
+    razorpaySubId?: NullableStringFieldUpdateOperationsInput | string | null
+    razorpayPaymentId?: NullableStringFieldUpdateOperationsInput | string | null
+    currentPeriodEnd?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type WaterLogUpsertWithWhereUniqueWithoutUserInput = {
+    where: WaterLogWhereUniqueInput
+    update: XOR<WaterLogUpdateWithoutUserInput, WaterLogUncheckedUpdateWithoutUserInput>
+    create: XOR<WaterLogCreateWithoutUserInput, WaterLogUncheckedCreateWithoutUserInput>
+  }
+
+  export type WaterLogUpdateWithWhereUniqueWithoutUserInput = {
+    where: WaterLogWhereUniqueInput
+    data: XOR<WaterLogUpdateWithoutUserInput, WaterLogUncheckedUpdateWithoutUserInput>
+  }
+
+  export type WaterLogUpdateManyWithWhereWithoutUserInput = {
+    where: WaterLogScalarWhereInput
+    data: XOR<WaterLogUpdateManyMutationInput, WaterLogUncheckedUpdateManyWithoutUserInput>
+  }
+
+  export type WaterLogScalarWhereInput = {
+    AND?: WaterLogScalarWhereInput | WaterLogScalarWhereInput[]
+    OR?: WaterLogScalarWhereInput[]
+    NOT?: WaterLogScalarWhereInput | WaterLogScalarWhereInput[]
+    id?: StringFilter<"WaterLog"> | string
+    userId?: StringFilter<"WaterLog"> | string
+    date?: DateTimeFilter<"WaterLog"> | Date | string
+    amount?: IntFilter<"WaterLog"> | number
+  }
+
+  export type UserCreateWithoutSubscriptionInput = {
+    id?: string
+    name?: string | null
+    email?: string | null
+    emailVerified?: Date | string | null
+    image?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    accounts?: AccountCreateNestedManyWithoutUserInput
+    sessions?: SessionCreateNestedManyWithoutUserInput
+    profile?: UserProfileCreateNestedOneWithoutUserInput
+    foodLogs?: FoodLogCreateNestedManyWithoutUserInput
+    workoutLogs?: WorkoutLogCreateNestedManyWithoutUserInput
+    messages?: MessageCreateNestedManyWithoutUserInput
+    behaviorLogs?: BehaviorLogCreateNestedManyWithoutUserInput
+    streaks?: StreakCreateNestedManyWithoutUserInput
+    plans?: PlanCreateNestedManyWithoutUserInput
+    waterLogs?: WaterLogCreateNestedManyWithoutUserInput
+  }
+
+  export type UserUncheckedCreateWithoutSubscriptionInput = {
+    id?: string
+    name?: string | null
+    email?: string | null
+    emailVerified?: Date | string | null
+    image?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    accounts?: AccountUncheckedCreateNestedManyWithoutUserInput
+    sessions?: SessionUncheckedCreateNestedManyWithoutUserInput
+    profile?: UserProfileUncheckedCreateNestedOneWithoutUserInput
+    foodLogs?: FoodLogUncheckedCreateNestedManyWithoutUserInput
+    workoutLogs?: WorkoutLogUncheckedCreateNestedManyWithoutUserInput
+    messages?: MessageUncheckedCreateNestedManyWithoutUserInput
+    behaviorLogs?: BehaviorLogUncheckedCreateNestedManyWithoutUserInput
+    streaks?: StreakUncheckedCreateNestedManyWithoutUserInput
+    plans?: PlanUncheckedCreateNestedManyWithoutUserInput
+    waterLogs?: WaterLogUncheckedCreateNestedManyWithoutUserInput
+  }
+
+  export type UserCreateOrConnectWithoutSubscriptionInput = {
+    where: UserWhereUniqueInput
+    create: XOR<UserCreateWithoutSubscriptionInput, UserUncheckedCreateWithoutSubscriptionInput>
+  }
+
+  export type UserUpsertWithoutSubscriptionInput = {
+    update: XOR<UserUpdateWithoutSubscriptionInput, UserUncheckedUpdateWithoutSubscriptionInput>
+    create: XOR<UserCreateWithoutSubscriptionInput, UserUncheckedCreateWithoutSubscriptionInput>
+    where?: UserWhereInput
+  }
+
+  export type UserUpdateToOneWithWhereWithoutSubscriptionInput = {
+    where?: UserWhereInput
+    data: XOR<UserUpdateWithoutSubscriptionInput, UserUncheckedUpdateWithoutSubscriptionInput>
+  }
+
+  export type UserUpdateWithoutSubscriptionInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: NullableStringFieldUpdateOperationsInput | string | null
+    email?: NullableStringFieldUpdateOperationsInput | string | null
+    emailVerified?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    image?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    accounts?: AccountUpdateManyWithoutUserNestedInput
+    sessions?: SessionUpdateManyWithoutUserNestedInput
+    profile?: UserProfileUpdateOneWithoutUserNestedInput
+    foodLogs?: FoodLogUpdateManyWithoutUserNestedInput
+    workoutLogs?: WorkoutLogUpdateManyWithoutUserNestedInput
+    messages?: MessageUpdateManyWithoutUserNestedInput
+    behaviorLogs?: BehaviorLogUpdateManyWithoutUserNestedInput
+    streaks?: StreakUpdateManyWithoutUserNestedInput
+    plans?: PlanUpdateManyWithoutUserNestedInput
+    waterLogs?: WaterLogUpdateManyWithoutUserNestedInput
+  }
+
+  export type UserUncheckedUpdateWithoutSubscriptionInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: NullableStringFieldUpdateOperationsInput | string | null
+    email?: NullableStringFieldUpdateOperationsInput | string | null
+    emailVerified?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    image?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    accounts?: AccountUncheckedUpdateManyWithoutUserNestedInput
+    sessions?: SessionUncheckedUpdateManyWithoutUserNestedInput
+    profile?: UserProfileUncheckedUpdateOneWithoutUserNestedInput
+    foodLogs?: FoodLogUncheckedUpdateManyWithoutUserNestedInput
+    workoutLogs?: WorkoutLogUncheckedUpdateManyWithoutUserNestedInput
+    messages?: MessageUncheckedUpdateManyWithoutUserNestedInput
+    behaviorLogs?: BehaviorLogUncheckedUpdateManyWithoutUserNestedInput
+    streaks?: StreakUncheckedUpdateManyWithoutUserNestedInput
+    plans?: PlanUncheckedUpdateManyWithoutUserNestedInput
+    waterLogs?: WaterLogUncheckedUpdateManyWithoutUserNestedInput
+  }
+
+  export type UserCreateWithoutWaterLogsInput = {
+    id?: string
+    name?: string | null
+    email?: string | null
+    emailVerified?: Date | string | null
+    image?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    accounts?: AccountCreateNestedManyWithoutUserInput
+    sessions?: SessionCreateNestedManyWithoutUserInput
+    profile?: UserProfileCreateNestedOneWithoutUserInput
+    foodLogs?: FoodLogCreateNestedManyWithoutUserInput
+    workoutLogs?: WorkoutLogCreateNestedManyWithoutUserInput
+    messages?: MessageCreateNestedManyWithoutUserInput
+    behaviorLogs?: BehaviorLogCreateNestedManyWithoutUserInput
+    streaks?: StreakCreateNestedManyWithoutUserInput
+    plans?: PlanCreateNestedManyWithoutUserInput
+    subscription?: SubscriptionCreateNestedOneWithoutUserInput
+  }
+
+  export type UserUncheckedCreateWithoutWaterLogsInput = {
+    id?: string
+    name?: string | null
+    email?: string | null
+    emailVerified?: Date | string | null
+    image?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    accounts?: AccountUncheckedCreateNestedManyWithoutUserInput
+    sessions?: SessionUncheckedCreateNestedManyWithoutUserInput
+    profile?: UserProfileUncheckedCreateNestedOneWithoutUserInput
+    foodLogs?: FoodLogUncheckedCreateNestedManyWithoutUserInput
+    workoutLogs?: WorkoutLogUncheckedCreateNestedManyWithoutUserInput
+    messages?: MessageUncheckedCreateNestedManyWithoutUserInput
+    behaviorLogs?: BehaviorLogUncheckedCreateNestedManyWithoutUserInput
+    streaks?: StreakUncheckedCreateNestedManyWithoutUserInput
+    plans?: PlanUncheckedCreateNestedManyWithoutUserInput
+    subscription?: SubscriptionUncheckedCreateNestedOneWithoutUserInput
+  }
+
+  export type UserCreateOrConnectWithoutWaterLogsInput = {
+    where: UserWhereUniqueInput
+    create: XOR<UserCreateWithoutWaterLogsInput, UserUncheckedCreateWithoutWaterLogsInput>
+  }
+
+  export type UserUpsertWithoutWaterLogsInput = {
+    update: XOR<UserUpdateWithoutWaterLogsInput, UserUncheckedUpdateWithoutWaterLogsInput>
+    create: XOR<UserCreateWithoutWaterLogsInput, UserUncheckedCreateWithoutWaterLogsInput>
+    where?: UserWhereInput
+  }
+
+  export type UserUpdateToOneWithWhereWithoutWaterLogsInput = {
+    where?: UserWhereInput
+    data: XOR<UserUpdateWithoutWaterLogsInput, UserUncheckedUpdateWithoutWaterLogsInput>
+  }
+
+  export type UserUpdateWithoutWaterLogsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: NullableStringFieldUpdateOperationsInput | string | null
+    email?: NullableStringFieldUpdateOperationsInput | string | null
+    emailVerified?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    image?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    accounts?: AccountUpdateManyWithoutUserNestedInput
+    sessions?: SessionUpdateManyWithoutUserNestedInput
+    profile?: UserProfileUpdateOneWithoutUserNestedInput
+    foodLogs?: FoodLogUpdateManyWithoutUserNestedInput
+    workoutLogs?: WorkoutLogUpdateManyWithoutUserNestedInput
+    messages?: MessageUpdateManyWithoutUserNestedInput
+    behaviorLogs?: BehaviorLogUpdateManyWithoutUserNestedInput
+    streaks?: StreakUpdateManyWithoutUserNestedInput
+    plans?: PlanUpdateManyWithoutUserNestedInput
+    subscription?: SubscriptionUpdateOneWithoutUserNestedInput
+  }
+
+  export type UserUncheckedUpdateWithoutWaterLogsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: NullableStringFieldUpdateOperationsInput | string | null
+    email?: NullableStringFieldUpdateOperationsInput | string | null
+    emailVerified?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    image?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    accounts?: AccountUncheckedUpdateManyWithoutUserNestedInput
+    sessions?: SessionUncheckedUpdateManyWithoutUserNestedInput
+    profile?: UserProfileUncheckedUpdateOneWithoutUserNestedInput
+    foodLogs?: FoodLogUncheckedUpdateManyWithoutUserNestedInput
+    workoutLogs?: WorkoutLogUncheckedUpdateManyWithoutUserNestedInput
+    messages?: MessageUncheckedUpdateManyWithoutUserNestedInput
+    behaviorLogs?: BehaviorLogUncheckedUpdateManyWithoutUserNestedInput
+    streaks?: StreakUncheckedUpdateManyWithoutUserNestedInput
+    plans?: PlanUncheckedUpdateManyWithoutUserNestedInput
+    subscription?: SubscriptionUncheckedUpdateOneWithoutUserNestedInput
+  }
+
   export type UserCreateWithoutProfileInput = {
     id?: string
     name?: string | null
@@ -21746,6 +24982,8 @@ export namespace Prisma {
     behaviorLogs?: BehaviorLogCreateNestedManyWithoutUserInput
     streaks?: StreakCreateNestedManyWithoutUserInput
     plans?: PlanCreateNestedManyWithoutUserInput
+    subscription?: SubscriptionCreateNestedOneWithoutUserInput
+    waterLogs?: WaterLogCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutProfileInput = {
@@ -21764,6 +25002,8 @@ export namespace Prisma {
     behaviorLogs?: BehaviorLogUncheckedCreateNestedManyWithoutUserInput
     streaks?: StreakUncheckedCreateNestedManyWithoutUserInput
     plans?: PlanUncheckedCreateNestedManyWithoutUserInput
+    subscription?: SubscriptionUncheckedCreateNestedOneWithoutUserInput
+    waterLogs?: WaterLogUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutProfileInput = {
@@ -21798,6 +25038,8 @@ export namespace Prisma {
     behaviorLogs?: BehaviorLogUpdateManyWithoutUserNestedInput
     streaks?: StreakUpdateManyWithoutUserNestedInput
     plans?: PlanUpdateManyWithoutUserNestedInput
+    subscription?: SubscriptionUpdateOneWithoutUserNestedInput
+    waterLogs?: WaterLogUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutProfileInput = {
@@ -21816,6 +25058,8 @@ export namespace Prisma {
     behaviorLogs?: BehaviorLogUncheckedUpdateManyWithoutUserNestedInput
     streaks?: StreakUncheckedUpdateManyWithoutUserNestedInput
     plans?: PlanUncheckedUpdateManyWithoutUserNestedInput
+    subscription?: SubscriptionUncheckedUpdateOneWithoutUserNestedInput
+    waterLogs?: WaterLogUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type UserCreateWithoutFoodLogsInput = {
@@ -21834,6 +25078,8 @@ export namespace Prisma {
     behaviorLogs?: BehaviorLogCreateNestedManyWithoutUserInput
     streaks?: StreakCreateNestedManyWithoutUserInput
     plans?: PlanCreateNestedManyWithoutUserInput
+    subscription?: SubscriptionCreateNestedOneWithoutUserInput
+    waterLogs?: WaterLogCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutFoodLogsInput = {
@@ -21852,6 +25098,8 @@ export namespace Prisma {
     behaviorLogs?: BehaviorLogUncheckedCreateNestedManyWithoutUserInput
     streaks?: StreakUncheckedCreateNestedManyWithoutUserInput
     plans?: PlanUncheckedCreateNestedManyWithoutUserInput
+    subscription?: SubscriptionUncheckedCreateNestedOneWithoutUserInput
+    waterLogs?: WaterLogUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutFoodLogsInput = {
@@ -21886,6 +25134,8 @@ export namespace Prisma {
     behaviorLogs?: BehaviorLogUpdateManyWithoutUserNestedInput
     streaks?: StreakUpdateManyWithoutUserNestedInput
     plans?: PlanUpdateManyWithoutUserNestedInput
+    subscription?: SubscriptionUpdateOneWithoutUserNestedInput
+    waterLogs?: WaterLogUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutFoodLogsInput = {
@@ -21904,6 +25154,8 @@ export namespace Prisma {
     behaviorLogs?: BehaviorLogUncheckedUpdateManyWithoutUserNestedInput
     streaks?: StreakUncheckedUpdateManyWithoutUserNestedInput
     plans?: PlanUncheckedUpdateManyWithoutUserNestedInput
+    subscription?: SubscriptionUncheckedUpdateOneWithoutUserNestedInput
+    waterLogs?: WaterLogUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type UserCreateWithoutWorkoutLogsInput = {
@@ -21922,6 +25174,8 @@ export namespace Prisma {
     behaviorLogs?: BehaviorLogCreateNestedManyWithoutUserInput
     streaks?: StreakCreateNestedManyWithoutUserInput
     plans?: PlanCreateNestedManyWithoutUserInput
+    subscription?: SubscriptionCreateNestedOneWithoutUserInput
+    waterLogs?: WaterLogCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutWorkoutLogsInput = {
@@ -21940,6 +25194,8 @@ export namespace Prisma {
     behaviorLogs?: BehaviorLogUncheckedCreateNestedManyWithoutUserInput
     streaks?: StreakUncheckedCreateNestedManyWithoutUserInput
     plans?: PlanUncheckedCreateNestedManyWithoutUserInput
+    subscription?: SubscriptionUncheckedCreateNestedOneWithoutUserInput
+    waterLogs?: WaterLogUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutWorkoutLogsInput = {
@@ -21974,6 +25230,8 @@ export namespace Prisma {
     behaviorLogs?: BehaviorLogUpdateManyWithoutUserNestedInput
     streaks?: StreakUpdateManyWithoutUserNestedInput
     plans?: PlanUpdateManyWithoutUserNestedInput
+    subscription?: SubscriptionUpdateOneWithoutUserNestedInput
+    waterLogs?: WaterLogUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutWorkoutLogsInput = {
@@ -21992,6 +25250,8 @@ export namespace Prisma {
     behaviorLogs?: BehaviorLogUncheckedUpdateManyWithoutUserNestedInput
     streaks?: StreakUncheckedUpdateManyWithoutUserNestedInput
     plans?: PlanUncheckedUpdateManyWithoutUserNestedInput
+    subscription?: SubscriptionUncheckedUpdateOneWithoutUserNestedInput
+    waterLogs?: WaterLogUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type UserCreateWithoutMessagesInput = {
@@ -22010,6 +25270,8 @@ export namespace Prisma {
     behaviorLogs?: BehaviorLogCreateNestedManyWithoutUserInput
     streaks?: StreakCreateNestedManyWithoutUserInput
     plans?: PlanCreateNestedManyWithoutUserInput
+    subscription?: SubscriptionCreateNestedOneWithoutUserInput
+    waterLogs?: WaterLogCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutMessagesInput = {
@@ -22028,6 +25290,8 @@ export namespace Prisma {
     behaviorLogs?: BehaviorLogUncheckedCreateNestedManyWithoutUserInput
     streaks?: StreakUncheckedCreateNestedManyWithoutUserInput
     plans?: PlanUncheckedCreateNestedManyWithoutUserInput
+    subscription?: SubscriptionUncheckedCreateNestedOneWithoutUserInput
+    waterLogs?: WaterLogUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutMessagesInput = {
@@ -22062,6 +25326,8 @@ export namespace Prisma {
     behaviorLogs?: BehaviorLogUpdateManyWithoutUserNestedInput
     streaks?: StreakUpdateManyWithoutUserNestedInput
     plans?: PlanUpdateManyWithoutUserNestedInput
+    subscription?: SubscriptionUpdateOneWithoutUserNestedInput
+    waterLogs?: WaterLogUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutMessagesInput = {
@@ -22080,6 +25346,8 @@ export namespace Prisma {
     behaviorLogs?: BehaviorLogUncheckedUpdateManyWithoutUserNestedInput
     streaks?: StreakUncheckedUpdateManyWithoutUserNestedInput
     plans?: PlanUncheckedUpdateManyWithoutUserNestedInput
+    subscription?: SubscriptionUncheckedUpdateOneWithoutUserNestedInput
+    waterLogs?: WaterLogUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type UserCreateWithoutBehaviorLogsInput = {
@@ -22098,6 +25366,8 @@ export namespace Prisma {
     messages?: MessageCreateNestedManyWithoutUserInput
     streaks?: StreakCreateNestedManyWithoutUserInput
     plans?: PlanCreateNestedManyWithoutUserInput
+    subscription?: SubscriptionCreateNestedOneWithoutUserInput
+    waterLogs?: WaterLogCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutBehaviorLogsInput = {
@@ -22116,6 +25386,8 @@ export namespace Prisma {
     messages?: MessageUncheckedCreateNestedManyWithoutUserInput
     streaks?: StreakUncheckedCreateNestedManyWithoutUserInput
     plans?: PlanUncheckedCreateNestedManyWithoutUserInput
+    subscription?: SubscriptionUncheckedCreateNestedOneWithoutUserInput
+    waterLogs?: WaterLogUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutBehaviorLogsInput = {
@@ -22150,6 +25422,8 @@ export namespace Prisma {
     messages?: MessageUpdateManyWithoutUserNestedInput
     streaks?: StreakUpdateManyWithoutUserNestedInput
     plans?: PlanUpdateManyWithoutUserNestedInput
+    subscription?: SubscriptionUpdateOneWithoutUserNestedInput
+    waterLogs?: WaterLogUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutBehaviorLogsInput = {
@@ -22168,6 +25442,8 @@ export namespace Prisma {
     messages?: MessageUncheckedUpdateManyWithoutUserNestedInput
     streaks?: StreakUncheckedUpdateManyWithoutUserNestedInput
     plans?: PlanUncheckedUpdateManyWithoutUserNestedInput
+    subscription?: SubscriptionUncheckedUpdateOneWithoutUserNestedInput
+    waterLogs?: WaterLogUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type UserCreateWithoutStreaksInput = {
@@ -22186,6 +25462,8 @@ export namespace Prisma {
     messages?: MessageCreateNestedManyWithoutUserInput
     behaviorLogs?: BehaviorLogCreateNestedManyWithoutUserInput
     plans?: PlanCreateNestedManyWithoutUserInput
+    subscription?: SubscriptionCreateNestedOneWithoutUserInput
+    waterLogs?: WaterLogCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutStreaksInput = {
@@ -22204,6 +25482,8 @@ export namespace Prisma {
     messages?: MessageUncheckedCreateNestedManyWithoutUserInput
     behaviorLogs?: BehaviorLogUncheckedCreateNestedManyWithoutUserInput
     plans?: PlanUncheckedCreateNestedManyWithoutUserInput
+    subscription?: SubscriptionUncheckedCreateNestedOneWithoutUserInput
+    waterLogs?: WaterLogUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutStreaksInput = {
@@ -22238,6 +25518,8 @@ export namespace Prisma {
     messages?: MessageUpdateManyWithoutUserNestedInput
     behaviorLogs?: BehaviorLogUpdateManyWithoutUserNestedInput
     plans?: PlanUpdateManyWithoutUserNestedInput
+    subscription?: SubscriptionUpdateOneWithoutUserNestedInput
+    waterLogs?: WaterLogUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutStreaksInput = {
@@ -22256,6 +25538,8 @@ export namespace Prisma {
     messages?: MessageUncheckedUpdateManyWithoutUserNestedInput
     behaviorLogs?: BehaviorLogUncheckedUpdateManyWithoutUserNestedInput
     plans?: PlanUncheckedUpdateManyWithoutUserNestedInput
+    subscription?: SubscriptionUncheckedUpdateOneWithoutUserNestedInput
+    waterLogs?: WaterLogUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type UserCreateWithoutPlansInput = {
@@ -22274,6 +25558,8 @@ export namespace Prisma {
     messages?: MessageCreateNestedManyWithoutUserInput
     behaviorLogs?: BehaviorLogCreateNestedManyWithoutUserInput
     streaks?: StreakCreateNestedManyWithoutUserInput
+    subscription?: SubscriptionCreateNestedOneWithoutUserInput
+    waterLogs?: WaterLogCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutPlansInput = {
@@ -22292,6 +25578,8 @@ export namespace Prisma {
     messages?: MessageUncheckedCreateNestedManyWithoutUserInput
     behaviorLogs?: BehaviorLogUncheckedCreateNestedManyWithoutUserInput
     streaks?: StreakUncheckedCreateNestedManyWithoutUserInput
+    subscription?: SubscriptionUncheckedCreateNestedOneWithoutUserInput
+    waterLogs?: WaterLogUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutPlansInput = {
@@ -22326,6 +25614,8 @@ export namespace Prisma {
     messages?: MessageUpdateManyWithoutUserNestedInput
     behaviorLogs?: BehaviorLogUpdateManyWithoutUserNestedInput
     streaks?: StreakUpdateManyWithoutUserNestedInput
+    subscription?: SubscriptionUpdateOneWithoutUserNestedInput
+    waterLogs?: WaterLogUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutPlansInput = {
@@ -22344,6 +25634,8 @@ export namespace Prisma {
     messages?: MessageUncheckedUpdateManyWithoutUserNestedInput
     behaviorLogs?: BehaviorLogUncheckedUpdateManyWithoutUserNestedInput
     streaks?: StreakUncheckedUpdateManyWithoutUserNestedInput
+    subscription?: SubscriptionUncheckedUpdateOneWithoutUserNestedInput
+    waterLogs?: WaterLogUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type AccountCreateManyUserInput = {
@@ -22424,6 +25716,12 @@ export namespace Prisma {
     active?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
+  }
+
+  export type WaterLogCreateManyUserInput = {
+    id?: string
+    date?: Date | string
+    amount: number
   }
 
   export type AccountUpdateWithoutUserInput = {
@@ -22664,6 +25962,24 @@ export namespace Prisma {
     active?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type WaterLogUpdateWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
+    amount?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type WaterLogUncheckedUpdateWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
+    amount?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type WaterLogUncheckedUpdateManyWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
+    amount?: IntFieldUpdateOperationsInput | number
   }
 
 
