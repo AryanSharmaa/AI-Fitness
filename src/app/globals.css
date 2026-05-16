@@ -128,3 +128,24 @@
     @apply font-sans;
   }
 }
+
+@layer utilities {
+  /* Global click press effect — all buttons and links feel immediate */
+  button:not(:disabled),
+  [role="button"]:not(:disabled),
+  a[href] {
+    @apply transition-transform duration-75;
+  }
+
+  button:not(:disabled):active,
+  [role="button"]:not(:disabled):active,
+  a[href]:active {
+    @apply scale-95;
+  }
+
+  /* Clickable cards */
+  a > .card,
+  button > .card {
+    @apply transition-all duration-100;
+  }
+}
