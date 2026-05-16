@@ -2,6 +2,7 @@ import type { NextConfig } from 'next'
 
 const nextConfig: NextConfig = {
   bundlePagesRouterDependencies: true,
+  serverExternalPackages: ['@prisma/adapter-pg', 'pg'],
 }
 
 export default nextConfig
