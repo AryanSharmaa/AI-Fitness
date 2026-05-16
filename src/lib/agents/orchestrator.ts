@@ -2,8 +2,9 @@ import OpenAI from 'openai'
 import { SYSTEM_PROMPTS, classifyIntent, TodayContext } from './prompts'
 import { UserProfile } from '@/types'
 
-// OpenRouter — free models, email signup only (openrouter.ai)
-const MODEL = 'meta-llama/llama-3.3-70b-instruct:free'
+// Fast model for all responses — low rate-limit pressure on free tier
+const MODEL = 'mistralai/mistral-7b-instruct:free'
+
 let _client: OpenAI | null = null
 function getClient(): OpenAI {
   if (!_client) {
@@ -42,10 +43,10 @@ export interface MemoryExtract {
 }
 
 // ─── Core caller ──────────────────────────────────────────────────────────────
-async function callAI(systemPrompt: string, userContent: string): Promise<string> {
+async function callAI(systemPrompt: string, userContent: string, maxTokens = 800): Promise<string> {
   const response = await getClient().chat.completions.create({
     model: MODEL,
-    max_tokens: 1024,
+    max_tokens: maxTokens,
     messages: [
       { role: 'system', content: systemPrompt },
       { role: 'user', content: userContent },
@@ -55,7 +56,7 @@ async function callAI(systemPrompt: string, userContent: string): Promise<string
 }
 
 // ─── Build conversation context string ───────────────────────────────────────
-function buildConversationContext(history: AgentMessage[], limit = 6): string {
+function buildConversationContext(history: AgentMessage[], limit = 4): string {
   const recent = history.slice(-limit)
   if (!recent.length) return ''
   return 'Recent conversation:\n' + recent
@@ -63,36 +64,22 @@ function buildConversationContext(history: AgentMessage[], limit = 6): string {
     .join('\n')
 }
 
-// ─── Safety check ─────────────────────────────────────────────────────────────
-async function runSafetyCheck(message: string): Promise<{ safe: boolean; response?: string }> {
-  const safetyWords = [
-    'dizzy', 'dizziness', 'chest pain', 'fainting', 'faint', 'vomit',
-    'extreme fatigue', 'collapse', 'unconscious', 'bleeding', 'injury',
-    'swollen', 'broken', 'fracture', 'nausea', 'nauseous',
-  ]
-  if (!safetyWords.some(w => message.toLowerCase().includes(w))) return { safe: true }
-  const response = await callAI(SYSTEM_PROMPTS.safety(), `User says: ${message}`)
-  return { safe: false, response }
+// ─── Safety check — keyword only, zero API calls ──────────────────────────────
+const SAFETY_WORDS = [
+  'dizzy', 'dizziness', 'chest pain', 'fainting', 'faint', 'vomit',
+  'extreme fatigue', 'collapse', 'unconscious', 'bleeding', 'injury',
+  'swollen', 'broken', 'fracture', 'nausea', 'nauseous',
+]
+const SAFETY_RESPONSE = '⚠️ Please stop your activity immediately, sit down, and rest. If symptoms persist or feel serious, please see a doctor right away. Your health comes first — no workout is worth risking it.'
+
+function runSafetyCheck(message: string): { safe: boolean; response?: string } {
+  if (SAFETY_WORDS.some(w => message.toLowerCase().includes(w))) {
+    return { safe: false, response: SAFETY_RESPONSE }
+  }
+  return { safe: true }
 }
 
-// ─── Critic refinement pass ───────────────────────────────────────────────────
-async function refinePlanIfNeeded(
-  profile: UserProfile | null,
-  plan: string,
-  originalRequest: string
-): Promise<string> {
-  const critique = await callAI(
-    SYSTEM_PROMPTS.critic(profile),
-    `Original request: ${originalRequest}\n\nProposed plan:\n${plan}`
-  )
-  if (critique.trim().toUpperCase().startsWith('APPROVED')) return plan
-  return callAI(
-    SYSTEM_PROMPTS.planner(profile),
-    `Original request: ${originalRequest}\n\nPlan to revise:\n${plan}\n\nFeedback:\n${critique}`
-  )
-}
-
-// ─── Memory extraction ────────────────────────────────────────────────────────
+// ─── Memory extraction (lightweight, best-effort) ─────────────────────────────
 export async function extractMemory(
   userMessage: string,
   aiResponse: string
@@ -100,7 +87,8 @@ export async function extractMemory(
   try {
     const raw = await callAI(
       SYSTEM_PROMPTS.memoryExtract(),
-      `User: ${userMessage}\nCoach: ${aiResponse}`
+      `User: ${userMessage}\nCoach: ${aiResponse}`,
+      256
     )
     const cleaned = raw.replace(/```json\n?/g, '').replace(/```\n?/g, '').trim()
     return JSON.parse(cleaned) as MemoryExtract
@@ -109,14 +97,14 @@ export async function extractMemory(
   }
 }
 
-// ─── Streaming orchestrator ───────────────────────────────────────────────────
+// ─── Streaming orchestrator — 1 API call per message ─────────────────────────
 export async function orchestrateStream(
   input: OrchestratorInput,
   onChunk: (chunk: string) => void
 ): Promise<{ agentUsed: string }> {
-  const safety = await runSafetyCheck(input.userMessage)
+  const safety = runSafetyCheck(input.userMessage)
   if (!safety.safe) {
-    onChunk(safety.response || '')
+    onChunk(safety.response!)
     return { agentUsed: 'safety' }
   }
 
@@ -126,19 +114,9 @@ export async function orchestrateStream(
     ? `${ctx}\n\nUser's latest message: ${input.userMessage}`
     : `User: ${input.userMessage}`
 
-  // daily_plan: non-streaming with critic pass
-  if (intent === 'daily_plan') {
-    const draft = await callAI(
-      SYSTEM_PROMPTS.dailyPlan(input.profile, input.recentBehavior, input.todayContext || {}),
-      userContent
-    )
-    const refined = await refinePlanIfNeeded(input.profile, draft, input.userMessage)
-    onChunk(refined)
-    return { agentUsed: 'daily_plan' }
-  }
-
   const systemPrompt = (() => {
     switch (intent) {
+      case 'daily_plan':          return SYSTEM_PROMPTS.dailyPlan(input.profile, input.recentBehavior, input.todayContext || {})
       case 'behavior_correction': return SYSTEM_PROMPTS.behaviorCorrection(input.profile, input.recentBehavior)
       case 'food_log':            return SYSTEM_PROMPTS.foodLog(input.profile, input.userMessage)
       case 'edge_case':           return SYSTEM_PROMPTS.edgeCase(input.profile, input.userMessage, input.recentBehavior)
@@ -149,7 +127,7 @@ export async function orchestrateStream(
 
   const stream = await getClient().chat.completions.create({
     model: MODEL,
-    max_tokens: 1024,
+    max_tokens: 800,
     stream: true,
     messages: [
       { role: 'system', content: systemPrompt },
@@ -170,8 +148,8 @@ export async function orchestrate(input: OrchestratorInput): Promise<{
   response: string
   agentUsed: string
 }> {
-  const safety = await runSafetyCheck(input.userMessage)
-  if (!safety.safe) return { response: safety.response || '', agentUsed: 'safety' }
+  const safety = runSafetyCheck(input.userMessage)
+  if (!safety.safe) return { response: safety.response!, agentUsed: 'safety' }
 
   const intent = classifyIntent(input.userMessage)
   const ctx = buildConversationContext(input.history)
@@ -179,34 +157,17 @@ export async function orchestrate(input: OrchestratorInput): Promise<{
     ? `${ctx}\n\nUser's latest message: ${input.userMessage}`
     : `User: ${input.userMessage}`
 
-  let response = ''
-  let agentUsed = intent
-
-  switch (intent) {
-    case 'daily_plan': {
-      const draft = await callAI(
-        SYSTEM_PROMPTS.dailyPlan(input.profile, input.recentBehavior, input.todayContext || {}),
-        userContent
-      )
-      response = await refinePlanIfNeeded(input.profile, draft, input.userMessage)
-      break
+  const systemPrompt = (() => {
+    switch (intent) {
+      case 'daily_plan':          return SYSTEM_PROMPTS.dailyPlan(input.profile, input.recentBehavior, input.todayContext || {})
+      case 'behavior_correction': return SYSTEM_PROMPTS.behaviorCorrection(input.profile, input.recentBehavior)
+      case 'food_log':            return SYSTEM_PROMPTS.foodLog(input.profile, input.userMessage)
+      case 'edge_case':           return SYSTEM_PROMPTS.edgeCase(input.profile, input.userMessage, input.recentBehavior)
+      case 'discipline_check':    return SYSTEM_PROMPTS.disciplineCoach(input.profile, input.recentBehavior)
+      default:                    return SYSTEM_PROMPTS.main(input.profile, input.recentBehavior)
     }
-    case 'behavior_correction':
-      response = await callAI(SYSTEM_PROMPTS.behaviorCorrection(input.profile, input.recentBehavior), userContent)
-      break
-    case 'food_log':
-      response = await callAI(SYSTEM_PROMPTS.foodLog(input.profile, input.userMessage), userContent)
-      break
-    case 'edge_case':
-      response = await callAI(SYSTEM_PROMPTS.edgeCase(input.profile, input.userMessage, input.recentBehavior), userContent)
-      break
-    case 'discipline_check':
-      response = await callAI(SYSTEM_PROMPTS.disciplineCoach(input.profile, input.recentBehavior), userContent)
-      break
-    default:
-      response = await callAI(SYSTEM_PROMPTS.main(input.profile, input.recentBehavior), userContent)
-      agentUsed = 'main'
-  }
+  })()
 
-  return { response, agentUsed }
+  const response = await callAI(systemPrompt, userContent)
+  return { response, agentUsed: intent }
 }
