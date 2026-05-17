@@ -7,7 +7,7 @@ import {
   DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger
 } from '@/components/ui/dropdown-menu'
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
-import { MessageCircle, LayoutDashboard, UtensilsCrossed, Dumbbell, TrendingUp, Scale, Menu, X } from 'lucide-react'
+import { MessageCircle, LayoutDashboard, UtensilsCrossed, Dumbbell, TrendingUp, Scale, Menu, X, CalendarDays } from 'lucide-react'
 import { useState } from 'react'
 import ThemeToggle from './ThemeToggle'
 
@@ -17,6 +17,7 @@ const NAV_LINKS = [
   { href: '/food-log', label: 'Food Log', icon: UtensilsCrossed },
   { href: '/workout', label: 'Workout', icon: Dumbbell },
   { href: '/body', label: 'Body', icon: Scale },
+  { href: '/plan', label: 'Plan', icon: CalendarDays },
   { href: '/progress', label: 'Progress', icon: TrendingUp },
 ]
 
