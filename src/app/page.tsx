@@ -236,8 +236,8 @@ export default function LandingPage() {
           <p>© 2025 FitMind AI</p>
           <div className="flex gap-6">
             <Link href="/pricing" className="hover:text-foreground">Pricing</Link>
-            <span>Privacy</span>
-            <span>Terms</span>
+            <Link href="/privacy" className="hover:text-foreground">Privacy</Link>
+            <Link href="/terms" className="hover:text-foreground">Terms</Link>
           </div>
           <p className="text-xs">⚠️ FitMind AI is not a medical system. Always consult a doctor for medical decisions.</p>
         </div>

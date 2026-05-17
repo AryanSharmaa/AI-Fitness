@@ -6,6 +6,7 @@ import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card'
 import { toast } from 'sonner'
+import Link from 'next/link'
 
 export default function LoginForm() {
   const router = useRouter()
@@ -131,7 +132,11 @@ export default function LoginForm() {
               </form>
             )}
             <p className="text-xs text-muted-foreground text-center mt-4">
-              By signing in, you agree to our Terms. FitMind AI is not a medical service.
+              By signing in, you agree to our{' '}
+              <Link href="/terms" className="underline hover:text-foreground">Terms</Link>
+              {' '}and{' '}
+              <Link href="/privacy" className="underline hover:text-foreground">Privacy Policy</Link>.
+              FitMind AI is not a medical service.
             </p>
           </CardContent>
         </Card>
