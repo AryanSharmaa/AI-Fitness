@@ -5,6 +5,13 @@ import { prisma } from '@/lib/prisma'
 import { estimateMealNutrition, getDailyCalorieTarget, getNextMealAdjustment } from '@/lib/engines/nutrition'
 import OpenAI from 'openai'
 
+const MODELS = [
+  'deepseek/deepseek-v4-flash:free',
+  'google/gemma-4-31b-it:free',
+  'meta-llama/llama-3.3-70b-instruct:free',
+  'openrouter/free',
+]
+
 let _client: OpenAI | null = null
 function getClient(): OpenAI {
   if (!_client) {
@@ -14,6 +21,24 @@ function getClient(): OpenAI {
     })
   }
   return _client
+}
+
+async function callAI(system: string, user: string): Promise<string> {
+  let lastError: any
+  for (const model of MODELS) {
+    try {
+      const res = await getClient().chat.completions.create({
+        model, max_tokens: 256,
+        messages: [{ role: 'system', content: system }, { role: 'user', content: user }],
+      })
+      return res.choices[0]?.message?.content ?? ''
+    } catch (err: any) {
+      const status = err?.status ?? err?.response?.status
+      if (status === 429 || status === 404 || status === 503) { lastError = err; continue }
+      throw err
+    }
+  }
+  throw lastError
 }
 
 export async function POST(req: NextRequest) {
@@ -57,15 +82,10 @@ export async function POST(req: NextRequest) {
       dailyTarget
     )
 
-    const result = await getClient().chat.completions.create({
-      model: 'meta-llama/llama-3.3-70b-instruct:free',
-      max_tokens: 256,
-      messages: [
-        { role: 'system', content: 'You are a non-judgmental Indian fitness nutrition coach. Be brief, warm, and practical.' },
-        { role: 'user', content: `User logged: "${description}" for ${mealType}. Estimated: ~${nutrition.estimatedCalories} cal, ${nutrition.estimatedProtein}g protein. Today's total so far: ~${todayTotal} cal out of ${dailyTarget} target. Give a 1-2 sentence non-judgmental feedback and the adjustment note: "${adjustment}"` },
-      ],
-    })
-    aiAnalysis = result.choices[0]?.message?.content ?? ''
+    aiAnalysis = await callAI(
+      'You are a non-judgmental Indian fitness nutrition coach. Be brief, warm, and practical.',
+      `User logged: "${description}" for ${mealType}. Estimated: ~${nutrition.estimatedCalories} cal, ${nutrition.estimatedProtein}g protein. Today's total so far: ~${todayTotal} cal out of ${dailyTarget} target. Give a 1-2 sentence non-judgmental feedback and the adjustment note: "${adjustment}"`
+    )
   } catch {}
 
   const log = await prisma.foodLog.create({

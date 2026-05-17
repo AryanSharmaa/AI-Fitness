@@ -2,8 +2,14 @@ import OpenAI from 'openai'
 import { SYSTEM_PROMPTS, classifyIntent, TodayContext } from './prompts'
 import { UserProfile } from '@/types'
 
-// Fast model for all responses — low rate-limit pressure on free tier
-const MODEL = 'meta-llama/llama-3.3-70b-instruct:free'
+// Ordered fallback list — tried in sequence on 429/404
+const MODELS = [
+  'deepseek/deepseek-v4-flash:free',
+  'google/gemma-4-31b-it:free',
+  'meta-llama/llama-3.3-70b-instruct:free',
+  'openai/gpt-oss-20b:free',
+  'openrouter/free',  // OpenRouter auto-router — always works
+]
 
 let _client: OpenAI | null = null
 function getClient(): OpenAI {
@@ -14,6 +20,52 @@ function getClient(): OpenAI {
     })
   }
   return _client
+}
+
+async function callWithFallback(
+  messages: { role: 'system' | 'user'; content: string }[],
+  maxTokens: number,
+  stream: false
+): Promise<string>
+async function callWithFallback(
+  messages: { role: 'system' | 'user'; content: string }[],
+  maxTokens: number,
+  stream: true
+): Promise<AsyncIterable<any>>
+async function callWithFallback(
+  messages: { role: 'system' | 'user'; content: string }[],
+  maxTokens: number,
+  stream: boolean
+): Promise<string | AsyncIterable<any>> {
+  let lastError: any
+  for (const model of MODELS) {
+    try {
+      if (stream) {
+        return await getClient().chat.completions.create({
+          model,
+          max_tokens: maxTokens,
+          stream: true,
+          messages,
+        }) as any
+      } else {
+        const res = await getClient().chat.completions.create({
+          model,
+          max_tokens: maxTokens,
+          stream: false,
+          messages,
+        })
+        return res.choices[0]?.message?.content ?? ''
+      }
+    } catch (err: any) {
+      const status = err?.status ?? err?.response?.status
+      if (status === 429 || status === 404 || status === 503) {
+        lastError = err
+        continue
+      }
+      throw err
+    }
+  }
+  throw lastError
 }
 
 export interface AgentMessage {
@@ -44,15 +96,11 @@ export interface MemoryExtract {
 
 // ─── Core caller ──────────────────────────────────────────────────────────────
 async function callAI(systemPrompt: string, userContent: string, maxTokens = 800): Promise<string> {
-  const response = await getClient().chat.completions.create({
-    model: MODEL,
-    max_tokens: maxTokens,
-    messages: [
-      { role: 'system', content: systemPrompt },
-      { role: 'user', content: userContent },
-    ],
-  })
-  return response.choices[0]?.message?.content ?? ''
+  return callWithFallback(
+    [{ role: 'system', content: systemPrompt }, { role: 'user', content: userContent }],
+    maxTokens,
+    false
+  )
 }
 
 // ─── Build conversation context string ───────────────────────────────────────
@@ -125,15 +173,11 @@ export async function orchestrateStream(
     }
   })()
 
-  const stream = await getClient().chat.completions.create({
-    model: MODEL,
-    max_tokens: 800,
-    stream: true,
-    messages: [
-      { role: 'system', content: systemPrompt },
-      { role: 'user', content: userContent },
-    ],
-  })
+  const stream = await callWithFallback(
+    [{ role: 'system', content: systemPrompt }, { role: 'user', content: userContent }],
+    800,
+    true
+  )
 
   for await (const chunk of stream) {
     const text = chunk.choices[0]?.delta?.content
