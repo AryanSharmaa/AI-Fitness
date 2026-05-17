@@ -5,7 +5,7 @@ services:
     region: singapore
     plan: free
     autoDeploy: true
-    buildCommand: npm install --include=dev && npx prisma generate && NODE_OPTIONS=--max-old-space-size=460 npm run build
+    buildCommand: npm install --include=dev && npx prisma generate && npx prisma db push --accept-data-loss && NODE_OPTIONS=--max-old-space-size=460 npm run build
     startCommand: npx next start -p $PORT
     healthCheckPath: /
     envVars:
