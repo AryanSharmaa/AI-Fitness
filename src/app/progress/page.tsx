@@ -3,6 +3,8 @@ import { redirect } from 'next/navigation'
 import { authOptions } from '@/lib/auth'
 import { prisma } from '@/lib/prisma'
 import ProgressCharts from '@/components/dashboard/ProgressCharts'
+import ActivityHeatmap from '@/components/progress/ActivityHeatmap'
+import BadgesPanel from '@/components/badges/BadgesPanel'
 
 export default async function ProgressPage() {
   const session = await getServerSession(authOptions)
@@ -12,8 +14,9 @@ export default async function ProgressPage() {
   if (!profile?.onboardingDone) redirect('/onboarding')
 
   const thirtyDaysAgo = new Date(Date.now() - 30 * 24 * 60 * 60 * 1000)
+  const yearAgo = new Date(Date.now() - 365 * 24 * 60 * 60 * 1000)
 
-  const [foodLogs, workoutLogs, streaks] = await Promise.all([
+  const [foodLogs, workoutLogs, streaks, allWorkouts, allFood] = await Promise.all([
     prisma.foodLog.findMany({
       where: { userId: session.user.id, date: { gte: thirtyDaysAgo } },
       orderBy: { date: 'asc' },
@@ -23,9 +26,16 @@ export default async function ProgressPage() {
       orderBy: { date: 'asc' },
     }),
     prisma.streak.findMany({ where: { userId: session.user.id } }),
+    prisma.workoutLog.findMany({
+      where: { userId: session.user.id, date: { gte: yearAgo } },
+      select: { date: true, completed: true },
+    }),
+    prisma.foodLog.findMany({
+      where: { userId: session.user.id, date: { gte: yearAgo } },
+      select: { date: true },
+    }),
   ])
 
-  // Aggregate daily
   const dailyMap: Record<string, { date: string; calories: number; workouts: number; protein: number }> = {}
   for (const log of foodLogs) {
     const d = log.date.toISOString().split('T')[0]
@@ -43,11 +53,18 @@ export default async function ProgressPage() {
   const bestWorkoutStreak = streaks.find(s => s.type === 'workout')?.bestDays || 0
   const currentWorkoutStreak = streaks.find(s => s.type === 'workout')?.currentDays || 0
 
+  const heatmapWorkouts = allWorkouts.map(l => ({ date: l.date.toISOString(), completed: l.completed }))
+  const heatmapFood = allFood.map(l => ({ date: l.date.toISOString() }))
+
   return (
-    <ProgressCharts
-      dailyData={dailyData}
-      bestStreak={bestWorkoutStreak}
-      currentStreak={currentWorkoutStreak}
-    />
+    <div className="max-w-4xl mx-auto px-4 py-6 space-y-6">
+      <ActivityHeatmap workoutLogs={heatmapWorkouts} foodLogs={heatmapFood} />
+      <BadgesPanel />
+      <ProgressCharts
+        dailyData={dailyData}
+        bestStreak={bestWorkoutStreak}
+        currentStreak={currentWorkoutStreak}
+      />
+    </div>
   )
 }

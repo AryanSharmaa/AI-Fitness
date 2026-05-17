@@ -9,6 +9,7 @@ import {
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
 import { MessageCircle, LayoutDashboard, UtensilsCrossed, Dumbbell, TrendingUp, Scale, Menu, X } from 'lucide-react'
 import { useState } from 'react'
+import ThemeToggle from './ThemeToggle'
 
 const NAV_LINKS = [
   { href: '/dashboard', label: 'Dashboard', icon: LayoutDashboard },
@@ -53,7 +54,8 @@ export default function Navbar() {
             </div>
 
             {/* User menu + mobile toggle */}
-            <div className="flex items-center gap-2">
+            <div className="flex items-center gap-1">
+              <ThemeToggle />
               <DropdownMenu>
                 <DropdownMenuTrigger className="rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring">
                   <Avatar className="h-8 w-8 cursor-pointer">
@@ -87,7 +89,8 @@ export default function Navbar() {
         )}
 
         {!session && (
-          <div className="flex gap-2">
+          <div className="flex items-center gap-2">
+            <ThemeToggle />
             <Button variant="ghost" asChild>
               <Link href="/login">Login</Link>
             </Button>
