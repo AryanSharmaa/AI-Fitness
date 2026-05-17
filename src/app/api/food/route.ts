@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { getServerSession } from 'next-auth'
 import { authOptions } from '@/lib/auth'
+import { getAnySession } from '@/lib/mobile-auth'
 import { prisma } from '@/lib/prisma'
 import { estimateMealNutrition, getDailyCalorieTarget, getNextMealAdjustment } from '@/lib/engines/nutrition'
 import { buildPrompt, FOOD_PARSER_PROMPT } from '@/lib/prompts'
@@ -43,11 +44,15 @@ async function callAI(system: string, user: string): Promise<string> {
 }
 
 export async function POST(req: NextRequest) {
-  const session = await getServerSession(authOptions)
-  if (!session?.user?.id) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
-  const userId = session.user.id
+  const anySession = await getAnySession(req)
+  if (!anySession) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
+  const userId = anySession.userId
 
-  const { description, mealType, inputMethod = 'text' } = await req.json()
+  const body = await req.json()
+  // Mobile sends { query, mealType }; web sends { description, mealType }
+  const description: string = body.description ?? body.query ?? ''
+  const mealType: string = body.mealType ?? 'Lunch'
+  const inputMethod: string = body.inputMethod ?? 'text'
   if (!description || !mealType) {
     return NextResponse.json({ error: 'description and mealType required' }, { status: 400 })
   }
@@ -113,8 +118,8 @@ export async function POST(req: NextRequest) {
 }
 
 export async function GET(req: NextRequest) {
-  const session = await getServerSession(authOptions)
-  if (!session?.user?.id) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
+  const anySession = await getAnySession(req)
+  if (!anySession) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
 
   const { searchParams } = new URL(req.url)
   const date = searchParams.get('date') || new Date().toISOString().split('T')[0]
@@ -122,11 +127,11 @@ export async function GET(req: NextRequest) {
   const endOfDay = new Date(date + 'T23:59:59.999Z')
 
   const logs = await prisma.foodLog.findMany({
-    where: { userId: session.user.id, date: { gte: startOfDay, lte: endOfDay } },
+    where: { userId: anySession.userId, date: { gte: startOfDay, lte: endOfDay } },
     orderBy: { date: 'asc' },
   })
 
-  const profile = await prisma.userProfile.findUnique({ where: { userId: session.user.id } })
+  const profile = await prisma.userProfile.findUnique({ where: { userId: anySession.userId } })
   const dailyTarget = getDailyCalorieTarget({
     age: profile?.age || undefined,
     weight: profile?.weight || undefined,
@@ -142,5 +147,18 @@ export async function GET(req: NextRequest) {
     fat: acc.fat + (l.fat || 0),
   }), { calories: 0, protein: 0, carbs: 0, fat: 0 })
 
-  return NextResponse.json({ logs, totals, dailyTarget })
+  return NextResponse.json({
+    logs: logs.map((l) => ({
+      id: l.id,
+      food: l.meal,
+      calories: l.calories ?? 0,
+      protein: l.protein ?? 0,
+      carbs: l.carbs ?? 0,
+      fat: l.fat ?? 0,
+      mealType: l.mealType,
+      loggedAt: l.date,
+    })),
+    totals,
+    dailyTarget,
+  })
 }

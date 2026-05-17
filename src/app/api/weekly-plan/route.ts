@@ -1,6 +1,7 @@
 import { getServerSession } from 'next-auth'
-import { NextResponse } from 'next/server'
+import { NextRequest, NextResponse } from 'next/server'
 import { authOptions } from '@/lib/auth'
+import { getAnySession } from '@/lib/mobile-auth'
 import { prisma } from '@/lib/prisma'
 import { getUserPlan } from '@/lib/plan'
 import { buildPrompt, WEEKLY_PLAN_PROMPT } from '@/lib/prompts'
@@ -55,12 +56,11 @@ const FREE_PLAN = {
   note: 'This is a general plan. Upgrade to Pro for a personalized plan based on your actual data.',
 }
 
-export async function GET(req: Request) {
-  const session = await getServerSession(authOptions)
-  if (!session?.user?.id) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
-
-  const userId = session.user.id
-  const plan = await getUserPlan(userId, session.user.email)
+export async function GET(req: NextRequest) {
+  const anySession = await getAnySession(req)
+  if (!anySession) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
+  const userId = anySession.userId
+  const plan = await getUserPlan(userId, anySession.email)
 
   if (plan === 'free') {
     return NextResponse.json({ plan: 'free', weeklyPlan: FREE_PLAN })
