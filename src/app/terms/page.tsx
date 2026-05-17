@@ -131,7 +131,7 @@ export default function TermsPage() {
           <h2 className="text-lg font-semibold mb-3">12. Contact</h2>
           <p className="text-muted-foreground leading-relaxed">
             For questions about these terms:<br />
-            <strong className="text-foreground">support@fitmindai.com</strong>
+            <strong className="text-foreground">aifitness034@gmail.com</strong>
           </p>
         </section>
 

@@ -108,7 +108,7 @@ export default function PrivacyPage() {
           <h2 className="text-lg font-semibold mb-3">10. Contact</h2>
           <p className="text-muted-foreground leading-relaxed">
             For any privacy questions, data requests, or concerns, contact us at:<br />
-            <strong className="text-foreground">support@fitmindai.com</strong>
+            <strong className="text-foreground">aifitness034@gmail.com</strong>
           </p>
         </section>
 
