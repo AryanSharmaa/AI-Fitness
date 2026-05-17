@@ -93,6 +93,16 @@ export type MealLibrary = $Result.DefaultSelection<Prisma.$MealLibraryPayload>
  * 
  */
 export type WorkoutLibrary = $Result.DefaultSelection<Prisma.$WorkoutLibraryPayload>
+/**
+ * Model MoodLog
+ * 
+ */
+export type MoodLog = $Result.DefaultSelection<Prisma.$MoodLogPayload>
+/**
+ * Model FastingLog
+ * 
+ */
+export type FastingLog = $Result.DefaultSelection<Prisma.$FastingLogPayload>
 
 /**
  * ##  Prisma Client ʲˢ
@@ -374,6 +384,26 @@ export class PrismaClient<
     * ```
     */
   get workoutLibrary(): Prisma.WorkoutLibraryDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.moodLog`: Exposes CRUD operations for the **MoodLog** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more MoodLogs
+    * const moodLogs = await prisma.moodLog.findMany()
+    * ```
+    */
+  get moodLog(): Prisma.MoodLogDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.fastingLog`: Exposes CRUD operations for the **FastingLog** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more FastingLogs
+    * const fastingLogs = await prisma.fastingLog.findMany()
+    * ```
+    */
+  get fastingLog(): Prisma.FastingLogDelegate<ExtArgs, ClientOptions>;
 }
 
 export namespace Prisma {
@@ -823,7 +853,9 @@ export namespace Prisma {
     Streak: 'Streak',
     Plan: 'Plan',
     MealLibrary: 'MealLibrary',
-    WorkoutLibrary: 'WorkoutLibrary'
+    WorkoutLibrary: 'WorkoutLibrary',
+    MoodLog: 'MoodLog',
+    FastingLog: 'FastingLog'
   };
 
   export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -839,7 +871,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "account" | "session" | "verificationToken" | "user" | "subscription" | "waterLog" | "bodyLog" | "userProfile" | "foodLog" | "workoutLog" | "message" | "behaviorLog" | "streak" | "plan" | "mealLibrary" | "workoutLibrary"
+      modelProps: "account" | "session" | "verificationToken" | "user" | "subscription" | "waterLog" | "bodyLog" | "userProfile" | "foodLog" | "workoutLog" | "message" | "behaviorLog" | "streak" | "plan" | "mealLibrary" | "workoutLibrary" | "moodLog" | "fastingLog"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -2027,6 +2059,154 @@ export namespace Prisma {
           }
         }
       }
+      MoodLog: {
+        payload: Prisma.$MoodLogPayload<ExtArgs>
+        fields: Prisma.MoodLogFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.MoodLogFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MoodLogPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.MoodLogFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MoodLogPayload>
+          }
+          findFirst: {
+            args: Prisma.MoodLogFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MoodLogPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.MoodLogFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MoodLogPayload>
+          }
+          findMany: {
+            args: Prisma.MoodLogFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MoodLogPayload>[]
+          }
+          create: {
+            args: Prisma.MoodLogCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MoodLogPayload>
+          }
+          createMany: {
+            args: Prisma.MoodLogCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.MoodLogCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MoodLogPayload>[]
+          }
+          delete: {
+            args: Prisma.MoodLogDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MoodLogPayload>
+          }
+          update: {
+            args: Prisma.MoodLogUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MoodLogPayload>
+          }
+          deleteMany: {
+            args: Prisma.MoodLogDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.MoodLogUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.MoodLogUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MoodLogPayload>[]
+          }
+          upsert: {
+            args: Prisma.MoodLogUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MoodLogPayload>
+          }
+          aggregate: {
+            args: Prisma.MoodLogAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateMoodLog>
+          }
+          groupBy: {
+            args: Prisma.MoodLogGroupByArgs<ExtArgs>
+            result: $Utils.Optional<MoodLogGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.MoodLogCountArgs<ExtArgs>
+            result: $Utils.Optional<MoodLogCountAggregateOutputType> | number
+          }
+        }
+      }
+      FastingLog: {
+        payload: Prisma.$FastingLogPayload<ExtArgs>
+        fields: Prisma.FastingLogFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.FastingLogFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FastingLogPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.FastingLogFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FastingLogPayload>
+          }
+          findFirst: {
+            args: Prisma.FastingLogFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FastingLogPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.FastingLogFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FastingLogPayload>
+          }
+          findMany: {
+            args: Prisma.FastingLogFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FastingLogPayload>[]
+          }
+          create: {
+            args: Prisma.FastingLogCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FastingLogPayload>
+          }
+          createMany: {
+            args: Prisma.FastingLogCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.FastingLogCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FastingLogPayload>[]
+          }
+          delete: {
+            args: Prisma.FastingLogDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FastingLogPayload>
+          }
+          update: {
+            args: Prisma.FastingLogUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FastingLogPayload>
+          }
+          deleteMany: {
+            args: Prisma.FastingLogDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.FastingLogUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.FastingLogUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FastingLogPayload>[]
+          }
+          upsert: {
+            args: Prisma.FastingLogUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FastingLogPayload>
+          }
+          aggregate: {
+            args: Prisma.FastingLogAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateFastingLog>
+          }
+          groupBy: {
+            args: Prisma.FastingLogGroupByArgs<ExtArgs>
+            result: $Utils.Optional<FastingLogGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.FastingLogCountArgs<ExtArgs>
+            result: $Utils.Optional<FastingLogCountAggregateOutputType> | number
+          }
+        }
+      }
     }
   } & {
     other: {
@@ -2151,6 +2331,8 @@ export namespace Prisma {
     plan?: PlanOmit
     mealLibrary?: MealLibraryOmit
     workoutLibrary?: WorkoutLibraryOmit
+    moodLog?: MoodLogOmit
+    fastingLog?: FastingLogOmit
   }
 
   /* Types for Logging */
@@ -2241,6 +2423,8 @@ export namespace Prisma {
     plans: number
     waterLogs: number
     bodyLogs: number
+    moodLogs: number
+    fastingLogs: number
   }
 
   export type UserCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -2254,6 +2438,8 @@ export namespace Prisma {
     plans?: boolean | UserCountOutputTypeCountPlansArgs
     waterLogs?: boolean | UserCountOutputTypeCountWaterLogsArgs
     bodyLogs?: boolean | UserCountOutputTypeCountBodyLogsArgs
+    moodLogs?: boolean | UserCountOutputTypeCountMoodLogsArgs
+    fastingLogs?: boolean | UserCountOutputTypeCountFastingLogsArgs
   }
 
   // Custom InputTypes
@@ -2335,6 +2521,20 @@ export namespace Prisma {
    */
   export type UserCountOutputTypeCountBodyLogsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: BodyLogWhereInput
+  }
+
+  /**
+   * UserCountOutputType without action
+   */
+  export type UserCountOutputTypeCountMoodLogsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: MoodLogWhereInput
+  }
+
+  /**
+   * UserCountOutputType without action
+   */
+  export type UserCountOutputTypeCountFastingLogsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: FastingLogWhereInput
   }
 
 
@@ -5746,6 +5946,8 @@ export namespace Prisma {
     subscription?: boolean | User$subscriptionArgs<ExtArgs>
     waterLogs?: boolean | User$waterLogsArgs<ExtArgs>
     bodyLogs?: boolean | User$bodyLogsArgs<ExtArgs>
+    moodLogs?: boolean | User$moodLogsArgs<ExtArgs>
+    fastingLogs?: boolean | User$fastingLogsArgs<ExtArgs>
     _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["user"]>
 
@@ -5793,6 +5995,8 @@ export namespace Prisma {
     subscription?: boolean | User$subscriptionArgs<ExtArgs>
     waterLogs?: boolean | User$waterLogsArgs<ExtArgs>
     bodyLogs?: boolean | User$bodyLogsArgs<ExtArgs>
+    moodLogs?: boolean | User$moodLogsArgs<ExtArgs>
+    fastingLogs?: boolean | User$fastingLogsArgs<ExtArgs>
     _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type UserIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
@@ -5813,6 +6017,8 @@ export namespace Prisma {
       subscription: Prisma.$SubscriptionPayload<ExtArgs> | null
       waterLogs: Prisma.$WaterLogPayload<ExtArgs>[]
       bodyLogs: Prisma.$BodyLogPayload<ExtArgs>[]
+      moodLogs: Prisma.$MoodLogPayload<ExtArgs>[]
+      fastingLogs: Prisma.$FastingLogPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -6228,6 +6434,8 @@ export namespace Prisma {
     subscription<T extends User$subscriptionArgs<ExtArgs> = {}>(args?: Subset<T, User$subscriptionArgs<ExtArgs>>): Prisma__SubscriptionClient<$Result.GetResult<Prisma.$SubscriptionPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     waterLogs<T extends User$waterLogsArgs<ExtArgs> = {}>(args?: Subset<T, User$waterLogsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$WaterLogPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     bodyLogs<T extends User$bodyLogsArgs<ExtArgs> = {}>(args?: Subset<T, User$bodyLogsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$BodyLogPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    moodLogs<T extends User$moodLogsArgs<ExtArgs> = {}>(args?: Subset<T, User$moodLogsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$MoodLogPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    fastingLogs<T extends User$fastingLogsArgs<ExtArgs> = {}>(args?: Subset<T, User$fastingLogsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$FastingLogPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -6932,6 +7140,54 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: BodyLogScalarFieldEnum | BodyLogScalarFieldEnum[]
+  }
+
+  /**
+   * User.moodLogs
+   */
+  export type User$moodLogsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MoodLog
+     */
+    select?: MoodLogSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the MoodLog
+     */
+    omit?: MoodLogOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MoodLogInclude<ExtArgs> | null
+    where?: MoodLogWhereInput
+    orderBy?: MoodLogOrderByWithRelationInput | MoodLogOrderByWithRelationInput[]
+    cursor?: MoodLogWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: MoodLogScalarFieldEnum | MoodLogScalarFieldEnum[]
+  }
+
+  /**
+   * User.fastingLogs
+   */
+  export type User$fastingLogsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FastingLog
+     */
+    select?: FastingLogSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FastingLog
+     */
+    omit?: FastingLogOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FastingLogInclude<ExtArgs> | null
+    where?: FastingLogWhereInput
+    orderBy?: FastingLogOrderByWithRelationInput | FastingLogOrderByWithRelationInput[]
+    cursor?: FastingLogWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: FastingLogScalarFieldEnum | FastingLogScalarFieldEnum[]
   }
 
   /**
@@ -20686,6 +20942,2243 @@ export namespace Prisma {
 
 
   /**
+   * Model MoodLog
+   */
+
+  export type AggregateMoodLog = {
+    _count: MoodLogCountAggregateOutputType | null
+    _avg: MoodLogAvgAggregateOutputType | null
+    _sum: MoodLogSumAggregateOutputType | null
+    _min: MoodLogMinAggregateOutputType | null
+    _max: MoodLogMaxAggregateOutputType | null
+  }
+
+  export type MoodLogAvgAggregateOutputType = {
+    mood: number | null
+    energy: number | null
+  }
+
+  export type MoodLogSumAggregateOutputType = {
+    mood: number | null
+    energy: number | null
+  }
+
+  export type MoodLogMinAggregateOutputType = {
+    id: string | null
+    userId: string | null
+    date: Date | null
+    mood: number | null
+    energy: number | null
+    notes: string | null
+  }
+
+  export type MoodLogMaxAggregateOutputType = {
+    id: string | null
+    userId: string | null
+    date: Date | null
+    mood: number | null
+    energy: number | null
+    notes: string | null
+  }
+
+  export type MoodLogCountAggregateOutputType = {
+    id: number
+    userId: number
+    date: number
+    mood: number
+    energy: number
+    notes: number
+    _all: number
+  }
+
+
+  export type MoodLogAvgAggregateInputType = {
+    mood?: true
+    energy?: true
+  }
+
+  export type MoodLogSumAggregateInputType = {
+    mood?: true
+    energy?: true
+  }
+
+  export type MoodLogMinAggregateInputType = {
+    id?: true
+    userId?: true
+    date?: true
+    mood?: true
+    energy?: true
+    notes?: true
+  }
+
+  export type MoodLogMaxAggregateInputType = {
+    id?: true
+    userId?: true
+    date?: true
+    mood?: true
+    energy?: true
+    notes?: true
+  }
+
+  export type MoodLogCountAggregateInputType = {
+    id?: true
+    userId?: true
+    date?: true
+    mood?: true
+    energy?: true
+    notes?: true
+    _all?: true
+  }
+
+  export type MoodLogAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which MoodLog to aggregate.
+     */
+    where?: MoodLogWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of MoodLogs to fetch.
+     */
+    orderBy?: MoodLogOrderByWithRelationInput | MoodLogOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: MoodLogWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` MoodLogs from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` MoodLogs.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned MoodLogs
+    **/
+    _count?: true | MoodLogCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: MoodLogAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: MoodLogSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: MoodLogMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: MoodLogMaxAggregateInputType
+  }
+
+  export type GetMoodLogAggregateType<T extends MoodLogAggregateArgs> = {
+        [P in keyof T & keyof AggregateMoodLog]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateMoodLog[P]>
+      : GetScalarType<T[P], AggregateMoodLog[P]>
+  }
+
+
+
+
+  export type MoodLogGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: MoodLogWhereInput
+    orderBy?: MoodLogOrderByWithAggregationInput | MoodLogOrderByWithAggregationInput[]
+    by: MoodLogScalarFieldEnum[] | MoodLogScalarFieldEnum
+    having?: MoodLogScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: MoodLogCountAggregateInputType | true
+    _avg?: MoodLogAvgAggregateInputType
+    _sum?: MoodLogSumAggregateInputType
+    _min?: MoodLogMinAggregateInputType
+    _max?: MoodLogMaxAggregateInputType
+  }
+
+  export type MoodLogGroupByOutputType = {
+    id: string
+    userId: string
+    date: Date
+    mood: number
+    energy: number
+    notes: string | null
+    _count: MoodLogCountAggregateOutputType | null
+    _avg: MoodLogAvgAggregateOutputType | null
+    _sum: MoodLogSumAggregateOutputType | null
+    _min: MoodLogMinAggregateOutputType | null
+    _max: MoodLogMaxAggregateOutputType | null
+  }
+
+  type GetMoodLogGroupByPayload<T extends MoodLogGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<MoodLogGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof MoodLogGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], MoodLogGroupByOutputType[P]>
+            : GetScalarType<T[P], MoodLogGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type MoodLogSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    userId?: boolean
+    date?: boolean
+    mood?: boolean
+    energy?: boolean
+    notes?: boolean
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["moodLog"]>
+
+  export type MoodLogSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    userId?: boolean
+    date?: boolean
+    mood?: boolean
+    energy?: boolean
+    notes?: boolean
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["moodLog"]>
+
+  export type MoodLogSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    userId?: boolean
+    date?: boolean
+    mood?: boolean
+    energy?: boolean
+    notes?: boolean
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["moodLog"]>
+
+  export type MoodLogSelectScalar = {
+    id?: boolean
+    userId?: boolean
+    date?: boolean
+    mood?: boolean
+    energy?: boolean
+    notes?: boolean
+  }
+
+  export type MoodLogOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "userId" | "date" | "mood" | "energy" | "notes", ExtArgs["result"]["moodLog"]>
+  export type MoodLogInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }
+  export type MoodLogIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }
+  export type MoodLogIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }
+
+  export type $MoodLogPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "MoodLog"
+    objects: {
+      user: Prisma.$UserPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      userId: string
+      date: Date
+      mood: number
+      energy: number
+      notes: string | null
+    }, ExtArgs["result"]["moodLog"]>
+    composites: {}
+  }
+
+  type MoodLogGetPayload<S extends boolean | null | undefined | MoodLogDefaultArgs> = $Result.GetResult<Prisma.$MoodLogPayload, S>
+
+  type MoodLogCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<MoodLogFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: MoodLogCountAggregateInputType | true
+    }
+
+  export interface MoodLogDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['MoodLog'], meta: { name: 'MoodLog' } }
+    /**
+     * Find zero or one MoodLog that matches the filter.
+     * @param {MoodLogFindUniqueArgs} args - Arguments to find a MoodLog
+     * @example
+     * // Get one MoodLog
+     * const moodLog = await prisma.moodLog.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends MoodLogFindUniqueArgs>(args: SelectSubset<T, MoodLogFindUniqueArgs<ExtArgs>>): Prisma__MoodLogClient<$Result.GetResult<Prisma.$MoodLogPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one MoodLog that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {MoodLogFindUniqueOrThrowArgs} args - Arguments to find a MoodLog
+     * @example
+     * // Get one MoodLog
+     * const moodLog = await prisma.moodLog.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends MoodLogFindUniqueOrThrowArgs>(args: SelectSubset<T, MoodLogFindUniqueOrThrowArgs<ExtArgs>>): Prisma__MoodLogClient<$Result.GetResult<Prisma.$MoodLogPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first MoodLog that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {MoodLogFindFirstArgs} args - Arguments to find a MoodLog
+     * @example
+     * // Get one MoodLog
+     * const moodLog = await prisma.moodLog.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends MoodLogFindFirstArgs>(args?: SelectSubset<T, MoodLogFindFirstArgs<ExtArgs>>): Prisma__MoodLogClient<$Result.GetResult<Prisma.$MoodLogPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first MoodLog that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {MoodLogFindFirstOrThrowArgs} args - Arguments to find a MoodLog
+     * @example
+     * // Get one MoodLog
+     * const moodLog = await prisma.moodLog.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends MoodLogFindFirstOrThrowArgs>(args?: SelectSubset<T, MoodLogFindFirstOrThrowArgs<ExtArgs>>): Prisma__MoodLogClient<$Result.GetResult<Prisma.$MoodLogPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more MoodLogs that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {MoodLogFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all MoodLogs
+     * const moodLogs = await prisma.moodLog.findMany()
+     * 
+     * // Get first 10 MoodLogs
+     * const moodLogs = await prisma.moodLog.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const moodLogWithIdOnly = await prisma.moodLog.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends MoodLogFindManyArgs>(args?: SelectSubset<T, MoodLogFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$MoodLogPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a MoodLog.
+     * @param {MoodLogCreateArgs} args - Arguments to create a MoodLog.
+     * @example
+     * // Create one MoodLog
+     * const MoodLog = await prisma.moodLog.create({
+     *   data: {
+     *     // ... data to create a MoodLog
+     *   }
+     * })
+     * 
+     */
+    create<T extends MoodLogCreateArgs>(args: SelectSubset<T, MoodLogCreateArgs<ExtArgs>>): Prisma__MoodLogClient<$Result.GetResult<Prisma.$MoodLogPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many MoodLogs.
+     * @param {MoodLogCreateManyArgs} args - Arguments to create many MoodLogs.
+     * @example
+     * // Create many MoodLogs
+     * const moodLog = await prisma.moodLog.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends MoodLogCreateManyArgs>(args?: SelectSubset<T, MoodLogCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many MoodLogs and returns the data saved in the database.
+     * @param {MoodLogCreateManyAndReturnArgs} args - Arguments to create many MoodLogs.
+     * @example
+     * // Create many MoodLogs
+     * const moodLog = await prisma.moodLog.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many MoodLogs and only return the `id`
+     * const moodLogWithIdOnly = await prisma.moodLog.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends MoodLogCreateManyAndReturnArgs>(args?: SelectSubset<T, MoodLogCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$MoodLogPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a MoodLog.
+     * @param {MoodLogDeleteArgs} args - Arguments to delete one MoodLog.
+     * @example
+     * // Delete one MoodLog
+     * const MoodLog = await prisma.moodLog.delete({
+     *   where: {
+     *     // ... filter to delete one MoodLog
+     *   }
+     * })
+     * 
+     */
+    delete<T extends MoodLogDeleteArgs>(args: SelectSubset<T, MoodLogDeleteArgs<ExtArgs>>): Prisma__MoodLogClient<$Result.GetResult<Prisma.$MoodLogPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one MoodLog.
+     * @param {MoodLogUpdateArgs} args - Arguments to update one MoodLog.
+     * @example
+     * // Update one MoodLog
+     * const moodLog = await prisma.moodLog.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends MoodLogUpdateArgs>(args: SelectSubset<T, MoodLogUpdateArgs<ExtArgs>>): Prisma__MoodLogClient<$Result.GetResult<Prisma.$MoodLogPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more MoodLogs.
+     * @param {MoodLogDeleteManyArgs} args - Arguments to filter MoodLogs to delete.
+     * @example
+     * // Delete a few MoodLogs
+     * const { count } = await prisma.moodLog.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends MoodLogDeleteManyArgs>(args?: SelectSubset<T, MoodLogDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more MoodLogs.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {MoodLogUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many MoodLogs
+     * const moodLog = await prisma.moodLog.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends MoodLogUpdateManyArgs>(args: SelectSubset<T, MoodLogUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more MoodLogs and returns the data updated in the database.
+     * @param {MoodLogUpdateManyAndReturnArgs} args - Arguments to update many MoodLogs.
+     * @example
+     * // Update many MoodLogs
+     * const moodLog = await prisma.moodLog.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more MoodLogs and only return the `id`
+     * const moodLogWithIdOnly = await prisma.moodLog.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends MoodLogUpdateManyAndReturnArgs>(args: SelectSubset<T, MoodLogUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$MoodLogPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one MoodLog.
+     * @param {MoodLogUpsertArgs} args - Arguments to update or create a MoodLog.
+     * @example
+     * // Update or create a MoodLog
+     * const moodLog = await prisma.moodLog.upsert({
+     *   create: {
+     *     // ... data to create a MoodLog
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the MoodLog we want to update
+     *   }
+     * })
+     */
+    upsert<T extends MoodLogUpsertArgs>(args: SelectSubset<T, MoodLogUpsertArgs<ExtArgs>>): Prisma__MoodLogClient<$Result.GetResult<Prisma.$MoodLogPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of MoodLogs.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {MoodLogCountArgs} args - Arguments to filter MoodLogs to count.
+     * @example
+     * // Count the number of MoodLogs
+     * const count = await prisma.moodLog.count({
+     *   where: {
+     *     // ... the filter for the MoodLogs we want to count
+     *   }
+     * })
+    **/
+    count<T extends MoodLogCountArgs>(
+      args?: Subset<T, MoodLogCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], MoodLogCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a MoodLog.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {MoodLogAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends MoodLogAggregateArgs>(args: Subset<T, MoodLogAggregateArgs>): Prisma.PrismaPromise<GetMoodLogAggregateType<T>>
+
+    /**
+     * Group by MoodLog.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {MoodLogGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends MoodLogGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: MoodLogGroupByArgs['orderBy'] }
+        : { orderBy?: MoodLogGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, MoodLogGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetMoodLogGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the MoodLog model
+   */
+  readonly fields: MoodLogFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for MoodLog.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__MoodLogClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    user<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the MoodLog model
+   */
+  interface MoodLogFieldRefs {
+    readonly id: FieldRef<"MoodLog", 'String'>
+    readonly userId: FieldRef<"MoodLog", 'String'>
+    readonly date: FieldRef<"MoodLog", 'DateTime'>
+    readonly mood: FieldRef<"MoodLog", 'Int'>
+    readonly energy: FieldRef<"MoodLog", 'Int'>
+    readonly notes: FieldRef<"MoodLog", 'String'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * MoodLog findUnique
+   */
+  export type MoodLogFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MoodLog
+     */
+    select?: MoodLogSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the MoodLog
+     */
+    omit?: MoodLogOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MoodLogInclude<ExtArgs> | null
+    /**
+     * Filter, which MoodLog to fetch.
+     */
+    where: MoodLogWhereUniqueInput
+  }
+
+  /**
+   * MoodLog findUniqueOrThrow
+   */
+  export type MoodLogFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MoodLog
+     */
+    select?: MoodLogSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the MoodLog
+     */
+    omit?: MoodLogOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MoodLogInclude<ExtArgs> | null
+    /**
+     * Filter, which MoodLog to fetch.
+     */
+    where: MoodLogWhereUniqueInput
+  }
+
+  /**
+   * MoodLog findFirst
+   */
+  export type MoodLogFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MoodLog
+     */
+    select?: MoodLogSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the MoodLog
+     */
+    omit?: MoodLogOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MoodLogInclude<ExtArgs> | null
+    /**
+     * Filter, which MoodLog to fetch.
+     */
+    where?: MoodLogWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of MoodLogs to fetch.
+     */
+    orderBy?: MoodLogOrderByWithRelationInput | MoodLogOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for MoodLogs.
+     */
+    cursor?: MoodLogWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` MoodLogs from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` MoodLogs.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of MoodLogs.
+     */
+    distinct?: MoodLogScalarFieldEnum | MoodLogScalarFieldEnum[]
+  }
+
+  /**
+   * MoodLog findFirstOrThrow
+   */
+  export type MoodLogFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MoodLog
+     */
+    select?: MoodLogSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the MoodLog
+     */
+    omit?: MoodLogOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MoodLogInclude<ExtArgs> | null
+    /**
+     * Filter, which MoodLog to fetch.
+     */
+    where?: MoodLogWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of MoodLogs to fetch.
+     */
+    orderBy?: MoodLogOrderByWithRelationInput | MoodLogOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for MoodLogs.
+     */
+    cursor?: MoodLogWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` MoodLogs from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` MoodLogs.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of MoodLogs.
+     */
+    distinct?: MoodLogScalarFieldEnum | MoodLogScalarFieldEnum[]
+  }
+
+  /**
+   * MoodLog findMany
+   */
+  export type MoodLogFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MoodLog
+     */
+    select?: MoodLogSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the MoodLog
+     */
+    omit?: MoodLogOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MoodLogInclude<ExtArgs> | null
+    /**
+     * Filter, which MoodLogs to fetch.
+     */
+    where?: MoodLogWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of MoodLogs to fetch.
+     */
+    orderBy?: MoodLogOrderByWithRelationInput | MoodLogOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing MoodLogs.
+     */
+    cursor?: MoodLogWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` MoodLogs from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` MoodLogs.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of MoodLogs.
+     */
+    distinct?: MoodLogScalarFieldEnum | MoodLogScalarFieldEnum[]
+  }
+
+  /**
+   * MoodLog create
+   */
+  export type MoodLogCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MoodLog
+     */
+    select?: MoodLogSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the MoodLog
+     */
+    omit?: MoodLogOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MoodLogInclude<ExtArgs> | null
+    /**
+     * The data needed to create a MoodLog.
+     */
+    data: XOR<MoodLogCreateInput, MoodLogUncheckedCreateInput>
+  }
+
+  /**
+   * MoodLog createMany
+   */
+  export type MoodLogCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many MoodLogs.
+     */
+    data: MoodLogCreateManyInput | MoodLogCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * MoodLog createManyAndReturn
+   */
+  export type MoodLogCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MoodLog
+     */
+    select?: MoodLogSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the MoodLog
+     */
+    omit?: MoodLogOmit<ExtArgs> | null
+    /**
+     * The data used to create many MoodLogs.
+     */
+    data: MoodLogCreateManyInput | MoodLogCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MoodLogIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * MoodLog update
+   */
+  export type MoodLogUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MoodLog
+     */
+    select?: MoodLogSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the MoodLog
+     */
+    omit?: MoodLogOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MoodLogInclude<ExtArgs> | null
+    /**
+     * The data needed to update a MoodLog.
+     */
+    data: XOR<MoodLogUpdateInput, MoodLogUncheckedUpdateInput>
+    /**
+     * Choose, which MoodLog to update.
+     */
+    where: MoodLogWhereUniqueInput
+  }
+
+  /**
+   * MoodLog updateMany
+   */
+  export type MoodLogUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update MoodLogs.
+     */
+    data: XOR<MoodLogUpdateManyMutationInput, MoodLogUncheckedUpdateManyInput>
+    /**
+     * Filter which MoodLogs to update
+     */
+    where?: MoodLogWhereInput
+    /**
+     * Limit how many MoodLogs to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * MoodLog updateManyAndReturn
+   */
+  export type MoodLogUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MoodLog
+     */
+    select?: MoodLogSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the MoodLog
+     */
+    omit?: MoodLogOmit<ExtArgs> | null
+    /**
+     * The data used to update MoodLogs.
+     */
+    data: XOR<MoodLogUpdateManyMutationInput, MoodLogUncheckedUpdateManyInput>
+    /**
+     * Filter which MoodLogs to update
+     */
+    where?: MoodLogWhereInput
+    /**
+     * Limit how many MoodLogs to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MoodLogIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * MoodLog upsert
+   */
+  export type MoodLogUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MoodLog
+     */
+    select?: MoodLogSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the MoodLog
+     */
+    omit?: MoodLogOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MoodLogInclude<ExtArgs> | null
+    /**
+     * The filter to search for the MoodLog to update in case it exists.
+     */
+    where: MoodLogWhereUniqueInput
+    /**
+     * In case the MoodLog found by the `where` argument doesn't exist, create a new MoodLog with this data.
+     */
+    create: XOR<MoodLogCreateInput, MoodLogUncheckedCreateInput>
+    /**
+     * In case the MoodLog was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<MoodLogUpdateInput, MoodLogUncheckedUpdateInput>
+  }
+
+  /**
+   * MoodLog delete
+   */
+  export type MoodLogDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MoodLog
+     */
+    select?: MoodLogSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the MoodLog
+     */
+    omit?: MoodLogOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MoodLogInclude<ExtArgs> | null
+    /**
+     * Filter which MoodLog to delete.
+     */
+    where: MoodLogWhereUniqueInput
+  }
+
+  /**
+   * MoodLog deleteMany
+   */
+  export type MoodLogDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which MoodLogs to delete
+     */
+    where?: MoodLogWhereInput
+    /**
+     * Limit how many MoodLogs to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * MoodLog without action
+   */
+  export type MoodLogDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MoodLog
+     */
+    select?: MoodLogSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the MoodLog
+     */
+    omit?: MoodLogOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MoodLogInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model FastingLog
+   */
+
+  export type AggregateFastingLog = {
+    _count: FastingLogCountAggregateOutputType | null
+    _avg: FastingLogAvgAggregateOutputType | null
+    _sum: FastingLogSumAggregateOutputType | null
+    _min: FastingLogMinAggregateOutputType | null
+    _max: FastingLogMaxAggregateOutputType | null
+  }
+
+  export type FastingLogAvgAggregateOutputType = {
+    targetHours: number | null
+  }
+
+  export type FastingLogSumAggregateOutputType = {
+    targetHours: number | null
+  }
+
+  export type FastingLogMinAggregateOutputType = {
+    id: string | null
+    userId: string | null
+    startTime: Date | null
+    endTime: Date | null
+    targetHours: number | null
+    completed: boolean | null
+    notes: string | null
+  }
+
+  export type FastingLogMaxAggregateOutputType = {
+    id: string | null
+    userId: string | null
+    startTime: Date | null
+    endTime: Date | null
+    targetHours: number | null
+    completed: boolean | null
+    notes: string | null
+  }
+
+  export type FastingLogCountAggregateOutputType = {
+    id: number
+    userId: number
+    startTime: number
+    endTime: number
+    targetHours: number
+    completed: number
+    notes: number
+    _all: number
+  }
+
+
+  export type FastingLogAvgAggregateInputType = {
+    targetHours?: true
+  }
+
+  export type FastingLogSumAggregateInputType = {
+    targetHours?: true
+  }
+
+  export type FastingLogMinAggregateInputType = {
+    id?: true
+    userId?: true
+    startTime?: true
+    endTime?: true
+    targetHours?: true
+    completed?: true
+    notes?: true
+  }
+
+  export type FastingLogMaxAggregateInputType = {
+    id?: true
+    userId?: true
+    startTime?: true
+    endTime?: true
+    targetHours?: true
+    completed?: true
+    notes?: true
+  }
+
+  export type FastingLogCountAggregateInputType = {
+    id?: true
+    userId?: true
+    startTime?: true
+    endTime?: true
+    targetHours?: true
+    completed?: true
+    notes?: true
+    _all?: true
+  }
+
+  export type FastingLogAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which FastingLog to aggregate.
+     */
+    where?: FastingLogWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of FastingLogs to fetch.
+     */
+    orderBy?: FastingLogOrderByWithRelationInput | FastingLogOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: FastingLogWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` FastingLogs from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` FastingLogs.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned FastingLogs
+    **/
+    _count?: true | FastingLogCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: FastingLogAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: FastingLogSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: FastingLogMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: FastingLogMaxAggregateInputType
+  }
+
+  export type GetFastingLogAggregateType<T extends FastingLogAggregateArgs> = {
+        [P in keyof T & keyof AggregateFastingLog]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateFastingLog[P]>
+      : GetScalarType<T[P], AggregateFastingLog[P]>
+  }
+
+
+
+
+  export type FastingLogGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: FastingLogWhereInput
+    orderBy?: FastingLogOrderByWithAggregationInput | FastingLogOrderByWithAggregationInput[]
+    by: FastingLogScalarFieldEnum[] | FastingLogScalarFieldEnum
+    having?: FastingLogScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: FastingLogCountAggregateInputType | true
+    _avg?: FastingLogAvgAggregateInputType
+    _sum?: FastingLogSumAggregateInputType
+    _min?: FastingLogMinAggregateInputType
+    _max?: FastingLogMaxAggregateInputType
+  }
+
+  export type FastingLogGroupByOutputType = {
+    id: string
+    userId: string
+    startTime: Date
+    endTime: Date | null
+    targetHours: number
+    completed: boolean
+    notes: string | null
+    _count: FastingLogCountAggregateOutputType | null
+    _avg: FastingLogAvgAggregateOutputType | null
+    _sum: FastingLogSumAggregateOutputType | null
+    _min: FastingLogMinAggregateOutputType | null
+    _max: FastingLogMaxAggregateOutputType | null
+  }
+
+  type GetFastingLogGroupByPayload<T extends FastingLogGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<FastingLogGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof FastingLogGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], FastingLogGroupByOutputType[P]>
+            : GetScalarType<T[P], FastingLogGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type FastingLogSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    userId?: boolean
+    startTime?: boolean
+    endTime?: boolean
+    targetHours?: boolean
+    completed?: boolean
+    notes?: boolean
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["fastingLog"]>
+
+  export type FastingLogSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    userId?: boolean
+    startTime?: boolean
+    endTime?: boolean
+    targetHours?: boolean
+    completed?: boolean
+    notes?: boolean
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["fastingLog"]>
+
+  export type FastingLogSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    userId?: boolean
+    startTime?: boolean
+    endTime?: boolean
+    targetHours?: boolean
+    completed?: boolean
+    notes?: boolean
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["fastingLog"]>
+
+  export type FastingLogSelectScalar = {
+    id?: boolean
+    userId?: boolean
+    startTime?: boolean
+    endTime?: boolean
+    targetHours?: boolean
+    completed?: boolean
+    notes?: boolean
+  }
+
+  export type FastingLogOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "userId" | "startTime" | "endTime" | "targetHours" | "completed" | "notes", ExtArgs["result"]["fastingLog"]>
+  export type FastingLogInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }
+  export type FastingLogIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }
+  export type FastingLogIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }
+
+  export type $FastingLogPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "FastingLog"
+    objects: {
+      user: Prisma.$UserPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      userId: string
+      startTime: Date
+      endTime: Date | null
+      targetHours: number
+      completed: boolean
+      notes: string | null
+    }, ExtArgs["result"]["fastingLog"]>
+    composites: {}
+  }
+
+  type FastingLogGetPayload<S extends boolean | null | undefined | FastingLogDefaultArgs> = $Result.GetResult<Prisma.$FastingLogPayload, S>
+
+  type FastingLogCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<FastingLogFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: FastingLogCountAggregateInputType | true
+    }
+
+  export interface FastingLogDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['FastingLog'], meta: { name: 'FastingLog' } }
+    /**
+     * Find zero or one FastingLog that matches the filter.
+     * @param {FastingLogFindUniqueArgs} args - Arguments to find a FastingLog
+     * @example
+     * // Get one FastingLog
+     * const fastingLog = await prisma.fastingLog.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends FastingLogFindUniqueArgs>(args: SelectSubset<T, FastingLogFindUniqueArgs<ExtArgs>>): Prisma__FastingLogClient<$Result.GetResult<Prisma.$FastingLogPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one FastingLog that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {FastingLogFindUniqueOrThrowArgs} args - Arguments to find a FastingLog
+     * @example
+     * // Get one FastingLog
+     * const fastingLog = await prisma.fastingLog.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends FastingLogFindUniqueOrThrowArgs>(args: SelectSubset<T, FastingLogFindUniqueOrThrowArgs<ExtArgs>>): Prisma__FastingLogClient<$Result.GetResult<Prisma.$FastingLogPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first FastingLog that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FastingLogFindFirstArgs} args - Arguments to find a FastingLog
+     * @example
+     * // Get one FastingLog
+     * const fastingLog = await prisma.fastingLog.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends FastingLogFindFirstArgs>(args?: SelectSubset<T, FastingLogFindFirstArgs<ExtArgs>>): Prisma__FastingLogClient<$Result.GetResult<Prisma.$FastingLogPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first FastingLog that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FastingLogFindFirstOrThrowArgs} args - Arguments to find a FastingLog
+     * @example
+     * // Get one FastingLog
+     * const fastingLog = await prisma.fastingLog.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends FastingLogFindFirstOrThrowArgs>(args?: SelectSubset<T, FastingLogFindFirstOrThrowArgs<ExtArgs>>): Prisma__FastingLogClient<$Result.GetResult<Prisma.$FastingLogPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more FastingLogs that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FastingLogFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all FastingLogs
+     * const fastingLogs = await prisma.fastingLog.findMany()
+     * 
+     * // Get first 10 FastingLogs
+     * const fastingLogs = await prisma.fastingLog.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const fastingLogWithIdOnly = await prisma.fastingLog.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends FastingLogFindManyArgs>(args?: SelectSubset<T, FastingLogFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$FastingLogPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a FastingLog.
+     * @param {FastingLogCreateArgs} args - Arguments to create a FastingLog.
+     * @example
+     * // Create one FastingLog
+     * const FastingLog = await prisma.fastingLog.create({
+     *   data: {
+     *     // ... data to create a FastingLog
+     *   }
+     * })
+     * 
+     */
+    create<T extends FastingLogCreateArgs>(args: SelectSubset<T, FastingLogCreateArgs<ExtArgs>>): Prisma__FastingLogClient<$Result.GetResult<Prisma.$FastingLogPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many FastingLogs.
+     * @param {FastingLogCreateManyArgs} args - Arguments to create many FastingLogs.
+     * @example
+     * // Create many FastingLogs
+     * const fastingLog = await prisma.fastingLog.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends FastingLogCreateManyArgs>(args?: SelectSubset<T, FastingLogCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many FastingLogs and returns the data saved in the database.
+     * @param {FastingLogCreateManyAndReturnArgs} args - Arguments to create many FastingLogs.
+     * @example
+     * // Create many FastingLogs
+     * const fastingLog = await prisma.fastingLog.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many FastingLogs and only return the `id`
+     * const fastingLogWithIdOnly = await prisma.fastingLog.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends FastingLogCreateManyAndReturnArgs>(args?: SelectSubset<T, FastingLogCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$FastingLogPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a FastingLog.
+     * @param {FastingLogDeleteArgs} args - Arguments to delete one FastingLog.
+     * @example
+     * // Delete one FastingLog
+     * const FastingLog = await prisma.fastingLog.delete({
+     *   where: {
+     *     // ... filter to delete one FastingLog
+     *   }
+     * })
+     * 
+     */
+    delete<T extends FastingLogDeleteArgs>(args: SelectSubset<T, FastingLogDeleteArgs<ExtArgs>>): Prisma__FastingLogClient<$Result.GetResult<Prisma.$FastingLogPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one FastingLog.
+     * @param {FastingLogUpdateArgs} args - Arguments to update one FastingLog.
+     * @example
+     * // Update one FastingLog
+     * const fastingLog = await prisma.fastingLog.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends FastingLogUpdateArgs>(args: SelectSubset<T, FastingLogUpdateArgs<ExtArgs>>): Prisma__FastingLogClient<$Result.GetResult<Prisma.$FastingLogPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more FastingLogs.
+     * @param {FastingLogDeleteManyArgs} args - Arguments to filter FastingLogs to delete.
+     * @example
+     * // Delete a few FastingLogs
+     * const { count } = await prisma.fastingLog.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends FastingLogDeleteManyArgs>(args?: SelectSubset<T, FastingLogDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more FastingLogs.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FastingLogUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many FastingLogs
+     * const fastingLog = await prisma.fastingLog.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends FastingLogUpdateManyArgs>(args: SelectSubset<T, FastingLogUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more FastingLogs and returns the data updated in the database.
+     * @param {FastingLogUpdateManyAndReturnArgs} args - Arguments to update many FastingLogs.
+     * @example
+     * // Update many FastingLogs
+     * const fastingLog = await prisma.fastingLog.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more FastingLogs and only return the `id`
+     * const fastingLogWithIdOnly = await prisma.fastingLog.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends FastingLogUpdateManyAndReturnArgs>(args: SelectSubset<T, FastingLogUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$FastingLogPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one FastingLog.
+     * @param {FastingLogUpsertArgs} args - Arguments to update or create a FastingLog.
+     * @example
+     * // Update or create a FastingLog
+     * const fastingLog = await prisma.fastingLog.upsert({
+     *   create: {
+     *     // ... data to create a FastingLog
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the FastingLog we want to update
+     *   }
+     * })
+     */
+    upsert<T extends FastingLogUpsertArgs>(args: SelectSubset<T, FastingLogUpsertArgs<ExtArgs>>): Prisma__FastingLogClient<$Result.GetResult<Prisma.$FastingLogPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of FastingLogs.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FastingLogCountArgs} args - Arguments to filter FastingLogs to count.
+     * @example
+     * // Count the number of FastingLogs
+     * const count = await prisma.fastingLog.count({
+     *   where: {
+     *     // ... the filter for the FastingLogs we want to count
+     *   }
+     * })
+    **/
+    count<T extends FastingLogCountArgs>(
+      args?: Subset<T, FastingLogCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], FastingLogCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a FastingLog.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FastingLogAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends FastingLogAggregateArgs>(args: Subset<T, FastingLogAggregateArgs>): Prisma.PrismaPromise<GetFastingLogAggregateType<T>>
+
+    /**
+     * Group by FastingLog.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FastingLogGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends FastingLogGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: FastingLogGroupByArgs['orderBy'] }
+        : { orderBy?: FastingLogGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, FastingLogGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetFastingLogGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the FastingLog model
+   */
+  readonly fields: FastingLogFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for FastingLog.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__FastingLogClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    user<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the FastingLog model
+   */
+  interface FastingLogFieldRefs {
+    readonly id: FieldRef<"FastingLog", 'String'>
+    readonly userId: FieldRef<"FastingLog", 'String'>
+    readonly startTime: FieldRef<"FastingLog", 'DateTime'>
+    readonly endTime: FieldRef<"FastingLog", 'DateTime'>
+    readonly targetHours: FieldRef<"FastingLog", 'Int'>
+    readonly completed: FieldRef<"FastingLog", 'Boolean'>
+    readonly notes: FieldRef<"FastingLog", 'String'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * FastingLog findUnique
+   */
+  export type FastingLogFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FastingLog
+     */
+    select?: FastingLogSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FastingLog
+     */
+    omit?: FastingLogOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FastingLogInclude<ExtArgs> | null
+    /**
+     * Filter, which FastingLog to fetch.
+     */
+    where: FastingLogWhereUniqueInput
+  }
+
+  /**
+   * FastingLog findUniqueOrThrow
+   */
+  export type FastingLogFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FastingLog
+     */
+    select?: FastingLogSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FastingLog
+     */
+    omit?: FastingLogOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FastingLogInclude<ExtArgs> | null
+    /**
+     * Filter, which FastingLog to fetch.
+     */
+    where: FastingLogWhereUniqueInput
+  }
+
+  /**
+   * FastingLog findFirst
+   */
+  export type FastingLogFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FastingLog
+     */
+    select?: FastingLogSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FastingLog
+     */
+    omit?: FastingLogOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FastingLogInclude<ExtArgs> | null
+    /**
+     * Filter, which FastingLog to fetch.
+     */
+    where?: FastingLogWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of FastingLogs to fetch.
+     */
+    orderBy?: FastingLogOrderByWithRelationInput | FastingLogOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for FastingLogs.
+     */
+    cursor?: FastingLogWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` FastingLogs from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` FastingLogs.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of FastingLogs.
+     */
+    distinct?: FastingLogScalarFieldEnum | FastingLogScalarFieldEnum[]
+  }
+
+  /**
+   * FastingLog findFirstOrThrow
+   */
+  export type FastingLogFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FastingLog
+     */
+    select?: FastingLogSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FastingLog
+     */
+    omit?: FastingLogOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FastingLogInclude<ExtArgs> | null
+    /**
+     * Filter, which FastingLog to fetch.
+     */
+    where?: FastingLogWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of FastingLogs to fetch.
+     */
+    orderBy?: FastingLogOrderByWithRelationInput | FastingLogOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for FastingLogs.
+     */
+    cursor?: FastingLogWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` FastingLogs from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` FastingLogs.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of FastingLogs.
+     */
+    distinct?: FastingLogScalarFieldEnum | FastingLogScalarFieldEnum[]
+  }
+
+  /**
+   * FastingLog findMany
+   */
+  export type FastingLogFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FastingLog
+     */
+    select?: FastingLogSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FastingLog
+     */
+    omit?: FastingLogOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FastingLogInclude<ExtArgs> | null
+    /**
+     * Filter, which FastingLogs to fetch.
+     */
+    where?: FastingLogWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of FastingLogs to fetch.
+     */
+    orderBy?: FastingLogOrderByWithRelationInput | FastingLogOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing FastingLogs.
+     */
+    cursor?: FastingLogWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` FastingLogs from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` FastingLogs.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of FastingLogs.
+     */
+    distinct?: FastingLogScalarFieldEnum | FastingLogScalarFieldEnum[]
+  }
+
+  /**
+   * FastingLog create
+   */
+  export type FastingLogCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FastingLog
+     */
+    select?: FastingLogSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FastingLog
+     */
+    omit?: FastingLogOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FastingLogInclude<ExtArgs> | null
+    /**
+     * The data needed to create a FastingLog.
+     */
+    data: XOR<FastingLogCreateInput, FastingLogUncheckedCreateInput>
+  }
+
+  /**
+   * FastingLog createMany
+   */
+  export type FastingLogCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many FastingLogs.
+     */
+    data: FastingLogCreateManyInput | FastingLogCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * FastingLog createManyAndReturn
+   */
+  export type FastingLogCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FastingLog
+     */
+    select?: FastingLogSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the FastingLog
+     */
+    omit?: FastingLogOmit<ExtArgs> | null
+    /**
+     * The data used to create many FastingLogs.
+     */
+    data: FastingLogCreateManyInput | FastingLogCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FastingLogIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * FastingLog update
+   */
+  export type FastingLogUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FastingLog
+     */
+    select?: FastingLogSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FastingLog
+     */
+    omit?: FastingLogOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FastingLogInclude<ExtArgs> | null
+    /**
+     * The data needed to update a FastingLog.
+     */
+    data: XOR<FastingLogUpdateInput, FastingLogUncheckedUpdateInput>
+    /**
+     * Choose, which FastingLog to update.
+     */
+    where: FastingLogWhereUniqueInput
+  }
+
+  /**
+   * FastingLog updateMany
+   */
+  export type FastingLogUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update FastingLogs.
+     */
+    data: XOR<FastingLogUpdateManyMutationInput, FastingLogUncheckedUpdateManyInput>
+    /**
+     * Filter which FastingLogs to update
+     */
+    where?: FastingLogWhereInput
+    /**
+     * Limit how many FastingLogs to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * FastingLog updateManyAndReturn
+   */
+  export type FastingLogUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FastingLog
+     */
+    select?: FastingLogSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the FastingLog
+     */
+    omit?: FastingLogOmit<ExtArgs> | null
+    /**
+     * The data used to update FastingLogs.
+     */
+    data: XOR<FastingLogUpdateManyMutationInput, FastingLogUncheckedUpdateManyInput>
+    /**
+     * Filter which FastingLogs to update
+     */
+    where?: FastingLogWhereInput
+    /**
+     * Limit how many FastingLogs to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FastingLogIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * FastingLog upsert
+   */
+  export type FastingLogUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FastingLog
+     */
+    select?: FastingLogSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FastingLog
+     */
+    omit?: FastingLogOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FastingLogInclude<ExtArgs> | null
+    /**
+     * The filter to search for the FastingLog to update in case it exists.
+     */
+    where: FastingLogWhereUniqueInput
+    /**
+     * In case the FastingLog found by the `where` argument doesn't exist, create a new FastingLog with this data.
+     */
+    create: XOR<FastingLogCreateInput, FastingLogUncheckedCreateInput>
+    /**
+     * In case the FastingLog was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<FastingLogUpdateInput, FastingLogUncheckedUpdateInput>
+  }
+
+  /**
+   * FastingLog delete
+   */
+  export type FastingLogDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FastingLog
+     */
+    select?: FastingLogSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FastingLog
+     */
+    omit?: FastingLogOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FastingLogInclude<ExtArgs> | null
+    /**
+     * Filter which FastingLog to delete.
+     */
+    where: FastingLogWhereUniqueInput
+  }
+
+  /**
+   * FastingLog deleteMany
+   */
+  export type FastingLogDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which FastingLogs to delete
+     */
+    where?: FastingLogWhereInput
+    /**
+     * Limit how many FastingLogs to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * FastingLog without action
+   */
+  export type FastingLogDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FastingLog
+     */
+    select?: FastingLogSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FastingLog
+     */
+    omit?: FastingLogOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FastingLogInclude<ExtArgs> | null
+  }
+
+
+  /**
    * Enums
    */
 
@@ -20937,6 +23430,31 @@ export namespace Prisma {
   };
 
   export type WorkoutLibraryScalarFieldEnum = (typeof WorkoutLibraryScalarFieldEnum)[keyof typeof WorkoutLibraryScalarFieldEnum]
+
+
+  export const MoodLogScalarFieldEnum: {
+    id: 'id',
+    userId: 'userId',
+    date: 'date',
+    mood: 'mood',
+    energy: 'energy',
+    notes: 'notes'
+  };
+
+  export type MoodLogScalarFieldEnum = (typeof MoodLogScalarFieldEnum)[keyof typeof MoodLogScalarFieldEnum]
+
+
+  export const FastingLogScalarFieldEnum: {
+    id: 'id',
+    userId: 'userId',
+    startTime: 'startTime',
+    endTime: 'endTime',
+    targetHours: 'targetHours',
+    completed: 'completed',
+    notes: 'notes'
+  };
+
+  export type FastingLogScalarFieldEnum = (typeof FastingLogScalarFieldEnum)[keyof typeof FastingLogScalarFieldEnum]
 
 
   export const SortOrder: {
@@ -21281,6 +23799,8 @@ export namespace Prisma {
     subscription?: XOR<SubscriptionNullableScalarRelationFilter, SubscriptionWhereInput> | null
     waterLogs?: WaterLogListRelationFilter
     bodyLogs?: BodyLogListRelationFilter
+    moodLogs?: MoodLogListRelationFilter
+    fastingLogs?: FastingLogListRelationFilter
   }
 
   export type UserOrderByWithRelationInput = {
@@ -21303,6 +23823,8 @@ export namespace Prisma {
     subscription?: SubscriptionOrderByWithRelationInput
     waterLogs?: WaterLogOrderByRelationAggregateInput
     bodyLogs?: BodyLogOrderByRelationAggregateInput
+    moodLogs?: MoodLogOrderByRelationAggregateInput
+    fastingLogs?: FastingLogOrderByRelationAggregateInput
   }
 
   export type UserWhereUniqueInput = Prisma.AtLeast<{
@@ -21328,6 +23850,8 @@ export namespace Prisma {
     subscription?: XOR<SubscriptionNullableScalarRelationFilter, SubscriptionWhereInput> | null
     waterLogs?: WaterLogListRelationFilter
     bodyLogs?: BodyLogListRelationFilter
+    moodLogs?: MoodLogListRelationFilter
+    fastingLogs?: FastingLogListRelationFilter
   }, "id" | "email">
 
   export type UserOrderByWithAggregationInput = {
@@ -22316,6 +24840,135 @@ export namespace Prisma {
     tags?: StringNullableListFilter<"WorkoutLibrary">
   }
 
+  export type MoodLogWhereInput = {
+    AND?: MoodLogWhereInput | MoodLogWhereInput[]
+    OR?: MoodLogWhereInput[]
+    NOT?: MoodLogWhereInput | MoodLogWhereInput[]
+    id?: StringFilter<"MoodLog"> | string
+    userId?: StringFilter<"MoodLog"> | string
+    date?: DateTimeFilter<"MoodLog"> | Date | string
+    mood?: IntFilter<"MoodLog"> | number
+    energy?: IntFilter<"MoodLog"> | number
+    notes?: StringNullableFilter<"MoodLog"> | string | null
+    user?: XOR<UserScalarRelationFilter, UserWhereInput>
+  }
+
+  export type MoodLogOrderByWithRelationInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    date?: SortOrder
+    mood?: SortOrder
+    energy?: SortOrder
+    notes?: SortOrderInput | SortOrder
+    user?: UserOrderByWithRelationInput
+  }
+
+  export type MoodLogWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: MoodLogWhereInput | MoodLogWhereInput[]
+    OR?: MoodLogWhereInput[]
+    NOT?: MoodLogWhereInput | MoodLogWhereInput[]
+    userId?: StringFilter<"MoodLog"> | string
+    date?: DateTimeFilter<"MoodLog"> | Date | string
+    mood?: IntFilter<"MoodLog"> | number
+    energy?: IntFilter<"MoodLog"> | number
+    notes?: StringNullableFilter<"MoodLog"> | string | null
+    user?: XOR<UserScalarRelationFilter, UserWhereInput>
+  }, "id">
+
+  export type MoodLogOrderByWithAggregationInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    date?: SortOrder
+    mood?: SortOrder
+    energy?: SortOrder
+    notes?: SortOrderInput | SortOrder
+    _count?: MoodLogCountOrderByAggregateInput
+    _avg?: MoodLogAvgOrderByAggregateInput
+    _max?: MoodLogMaxOrderByAggregateInput
+    _min?: MoodLogMinOrderByAggregateInput
+    _sum?: MoodLogSumOrderByAggregateInput
+  }
+
+  export type MoodLogScalarWhereWithAggregatesInput = {
+    AND?: MoodLogScalarWhereWithAggregatesInput | MoodLogScalarWhereWithAggregatesInput[]
+    OR?: MoodLogScalarWhereWithAggregatesInput[]
+    NOT?: MoodLogScalarWhereWithAggregatesInput | MoodLogScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"MoodLog"> | string
+    userId?: StringWithAggregatesFilter<"MoodLog"> | string
+    date?: DateTimeWithAggregatesFilter<"MoodLog"> | Date | string
+    mood?: IntWithAggregatesFilter<"MoodLog"> | number
+    energy?: IntWithAggregatesFilter<"MoodLog"> | number
+    notes?: StringNullableWithAggregatesFilter<"MoodLog"> | string | null
+  }
+
+  export type FastingLogWhereInput = {
+    AND?: FastingLogWhereInput | FastingLogWhereInput[]
+    OR?: FastingLogWhereInput[]
+    NOT?: FastingLogWhereInput | FastingLogWhereInput[]
+    id?: StringFilter<"FastingLog"> | string
+    userId?: StringFilter<"FastingLog"> | string
+    startTime?: DateTimeFilter<"FastingLog"> | Date | string
+    endTime?: DateTimeNullableFilter<"FastingLog"> | Date | string | null
+    targetHours?: IntFilter<"FastingLog"> | number
+    completed?: BoolFilter<"FastingLog"> | boolean
+    notes?: StringNullableFilter<"FastingLog"> | string | null
+    user?: XOR<UserScalarRelationFilter, UserWhereInput>
+  }
+
+  export type FastingLogOrderByWithRelationInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    startTime?: SortOrder
+    endTime?: SortOrderInput | SortOrder
+    targetHours?: SortOrder
+    completed?: SortOrder
+    notes?: SortOrderInput | SortOrder
+    user?: UserOrderByWithRelationInput
+  }
+
+  export type FastingLogWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: FastingLogWhereInput | FastingLogWhereInput[]
+    OR?: FastingLogWhereInput[]
+    NOT?: FastingLogWhereInput | FastingLogWhereInput[]
+    userId?: StringFilter<"FastingLog"> | string
+    startTime?: DateTimeFilter<"FastingLog"> | Date | string
+    endTime?: DateTimeNullableFilter<"FastingLog"> | Date | string | null
+    targetHours?: IntFilter<"FastingLog"> | number
+    completed?: BoolFilter<"FastingLog"> | boolean
+    notes?: StringNullableFilter<"FastingLog"> | string | null
+    user?: XOR<UserScalarRelationFilter, UserWhereInput>
+  }, "id">
+
+  export type FastingLogOrderByWithAggregationInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    startTime?: SortOrder
+    endTime?: SortOrderInput | SortOrder
+    targetHours?: SortOrder
+    completed?: SortOrder
+    notes?: SortOrderInput | SortOrder
+    _count?: FastingLogCountOrderByAggregateInput
+    _avg?: FastingLogAvgOrderByAggregateInput
+    _max?: FastingLogMaxOrderByAggregateInput
+    _min?: FastingLogMinOrderByAggregateInput
+    _sum?: FastingLogSumOrderByAggregateInput
+  }
+
+  export type FastingLogScalarWhereWithAggregatesInput = {
+    AND?: FastingLogScalarWhereWithAggregatesInput | FastingLogScalarWhereWithAggregatesInput[]
+    OR?: FastingLogScalarWhereWithAggregatesInput[]
+    NOT?: FastingLogScalarWhereWithAggregatesInput | FastingLogScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"FastingLog"> | string
+    userId?: StringWithAggregatesFilter<"FastingLog"> | string
+    startTime?: DateTimeWithAggregatesFilter<"FastingLog"> | Date | string
+    endTime?: DateTimeNullableWithAggregatesFilter<"FastingLog"> | Date | string | null
+    targetHours?: IntWithAggregatesFilter<"FastingLog"> | number
+    completed?: BoolWithAggregatesFilter<"FastingLog"> | boolean
+    notes?: StringNullableWithAggregatesFilter<"FastingLog"> | string | null
+  }
+
   export type AccountCreateInput = {
     id?: string
     type: string
@@ -22530,6 +25183,8 @@ export namespace Prisma {
     subscription?: SubscriptionCreateNestedOneWithoutUserInput
     waterLogs?: WaterLogCreateNestedManyWithoutUserInput
     bodyLogs?: BodyLogCreateNestedManyWithoutUserInput
+    moodLogs?: MoodLogCreateNestedManyWithoutUserInput
+    fastingLogs?: FastingLogCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateInput = {
@@ -22552,6 +25207,8 @@ export namespace Prisma {
     subscription?: SubscriptionUncheckedCreateNestedOneWithoutUserInput
     waterLogs?: WaterLogUncheckedCreateNestedManyWithoutUserInput
     bodyLogs?: BodyLogUncheckedCreateNestedManyWithoutUserInput
+    moodLogs?: MoodLogUncheckedCreateNestedManyWithoutUserInput
+    fastingLogs?: FastingLogUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserUpdateInput = {
@@ -22574,6 +25231,8 @@ export namespace Prisma {
     subscription?: SubscriptionUpdateOneWithoutUserNestedInput
     waterLogs?: WaterLogUpdateManyWithoutUserNestedInput
     bodyLogs?: BodyLogUpdateManyWithoutUserNestedInput
+    moodLogs?: MoodLogUpdateManyWithoutUserNestedInput
+    fastingLogs?: FastingLogUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateInput = {
@@ -22596,6 +25255,8 @@ export namespace Prisma {
     subscription?: SubscriptionUncheckedUpdateOneWithoutUserNestedInput
     waterLogs?: WaterLogUncheckedUpdateManyWithoutUserNestedInput
     bodyLogs?: BodyLogUncheckedUpdateManyWithoutUserNestedInput
+    moodLogs?: MoodLogUncheckedUpdateManyWithoutUserNestedInput
+    fastingLogs?: FastingLogUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type UserCreateManyInput = {
@@ -23696,6 +26357,137 @@ export namespace Prisma {
     tags?: WorkoutLibraryUpdatetagsInput | string[]
   }
 
+  export type MoodLogCreateInput = {
+    id?: string
+    date?: Date | string
+    mood: number
+    energy: number
+    notes?: string | null
+    user: UserCreateNestedOneWithoutMoodLogsInput
+  }
+
+  export type MoodLogUncheckedCreateInput = {
+    id?: string
+    userId: string
+    date?: Date | string
+    mood: number
+    energy: number
+    notes?: string | null
+  }
+
+  export type MoodLogUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
+    mood?: IntFieldUpdateOperationsInput | number
+    energy?: IntFieldUpdateOperationsInput | number
+    notes?: NullableStringFieldUpdateOperationsInput | string | null
+    user?: UserUpdateOneRequiredWithoutMoodLogsNestedInput
+  }
+
+  export type MoodLogUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
+    mood?: IntFieldUpdateOperationsInput | number
+    energy?: IntFieldUpdateOperationsInput | number
+    notes?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type MoodLogCreateManyInput = {
+    id?: string
+    userId: string
+    date?: Date | string
+    mood: number
+    energy: number
+    notes?: string | null
+  }
+
+  export type MoodLogUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
+    mood?: IntFieldUpdateOperationsInput | number
+    energy?: IntFieldUpdateOperationsInput | number
+    notes?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type MoodLogUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
+    mood?: IntFieldUpdateOperationsInput | number
+    energy?: IntFieldUpdateOperationsInput | number
+    notes?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type FastingLogCreateInput = {
+    id?: string
+    startTime: Date | string
+    endTime?: Date | string | null
+    targetHours: number
+    completed?: boolean
+    notes?: string | null
+    user: UserCreateNestedOneWithoutFastingLogsInput
+  }
+
+  export type FastingLogUncheckedCreateInput = {
+    id?: string
+    userId: string
+    startTime: Date | string
+    endTime?: Date | string | null
+    targetHours: number
+    completed?: boolean
+    notes?: string | null
+  }
+
+  export type FastingLogUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    startTime?: DateTimeFieldUpdateOperationsInput | Date | string
+    endTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    targetHours?: IntFieldUpdateOperationsInput | number
+    completed?: BoolFieldUpdateOperationsInput | boolean
+    notes?: NullableStringFieldUpdateOperationsInput | string | null
+    user?: UserUpdateOneRequiredWithoutFastingLogsNestedInput
+  }
+
+  export type FastingLogUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    startTime?: DateTimeFieldUpdateOperationsInput | Date | string
+    endTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    targetHours?: IntFieldUpdateOperationsInput | number
+    completed?: BoolFieldUpdateOperationsInput | boolean
+    notes?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type FastingLogCreateManyInput = {
+    id?: string
+    userId: string
+    startTime: Date | string
+    endTime?: Date | string | null
+    targetHours: number
+    completed?: boolean
+    notes?: string | null
+  }
+
+  export type FastingLogUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    startTime?: DateTimeFieldUpdateOperationsInput | Date | string
+    endTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    targetHours?: IntFieldUpdateOperationsInput | number
+    completed?: BoolFieldUpdateOperationsInput | boolean
+    notes?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type FastingLogUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    startTime?: DateTimeFieldUpdateOperationsInput | Date | string
+    endTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    targetHours?: IntFieldUpdateOperationsInput | number
+    completed?: BoolFieldUpdateOperationsInput | boolean
+    notes?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
   export type StringFilter<$PrismaModel = never> = {
     equals?: string | StringFieldRefInput<$PrismaModel>
     in?: string[] | ListStringFieldRefInput<$PrismaModel>
@@ -24007,6 +26799,18 @@ export namespace Prisma {
     none?: BodyLogWhereInput
   }
 
+  export type MoodLogListRelationFilter = {
+    every?: MoodLogWhereInput
+    some?: MoodLogWhereInput
+    none?: MoodLogWhereInput
+  }
+
+  export type FastingLogListRelationFilter = {
+    every?: FastingLogWhereInput
+    some?: FastingLogWhereInput
+    none?: FastingLogWhereInput
+  }
+
   export type AccountOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
@@ -24044,6 +26848,14 @@ export namespace Prisma {
   }
 
   export type BodyLogOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type MoodLogOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type FastingLogOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
@@ -24855,6 +27667,81 @@ export namespace Prisma {
     caloriesBurn?: SortOrder
   }
 
+  export type MoodLogCountOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    date?: SortOrder
+    mood?: SortOrder
+    energy?: SortOrder
+    notes?: SortOrder
+  }
+
+  export type MoodLogAvgOrderByAggregateInput = {
+    mood?: SortOrder
+    energy?: SortOrder
+  }
+
+  export type MoodLogMaxOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    date?: SortOrder
+    mood?: SortOrder
+    energy?: SortOrder
+    notes?: SortOrder
+  }
+
+  export type MoodLogMinOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    date?: SortOrder
+    mood?: SortOrder
+    energy?: SortOrder
+    notes?: SortOrder
+  }
+
+  export type MoodLogSumOrderByAggregateInput = {
+    mood?: SortOrder
+    energy?: SortOrder
+  }
+
+  export type FastingLogCountOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    startTime?: SortOrder
+    endTime?: SortOrder
+    targetHours?: SortOrder
+    completed?: SortOrder
+    notes?: SortOrder
+  }
+
+  export type FastingLogAvgOrderByAggregateInput = {
+    targetHours?: SortOrder
+  }
+
+  export type FastingLogMaxOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    startTime?: SortOrder
+    endTime?: SortOrder
+    targetHours?: SortOrder
+    completed?: SortOrder
+    notes?: SortOrder
+  }
+
+  export type FastingLogMinOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    startTime?: SortOrder
+    endTime?: SortOrder
+    targetHours?: SortOrder
+    completed?: SortOrder
+    notes?: SortOrder
+  }
+
+  export type FastingLogSumOrderByAggregateInput = {
+    targetHours?: SortOrder
+  }
+
   export type UserCreateNestedOneWithoutAccountsInput = {
     create?: XOR<UserCreateWithoutAccountsInput, UserUncheckedCreateWithoutAccountsInput>
     connectOrCreate?: UserCreateOrConnectWithoutAccountsInput
@@ -24985,6 +27872,20 @@ export namespace Prisma {
     connect?: BodyLogWhereUniqueInput | BodyLogWhereUniqueInput[]
   }
 
+  export type MoodLogCreateNestedManyWithoutUserInput = {
+    create?: XOR<MoodLogCreateWithoutUserInput, MoodLogUncheckedCreateWithoutUserInput> | MoodLogCreateWithoutUserInput[] | MoodLogUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: MoodLogCreateOrConnectWithoutUserInput | MoodLogCreateOrConnectWithoutUserInput[]
+    createMany?: MoodLogCreateManyUserInputEnvelope
+    connect?: MoodLogWhereUniqueInput | MoodLogWhereUniqueInput[]
+  }
+
+  export type FastingLogCreateNestedManyWithoutUserInput = {
+    create?: XOR<FastingLogCreateWithoutUserInput, FastingLogUncheckedCreateWithoutUserInput> | FastingLogCreateWithoutUserInput[] | FastingLogUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: FastingLogCreateOrConnectWithoutUserInput | FastingLogCreateOrConnectWithoutUserInput[]
+    createMany?: FastingLogCreateManyUserInputEnvelope
+    connect?: FastingLogWhereUniqueInput | FastingLogWhereUniqueInput[]
+  }
+
   export type AccountUncheckedCreateNestedManyWithoutUserInput = {
     create?: XOR<AccountCreateWithoutUserInput, AccountUncheckedCreateWithoutUserInput> | AccountCreateWithoutUserInput[] | AccountUncheckedCreateWithoutUserInput[]
     connectOrCreate?: AccountCreateOrConnectWithoutUserInput | AccountCreateOrConnectWithoutUserInput[]
@@ -25065,6 +27966,20 @@ export namespace Prisma {
     connectOrCreate?: BodyLogCreateOrConnectWithoutUserInput | BodyLogCreateOrConnectWithoutUserInput[]
     createMany?: BodyLogCreateManyUserInputEnvelope
     connect?: BodyLogWhereUniqueInput | BodyLogWhereUniqueInput[]
+  }
+
+  export type MoodLogUncheckedCreateNestedManyWithoutUserInput = {
+    create?: XOR<MoodLogCreateWithoutUserInput, MoodLogUncheckedCreateWithoutUserInput> | MoodLogCreateWithoutUserInput[] | MoodLogUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: MoodLogCreateOrConnectWithoutUserInput | MoodLogCreateOrConnectWithoutUserInput[]
+    createMany?: MoodLogCreateManyUserInputEnvelope
+    connect?: MoodLogWhereUniqueInput | MoodLogWhereUniqueInput[]
+  }
+
+  export type FastingLogUncheckedCreateNestedManyWithoutUserInput = {
+    create?: XOR<FastingLogCreateWithoutUserInput, FastingLogUncheckedCreateWithoutUserInput> | FastingLogCreateWithoutUserInput[] | FastingLogUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: FastingLogCreateOrConnectWithoutUserInput | FastingLogCreateOrConnectWithoutUserInput[]
+    createMany?: FastingLogCreateManyUserInputEnvelope
+    connect?: FastingLogWhereUniqueInput | FastingLogWhereUniqueInput[]
   }
 
   export type NullableDateTimeFieldUpdateOperationsInput = {
@@ -25231,6 +28146,34 @@ export namespace Prisma {
     deleteMany?: BodyLogScalarWhereInput | BodyLogScalarWhereInput[]
   }
 
+  export type MoodLogUpdateManyWithoutUserNestedInput = {
+    create?: XOR<MoodLogCreateWithoutUserInput, MoodLogUncheckedCreateWithoutUserInput> | MoodLogCreateWithoutUserInput[] | MoodLogUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: MoodLogCreateOrConnectWithoutUserInput | MoodLogCreateOrConnectWithoutUserInput[]
+    upsert?: MoodLogUpsertWithWhereUniqueWithoutUserInput | MoodLogUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: MoodLogCreateManyUserInputEnvelope
+    set?: MoodLogWhereUniqueInput | MoodLogWhereUniqueInput[]
+    disconnect?: MoodLogWhereUniqueInput | MoodLogWhereUniqueInput[]
+    delete?: MoodLogWhereUniqueInput | MoodLogWhereUniqueInput[]
+    connect?: MoodLogWhereUniqueInput | MoodLogWhereUniqueInput[]
+    update?: MoodLogUpdateWithWhereUniqueWithoutUserInput | MoodLogUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: MoodLogUpdateManyWithWhereWithoutUserInput | MoodLogUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: MoodLogScalarWhereInput | MoodLogScalarWhereInput[]
+  }
+
+  export type FastingLogUpdateManyWithoutUserNestedInput = {
+    create?: XOR<FastingLogCreateWithoutUserInput, FastingLogUncheckedCreateWithoutUserInput> | FastingLogCreateWithoutUserInput[] | FastingLogUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: FastingLogCreateOrConnectWithoutUserInput | FastingLogCreateOrConnectWithoutUserInput[]
+    upsert?: FastingLogUpsertWithWhereUniqueWithoutUserInput | FastingLogUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: FastingLogCreateManyUserInputEnvelope
+    set?: FastingLogWhereUniqueInput | FastingLogWhereUniqueInput[]
+    disconnect?: FastingLogWhereUniqueInput | FastingLogWhereUniqueInput[]
+    delete?: FastingLogWhereUniqueInput | FastingLogWhereUniqueInput[]
+    connect?: FastingLogWhereUniqueInput | FastingLogWhereUniqueInput[]
+    update?: FastingLogUpdateWithWhereUniqueWithoutUserInput | FastingLogUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: FastingLogUpdateManyWithWhereWithoutUserInput | FastingLogUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: FastingLogScalarWhereInput | FastingLogScalarWhereInput[]
+  }
+
   export type AccountUncheckedUpdateManyWithoutUserNestedInput = {
     create?: XOR<AccountCreateWithoutUserInput, AccountUncheckedCreateWithoutUserInput> | AccountCreateWithoutUserInput[] | AccountUncheckedCreateWithoutUserInput[]
     connectOrCreate?: AccountCreateOrConnectWithoutUserInput | AccountCreateOrConnectWithoutUserInput[]
@@ -25389,6 +28332,34 @@ export namespace Prisma {
     update?: BodyLogUpdateWithWhereUniqueWithoutUserInput | BodyLogUpdateWithWhereUniqueWithoutUserInput[]
     updateMany?: BodyLogUpdateManyWithWhereWithoutUserInput | BodyLogUpdateManyWithWhereWithoutUserInput[]
     deleteMany?: BodyLogScalarWhereInput | BodyLogScalarWhereInput[]
+  }
+
+  export type MoodLogUncheckedUpdateManyWithoutUserNestedInput = {
+    create?: XOR<MoodLogCreateWithoutUserInput, MoodLogUncheckedCreateWithoutUserInput> | MoodLogCreateWithoutUserInput[] | MoodLogUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: MoodLogCreateOrConnectWithoutUserInput | MoodLogCreateOrConnectWithoutUserInput[]
+    upsert?: MoodLogUpsertWithWhereUniqueWithoutUserInput | MoodLogUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: MoodLogCreateManyUserInputEnvelope
+    set?: MoodLogWhereUniqueInput | MoodLogWhereUniqueInput[]
+    disconnect?: MoodLogWhereUniqueInput | MoodLogWhereUniqueInput[]
+    delete?: MoodLogWhereUniqueInput | MoodLogWhereUniqueInput[]
+    connect?: MoodLogWhereUniqueInput | MoodLogWhereUniqueInput[]
+    update?: MoodLogUpdateWithWhereUniqueWithoutUserInput | MoodLogUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: MoodLogUpdateManyWithWhereWithoutUserInput | MoodLogUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: MoodLogScalarWhereInput | MoodLogScalarWhereInput[]
+  }
+
+  export type FastingLogUncheckedUpdateManyWithoutUserNestedInput = {
+    create?: XOR<FastingLogCreateWithoutUserInput, FastingLogUncheckedCreateWithoutUserInput> | FastingLogCreateWithoutUserInput[] | FastingLogUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: FastingLogCreateOrConnectWithoutUserInput | FastingLogCreateOrConnectWithoutUserInput[]
+    upsert?: FastingLogUpsertWithWhereUniqueWithoutUserInput | FastingLogUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: FastingLogCreateManyUserInputEnvelope
+    set?: FastingLogWhereUniqueInput | FastingLogWhereUniqueInput[]
+    disconnect?: FastingLogWhereUniqueInput | FastingLogWhereUniqueInput[]
+    delete?: FastingLogWhereUniqueInput | FastingLogWhereUniqueInput[]
+    connect?: FastingLogWhereUniqueInput | FastingLogWhereUniqueInput[]
+    update?: FastingLogUpdateWithWhereUniqueWithoutUserInput | FastingLogUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: FastingLogUpdateManyWithWhereWithoutUserInput | FastingLogUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: FastingLogScalarWhereInput | FastingLogScalarWhereInput[]
   }
 
   export type UserCreateNestedOneWithoutSubscriptionInput = {
@@ -25575,6 +28546,34 @@ export namespace Prisma {
   export type WorkoutLibraryUpdatetagsInput = {
     set?: string[]
     push?: string | string[]
+  }
+
+  export type UserCreateNestedOneWithoutMoodLogsInput = {
+    create?: XOR<UserCreateWithoutMoodLogsInput, UserUncheckedCreateWithoutMoodLogsInput>
+    connectOrCreate?: UserCreateOrConnectWithoutMoodLogsInput
+    connect?: UserWhereUniqueInput
+  }
+
+  export type UserUpdateOneRequiredWithoutMoodLogsNestedInput = {
+    create?: XOR<UserCreateWithoutMoodLogsInput, UserUncheckedCreateWithoutMoodLogsInput>
+    connectOrCreate?: UserCreateOrConnectWithoutMoodLogsInput
+    upsert?: UserUpsertWithoutMoodLogsInput
+    connect?: UserWhereUniqueInput
+    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutMoodLogsInput, UserUpdateWithoutMoodLogsInput>, UserUncheckedUpdateWithoutMoodLogsInput>
+  }
+
+  export type UserCreateNestedOneWithoutFastingLogsInput = {
+    create?: XOR<UserCreateWithoutFastingLogsInput, UserUncheckedCreateWithoutFastingLogsInput>
+    connectOrCreate?: UserCreateOrConnectWithoutFastingLogsInput
+    connect?: UserWhereUniqueInput
+  }
+
+  export type UserUpdateOneRequiredWithoutFastingLogsNestedInput = {
+    create?: XOR<UserCreateWithoutFastingLogsInput, UserUncheckedCreateWithoutFastingLogsInput>
+    connectOrCreate?: UserCreateOrConnectWithoutFastingLogsInput
+    upsert?: UserUpsertWithoutFastingLogsInput
+    connect?: UserWhereUniqueInput
+    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutFastingLogsInput, UserUpdateWithoutFastingLogsInput>, UserUncheckedUpdateWithoutFastingLogsInput>
   }
 
   export type NestedStringFilter<$PrismaModel = never> = {
@@ -25875,6 +28874,8 @@ export namespace Prisma {
     subscription?: SubscriptionCreateNestedOneWithoutUserInput
     waterLogs?: WaterLogCreateNestedManyWithoutUserInput
     bodyLogs?: BodyLogCreateNestedManyWithoutUserInput
+    moodLogs?: MoodLogCreateNestedManyWithoutUserInput
+    fastingLogs?: FastingLogCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutAccountsInput = {
@@ -25896,6 +28897,8 @@ export namespace Prisma {
     subscription?: SubscriptionUncheckedCreateNestedOneWithoutUserInput
     waterLogs?: WaterLogUncheckedCreateNestedManyWithoutUserInput
     bodyLogs?: BodyLogUncheckedCreateNestedManyWithoutUserInput
+    moodLogs?: MoodLogUncheckedCreateNestedManyWithoutUserInput
+    fastingLogs?: FastingLogUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutAccountsInput = {
@@ -25933,6 +28936,8 @@ export namespace Prisma {
     subscription?: SubscriptionUpdateOneWithoutUserNestedInput
     waterLogs?: WaterLogUpdateManyWithoutUserNestedInput
     bodyLogs?: BodyLogUpdateManyWithoutUserNestedInput
+    moodLogs?: MoodLogUpdateManyWithoutUserNestedInput
+    fastingLogs?: FastingLogUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutAccountsInput = {
@@ -25954,6 +28959,8 @@ export namespace Prisma {
     subscription?: SubscriptionUncheckedUpdateOneWithoutUserNestedInput
     waterLogs?: WaterLogUncheckedUpdateManyWithoutUserNestedInput
     bodyLogs?: BodyLogUncheckedUpdateManyWithoutUserNestedInput
+    moodLogs?: MoodLogUncheckedUpdateManyWithoutUserNestedInput
+    fastingLogs?: FastingLogUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type UserCreateWithoutSessionsInput = {
@@ -25975,6 +28982,8 @@ export namespace Prisma {
     subscription?: SubscriptionCreateNestedOneWithoutUserInput
     waterLogs?: WaterLogCreateNestedManyWithoutUserInput
     bodyLogs?: BodyLogCreateNestedManyWithoutUserInput
+    moodLogs?: MoodLogCreateNestedManyWithoutUserInput
+    fastingLogs?: FastingLogCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutSessionsInput = {
@@ -25996,6 +29005,8 @@ export namespace Prisma {
     subscription?: SubscriptionUncheckedCreateNestedOneWithoutUserInput
     waterLogs?: WaterLogUncheckedCreateNestedManyWithoutUserInput
     bodyLogs?: BodyLogUncheckedCreateNestedManyWithoutUserInput
+    moodLogs?: MoodLogUncheckedCreateNestedManyWithoutUserInput
+    fastingLogs?: FastingLogUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutSessionsInput = {
@@ -26033,6 +29044,8 @@ export namespace Prisma {
     subscription?: SubscriptionUpdateOneWithoutUserNestedInput
     waterLogs?: WaterLogUpdateManyWithoutUserNestedInput
     bodyLogs?: BodyLogUpdateManyWithoutUserNestedInput
+    moodLogs?: MoodLogUpdateManyWithoutUserNestedInput
+    fastingLogs?: FastingLogUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutSessionsInput = {
@@ -26054,6 +29067,8 @@ export namespace Prisma {
     subscription?: SubscriptionUncheckedUpdateOneWithoutUserNestedInput
     waterLogs?: WaterLogUncheckedUpdateManyWithoutUserNestedInput
     bodyLogs?: BodyLogUncheckedUpdateManyWithoutUserNestedInput
+    moodLogs?: MoodLogUncheckedUpdateManyWithoutUserNestedInput
+    fastingLogs?: FastingLogUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type AccountCreateWithoutUserInput = {
@@ -26439,6 +29454,60 @@ export namespace Prisma {
 
   export type BodyLogCreateManyUserInputEnvelope = {
     data: BodyLogCreateManyUserInput | BodyLogCreateManyUserInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type MoodLogCreateWithoutUserInput = {
+    id?: string
+    date?: Date | string
+    mood: number
+    energy: number
+    notes?: string | null
+  }
+
+  export type MoodLogUncheckedCreateWithoutUserInput = {
+    id?: string
+    date?: Date | string
+    mood: number
+    energy: number
+    notes?: string | null
+  }
+
+  export type MoodLogCreateOrConnectWithoutUserInput = {
+    where: MoodLogWhereUniqueInput
+    create: XOR<MoodLogCreateWithoutUserInput, MoodLogUncheckedCreateWithoutUserInput>
+  }
+
+  export type MoodLogCreateManyUserInputEnvelope = {
+    data: MoodLogCreateManyUserInput | MoodLogCreateManyUserInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type FastingLogCreateWithoutUserInput = {
+    id?: string
+    startTime: Date | string
+    endTime?: Date | string | null
+    targetHours: number
+    completed?: boolean
+    notes?: string | null
+  }
+
+  export type FastingLogUncheckedCreateWithoutUserInput = {
+    id?: string
+    startTime: Date | string
+    endTime?: Date | string | null
+    targetHours: number
+    completed?: boolean
+    notes?: string | null
+  }
+
+  export type FastingLogCreateOrConnectWithoutUserInput = {
+    where: FastingLogWhereUniqueInput
+    create: XOR<FastingLogCreateWithoutUserInput, FastingLogUncheckedCreateWithoutUserInput>
+  }
+
+  export type FastingLogCreateManyUserInputEnvelope = {
+    data: FastingLogCreateManyUserInput | FastingLogCreateManyUserInput[]
     skipDuplicates?: boolean
   }
 
@@ -26839,6 +29908,63 @@ export namespace Prisma {
     notes?: StringNullableFilter<"BodyLog"> | string | null
   }
 
+  export type MoodLogUpsertWithWhereUniqueWithoutUserInput = {
+    where: MoodLogWhereUniqueInput
+    update: XOR<MoodLogUpdateWithoutUserInput, MoodLogUncheckedUpdateWithoutUserInput>
+    create: XOR<MoodLogCreateWithoutUserInput, MoodLogUncheckedCreateWithoutUserInput>
+  }
+
+  export type MoodLogUpdateWithWhereUniqueWithoutUserInput = {
+    where: MoodLogWhereUniqueInput
+    data: XOR<MoodLogUpdateWithoutUserInput, MoodLogUncheckedUpdateWithoutUserInput>
+  }
+
+  export type MoodLogUpdateManyWithWhereWithoutUserInput = {
+    where: MoodLogScalarWhereInput
+    data: XOR<MoodLogUpdateManyMutationInput, MoodLogUncheckedUpdateManyWithoutUserInput>
+  }
+
+  export type MoodLogScalarWhereInput = {
+    AND?: MoodLogScalarWhereInput | MoodLogScalarWhereInput[]
+    OR?: MoodLogScalarWhereInput[]
+    NOT?: MoodLogScalarWhereInput | MoodLogScalarWhereInput[]
+    id?: StringFilter<"MoodLog"> | string
+    userId?: StringFilter<"MoodLog"> | string
+    date?: DateTimeFilter<"MoodLog"> | Date | string
+    mood?: IntFilter<"MoodLog"> | number
+    energy?: IntFilter<"MoodLog"> | number
+    notes?: StringNullableFilter<"MoodLog"> | string | null
+  }
+
+  export type FastingLogUpsertWithWhereUniqueWithoutUserInput = {
+    where: FastingLogWhereUniqueInput
+    update: XOR<FastingLogUpdateWithoutUserInput, FastingLogUncheckedUpdateWithoutUserInput>
+    create: XOR<FastingLogCreateWithoutUserInput, FastingLogUncheckedCreateWithoutUserInput>
+  }
+
+  export type FastingLogUpdateWithWhereUniqueWithoutUserInput = {
+    where: FastingLogWhereUniqueInput
+    data: XOR<FastingLogUpdateWithoutUserInput, FastingLogUncheckedUpdateWithoutUserInput>
+  }
+
+  export type FastingLogUpdateManyWithWhereWithoutUserInput = {
+    where: FastingLogScalarWhereInput
+    data: XOR<FastingLogUpdateManyMutationInput, FastingLogUncheckedUpdateManyWithoutUserInput>
+  }
+
+  export type FastingLogScalarWhereInput = {
+    AND?: FastingLogScalarWhereInput | FastingLogScalarWhereInput[]
+    OR?: FastingLogScalarWhereInput[]
+    NOT?: FastingLogScalarWhereInput | FastingLogScalarWhereInput[]
+    id?: StringFilter<"FastingLog"> | string
+    userId?: StringFilter<"FastingLog"> | string
+    startTime?: DateTimeFilter<"FastingLog"> | Date | string
+    endTime?: DateTimeNullableFilter<"FastingLog"> | Date | string | null
+    targetHours?: IntFilter<"FastingLog"> | number
+    completed?: BoolFilter<"FastingLog"> | boolean
+    notes?: StringNullableFilter<"FastingLog"> | string | null
+  }
+
   export type UserCreateWithoutSubscriptionInput = {
     id?: string
     name?: string | null
@@ -26858,6 +29984,8 @@ export namespace Prisma {
     plans?: PlanCreateNestedManyWithoutUserInput
     waterLogs?: WaterLogCreateNestedManyWithoutUserInput
     bodyLogs?: BodyLogCreateNestedManyWithoutUserInput
+    moodLogs?: MoodLogCreateNestedManyWithoutUserInput
+    fastingLogs?: FastingLogCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutSubscriptionInput = {
@@ -26879,6 +30007,8 @@ export namespace Prisma {
     plans?: PlanUncheckedCreateNestedManyWithoutUserInput
     waterLogs?: WaterLogUncheckedCreateNestedManyWithoutUserInput
     bodyLogs?: BodyLogUncheckedCreateNestedManyWithoutUserInput
+    moodLogs?: MoodLogUncheckedCreateNestedManyWithoutUserInput
+    fastingLogs?: FastingLogUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutSubscriptionInput = {
@@ -26916,6 +30046,8 @@ export namespace Prisma {
     plans?: PlanUpdateManyWithoutUserNestedInput
     waterLogs?: WaterLogUpdateManyWithoutUserNestedInput
     bodyLogs?: BodyLogUpdateManyWithoutUserNestedInput
+    moodLogs?: MoodLogUpdateManyWithoutUserNestedInput
+    fastingLogs?: FastingLogUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutSubscriptionInput = {
@@ -26937,6 +30069,8 @@ export namespace Prisma {
     plans?: PlanUncheckedUpdateManyWithoutUserNestedInput
     waterLogs?: WaterLogUncheckedUpdateManyWithoutUserNestedInput
     bodyLogs?: BodyLogUncheckedUpdateManyWithoutUserNestedInput
+    moodLogs?: MoodLogUncheckedUpdateManyWithoutUserNestedInput
+    fastingLogs?: FastingLogUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type UserCreateWithoutWaterLogsInput = {
@@ -26958,6 +30092,8 @@ export namespace Prisma {
     plans?: PlanCreateNestedManyWithoutUserInput
     subscription?: SubscriptionCreateNestedOneWithoutUserInput
     bodyLogs?: BodyLogCreateNestedManyWithoutUserInput
+    moodLogs?: MoodLogCreateNestedManyWithoutUserInput
+    fastingLogs?: FastingLogCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutWaterLogsInput = {
@@ -26979,6 +30115,8 @@ export namespace Prisma {
     plans?: PlanUncheckedCreateNestedManyWithoutUserInput
     subscription?: SubscriptionUncheckedCreateNestedOneWithoutUserInput
     bodyLogs?: BodyLogUncheckedCreateNestedManyWithoutUserInput
+    moodLogs?: MoodLogUncheckedCreateNestedManyWithoutUserInput
+    fastingLogs?: FastingLogUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutWaterLogsInput = {
@@ -27016,6 +30154,8 @@ export namespace Prisma {
     plans?: PlanUpdateManyWithoutUserNestedInput
     subscription?: SubscriptionUpdateOneWithoutUserNestedInput
     bodyLogs?: BodyLogUpdateManyWithoutUserNestedInput
+    moodLogs?: MoodLogUpdateManyWithoutUserNestedInput
+    fastingLogs?: FastingLogUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutWaterLogsInput = {
@@ -27037,6 +30177,8 @@ export namespace Prisma {
     plans?: PlanUncheckedUpdateManyWithoutUserNestedInput
     subscription?: SubscriptionUncheckedUpdateOneWithoutUserNestedInput
     bodyLogs?: BodyLogUncheckedUpdateManyWithoutUserNestedInput
+    moodLogs?: MoodLogUncheckedUpdateManyWithoutUserNestedInput
+    fastingLogs?: FastingLogUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type UserCreateWithoutBodyLogsInput = {
@@ -27058,6 +30200,8 @@ export namespace Prisma {
     plans?: PlanCreateNestedManyWithoutUserInput
     subscription?: SubscriptionCreateNestedOneWithoutUserInput
     waterLogs?: WaterLogCreateNestedManyWithoutUserInput
+    moodLogs?: MoodLogCreateNestedManyWithoutUserInput
+    fastingLogs?: FastingLogCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutBodyLogsInput = {
@@ -27079,6 +30223,8 @@ export namespace Prisma {
     plans?: PlanUncheckedCreateNestedManyWithoutUserInput
     subscription?: SubscriptionUncheckedCreateNestedOneWithoutUserInput
     waterLogs?: WaterLogUncheckedCreateNestedManyWithoutUserInput
+    moodLogs?: MoodLogUncheckedCreateNestedManyWithoutUserInput
+    fastingLogs?: FastingLogUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutBodyLogsInput = {
@@ -27116,6 +30262,8 @@ export namespace Prisma {
     plans?: PlanUpdateManyWithoutUserNestedInput
     subscription?: SubscriptionUpdateOneWithoutUserNestedInput
     waterLogs?: WaterLogUpdateManyWithoutUserNestedInput
+    moodLogs?: MoodLogUpdateManyWithoutUserNestedInput
+    fastingLogs?: FastingLogUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutBodyLogsInput = {
@@ -27137,6 +30285,8 @@ export namespace Prisma {
     plans?: PlanUncheckedUpdateManyWithoutUserNestedInput
     subscription?: SubscriptionUncheckedUpdateOneWithoutUserNestedInput
     waterLogs?: WaterLogUncheckedUpdateManyWithoutUserNestedInput
+    moodLogs?: MoodLogUncheckedUpdateManyWithoutUserNestedInput
+    fastingLogs?: FastingLogUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type UserCreateWithoutProfileInput = {
@@ -27158,6 +30308,8 @@ export namespace Prisma {
     subscription?: SubscriptionCreateNestedOneWithoutUserInput
     waterLogs?: WaterLogCreateNestedManyWithoutUserInput
     bodyLogs?: BodyLogCreateNestedManyWithoutUserInput
+    moodLogs?: MoodLogCreateNestedManyWithoutUserInput
+    fastingLogs?: FastingLogCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutProfileInput = {
@@ -27179,6 +30331,8 @@ export namespace Prisma {
     subscription?: SubscriptionUncheckedCreateNestedOneWithoutUserInput
     waterLogs?: WaterLogUncheckedCreateNestedManyWithoutUserInput
     bodyLogs?: BodyLogUncheckedCreateNestedManyWithoutUserInput
+    moodLogs?: MoodLogUncheckedCreateNestedManyWithoutUserInput
+    fastingLogs?: FastingLogUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutProfileInput = {
@@ -27216,6 +30370,8 @@ export namespace Prisma {
     subscription?: SubscriptionUpdateOneWithoutUserNestedInput
     waterLogs?: WaterLogUpdateManyWithoutUserNestedInput
     bodyLogs?: BodyLogUpdateManyWithoutUserNestedInput
+    moodLogs?: MoodLogUpdateManyWithoutUserNestedInput
+    fastingLogs?: FastingLogUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutProfileInput = {
@@ -27237,6 +30393,8 @@ export namespace Prisma {
     subscription?: SubscriptionUncheckedUpdateOneWithoutUserNestedInput
     waterLogs?: WaterLogUncheckedUpdateManyWithoutUserNestedInput
     bodyLogs?: BodyLogUncheckedUpdateManyWithoutUserNestedInput
+    moodLogs?: MoodLogUncheckedUpdateManyWithoutUserNestedInput
+    fastingLogs?: FastingLogUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type UserCreateWithoutFoodLogsInput = {
@@ -27258,6 +30416,8 @@ export namespace Prisma {
     subscription?: SubscriptionCreateNestedOneWithoutUserInput
     waterLogs?: WaterLogCreateNestedManyWithoutUserInput
     bodyLogs?: BodyLogCreateNestedManyWithoutUserInput
+    moodLogs?: MoodLogCreateNestedManyWithoutUserInput
+    fastingLogs?: FastingLogCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutFoodLogsInput = {
@@ -27279,6 +30439,8 @@ export namespace Prisma {
     subscription?: SubscriptionUncheckedCreateNestedOneWithoutUserInput
     waterLogs?: WaterLogUncheckedCreateNestedManyWithoutUserInput
     bodyLogs?: BodyLogUncheckedCreateNestedManyWithoutUserInput
+    moodLogs?: MoodLogUncheckedCreateNestedManyWithoutUserInput
+    fastingLogs?: FastingLogUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutFoodLogsInput = {
@@ -27316,6 +30478,8 @@ export namespace Prisma {
     subscription?: SubscriptionUpdateOneWithoutUserNestedInput
     waterLogs?: WaterLogUpdateManyWithoutUserNestedInput
     bodyLogs?: BodyLogUpdateManyWithoutUserNestedInput
+    moodLogs?: MoodLogUpdateManyWithoutUserNestedInput
+    fastingLogs?: FastingLogUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutFoodLogsInput = {
@@ -27337,6 +30501,8 @@ export namespace Prisma {
     subscription?: SubscriptionUncheckedUpdateOneWithoutUserNestedInput
     waterLogs?: WaterLogUncheckedUpdateManyWithoutUserNestedInput
     bodyLogs?: BodyLogUncheckedUpdateManyWithoutUserNestedInput
+    moodLogs?: MoodLogUncheckedUpdateManyWithoutUserNestedInput
+    fastingLogs?: FastingLogUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type UserCreateWithoutWorkoutLogsInput = {
@@ -27358,6 +30524,8 @@ export namespace Prisma {
     subscription?: SubscriptionCreateNestedOneWithoutUserInput
     waterLogs?: WaterLogCreateNestedManyWithoutUserInput
     bodyLogs?: BodyLogCreateNestedManyWithoutUserInput
+    moodLogs?: MoodLogCreateNestedManyWithoutUserInput
+    fastingLogs?: FastingLogCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutWorkoutLogsInput = {
@@ -27379,6 +30547,8 @@ export namespace Prisma {
     subscription?: SubscriptionUncheckedCreateNestedOneWithoutUserInput
     waterLogs?: WaterLogUncheckedCreateNestedManyWithoutUserInput
     bodyLogs?: BodyLogUncheckedCreateNestedManyWithoutUserInput
+    moodLogs?: MoodLogUncheckedCreateNestedManyWithoutUserInput
+    fastingLogs?: FastingLogUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutWorkoutLogsInput = {
@@ -27416,6 +30586,8 @@ export namespace Prisma {
     subscription?: SubscriptionUpdateOneWithoutUserNestedInput
     waterLogs?: WaterLogUpdateManyWithoutUserNestedInput
     bodyLogs?: BodyLogUpdateManyWithoutUserNestedInput
+    moodLogs?: MoodLogUpdateManyWithoutUserNestedInput
+    fastingLogs?: FastingLogUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutWorkoutLogsInput = {
@@ -27437,6 +30609,8 @@ export namespace Prisma {
     subscription?: SubscriptionUncheckedUpdateOneWithoutUserNestedInput
     waterLogs?: WaterLogUncheckedUpdateManyWithoutUserNestedInput
     bodyLogs?: BodyLogUncheckedUpdateManyWithoutUserNestedInput
+    moodLogs?: MoodLogUncheckedUpdateManyWithoutUserNestedInput
+    fastingLogs?: FastingLogUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type UserCreateWithoutMessagesInput = {
@@ -27458,6 +30632,8 @@ export namespace Prisma {
     subscription?: SubscriptionCreateNestedOneWithoutUserInput
     waterLogs?: WaterLogCreateNestedManyWithoutUserInput
     bodyLogs?: BodyLogCreateNestedManyWithoutUserInput
+    moodLogs?: MoodLogCreateNestedManyWithoutUserInput
+    fastingLogs?: FastingLogCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutMessagesInput = {
@@ -27479,6 +30655,8 @@ export namespace Prisma {
     subscription?: SubscriptionUncheckedCreateNestedOneWithoutUserInput
     waterLogs?: WaterLogUncheckedCreateNestedManyWithoutUserInput
     bodyLogs?: BodyLogUncheckedCreateNestedManyWithoutUserInput
+    moodLogs?: MoodLogUncheckedCreateNestedManyWithoutUserInput
+    fastingLogs?: FastingLogUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutMessagesInput = {
@@ -27516,6 +30694,8 @@ export namespace Prisma {
     subscription?: SubscriptionUpdateOneWithoutUserNestedInput
     waterLogs?: WaterLogUpdateManyWithoutUserNestedInput
     bodyLogs?: BodyLogUpdateManyWithoutUserNestedInput
+    moodLogs?: MoodLogUpdateManyWithoutUserNestedInput
+    fastingLogs?: FastingLogUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutMessagesInput = {
@@ -27537,6 +30717,8 @@ export namespace Prisma {
     subscription?: SubscriptionUncheckedUpdateOneWithoutUserNestedInput
     waterLogs?: WaterLogUncheckedUpdateManyWithoutUserNestedInput
     bodyLogs?: BodyLogUncheckedUpdateManyWithoutUserNestedInput
+    moodLogs?: MoodLogUncheckedUpdateManyWithoutUserNestedInput
+    fastingLogs?: FastingLogUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type UserCreateWithoutBehaviorLogsInput = {
@@ -27558,6 +30740,8 @@ export namespace Prisma {
     subscription?: SubscriptionCreateNestedOneWithoutUserInput
     waterLogs?: WaterLogCreateNestedManyWithoutUserInput
     bodyLogs?: BodyLogCreateNestedManyWithoutUserInput
+    moodLogs?: MoodLogCreateNestedManyWithoutUserInput
+    fastingLogs?: FastingLogCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutBehaviorLogsInput = {
@@ -27579,6 +30763,8 @@ export namespace Prisma {
     subscription?: SubscriptionUncheckedCreateNestedOneWithoutUserInput
     waterLogs?: WaterLogUncheckedCreateNestedManyWithoutUserInput
     bodyLogs?: BodyLogUncheckedCreateNestedManyWithoutUserInput
+    moodLogs?: MoodLogUncheckedCreateNestedManyWithoutUserInput
+    fastingLogs?: FastingLogUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutBehaviorLogsInput = {
@@ -27616,6 +30802,8 @@ export namespace Prisma {
     subscription?: SubscriptionUpdateOneWithoutUserNestedInput
     waterLogs?: WaterLogUpdateManyWithoutUserNestedInput
     bodyLogs?: BodyLogUpdateManyWithoutUserNestedInput
+    moodLogs?: MoodLogUpdateManyWithoutUserNestedInput
+    fastingLogs?: FastingLogUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutBehaviorLogsInput = {
@@ -27637,6 +30825,8 @@ export namespace Prisma {
     subscription?: SubscriptionUncheckedUpdateOneWithoutUserNestedInput
     waterLogs?: WaterLogUncheckedUpdateManyWithoutUserNestedInput
     bodyLogs?: BodyLogUncheckedUpdateManyWithoutUserNestedInput
+    moodLogs?: MoodLogUncheckedUpdateManyWithoutUserNestedInput
+    fastingLogs?: FastingLogUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type UserCreateWithoutStreaksInput = {
@@ -27658,6 +30848,8 @@ export namespace Prisma {
     subscription?: SubscriptionCreateNestedOneWithoutUserInput
     waterLogs?: WaterLogCreateNestedManyWithoutUserInput
     bodyLogs?: BodyLogCreateNestedManyWithoutUserInput
+    moodLogs?: MoodLogCreateNestedManyWithoutUserInput
+    fastingLogs?: FastingLogCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutStreaksInput = {
@@ -27679,6 +30871,8 @@ export namespace Prisma {
     subscription?: SubscriptionUncheckedCreateNestedOneWithoutUserInput
     waterLogs?: WaterLogUncheckedCreateNestedManyWithoutUserInput
     bodyLogs?: BodyLogUncheckedCreateNestedManyWithoutUserInput
+    moodLogs?: MoodLogUncheckedCreateNestedManyWithoutUserInput
+    fastingLogs?: FastingLogUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutStreaksInput = {
@@ -27716,6 +30910,8 @@ export namespace Prisma {
     subscription?: SubscriptionUpdateOneWithoutUserNestedInput
     waterLogs?: WaterLogUpdateManyWithoutUserNestedInput
     bodyLogs?: BodyLogUpdateManyWithoutUserNestedInput
+    moodLogs?: MoodLogUpdateManyWithoutUserNestedInput
+    fastingLogs?: FastingLogUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutStreaksInput = {
@@ -27737,6 +30933,8 @@ export namespace Prisma {
     subscription?: SubscriptionUncheckedUpdateOneWithoutUserNestedInput
     waterLogs?: WaterLogUncheckedUpdateManyWithoutUserNestedInput
     bodyLogs?: BodyLogUncheckedUpdateManyWithoutUserNestedInput
+    moodLogs?: MoodLogUncheckedUpdateManyWithoutUserNestedInput
+    fastingLogs?: FastingLogUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type UserCreateWithoutPlansInput = {
@@ -27758,6 +30956,8 @@ export namespace Prisma {
     subscription?: SubscriptionCreateNestedOneWithoutUserInput
     waterLogs?: WaterLogCreateNestedManyWithoutUserInput
     bodyLogs?: BodyLogCreateNestedManyWithoutUserInput
+    moodLogs?: MoodLogCreateNestedManyWithoutUserInput
+    fastingLogs?: FastingLogCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutPlansInput = {
@@ -27779,6 +30979,8 @@ export namespace Prisma {
     subscription?: SubscriptionUncheckedCreateNestedOneWithoutUserInput
     waterLogs?: WaterLogUncheckedCreateNestedManyWithoutUserInput
     bodyLogs?: BodyLogUncheckedCreateNestedManyWithoutUserInput
+    moodLogs?: MoodLogUncheckedCreateNestedManyWithoutUserInput
+    fastingLogs?: FastingLogUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutPlansInput = {
@@ -27816,6 +31018,8 @@ export namespace Prisma {
     subscription?: SubscriptionUpdateOneWithoutUserNestedInput
     waterLogs?: WaterLogUpdateManyWithoutUserNestedInput
     bodyLogs?: BodyLogUpdateManyWithoutUserNestedInput
+    moodLogs?: MoodLogUpdateManyWithoutUserNestedInput
+    fastingLogs?: FastingLogUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutPlansInput = {
@@ -27837,6 +31041,224 @@ export namespace Prisma {
     subscription?: SubscriptionUncheckedUpdateOneWithoutUserNestedInput
     waterLogs?: WaterLogUncheckedUpdateManyWithoutUserNestedInput
     bodyLogs?: BodyLogUncheckedUpdateManyWithoutUserNestedInput
+    moodLogs?: MoodLogUncheckedUpdateManyWithoutUserNestedInput
+    fastingLogs?: FastingLogUncheckedUpdateManyWithoutUserNestedInput
+  }
+
+  export type UserCreateWithoutMoodLogsInput = {
+    id?: string
+    name?: string | null
+    email?: string | null
+    emailVerified?: Date | string | null
+    image?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    accounts?: AccountCreateNestedManyWithoutUserInput
+    sessions?: SessionCreateNestedManyWithoutUserInput
+    profile?: UserProfileCreateNestedOneWithoutUserInput
+    foodLogs?: FoodLogCreateNestedManyWithoutUserInput
+    workoutLogs?: WorkoutLogCreateNestedManyWithoutUserInput
+    messages?: MessageCreateNestedManyWithoutUserInput
+    behaviorLogs?: BehaviorLogCreateNestedManyWithoutUserInput
+    streaks?: StreakCreateNestedManyWithoutUserInput
+    plans?: PlanCreateNestedManyWithoutUserInput
+    subscription?: SubscriptionCreateNestedOneWithoutUserInput
+    waterLogs?: WaterLogCreateNestedManyWithoutUserInput
+    bodyLogs?: BodyLogCreateNestedManyWithoutUserInput
+    fastingLogs?: FastingLogCreateNestedManyWithoutUserInput
+  }
+
+  export type UserUncheckedCreateWithoutMoodLogsInput = {
+    id?: string
+    name?: string | null
+    email?: string | null
+    emailVerified?: Date | string | null
+    image?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    accounts?: AccountUncheckedCreateNestedManyWithoutUserInput
+    sessions?: SessionUncheckedCreateNestedManyWithoutUserInput
+    profile?: UserProfileUncheckedCreateNestedOneWithoutUserInput
+    foodLogs?: FoodLogUncheckedCreateNestedManyWithoutUserInput
+    workoutLogs?: WorkoutLogUncheckedCreateNestedManyWithoutUserInput
+    messages?: MessageUncheckedCreateNestedManyWithoutUserInput
+    behaviorLogs?: BehaviorLogUncheckedCreateNestedManyWithoutUserInput
+    streaks?: StreakUncheckedCreateNestedManyWithoutUserInput
+    plans?: PlanUncheckedCreateNestedManyWithoutUserInput
+    subscription?: SubscriptionUncheckedCreateNestedOneWithoutUserInput
+    waterLogs?: WaterLogUncheckedCreateNestedManyWithoutUserInput
+    bodyLogs?: BodyLogUncheckedCreateNestedManyWithoutUserInput
+    fastingLogs?: FastingLogUncheckedCreateNestedManyWithoutUserInput
+  }
+
+  export type UserCreateOrConnectWithoutMoodLogsInput = {
+    where: UserWhereUniqueInput
+    create: XOR<UserCreateWithoutMoodLogsInput, UserUncheckedCreateWithoutMoodLogsInput>
+  }
+
+  export type UserUpsertWithoutMoodLogsInput = {
+    update: XOR<UserUpdateWithoutMoodLogsInput, UserUncheckedUpdateWithoutMoodLogsInput>
+    create: XOR<UserCreateWithoutMoodLogsInput, UserUncheckedCreateWithoutMoodLogsInput>
+    where?: UserWhereInput
+  }
+
+  export type UserUpdateToOneWithWhereWithoutMoodLogsInput = {
+    where?: UserWhereInput
+    data: XOR<UserUpdateWithoutMoodLogsInput, UserUncheckedUpdateWithoutMoodLogsInput>
+  }
+
+  export type UserUpdateWithoutMoodLogsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: NullableStringFieldUpdateOperationsInput | string | null
+    email?: NullableStringFieldUpdateOperationsInput | string | null
+    emailVerified?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    image?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    accounts?: AccountUpdateManyWithoutUserNestedInput
+    sessions?: SessionUpdateManyWithoutUserNestedInput
+    profile?: UserProfileUpdateOneWithoutUserNestedInput
+    foodLogs?: FoodLogUpdateManyWithoutUserNestedInput
+    workoutLogs?: WorkoutLogUpdateManyWithoutUserNestedInput
+    messages?: MessageUpdateManyWithoutUserNestedInput
+    behaviorLogs?: BehaviorLogUpdateManyWithoutUserNestedInput
+    streaks?: StreakUpdateManyWithoutUserNestedInput
+    plans?: PlanUpdateManyWithoutUserNestedInput
+    subscription?: SubscriptionUpdateOneWithoutUserNestedInput
+    waterLogs?: WaterLogUpdateManyWithoutUserNestedInput
+    bodyLogs?: BodyLogUpdateManyWithoutUserNestedInput
+    fastingLogs?: FastingLogUpdateManyWithoutUserNestedInput
+  }
+
+  export type UserUncheckedUpdateWithoutMoodLogsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: NullableStringFieldUpdateOperationsInput | string | null
+    email?: NullableStringFieldUpdateOperationsInput | string | null
+    emailVerified?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    image?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    accounts?: AccountUncheckedUpdateManyWithoutUserNestedInput
+    sessions?: SessionUncheckedUpdateManyWithoutUserNestedInput
+    profile?: UserProfileUncheckedUpdateOneWithoutUserNestedInput
+    foodLogs?: FoodLogUncheckedUpdateManyWithoutUserNestedInput
+    workoutLogs?: WorkoutLogUncheckedUpdateManyWithoutUserNestedInput
+    messages?: MessageUncheckedUpdateManyWithoutUserNestedInput
+    behaviorLogs?: BehaviorLogUncheckedUpdateManyWithoutUserNestedInput
+    streaks?: StreakUncheckedUpdateManyWithoutUserNestedInput
+    plans?: PlanUncheckedUpdateManyWithoutUserNestedInput
+    subscription?: SubscriptionUncheckedUpdateOneWithoutUserNestedInput
+    waterLogs?: WaterLogUncheckedUpdateManyWithoutUserNestedInput
+    bodyLogs?: BodyLogUncheckedUpdateManyWithoutUserNestedInput
+    fastingLogs?: FastingLogUncheckedUpdateManyWithoutUserNestedInput
+  }
+
+  export type UserCreateWithoutFastingLogsInput = {
+    id?: string
+    name?: string | null
+    email?: string | null
+    emailVerified?: Date | string | null
+    image?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    accounts?: AccountCreateNestedManyWithoutUserInput
+    sessions?: SessionCreateNestedManyWithoutUserInput
+    profile?: UserProfileCreateNestedOneWithoutUserInput
+    foodLogs?: FoodLogCreateNestedManyWithoutUserInput
+    workoutLogs?: WorkoutLogCreateNestedManyWithoutUserInput
+    messages?: MessageCreateNestedManyWithoutUserInput
+    behaviorLogs?: BehaviorLogCreateNestedManyWithoutUserInput
+    streaks?: StreakCreateNestedManyWithoutUserInput
+    plans?: PlanCreateNestedManyWithoutUserInput
+    subscription?: SubscriptionCreateNestedOneWithoutUserInput
+    waterLogs?: WaterLogCreateNestedManyWithoutUserInput
+    bodyLogs?: BodyLogCreateNestedManyWithoutUserInput
+    moodLogs?: MoodLogCreateNestedManyWithoutUserInput
+  }
+
+  export type UserUncheckedCreateWithoutFastingLogsInput = {
+    id?: string
+    name?: string | null
+    email?: string | null
+    emailVerified?: Date | string | null
+    image?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    accounts?: AccountUncheckedCreateNestedManyWithoutUserInput
+    sessions?: SessionUncheckedCreateNestedManyWithoutUserInput
+    profile?: UserProfileUncheckedCreateNestedOneWithoutUserInput
+    foodLogs?: FoodLogUncheckedCreateNestedManyWithoutUserInput
+    workoutLogs?: WorkoutLogUncheckedCreateNestedManyWithoutUserInput
+    messages?: MessageUncheckedCreateNestedManyWithoutUserInput
+    behaviorLogs?: BehaviorLogUncheckedCreateNestedManyWithoutUserInput
+    streaks?: StreakUncheckedCreateNestedManyWithoutUserInput
+    plans?: PlanUncheckedCreateNestedManyWithoutUserInput
+    subscription?: SubscriptionUncheckedCreateNestedOneWithoutUserInput
+    waterLogs?: WaterLogUncheckedCreateNestedManyWithoutUserInput
+    bodyLogs?: BodyLogUncheckedCreateNestedManyWithoutUserInput
+    moodLogs?: MoodLogUncheckedCreateNestedManyWithoutUserInput
+  }
+
+  export type UserCreateOrConnectWithoutFastingLogsInput = {
+    where: UserWhereUniqueInput
+    create: XOR<UserCreateWithoutFastingLogsInput, UserUncheckedCreateWithoutFastingLogsInput>
+  }
+
+  export type UserUpsertWithoutFastingLogsInput = {
+    update: XOR<UserUpdateWithoutFastingLogsInput, UserUncheckedUpdateWithoutFastingLogsInput>
+    create: XOR<UserCreateWithoutFastingLogsInput, UserUncheckedCreateWithoutFastingLogsInput>
+    where?: UserWhereInput
+  }
+
+  export type UserUpdateToOneWithWhereWithoutFastingLogsInput = {
+    where?: UserWhereInput
+    data: XOR<UserUpdateWithoutFastingLogsInput, UserUncheckedUpdateWithoutFastingLogsInput>
+  }
+
+  export type UserUpdateWithoutFastingLogsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: NullableStringFieldUpdateOperationsInput | string | null
+    email?: NullableStringFieldUpdateOperationsInput | string | null
+    emailVerified?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    image?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    accounts?: AccountUpdateManyWithoutUserNestedInput
+    sessions?: SessionUpdateManyWithoutUserNestedInput
+    profile?: UserProfileUpdateOneWithoutUserNestedInput
+    foodLogs?: FoodLogUpdateManyWithoutUserNestedInput
+    workoutLogs?: WorkoutLogUpdateManyWithoutUserNestedInput
+    messages?: MessageUpdateManyWithoutUserNestedInput
+    behaviorLogs?: BehaviorLogUpdateManyWithoutUserNestedInput
+    streaks?: StreakUpdateManyWithoutUserNestedInput
+    plans?: PlanUpdateManyWithoutUserNestedInput
+    subscription?: SubscriptionUpdateOneWithoutUserNestedInput
+    waterLogs?: WaterLogUpdateManyWithoutUserNestedInput
+    bodyLogs?: BodyLogUpdateManyWithoutUserNestedInput
+    moodLogs?: MoodLogUpdateManyWithoutUserNestedInput
+  }
+
+  export type UserUncheckedUpdateWithoutFastingLogsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: NullableStringFieldUpdateOperationsInput | string | null
+    email?: NullableStringFieldUpdateOperationsInput | string | null
+    emailVerified?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    image?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    accounts?: AccountUncheckedUpdateManyWithoutUserNestedInput
+    sessions?: SessionUncheckedUpdateManyWithoutUserNestedInput
+    profile?: UserProfileUncheckedUpdateOneWithoutUserNestedInput
+    foodLogs?: FoodLogUncheckedUpdateManyWithoutUserNestedInput
+    workoutLogs?: WorkoutLogUncheckedUpdateManyWithoutUserNestedInput
+    messages?: MessageUncheckedUpdateManyWithoutUserNestedInput
+    behaviorLogs?: BehaviorLogUncheckedUpdateManyWithoutUserNestedInput
+    streaks?: StreakUncheckedUpdateManyWithoutUserNestedInput
+    plans?: PlanUncheckedUpdateManyWithoutUserNestedInput
+    subscription?: SubscriptionUncheckedUpdateOneWithoutUserNestedInput
+    waterLogs?: WaterLogUncheckedUpdateManyWithoutUserNestedInput
+    bodyLogs?: BodyLogUncheckedUpdateManyWithoutUserNestedInput
+    moodLogs?: MoodLogUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type AccountCreateManyUserInput = {
@@ -27937,6 +31359,23 @@ export namespace Prisma {
     chest?: number | null
     arms?: number | null
     hips?: number | null
+    notes?: string | null
+  }
+
+  export type MoodLogCreateManyUserInput = {
+    id?: string
+    date?: Date | string
+    mood: number
+    energy: number
+    notes?: string | null
+  }
+
+  export type FastingLogCreateManyUserInput = {
+    id?: string
+    startTime: Date | string
+    endTime?: Date | string | null
+    targetHours: number
+    completed?: boolean
     notes?: string | null
   }
 
@@ -28240,6 +31679,57 @@ export namespace Prisma {
     chest?: NullableFloatFieldUpdateOperationsInput | number | null
     arms?: NullableFloatFieldUpdateOperationsInput | number | null
     hips?: NullableFloatFieldUpdateOperationsInput | number | null
+    notes?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type MoodLogUpdateWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
+    mood?: IntFieldUpdateOperationsInput | number
+    energy?: IntFieldUpdateOperationsInput | number
+    notes?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type MoodLogUncheckedUpdateWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
+    mood?: IntFieldUpdateOperationsInput | number
+    energy?: IntFieldUpdateOperationsInput | number
+    notes?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type MoodLogUncheckedUpdateManyWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
+    mood?: IntFieldUpdateOperationsInput | number
+    energy?: IntFieldUpdateOperationsInput | number
+    notes?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type FastingLogUpdateWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    startTime?: DateTimeFieldUpdateOperationsInput | Date | string
+    endTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    targetHours?: IntFieldUpdateOperationsInput | number
+    completed?: BoolFieldUpdateOperationsInput | boolean
+    notes?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type FastingLogUncheckedUpdateWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    startTime?: DateTimeFieldUpdateOperationsInput | Date | string
+    endTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    targetHours?: IntFieldUpdateOperationsInput | number
+    completed?: BoolFieldUpdateOperationsInput | boolean
+    notes?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type FastingLogUncheckedUpdateManyWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    startTime?: DateTimeFieldUpdateOperationsInput | Date | string
+    endTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    targetHours?: IntFieldUpdateOperationsInput | number
+    completed?: BoolFieldUpdateOperationsInput | boolean
     notes?: NullableStringFieldUpdateOperationsInput | string | null
   }
 

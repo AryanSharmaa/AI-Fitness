@@ -5,9 +5,12 @@ import { Textarea } from '@/components/ui/textarea'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
 import { Progress } from '@/components/ui/progress'
-import { Plus, Utensils, ChevronLeft, ChevronRight, Trash2, Zap } from 'lucide-react'
+import { Plus, Utensils, ChevronLeft, ChevronRight, Trash2, Zap, Camera, Loader2, ScanBarcode } from 'lucide-react'
+import { useRef } from 'react'
 import { toast } from 'sonner'
 import MacroRings from './MacroRings'
+import dynamic from 'next/dynamic'
+const BarcodeScanner = dynamic(() => import('./BarcodeScanner'), { ssr: false })
 
 interface FoodLog {
   id: string
@@ -79,9 +82,12 @@ export default function FoodLogger() {
   const [description, setDescription] = useState('')
   const [mealType, setMealType] = useState<string>('')
   const [loading, setLoading] = useState(false)
+  const [photoLoading, setPhotoLoading] = useState(false)
   const [pageLoading, setPageLoading] = useState(true)
   const [showForm, setShowForm] = useState(false)
   const [deleting, setDeleting] = useState<string | null>(null)
+  const [showBarcode, setShowBarcode] = useState(false)
+  const fileInputRef = useRef<HTMLInputElement>(null)
 
   const loadLogs = useCallback(async (date: string) => {
     setPageLoading(true)
@@ -129,6 +135,26 @@ export default function FoodLogger() {
     }
   }
 
+  async function logPhotoMeal(file: File) {
+    if (!mealType) { toast.error('Select meal type first'); return }
+    setPhotoLoading(true)
+    try {
+      const fd = new FormData()
+      fd.append('image', file)
+      fd.append('mealType', mealType)
+      const res = await fetch('/api/food/photo', { method: 'POST', body: fd })
+      const data = await res.json()
+      if (!res.ok) { toast.error(data.error || 'Could not analyse photo'); return }
+      toast.success(`Logged! ${data.log.calories} kcal detected${data.confidence === 'low' ? ' (low confidence — check values)' : ''}`)
+      setShowForm(false)
+      loadLogs(selectedDate)
+    } catch {
+      toast.error('Failed to analyse photo')
+    } finally {
+      setPhotoLoading(false)
+    }
+  }
+
   async function deleteLog(id: string) {
     setDeleting(id)
     try {
@@ -156,11 +182,23 @@ export default function FoodLogger() {
       <div className="flex items-center justify-between">
         <h1 className="text-2xl font-bold">Food Log</h1>
         {isToday && (
-          <Button onClick={() => setShowForm(!showForm)} size="sm">
-            <Plus className="h-4 w-4 mr-1" /> Log Meal
-          </Button>
+          <div className="flex items-center gap-2">
+            <Button variant="outline" size="sm" onClick={() => setShowBarcode(true)}>
+              <ScanBarcode className="h-4 w-4 mr-1" /> Scan
+            </Button>
+            <Button onClick={() => setShowForm(!showForm)} size="sm">
+              <Plus className="h-4 w-4 mr-1" /> Log Meal
+            </Button>
+          </div>
         )}
       </div>
+
+      {showBarcode && (
+        <BarcodeScanner
+          onClose={() => setShowBarcode(false)}
+          onLogged={() => loadLogs(selectedDate)}
+        />
+      )}
 
       {/* Date nav */}
       <div className="flex items-center justify-between bg-muted/40 rounded-xl px-4 py-2">
@@ -258,13 +296,29 @@ export default function FoodLogger() {
               rows={3}
             />
             <p className="text-xs text-muted-foreground">
-              No need to weigh. Just describe naturally — AI handles the rest.
+              No need to weigh. Describe naturally or snap a photo — AI handles the rest.
             </p>
             <div className="flex gap-2">
-              <Button onClick={logMeal} disabled={loading} className="flex-1">
-                {loading ? 'Logging...' : 'Log Meal'}
+              <Button onClick={logMeal} disabled={loading || photoLoading} className="flex-1">
+                {loading ? <><Loader2 className="h-3.5 w-3.5 mr-1.5 animate-spin" />Logging...</> : 'Log Meal'}
               </Button>
-              <Button variant="outline" onClick={() => setShowForm(false)}>Cancel</Button>
+              <Button
+                variant="outline"
+                disabled={loading || photoLoading}
+                onClick={() => fileInputRef.current?.click()}
+                title="Log from photo"
+              >
+                {photoLoading ? <Loader2 className="h-4 w-4 animate-spin" /> : <Camera className="h-4 w-4" />}
+              </Button>
+              <input
+                ref={fileInputRef}
+                type="file"
+                accept="image/*"
+                capture="environment"
+                className="hidden"
+                onChange={e => { const f = e.target.files?.[0]; if (f) logPhotoMeal(f); e.target.value = '' }}
+              />
+              <Button variant="outline" onClick={() => setShowForm(false)} disabled={loading || photoLoading}>Cancel</Button>
             </div>
           </CardContent>
         </Card>

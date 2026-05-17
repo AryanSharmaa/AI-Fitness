@@ -23,5 +23,6 @@ export const config = {
     '/progress/:path*',
     '/onboarding/:path*',
     '/upgrade/:path*',
+    '/fasting/:path*',
   ],
 }

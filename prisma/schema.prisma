@@ -59,6 +59,8 @@ model User {
   subscription  Subscription?
   waterLogs     WaterLog[]
   bodyLogs      BodyLog[]
+  moodLogs      MoodLog[]
+  fastingLogs   FastingLog[]
 }
 
 model Subscription {
@@ -223,4 +225,25 @@ model WorkoutLibrary {
   caloriesBurn Int?
   exercises    Json
   tags         String[]
+}
+
+model MoodLog {
+  id        String   @id @default(cuid())
+  userId    String
+  date      DateTime @default(now())
+  mood      Int      // 1–5 emoji scale
+  energy    Int      // 1–5
+  notes     String?
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model FastingLog {
+  id        String    @id @default(cuid())
+  userId    String
+  startTime DateTime
+  endTime   DateTime?
+  targetHours Int     // 16, 18, 24 etc
+  completed Boolean   @default(false)
+  notes     String?
+  user      User      @relation(fields: [userId], references: [id], onDelete: Cascade)
 }

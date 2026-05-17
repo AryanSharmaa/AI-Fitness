@@ -312,6 +312,25 @@ exports.Prisma.WorkoutLibraryScalarFieldEnum = {
   tags: 'tags'
 };
 
+exports.Prisma.MoodLogScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  date: 'date',
+  mood: 'mood',
+  energy: 'energy',
+  notes: 'notes'
+};
+
+exports.Prisma.FastingLogScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  startTime: 'startTime',
+  endTime: 'endTime',
+  targetHours: 'targetHours',
+  completed: 'completed',
+  notes: 'notes'
+};
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -359,7 +378,9 @@ exports.Prisma.ModelName = {
   Streak: 'Streak',
   Plan: 'Plan',
   MealLibrary: 'MealLibrary',
-  WorkoutLibrary: 'WorkoutLibrary'
+  WorkoutLibrary: 'WorkoutLibrary',
+  MoodLog: 'MoodLog',
+  FastingLog: 'FastingLog'
 };
 
 /**

@@ -3,6 +3,9 @@ import { useEffect, useState } from 'react'
 import Link from 'next/link'
 import { Flame, Footprints, Clock, Plus, ArrowUpRight, Dumbbell, TrendingUp } from 'lucide-react'
 import { toast } from 'sonner'
+import dynamic from 'next/dynamic'
+const RecoveryCard = dynamic(() => import('./RecoveryCard'), { ssr: false })
+const MoodCheckIn = dynamic(() => import('./MoodCheckIn'), { ssr: false })
 
 interface DashboardData {
   name: string
@@ -243,6 +246,9 @@ export default function DashboardHome() {
               <MacroBar label="Fat" current={data?.fat || 0} goal={data?.fatGoal || 65} color="#eab308" />
             </div>
           </div>
+
+          <MoodCheckIn />
+          <RecoveryCard />
 
           {/* Today's Activity */}
           <div className="rounded-2xl bg-card border p-4 space-y-3">
