@@ -4,8 +4,10 @@ import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
 import { Textarea } from '@/components/ui/textarea'
-import { CheckCircle2, XCircle, Dumbbell, Clock, Zap } from 'lucide-react'
+import { Input } from '@/components/ui/input'
+import { CheckCircle2, XCircle, Dumbbell, Clock, Zap, Flame, Footprints, Route } from 'lucide-react'
 import { toast } from 'sonner'
+import { estimateCaloriesBurned, stepsToKm } from '@/lib/activity'
 
 interface Exercise {
   name: string
@@ -24,6 +26,8 @@ interface SuggestedWorkout {
   notes?: string
 }
 
+const CARDIO_TYPES = ['cardio', 'run', 'walk', 'cycling', 'swimming', 'hiit']
+
 export default function WorkoutTracker() {
   const [suggested, setSuggested] = useState<SuggestedWorkout | null>(null)
   const [loading, setLoading] = useState(true)
@@ -32,12 +36,23 @@ export default function WorkoutTracker() {
   const [showSkipForm, setShowSkipForm] = useState(false)
   const [completed, setCompleted] = useState<Set<string>>(new Set())
   const [shownNames, setShownNames] = useState<string[]>([])
+  const [steps, setSteps] = useState('')
+  const [distance, setDistance] = useState('')
+  const [userWeight, setUserWeight] = useState(70)
 
-  useEffect(() => { loadSuggestion() }, [])
+  useEffect(() => {
+    loadSuggestion()
+    // Fetch user weight for calorie estimate
+    fetch('/api/profile').then(r => r.json()).then(d => {
+      if (d.profile?.weight) setUserWeight(d.profile.weight)
+    })
+  }, [])
 
   async function loadSuggestion(different = false) {
     setLoading(true)
     setCompleted(new Set())
+    setSteps('')
+    setDistance('')
     try {
       const exclude = different ? shownNames.join('|') : ''
       const url = `/api/workout?action=suggest${exclude ? `&exclude=${encodeURIComponent(exclude)}` : ''}`
@@ -68,13 +83,16 @@ export default function WorkoutTracker() {
           completed: !skipped,
           skipped,
           skipReason: skipped ? skipReason : undefined,
+          steps: steps ? parseInt(steps) : undefined,
+          distance: distance ? parseFloat(distance) : steps ? stepsToKm(parseInt(steps)) : undefined,
         }),
       })
       if (!res.ok) throw new Error()
       if (skipped) {
         toast.info("Got it. Rest days are part of the plan. Your coach will adapt.")
       } else {
-        toast.success("Workout logged! Great work. 🔥")
+        const burn = estimateCaloriesBurned(suggested.type, suggested.duration, userWeight)
+        toast.success(`Workout logged! ~${burn} kcal burned 🔥`)
       }
       setShowSkipForm(false)
     } catch {
@@ -101,6 +119,9 @@ export default function WorkoutTracker() {
     )
   }
 
+  const isCardio = suggested && CARDIO_TYPES.includes(suggested.type.toLowerCase())
+  const estimatedBurn = suggested ? estimateCaloriesBurned(suggested.type, suggested.duration, userWeight) : 0
+
   return (
     <div className="space-y-4">
       <h1 className="text-2xl font-bold">Today's Workout</h1>
@@ -112,12 +133,16 @@ export default function WorkoutTracker() {
               <div className="flex items-start justify-between">
                 <div>
                   <CardTitle className="text-lg">{suggested.name}</CardTitle>
-                  <div className="flex gap-2 mt-2">
+                  <div className="flex gap-2 mt-2 flex-wrap">
                     <Badge variant="secondary">
                       <Clock className="h-3 w-3 mr-1" />
                       {suggested.duration} min
                     </Badge>
                     <Badge variant="secondary" className="capitalize">{suggested.type}</Badge>
+                    <Badge variant="secondary" className="text-orange-600 dark:text-orange-400">
+                      <Flame className="h-3 w-3 mr-1" />
+                      ~{estimatedBurn} kcal
+                    </Badge>
                   </div>
                 </div>
                 <Dumbbell className="h-6 w-6 text-muted-foreground" />
@@ -161,6 +186,36 @@ export default function WorkoutTracker() {
               <div className="pt-2 text-sm text-muted-foreground">
                 {completed.size} / {suggested.exercises.length} exercises done
               </div>
+
+              {/* Cardio extras: steps + distance */}
+              {isCardio && (
+                <div className="pt-2 border-t space-y-2">
+                  <p className="text-xs font-medium text-muted-foreground">Optional activity details</p>
+                  <div className="grid grid-cols-2 gap-2">
+                    <div className="relative">
+                      <Footprints className="absolute left-2.5 top-2.5 h-3.5 w-3.5 text-muted-foreground" />
+                      <Input
+                        type="number"
+                        placeholder="Steps"
+                        value={steps}
+                        onChange={e => setSteps(e.target.value)}
+                        className="pl-7 h-9 text-sm"
+                      />
+                    </div>
+                    <div className="relative">
+                      <Route className="absolute left-2.5 top-2.5 h-3.5 w-3.5 text-muted-foreground" />
+                      <Input
+                        type="number"
+                        placeholder="Distance (km)"
+                        value={distance}
+                        onChange={e => setDistance(e.target.value)}
+                        step="0.1"
+                        className="pl-7 h-9 text-sm"
+                      />
+                    </div>
+                  </div>
+                </div>
+              )}
             </CardContent>
           </Card>
 

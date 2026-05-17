@@ -1,7 +1,7 @@
 'use client'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Progress } from '@/components/ui/progress'
-import { Flame, Dumbbell, Apple, TrendingUp, Brain } from 'lucide-react'
+import { Flame, Dumbbell, Apple, TrendingUp, Brain, Zap } from 'lucide-react'
 
 interface DashboardData {
   workoutStreak: number
@@ -9,6 +9,7 @@ interface DashboardData {
   overallStreak: number
   weeklyCalories: number
   weeklyWorkouts: number
+  weeklyCaloriesBurned: number
   disciplineScore: number
   behaviorSummary?: string
   profile?: { goal?: string; name?: string }
@@ -48,9 +49,9 @@ export default function StatsCards({ data }: { data: DashboardData }) {
           color="blue"
         />
         <StatCard
-          title="Weekly Calories"
-          value={`${(data.weeklyCalories / 1000).toFixed(1)}k`}
-          icon={<TrendingUp className="h-4 w-4 text-purple-500" />}
+          title="Kcal Burned"
+          value={data.weeklyCaloriesBurned > 0 ? data.weeklyCaloriesBurned.toLocaleString() : '—'}
+          icon={<Zap className="h-4 w-4 text-purple-500" />}
           color="purple"
         />
       </div>

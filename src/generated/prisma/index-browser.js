@@ -242,7 +242,10 @@ exports.Prisma.WorkoutLogScalarFieldEnum = {
   completed: 'completed',
   skipped: 'skipped',
   skipReason: 'skipReason',
-  aiAnalysis: 'aiAnalysis'
+  aiAnalysis: 'aiAnalysis',
+  caloriesBurned: 'caloriesBurned',
+  steps: 'steps',
+  distance: 'distance'
 };
 
 exports.Prisma.MessageScalarFieldEnum = {

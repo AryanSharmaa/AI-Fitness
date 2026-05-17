@@ -4,6 +4,7 @@ import { authOptions } from '@/lib/auth'
 import { prisma } from '@/lib/prisma'
 import ProgressCharts from '@/components/dashboard/ProgressCharts'
 import ActivityHeatmap from '@/components/progress/ActivityHeatmap'
+import ActivitySummary from '@/components/progress/ActivitySummary'
 import BadgesPanel from '@/components/badges/BadgesPanel'
 
 export default async function ProgressPage() {
@@ -28,7 +29,7 @@ export default async function ProgressPage() {
     prisma.streak.findMany({ where: { userId: session.user.id } }),
     prisma.workoutLog.findMany({
       where: { userId: session.user.id, date: { gte: yearAgo } },
-      select: { date: true, completed: true },
+      select: { date: true, completed: true, type: true, duration: true, caloriesBurned: true, steps: true, distance: true },
     }),
     prisma.foodLog.findMany({
       where: { userId: session.user.id, date: { gte: yearAgo } },
@@ -55,9 +56,19 @@ export default async function ProgressPage() {
 
   const heatmapWorkouts = allWorkouts.map(l => ({ date: l.date.toISOString(), completed: l.completed }))
   const heatmapFood = allFood.map(l => ({ date: l.date.toISOString() }))
+  const activityLogs = allWorkouts.map(l => ({
+    date: l.date.toISOString(),
+    completed: l.completed,
+    type: l.type,
+    duration: l.duration,
+    caloriesBurned: l.caloriesBurned,
+    steps: l.steps,
+    distance: l.distance,
+  }))
 
   return (
     <div className="max-w-4xl mx-auto px-4 py-6 space-y-6">
+      <ActivitySummary workoutLogs={activityLogs} />
       <ActivityHeatmap workoutLogs={heatmapWorkouts} foodLogs={heatmapFood} />
       <BadgesPanel />
       <ProgressCharts

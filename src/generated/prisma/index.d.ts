@@ -12907,10 +12907,16 @@ export namespace Prisma {
 
   export type WorkoutLogAvgAggregateOutputType = {
     duration: number | null
+    caloriesBurned: number | null
+    steps: number | null
+    distance: number | null
   }
 
   export type WorkoutLogSumAggregateOutputType = {
     duration: number | null
+    caloriesBurned: number | null
+    steps: number | null
+    distance: number | null
   }
 
   export type WorkoutLogMinAggregateOutputType = {
@@ -12924,6 +12930,9 @@ export namespace Prisma {
     skipped: boolean | null
     skipReason: string | null
     aiAnalysis: string | null
+    caloriesBurned: number | null
+    steps: number | null
+    distance: number | null
   }
 
   export type WorkoutLogMaxAggregateOutputType = {
@@ -12937,6 +12946,9 @@ export namespace Prisma {
     skipped: boolean | null
     skipReason: string | null
     aiAnalysis: string | null
+    caloriesBurned: number | null
+    steps: number | null
+    distance: number | null
   }
 
   export type WorkoutLogCountAggregateOutputType = {
@@ -12951,16 +12963,25 @@ export namespace Prisma {
     skipped: number
     skipReason: number
     aiAnalysis: number
+    caloriesBurned: number
+    steps: number
+    distance: number
     _all: number
   }
 
 
   export type WorkoutLogAvgAggregateInputType = {
     duration?: true
+    caloriesBurned?: true
+    steps?: true
+    distance?: true
   }
 
   export type WorkoutLogSumAggregateInputType = {
     duration?: true
+    caloriesBurned?: true
+    steps?: true
+    distance?: true
   }
 
   export type WorkoutLogMinAggregateInputType = {
@@ -12974,6 +12995,9 @@ export namespace Prisma {
     skipped?: true
     skipReason?: true
     aiAnalysis?: true
+    caloriesBurned?: true
+    steps?: true
+    distance?: true
   }
 
   export type WorkoutLogMaxAggregateInputType = {
@@ -12987,6 +13011,9 @@ export namespace Prisma {
     skipped?: true
     skipReason?: true
     aiAnalysis?: true
+    caloriesBurned?: true
+    steps?: true
+    distance?: true
   }
 
   export type WorkoutLogCountAggregateInputType = {
@@ -13001,6 +13028,9 @@ export namespace Prisma {
     skipped?: true
     skipReason?: true
     aiAnalysis?: true
+    caloriesBurned?: true
+    steps?: true
+    distance?: true
     _all?: true
   }
 
@@ -13102,6 +13132,9 @@ export namespace Prisma {
     skipped: boolean
     skipReason: string | null
     aiAnalysis: string | null
+    caloriesBurned: number | null
+    steps: number | null
+    distance: number | null
     _count: WorkoutLogCountAggregateOutputType | null
     _avg: WorkoutLogAvgAggregateOutputType | null
     _sum: WorkoutLogSumAggregateOutputType | null
@@ -13135,6 +13168,9 @@ export namespace Prisma {
     skipped?: boolean
     skipReason?: boolean
     aiAnalysis?: boolean
+    caloriesBurned?: boolean
+    steps?: boolean
+    distance?: boolean
     user?: boolean | UserDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["workoutLog"]>
 
@@ -13150,6 +13186,9 @@ export namespace Prisma {
     skipped?: boolean
     skipReason?: boolean
     aiAnalysis?: boolean
+    caloriesBurned?: boolean
+    steps?: boolean
+    distance?: boolean
     user?: boolean | UserDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["workoutLog"]>
 
@@ -13165,6 +13204,9 @@ export namespace Prisma {
     skipped?: boolean
     skipReason?: boolean
     aiAnalysis?: boolean
+    caloriesBurned?: boolean
+    steps?: boolean
+    distance?: boolean
     user?: boolean | UserDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["workoutLog"]>
 
@@ -13180,9 +13222,12 @@ export namespace Prisma {
     skipped?: boolean
     skipReason?: boolean
     aiAnalysis?: boolean
+    caloriesBurned?: boolean
+    steps?: boolean
+    distance?: boolean
   }
 
-  export type WorkoutLogOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "userId" | "date" | "type" | "duration" | "exercises" | "notes" | "completed" | "skipped" | "skipReason" | "aiAnalysis", ExtArgs["result"]["workoutLog"]>
+  export type WorkoutLogOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "userId" | "date" | "type" | "duration" | "exercises" | "notes" | "completed" | "skipped" | "skipReason" | "aiAnalysis" | "caloriesBurned" | "steps" | "distance", ExtArgs["result"]["workoutLog"]>
   export type WorkoutLogInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     user?: boolean | UserDefaultArgs<ExtArgs>
   }
@@ -13210,6 +13255,9 @@ export namespace Prisma {
       skipped: boolean
       skipReason: string | null
       aiAnalysis: string | null
+      caloriesBurned: number | null
+      steps: number | null
+      distance: number | null
     }, ExtArgs["result"]["workoutLog"]>
     composites: {}
   }
@@ -13645,6 +13693,9 @@ export namespace Prisma {
     readonly skipped: FieldRef<"WorkoutLog", 'Boolean'>
     readonly skipReason: FieldRef<"WorkoutLog", 'String'>
     readonly aiAnalysis: FieldRef<"WorkoutLog", 'String'>
+    readonly caloriesBurned: FieldRef<"WorkoutLog", 'Int'>
+    readonly steps: FieldRef<"WorkoutLog", 'Int'>
+    readonly distance: FieldRef<"WorkoutLog", 'Float'>
   }
     
 
@@ -20797,7 +20848,10 @@ export namespace Prisma {
     completed: 'completed',
     skipped: 'skipped',
     skipReason: 'skipReason',
-    aiAnalysis: 'aiAnalysis'
+    aiAnalysis: 'aiAnalysis',
+    caloriesBurned: 'caloriesBurned',
+    steps: 'steps',
+    distance: 'distance'
   };
 
   export type WorkoutLogScalarFieldEnum = (typeof WorkoutLogScalarFieldEnum)[keyof typeof WorkoutLogScalarFieldEnum]
@@ -21765,6 +21819,9 @@ export namespace Prisma {
     skipped?: BoolFilter<"WorkoutLog"> | boolean
     skipReason?: StringNullableFilter<"WorkoutLog"> | string | null
     aiAnalysis?: StringNullableFilter<"WorkoutLog"> | string | null
+    caloriesBurned?: IntNullableFilter<"WorkoutLog"> | number | null
+    steps?: IntNullableFilter<"WorkoutLog"> | number | null
+    distance?: FloatNullableFilter<"WorkoutLog"> | number | null
     user?: XOR<UserScalarRelationFilter, UserWhereInput>
   }
 
@@ -21780,6 +21837,9 @@ export namespace Prisma {
     skipped?: SortOrder
     skipReason?: SortOrderInput | SortOrder
     aiAnalysis?: SortOrderInput | SortOrder
+    caloriesBurned?: SortOrderInput | SortOrder
+    steps?: SortOrderInput | SortOrder
+    distance?: SortOrderInput | SortOrder
     user?: UserOrderByWithRelationInput
   }
 
@@ -21798,6 +21858,9 @@ export namespace Prisma {
     skipped?: BoolFilter<"WorkoutLog"> | boolean
     skipReason?: StringNullableFilter<"WorkoutLog"> | string | null
     aiAnalysis?: StringNullableFilter<"WorkoutLog"> | string | null
+    caloriesBurned?: IntNullableFilter<"WorkoutLog"> | number | null
+    steps?: IntNullableFilter<"WorkoutLog"> | number | null
+    distance?: FloatNullableFilter<"WorkoutLog"> | number | null
     user?: XOR<UserScalarRelationFilter, UserWhereInput>
   }, "id">
 
@@ -21813,6 +21876,9 @@ export namespace Prisma {
     skipped?: SortOrder
     skipReason?: SortOrderInput | SortOrder
     aiAnalysis?: SortOrderInput | SortOrder
+    caloriesBurned?: SortOrderInput | SortOrder
+    steps?: SortOrderInput | SortOrder
+    distance?: SortOrderInput | SortOrder
     _count?: WorkoutLogCountOrderByAggregateInput
     _avg?: WorkoutLogAvgOrderByAggregateInput
     _max?: WorkoutLogMaxOrderByAggregateInput
@@ -21835,6 +21901,9 @@ export namespace Prisma {
     skipped?: BoolWithAggregatesFilter<"WorkoutLog"> | boolean
     skipReason?: StringNullableWithAggregatesFilter<"WorkoutLog"> | string | null
     aiAnalysis?: StringNullableWithAggregatesFilter<"WorkoutLog"> | string | null
+    caloriesBurned?: IntNullableWithAggregatesFilter<"WorkoutLog"> | number | null
+    steps?: IntNullableWithAggregatesFilter<"WorkoutLog"> | number | null
+    distance?: FloatNullableWithAggregatesFilter<"WorkoutLog"> | number | null
   }
 
   export type MessageWhereInput = {
@@ -23076,6 +23145,9 @@ export namespace Prisma {
     skipped?: boolean
     skipReason?: string | null
     aiAnalysis?: string | null
+    caloriesBurned?: number | null
+    steps?: number | null
+    distance?: number | null
     user: UserCreateNestedOneWithoutWorkoutLogsInput
   }
 
@@ -23091,6 +23163,9 @@ export namespace Prisma {
     skipped?: boolean
     skipReason?: string | null
     aiAnalysis?: string | null
+    caloriesBurned?: number | null
+    steps?: number | null
+    distance?: number | null
   }
 
   export type WorkoutLogUpdateInput = {
@@ -23104,6 +23179,9 @@ export namespace Prisma {
     skipped?: BoolFieldUpdateOperationsInput | boolean
     skipReason?: NullableStringFieldUpdateOperationsInput | string | null
     aiAnalysis?: NullableStringFieldUpdateOperationsInput | string | null
+    caloriesBurned?: NullableIntFieldUpdateOperationsInput | number | null
+    steps?: NullableIntFieldUpdateOperationsInput | number | null
+    distance?: NullableFloatFieldUpdateOperationsInput | number | null
     user?: UserUpdateOneRequiredWithoutWorkoutLogsNestedInput
   }
 
@@ -23119,6 +23197,9 @@ export namespace Prisma {
     skipped?: BoolFieldUpdateOperationsInput | boolean
     skipReason?: NullableStringFieldUpdateOperationsInput | string | null
     aiAnalysis?: NullableStringFieldUpdateOperationsInput | string | null
+    caloriesBurned?: NullableIntFieldUpdateOperationsInput | number | null
+    steps?: NullableIntFieldUpdateOperationsInput | number | null
+    distance?: NullableFloatFieldUpdateOperationsInput | number | null
   }
 
   export type WorkoutLogCreateManyInput = {
@@ -23133,6 +23214,9 @@ export namespace Prisma {
     skipped?: boolean
     skipReason?: string | null
     aiAnalysis?: string | null
+    caloriesBurned?: number | null
+    steps?: number | null
+    distance?: number | null
   }
 
   export type WorkoutLogUpdateManyMutationInput = {
@@ -23146,6 +23230,9 @@ export namespace Prisma {
     skipped?: BoolFieldUpdateOperationsInput | boolean
     skipReason?: NullableStringFieldUpdateOperationsInput | string | null
     aiAnalysis?: NullableStringFieldUpdateOperationsInput | string | null
+    caloriesBurned?: NullableIntFieldUpdateOperationsInput | number | null
+    steps?: NullableIntFieldUpdateOperationsInput | number | null
+    distance?: NullableFloatFieldUpdateOperationsInput | number | null
   }
 
   export type WorkoutLogUncheckedUpdateManyInput = {
@@ -23160,6 +23247,9 @@ export namespace Prisma {
     skipped?: BoolFieldUpdateOperationsInput | boolean
     skipReason?: NullableStringFieldUpdateOperationsInput | string | null
     aiAnalysis?: NullableStringFieldUpdateOperationsInput | string | null
+    caloriesBurned?: NullableIntFieldUpdateOperationsInput | number | null
+    steps?: NullableIntFieldUpdateOperationsInput | number | null
+    distance?: NullableFloatFieldUpdateOperationsInput | number | null
   }
 
   export type MessageCreateInput = {
@@ -24411,10 +24501,16 @@ export namespace Prisma {
     skipped?: SortOrder
     skipReason?: SortOrder
     aiAnalysis?: SortOrder
+    caloriesBurned?: SortOrder
+    steps?: SortOrder
+    distance?: SortOrder
   }
 
   export type WorkoutLogAvgOrderByAggregateInput = {
     duration?: SortOrder
+    caloriesBurned?: SortOrder
+    steps?: SortOrder
+    distance?: SortOrder
   }
 
   export type WorkoutLogMaxOrderByAggregateInput = {
@@ -24428,6 +24524,9 @@ export namespace Prisma {
     skipped?: SortOrder
     skipReason?: SortOrder
     aiAnalysis?: SortOrder
+    caloriesBurned?: SortOrder
+    steps?: SortOrder
+    distance?: SortOrder
   }
 
   export type WorkoutLogMinOrderByAggregateInput = {
@@ -24441,10 +24540,16 @@ export namespace Prisma {
     skipped?: SortOrder
     skipReason?: SortOrder
     aiAnalysis?: SortOrder
+    caloriesBurned?: SortOrder
+    steps?: SortOrder
+    distance?: SortOrder
   }
 
   export type WorkoutLogSumOrderByAggregateInput = {
     duration?: SortOrder
+    caloriesBurned?: SortOrder
+    steps?: SortOrder
+    distance?: SortOrder
   }
   export type JsonNullableWithAggregatesFilter<$PrismaModel = never> =
     | PatchUndefined<
@@ -26117,6 +26222,9 @@ export namespace Prisma {
     skipped?: boolean
     skipReason?: string | null
     aiAnalysis?: string | null
+    caloriesBurned?: number | null
+    steps?: number | null
+    distance?: number | null
   }
 
   export type WorkoutLogUncheckedCreateWithoutUserInput = {
@@ -26130,6 +26238,9 @@ export namespace Prisma {
     skipped?: boolean
     skipReason?: string | null
     aiAnalysis?: string | null
+    caloriesBurned?: number | null
+    steps?: number | null
+    distance?: number | null
   }
 
   export type WorkoutLogCreateOrConnectWithoutUserInput = {
@@ -26519,6 +26630,9 @@ export namespace Prisma {
     skipped?: BoolFilter<"WorkoutLog"> | boolean
     skipReason?: StringNullableFilter<"WorkoutLog"> | string | null
     aiAnalysis?: StringNullableFilter<"WorkoutLog"> | string | null
+    caloriesBurned?: IntNullableFilter<"WorkoutLog"> | number | null
+    steps?: IntNullableFilter<"WorkoutLog"> | number | null
+    distance?: FloatNullableFilter<"WorkoutLog"> | number | null
   }
 
   export type MessageUpsertWithWhereUniqueWithoutUserInput = {
@@ -27770,6 +27884,9 @@ export namespace Prisma {
     skipped?: boolean
     skipReason?: string | null
     aiAnalysis?: string | null
+    caloriesBurned?: number | null
+    steps?: number | null
+    distance?: number | null
   }
 
   export type MessageCreateManyUserInput = {
@@ -27936,6 +28053,9 @@ export namespace Prisma {
     skipped?: BoolFieldUpdateOperationsInput | boolean
     skipReason?: NullableStringFieldUpdateOperationsInput | string | null
     aiAnalysis?: NullableStringFieldUpdateOperationsInput | string | null
+    caloriesBurned?: NullableIntFieldUpdateOperationsInput | number | null
+    steps?: NullableIntFieldUpdateOperationsInput | number | null
+    distance?: NullableFloatFieldUpdateOperationsInput | number | null
   }
 
   export type WorkoutLogUncheckedUpdateWithoutUserInput = {
@@ -27949,6 +28069,9 @@ export namespace Prisma {
     skipped?: BoolFieldUpdateOperationsInput | boolean
     skipReason?: NullableStringFieldUpdateOperationsInput | string | null
     aiAnalysis?: NullableStringFieldUpdateOperationsInput | string | null
+    caloriesBurned?: NullableIntFieldUpdateOperationsInput | number | null
+    steps?: NullableIntFieldUpdateOperationsInput | number | null
+    distance?: NullableFloatFieldUpdateOperationsInput | number | null
   }
 
   export type WorkoutLogUncheckedUpdateManyWithoutUserInput = {
@@ -27962,6 +28085,9 @@ export namespace Prisma {
     skipped?: BoolFieldUpdateOperationsInput | boolean
     skipReason?: NullableStringFieldUpdateOperationsInput | string | null
     aiAnalysis?: NullableStringFieldUpdateOperationsInput | string | null
+    caloriesBurned?: NullableIntFieldUpdateOperationsInput | number | null
+    steps?: NullableIntFieldUpdateOperationsInput | number | null
+    distance?: NullableFloatFieldUpdateOperationsInput | number | null
   }
 
   export type MessageUpdateWithoutUserInput = {

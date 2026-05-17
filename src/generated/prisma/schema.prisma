@@ -142,18 +142,21 @@ model FoodLog {
 }
 
 model WorkoutLog {
-  id         String   @id @default(cuid())
-  userId     String
-  date       DateTime @default(now())
-  type       String
-  duration   Int?
-  exercises  Json?
-  notes      String?
-  completed  Boolean  @default(true)
-  skipped    Boolean  @default(false)
-  skipReason String?
-  aiAnalysis String?  @db.Text
-  user       User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  id             String   @id @default(cuid())
+  userId         String
+  date           DateTime @default(now())
+  type           String
+  duration       Int?
+  exercises      Json?
+  notes          String?
+  completed      Boolean  @default(true)
+  skipped        Boolean  @default(false)
+  skipReason     String?
+  aiAnalysis     String?  @db.Text
+  caloriesBurned Int?
+  steps          Int?
+  distance       Float? // km
+  user           User     @relation(fields: [userId], references: [id], onDelete: Cascade)
 }
 
 model Message {

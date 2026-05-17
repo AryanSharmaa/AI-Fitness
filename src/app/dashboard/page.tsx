@@ -28,6 +28,7 @@ async function getDashboardData(userId: string) {
   const workoutStreak = streaks.find(s => s.type === 'workout')?.currentDays || 0
   const nutritionStreak = streaks.find(s => s.type === 'nutrition')?.currentDays || 0
   const weeklyCalories = weeklyFood.reduce((s, f) => s + (f.calories || 0), 0)
+  const weeklyCaloriesBurned = weeklyWorkouts.reduce((s, w) => s + (w.caloriesBurned || 0), 0)
 
   return {
     workoutStreak,
@@ -35,6 +36,7 @@ async function getDashboardData(userId: string) {
     overallStreak: Math.min(workoutStreak, nutritionStreak),
     weeklyCalories,
     weeklyWorkouts: weeklyWorkouts.length,
+    weeklyCaloriesBurned,
     disciplineScore: profile?.disciplineScore || 50,
     profile: profile ? { goal: profile.goal || undefined, name: undefined } : null,
   }

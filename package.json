@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build --webpack",
+    "build": "prisma generate && prisma db push --accept-data-loss && next build --webpack",
     "start": "next start -p ${PORT:-10000}",
     "lint": "eslint"
   },

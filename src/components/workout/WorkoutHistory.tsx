@@ -3,7 +3,7 @@ import { useState, useEffect, useCallback } from 'react'
 import { Card, CardContent } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
-import { CheckCircle2, XCircle, Clock, ChevronLeft, ChevronRight, Trash2, Dumbbell } from 'lucide-react'
+import { CheckCircle2, XCircle, Clock, ChevronLeft, ChevronRight, Trash2, Dumbbell, Flame, Footprints, Route } from 'lucide-react'
 import { toast } from 'sonner'
 
 interface WorkoutLog {
@@ -16,6 +16,9 @@ interface WorkoutLog {
   notes?: string
   date: string
   exercises?: any[]
+  caloriesBurned?: number
+  steps?: number
+  distance?: number
 }
 
 const MONTHS = ['January','February','March','April','May','June','July','August','September','October','November','December']
@@ -86,6 +89,8 @@ export default function WorkoutHistory() {
 
   const completed = logs.filter(l => l.completed).length
   const skipped = logs.filter(l => l.skipped).length
+  const totalBurn = logs.reduce((s, l) => s + (l.caloriesBurned || 0), 0)
+  const totalSteps = logs.reduce((s, l) => s + (l.steps || 0), 0)
 
   return (
     <div className="space-y-4">
@@ -109,19 +114,27 @@ export default function WorkoutHistory() {
 
       {/* Stats */}
       {!loading && logs.length > 0 && (
-        <div className="grid grid-cols-3 gap-3">
+        <div className="grid grid-cols-2 gap-3">
           <div className="rounded-xl border bg-emerald-50 dark:bg-emerald-950/30 p-3 text-center">
             <p className="text-xl font-bold text-emerald-600">{completed}</p>
             <p className="text-xs text-muted-foreground">Completed</p>
-          </div>
-          <div className="rounded-xl border bg-red-50 dark:bg-red-950/30 p-3 text-center">
-            <p className="text-xl font-bold text-red-500">{skipped}</p>
-            <p className="text-xs text-muted-foreground">Skipped</p>
           </div>
           <div className="rounded-xl border p-3 text-center">
             <p className="text-xl font-bold">{total > 0 ? Math.round(completed / total * 100) : 0}%</p>
             <p className="text-xs text-muted-foreground">Completion</p>
           </div>
+          {totalBurn > 0 && (
+            <div className="rounded-xl border bg-orange-50 dark:bg-orange-950/30 p-3 text-center">
+              <p className="text-xl font-bold text-orange-500">{totalBurn.toLocaleString()}</p>
+              <p className="text-xs text-muted-foreground">kcal burned</p>
+            </div>
+          )}
+          {totalSteps > 0 && (
+            <div className="rounded-xl border bg-blue-50 dark:bg-blue-950/30 p-3 text-center">
+              <p className="text-xl font-bold text-blue-500">{totalSteps.toLocaleString()}</p>
+              <p className="text-xs text-muted-foreground">steps</p>
+            </div>
+          )}
         </div>
       )}
 
@@ -175,6 +188,23 @@ export default function WorkoutHistory() {
                             {exercises.length > 3 && ` +${exercises.length - 3} more`}
                           </p>
                         )}
+                        <div className="flex items-center gap-3 mt-1 flex-wrap">
+                          {log.caloriesBurned && (
+                            <span className="text-xs text-orange-500 flex items-center gap-0.5">
+                              <Flame className="h-3 w-3" />{log.caloriesBurned} kcal
+                            </span>
+                          )}
+                          {log.steps && (
+                            <span className="text-xs text-blue-500 flex items-center gap-0.5">
+                              <Footprints className="h-3 w-3" />{log.steps.toLocaleString()} steps
+                            </span>
+                          )}
+                          {log.distance && (
+                            <span className="text-xs text-emerald-600 flex items-center gap-0.5">
+                              <Route className="h-3 w-3" />{log.distance} km
+                            </span>
+                          )}
+                        </div>
                       </div>
                     </div>
                     <button

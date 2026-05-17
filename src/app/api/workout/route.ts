@@ -3,6 +3,7 @@ import { getServerSession } from 'next-auth'
 import { authOptions } from '@/lib/auth'
 import { prisma } from '@/lib/prisma'
 import { selectWorkout, formatWorkoutForDisplay } from '@/lib/engines/workout'
+import { estimateCaloriesBurned } from '@/lib/activity'
 
 export async function GET(req: NextRequest) {
   const session = await getServerSession(authOptions)
@@ -71,7 +72,15 @@ export async function POST(req: NextRequest) {
   const userId = session.user.id
 
   const body = await req.json()
-  const { type, duration, exercises, notes, completed, skipped, skipReason } = body
+  const { type, duration, exercises, notes, completed, skipped, skipReason, steps, distance } = body
+
+  // Auto-calculate calories burned using MET if workout is completed
+  let caloriesBurned: number | undefined
+  if ((completed ?? true) && !(skipped ?? false) && duration) {
+    const profile = await prisma.userProfile.findUnique({ where: { userId }, select: { weight: true } })
+    const weight = profile?.weight || 70
+    caloriesBurned = estimateCaloriesBurned(type || 'general', duration, weight)
+  }
 
   const log = await prisma.workoutLog.create({
     data: {
@@ -83,6 +92,9 @@ export async function POST(req: NextRequest) {
       completed: completed ?? true,
       skipped: skipped ?? false,
       skipReason,
+      caloriesBurned,
+      steps: steps || null,
+      distance: distance || null,
     },
   })
 
