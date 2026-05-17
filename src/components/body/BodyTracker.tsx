@@ -4,11 +4,11 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Badge } from '@/components/ui/badge'
-import { Scale, Lock, TrendingDown, Plus, ChevronDown, ChevronUp } from 'lucide-react'
+import { Scale, Lock, TrendingDown, Plus, Target } from 'lucide-react'
 import { toast } from 'sonner'
 import Link from 'next/link'
 import {
-  AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer
+  AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, ReferenceLine
 } from 'recharts'
 
 interface BodyLog {
@@ -21,13 +21,22 @@ interface BodyLog {
   hips?: number
 }
 
+function getBMICategory(bmi: number): { label: string; color: string } {
+  if (bmi < 18.5) return { label: 'Underweight', color: 'text-blue-500' }
+  if (bmi < 25) return { label: 'Normal', color: 'text-emerald-600' }
+  if (bmi < 30) return { label: 'Overweight', color: 'text-amber-500' }
+  return { label: 'Obese', color: 'text-red-500' }
+}
+
 export default function BodyTracker() {
   const [logs, setLogs] = useState<BodyLog[]>([])
   const [plan, setPlan] = useState<'free' | 'pro'>('free')
+  const [height, setHeight] = useState<number | null>(null)
+  const [goalWeight, setGoalWeight] = useState<number | null>(null)
   const [loading, setLoading] = useState(true)
   const [showForm, setShowForm] = useState(false)
   const [saving, setSaving] = useState(false)
-  const [form, setForm] = useState({ weight: '', waist: '', chest: '', arms: '', hips: '' })
+  const [form, setForm] = useState({ weight: '', waist: '', chest: '', arms: '', hips: '', goalWeight: '' })
 
   useEffect(() => { load() }, [])
 
@@ -38,6 +47,8 @@ export default function BodyTracker() {
         const data = await res.json()
         setLogs(data.logs)
         setPlan(data.plan)
+        setHeight(data.height ?? null)
+        setGoalWeight(data.goalWeight ?? null)
       }
     } finally {
       setLoading(false)
@@ -58,7 +69,7 @@ export default function BodyTracker() {
       })
       if (!res.ok) throw new Error()
       toast.success('Logged!')
-      setForm({ weight: '', waist: '', chest: '', arms: '', hips: '' })
+      setForm({ weight: '', waist: '', chest: '', arms: '', hips: '', goalWeight: '' })
       setShowForm(false)
       load()
     } catch {
@@ -73,6 +84,13 @@ export default function BodyTracker() {
   const weightChange = latest?.weight && first?.weight && logs.length > 1
     ? (latest.weight - first.weight).toFixed(1)
     : null
+
+  const bmi = latest?.weight && height
+    ? parseFloat((latest.weight / Math.pow(height / 100, 2)).toFixed(1))
+    : null
+  const bmiCategory = bmi ? getBMICategory(bmi) : null
+  const idealWeightMin = height ? Math.round(18.5 * Math.pow(height / 100, 2)) : null
+  const idealWeightMax = height ? Math.round(24.9 * Math.pow(height / 100, 2)) : null
 
   const chartData = logs
     .filter(l => l.weight)
@@ -108,8 +126,6 @@ export default function BodyTracker() {
           </div>
         </CardHeader>
         <CardContent className="space-y-4">
-
-          {/* Current stats */}
           {latest ? (
             <div className="grid grid-cols-2 gap-3">
               <div className="bg-purple-50 dark:bg-purple-950/30 rounded-lg p-3 text-center">
@@ -141,19 +157,50 @@ export default function BodyTracker() {
             </div>
           )}
 
+          {/* BMI */}
+          {bmi && bmiCategory && (
+            <div className="rounded-lg border bg-muted/30 p-3">
+              <div className="flex items-center justify-between">
+                <div>
+                  <p className="text-xs text-muted-foreground mb-0.5">BMI</p>
+                  <p className={`text-xl font-bold ${bmiCategory.color}`}>
+                    {bmi} <span className="text-sm font-medium">{bmiCategory.label}</span>
+                  </p>
+                </div>
+                {idealWeightMin && idealWeightMax && (
+                  <div className="text-right">
+                    <p className="text-xs text-muted-foreground">Ideal range</p>
+                    <p className="text-sm font-medium">{idealWeightMin}–{idealWeightMax} kg</p>
+                  </div>
+                )}
+              </div>
+              {goalWeight && (
+                <div className="flex items-center gap-1.5 mt-2 pt-2 border-t">
+                  <Target className="h-3.5 w-3.5 text-emerald-500" />
+                  <span className="text-xs text-muted-foreground">Goal: <span className="font-medium text-foreground">{goalWeight} kg</span></span>
+                  {latest?.weight && (
+                    <span className="text-xs text-muted-foreground ml-1">
+                      ({Math.abs(latest.weight - goalWeight).toFixed(1)} kg to go)
+                    </span>
+                  )}
+                </div>
+              )}
+            </div>
+          )}
+
           {/* Log form */}
           {showForm && (
             <div className="border rounded-xl p-4 space-y-3 bg-muted/30">
               <div className="grid grid-cols-2 gap-2">
                 <div>
                   <label className="text-xs text-muted-foreground mb-1 block">Weight (kg)</label>
-                  <Input
-                    type="number"
-                    placeholder="72.5"
-                    value={form.weight}
-                    onChange={e => setForm(f => ({ ...f, weight: e.target.value }))}
-                    step="0.1"
-                  />
+                  <Input type="number" placeholder="72.5" value={form.weight}
+                    onChange={e => setForm(f => ({ ...f, weight: e.target.value }))} step="0.1" />
+                </div>
+                <div>
+                  <label className="text-xs text-muted-foreground mb-1 block">Goal Weight (kg)</label>
+                  <Input type="number" placeholder={goalWeight?.toString() || '68'} value={form.goalWeight}
+                    onChange={e => setForm(f => ({ ...f, goalWeight: e.target.value }))} step="0.1" />
                 </div>
                 {plan === 'pro' && (
                   <>
@@ -191,13 +238,14 @@ export default function BodyTracker() {
         </CardContent>
       </Card>
 
-      {/* Pro: weight trend chart */}
+      {/* Pro: weight trend chart with goal line */}
       {plan === 'pro' && chartData.length > 1 && (
         <Card>
           <CardHeader className="pb-2">
             <CardTitle className="text-sm flex items-center gap-2">
               <TrendingDown className="h-4 w-4 text-purple-500" />
               Weight Trend
+              {goalWeight && <span className="text-xs font-normal text-muted-foreground ml-1">— dashed line is goal</span>}
             </CardTitle>
           </CardHeader>
           <CardContent>
@@ -213,6 +261,14 @@ export default function BodyTracker() {
                 <XAxis dataKey="date" tick={{ fontSize: 11 }} interval="preserveStartEnd" />
                 <YAxis tick={{ fontSize: 11 }} domain={['dataMin - 2', 'dataMax + 2']} />
                 <Tooltip formatter={(v) => [`${v} kg`, 'Weight']} />
+                {goalWeight && (
+                  <ReferenceLine
+                    y={goalWeight}
+                    stroke="#10b981"
+                    strokeDasharray="4 4"
+                    label={{ value: `Goal ${goalWeight}kg`, position: 'right', fontSize: 10, fill: '#10b981' }}
+                  />
+                )}
                 <Area type="monotone" dataKey="weight" stroke="#a855f7" fill="url(#weightGrad)" strokeWidth={2} dot={{ r: 3 }} />
               </AreaChart>
             </ResponsiveContainer>
@@ -220,7 +276,7 @@ export default function BodyTracker() {
         </Card>
       )}
 
-      {/* Pro: measurements history */}
+      {/* Pro: measurements */}
       {plan === 'pro' && logs.some(l => l.waist || l.chest || l.arms || l.hips) && (
         <Card>
           <CardHeader className="pb-2">
@@ -229,10 +285,10 @@ export default function BodyTracker() {
           <CardContent>
             <div className="grid grid-cols-4 gap-2 text-center">
               {[
-                { label: 'Waist', value: latest?.waist, unit: 'cm' },
-                { label: 'Chest', value: latest?.chest, unit: 'cm' },
-                { label: 'Arms', value: latest?.arms, unit: 'cm' },
-                { label: 'Hips', value: latest?.hips, unit: 'cm' },
+                { label: 'Waist', value: latest?.waist },
+                { label: 'Chest', value: latest?.chest },
+                { label: 'Arms', value: latest?.arms },
+                { label: 'Hips', value: latest?.hips },
               ].map(m => (
                 <div key={m.label} className="bg-muted rounded-lg p-2">
                   <p className="text-sm font-bold">{m.value ?? '—'}</p>

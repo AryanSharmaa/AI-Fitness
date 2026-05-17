@@ -1,6 +1,7 @@
 'use client'
 import { useState } from 'react'
 import { signOut } from 'next-auth/react'
+import ReminderSettings from '@/components/settings/ReminderSettings'
 import { toast } from 'sonner'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
@@ -37,6 +38,7 @@ export default function SettingsClient({ userEmail }: SettingsClientProps) {
 
   return (
     <div className="space-y-6">
+      <ReminderSettings />
       {/* Account section */}
       <Card>
         <CardHeader>

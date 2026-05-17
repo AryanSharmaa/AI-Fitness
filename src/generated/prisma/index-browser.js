@@ -206,6 +206,13 @@ exports.Prisma.UserProfileScalarFieldEnum = {
   riskProfile: 'riskProfile',
   disciplineScore: 'disciplineScore',
   onboardingDone: 'onboardingDone',
+  goalWeight: 'goalWeight',
+  proteinGoal: 'proteinGoal',
+  carbsGoal: 'carbsGoal',
+  fatGoal: 'fatGoal',
+  reminderEnabled: 'reminderEnabled',
+  reminderTime: 'reminderTime',
+  reminderType: 'reminderType',
   updatedAt: 'updatedAt'
 };
 

@@ -8,7 +8,10 @@ export async function GET() {
   const session = await getServerSession(authOptions)
   if (!session?.user?.id) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
   const userId = session.user.id
-  const plan = await getUserPlan(userId, session.user.email)
+  const [plan, profile] = await Promise.all([
+    getUserPlan(userId, session.user.email),
+    prisma.userProfile.findUnique({ where: { userId }, select: { height: true, goalWeight: true } }),
+  ])
 
   if (plan === 'pro') {
     const logs = await prisma.bodyLog.findMany({
@@ -16,15 +19,14 @@ export async function GET() {
       orderBy: { date: 'asc' },
       take: 60,
     })
-    return NextResponse.json({ logs, plan })
+    return NextResponse.json({ logs, plan, height: profile?.height, goalWeight: profile?.goalWeight })
   }
 
-  // Free: latest entry only
   const latest = await prisma.bodyLog.findFirst({
     where: { userId },
     orderBy: { date: 'desc' },
   })
-  return NextResponse.json({ logs: latest ? [latest] : [], plan })
+  return NextResponse.json({ logs: latest ? [latest] : [], plan, height: profile?.height, goalWeight: profile?.goalWeight })
 }
 
 export async function POST(req: NextRequest) {
@@ -34,9 +36,8 @@ export async function POST(req: NextRequest) {
   const plan = await getUserPlan(userId, session.user.email)
 
   const body = await req.json()
-  const { weight, waist, chest, arms, hips, notes } = body
+  const { weight, waist, chest, arms, hips, notes, goalWeight } = body
 
-  // Free users can only log weight
   const data: any = { userId, weight: weight ? parseFloat(weight) : undefined }
   if (plan === 'pro') {
     data.waist = waist ? parseFloat(waist) : undefined
@@ -46,6 +47,10 @@ export async function POST(req: NextRequest) {
     data.notes = notes || undefined
   }
 
-  const log = await prisma.bodyLog.create({ data })
+  const ops: Promise<any>[] = [prisma.bodyLog.create({ data })]
+  if (goalWeight) {
+    ops.push(prisma.userProfile.update({ where: { userId }, data: { goalWeight: parseFloat(goalWeight) } }))
+  }
+  const [log] = await Promise.all(ops)
   return NextResponse.json({ log })
 }

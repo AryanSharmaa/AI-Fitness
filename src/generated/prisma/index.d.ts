@@ -10335,6 +10335,10 @@ export namespace Prisma {
     weight: number | null
     sleepHours: number | null
     disciplineScore: number | null
+    goalWeight: number | null
+    proteinGoal: number | null
+    carbsGoal: number | null
+    fatGoal: number | null
   }
 
   export type UserProfileSumAggregateOutputType = {
@@ -10343,6 +10347,10 @@ export namespace Prisma {
     weight: number | null
     sleepHours: number | null
     disciplineScore: number | null
+    goalWeight: number | null
+    proteinGoal: number | null
+    carbsGoal: number | null
+    fatGoal: number | null
   }
 
   export type UserProfileMinAggregateOutputType = {
@@ -10362,6 +10370,13 @@ export namespace Prisma {
     riskProfile: string | null
     disciplineScore: number | null
     onboardingDone: boolean | null
+    goalWeight: number | null
+    proteinGoal: number | null
+    carbsGoal: number | null
+    fatGoal: number | null
+    reminderEnabled: boolean | null
+    reminderTime: string | null
+    reminderType: string | null
     updatedAt: Date | null
   }
 
@@ -10382,6 +10397,13 @@ export namespace Prisma {
     riskProfile: string | null
     disciplineScore: number | null
     onboardingDone: boolean | null
+    goalWeight: number | null
+    proteinGoal: number | null
+    carbsGoal: number | null
+    fatGoal: number | null
+    reminderEnabled: boolean | null
+    reminderTime: string | null
+    reminderType: string | null
     updatedAt: Date | null
   }
 
@@ -10402,6 +10424,13 @@ export namespace Prisma {
     riskProfile: number
     disciplineScore: number
     onboardingDone: number
+    goalWeight: number
+    proteinGoal: number
+    carbsGoal: number
+    fatGoal: number
+    reminderEnabled: number
+    reminderTime: number
+    reminderType: number
     updatedAt: number
     _all: number
   }
@@ -10413,6 +10442,10 @@ export namespace Prisma {
     weight?: true
     sleepHours?: true
     disciplineScore?: true
+    goalWeight?: true
+    proteinGoal?: true
+    carbsGoal?: true
+    fatGoal?: true
   }
 
   export type UserProfileSumAggregateInputType = {
@@ -10421,6 +10454,10 @@ export namespace Prisma {
     weight?: true
     sleepHours?: true
     disciplineScore?: true
+    goalWeight?: true
+    proteinGoal?: true
+    carbsGoal?: true
+    fatGoal?: true
   }
 
   export type UserProfileMinAggregateInputType = {
@@ -10440,6 +10477,13 @@ export namespace Prisma {
     riskProfile?: true
     disciplineScore?: true
     onboardingDone?: true
+    goalWeight?: true
+    proteinGoal?: true
+    carbsGoal?: true
+    fatGoal?: true
+    reminderEnabled?: true
+    reminderTime?: true
+    reminderType?: true
     updatedAt?: true
   }
 
@@ -10460,6 +10504,13 @@ export namespace Prisma {
     riskProfile?: true
     disciplineScore?: true
     onboardingDone?: true
+    goalWeight?: true
+    proteinGoal?: true
+    carbsGoal?: true
+    fatGoal?: true
+    reminderEnabled?: true
+    reminderTime?: true
+    reminderType?: true
     updatedAt?: true
   }
 
@@ -10480,6 +10531,13 @@ export namespace Prisma {
     riskProfile?: true
     disciplineScore?: true
     onboardingDone?: true
+    goalWeight?: true
+    proteinGoal?: true
+    carbsGoal?: true
+    fatGoal?: true
+    reminderEnabled?: true
+    reminderTime?: true
+    reminderType?: true
     updatedAt?: true
     _all?: true
   }
@@ -10587,6 +10645,13 @@ export namespace Prisma {
     riskProfile: string | null
     disciplineScore: number
     onboardingDone: boolean
+    goalWeight: number | null
+    proteinGoal: number | null
+    carbsGoal: number | null
+    fatGoal: number | null
+    reminderEnabled: boolean
+    reminderTime: string | null
+    reminderType: string
     updatedAt: Date
     _count: UserProfileCountAggregateOutputType | null
     _avg: UserProfileAvgAggregateOutputType | null
@@ -10626,6 +10691,13 @@ export namespace Prisma {
     riskProfile?: boolean
     disciplineScore?: boolean
     onboardingDone?: boolean
+    goalWeight?: boolean
+    proteinGoal?: boolean
+    carbsGoal?: boolean
+    fatGoal?: boolean
+    reminderEnabled?: boolean
+    reminderTime?: boolean
+    reminderType?: boolean
     updatedAt?: boolean
     user?: boolean | UserDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["userProfile"]>
@@ -10647,6 +10719,13 @@ export namespace Prisma {
     riskProfile?: boolean
     disciplineScore?: boolean
     onboardingDone?: boolean
+    goalWeight?: boolean
+    proteinGoal?: boolean
+    carbsGoal?: boolean
+    fatGoal?: boolean
+    reminderEnabled?: boolean
+    reminderTime?: boolean
+    reminderType?: boolean
     updatedAt?: boolean
     user?: boolean | UserDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["userProfile"]>
@@ -10668,6 +10747,13 @@ export namespace Prisma {
     riskProfile?: boolean
     disciplineScore?: boolean
     onboardingDone?: boolean
+    goalWeight?: boolean
+    proteinGoal?: boolean
+    carbsGoal?: boolean
+    fatGoal?: boolean
+    reminderEnabled?: boolean
+    reminderTime?: boolean
+    reminderType?: boolean
     updatedAt?: boolean
     user?: boolean | UserDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["userProfile"]>
@@ -10689,10 +10775,17 @@ export namespace Prisma {
     riskProfile?: boolean
     disciplineScore?: boolean
     onboardingDone?: boolean
+    goalWeight?: boolean
+    proteinGoal?: boolean
+    carbsGoal?: boolean
+    fatGoal?: boolean
+    reminderEnabled?: boolean
+    reminderTime?: boolean
+    reminderType?: boolean
     updatedAt?: boolean
   }
 
-  export type UserProfileOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "userId" | "age" | "height" | "weight" | "gender" | "goal" | "workSchedule" | "sleepHours" | "foodPreference" | "medicalNotes" | "equipmentAccess" | "cookingSkill" | "riskProfile" | "disciplineScore" | "onboardingDone" | "updatedAt", ExtArgs["result"]["userProfile"]>
+  export type UserProfileOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "userId" | "age" | "height" | "weight" | "gender" | "goal" | "workSchedule" | "sleepHours" | "foodPreference" | "medicalNotes" | "equipmentAccess" | "cookingSkill" | "riskProfile" | "disciplineScore" | "onboardingDone" | "goalWeight" | "proteinGoal" | "carbsGoal" | "fatGoal" | "reminderEnabled" | "reminderTime" | "reminderType" | "updatedAt", ExtArgs["result"]["userProfile"]>
   export type UserProfileInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     user?: boolean | UserDefaultArgs<ExtArgs>
   }
@@ -10725,6 +10818,13 @@ export namespace Prisma {
       riskProfile: string | null
       disciplineScore: number
       onboardingDone: boolean
+      goalWeight: number | null
+      proteinGoal: number | null
+      carbsGoal: number | null
+      fatGoal: number | null
+      reminderEnabled: boolean
+      reminderTime: string | null
+      reminderType: string
       updatedAt: Date
     }, ExtArgs["result"]["userProfile"]>
     composites: {}
@@ -11166,6 +11266,13 @@ export namespace Prisma {
     readonly riskProfile: FieldRef<"UserProfile", 'String'>
     readonly disciplineScore: FieldRef<"UserProfile", 'Float'>
     readonly onboardingDone: FieldRef<"UserProfile", 'Boolean'>
+    readonly goalWeight: FieldRef<"UserProfile", 'Float'>
+    readonly proteinGoal: FieldRef<"UserProfile", 'Int'>
+    readonly carbsGoal: FieldRef<"UserProfile", 'Int'>
+    readonly fatGoal: FieldRef<"UserProfile", 'Int'>
+    readonly reminderEnabled: FieldRef<"UserProfile", 'Boolean'>
+    readonly reminderTime: FieldRef<"UserProfile", 'String'>
+    readonly reminderType: FieldRef<"UserProfile", 'String'>
     readonly updatedAt: FieldRef<"UserProfile", 'DateTime'>
   }
     
@@ -20648,6 +20755,13 @@ export namespace Prisma {
     riskProfile: 'riskProfile',
     disciplineScore: 'disciplineScore',
     onboardingDone: 'onboardingDone',
+    goalWeight: 'goalWeight',
+    proteinGoal: 'proteinGoal',
+    carbsGoal: 'carbsGoal',
+    fatGoal: 'fatGoal',
+    reminderEnabled: 'reminderEnabled',
+    reminderTime: 'reminderTime',
+    reminderType: 'reminderType',
     updatedAt: 'updatedAt'
   };
 
@@ -21412,6 +21526,13 @@ export namespace Prisma {
     riskProfile?: StringNullableFilter<"UserProfile"> | string | null
     disciplineScore?: FloatFilter<"UserProfile"> | number
     onboardingDone?: BoolFilter<"UserProfile"> | boolean
+    goalWeight?: FloatNullableFilter<"UserProfile"> | number | null
+    proteinGoal?: IntNullableFilter<"UserProfile"> | number | null
+    carbsGoal?: IntNullableFilter<"UserProfile"> | number | null
+    fatGoal?: IntNullableFilter<"UserProfile"> | number | null
+    reminderEnabled?: BoolFilter<"UserProfile"> | boolean
+    reminderTime?: StringNullableFilter<"UserProfile"> | string | null
+    reminderType?: StringFilter<"UserProfile"> | string
     updatedAt?: DateTimeFilter<"UserProfile"> | Date | string
     user?: XOR<UserScalarRelationFilter, UserWhereInput>
   }
@@ -21433,6 +21554,13 @@ export namespace Prisma {
     riskProfile?: SortOrderInput | SortOrder
     disciplineScore?: SortOrder
     onboardingDone?: SortOrder
+    goalWeight?: SortOrderInput | SortOrder
+    proteinGoal?: SortOrderInput | SortOrder
+    carbsGoal?: SortOrderInput | SortOrder
+    fatGoal?: SortOrderInput | SortOrder
+    reminderEnabled?: SortOrder
+    reminderTime?: SortOrderInput | SortOrder
+    reminderType?: SortOrder
     updatedAt?: SortOrder
     user?: UserOrderByWithRelationInput
   }
@@ -21457,6 +21585,13 @@ export namespace Prisma {
     riskProfile?: StringNullableFilter<"UserProfile"> | string | null
     disciplineScore?: FloatFilter<"UserProfile"> | number
     onboardingDone?: BoolFilter<"UserProfile"> | boolean
+    goalWeight?: FloatNullableFilter<"UserProfile"> | number | null
+    proteinGoal?: IntNullableFilter<"UserProfile"> | number | null
+    carbsGoal?: IntNullableFilter<"UserProfile"> | number | null
+    fatGoal?: IntNullableFilter<"UserProfile"> | number | null
+    reminderEnabled?: BoolFilter<"UserProfile"> | boolean
+    reminderTime?: StringNullableFilter<"UserProfile"> | string | null
+    reminderType?: StringFilter<"UserProfile"> | string
     updatedAt?: DateTimeFilter<"UserProfile"> | Date | string
     user?: XOR<UserScalarRelationFilter, UserWhereInput>
   }, "id" | "userId">
@@ -21478,6 +21613,13 @@ export namespace Prisma {
     riskProfile?: SortOrderInput | SortOrder
     disciplineScore?: SortOrder
     onboardingDone?: SortOrder
+    goalWeight?: SortOrderInput | SortOrder
+    proteinGoal?: SortOrderInput | SortOrder
+    carbsGoal?: SortOrderInput | SortOrder
+    fatGoal?: SortOrderInput | SortOrder
+    reminderEnabled?: SortOrder
+    reminderTime?: SortOrderInput | SortOrder
+    reminderType?: SortOrder
     updatedAt?: SortOrder
     _count?: UserProfileCountOrderByAggregateInput
     _avg?: UserProfileAvgOrderByAggregateInput
@@ -21506,6 +21648,13 @@ export namespace Prisma {
     riskProfile?: StringNullableWithAggregatesFilter<"UserProfile"> | string | null
     disciplineScore?: FloatWithAggregatesFilter<"UserProfile"> | number
     onboardingDone?: BoolWithAggregatesFilter<"UserProfile"> | boolean
+    goalWeight?: FloatNullableWithAggregatesFilter<"UserProfile"> | number | null
+    proteinGoal?: IntNullableWithAggregatesFilter<"UserProfile"> | number | null
+    carbsGoal?: IntNullableWithAggregatesFilter<"UserProfile"> | number | null
+    fatGoal?: IntNullableWithAggregatesFilter<"UserProfile"> | number | null
+    reminderEnabled?: BoolWithAggregatesFilter<"UserProfile"> | boolean
+    reminderTime?: StringNullableWithAggregatesFilter<"UserProfile"> | string | null
+    reminderType?: StringWithAggregatesFilter<"UserProfile"> | string
     updatedAt?: DateTimeWithAggregatesFilter<"UserProfile"> | Date | string
   }
 
@@ -22640,6 +22789,13 @@ export namespace Prisma {
     riskProfile?: string | null
     disciplineScore?: number
     onboardingDone?: boolean
+    goalWeight?: number | null
+    proteinGoal?: number | null
+    carbsGoal?: number | null
+    fatGoal?: number | null
+    reminderEnabled?: boolean
+    reminderTime?: string | null
+    reminderType?: string
     updatedAt?: Date | string
     user: UserCreateNestedOneWithoutProfileInput
   }
@@ -22661,6 +22817,13 @@ export namespace Prisma {
     riskProfile?: string | null
     disciplineScore?: number
     onboardingDone?: boolean
+    goalWeight?: number | null
+    proteinGoal?: number | null
+    carbsGoal?: number | null
+    fatGoal?: number | null
+    reminderEnabled?: boolean
+    reminderTime?: string | null
+    reminderType?: string
     updatedAt?: Date | string
   }
 
@@ -22680,6 +22843,13 @@ export namespace Prisma {
     riskProfile?: NullableStringFieldUpdateOperationsInput | string | null
     disciplineScore?: FloatFieldUpdateOperationsInput | number
     onboardingDone?: BoolFieldUpdateOperationsInput | boolean
+    goalWeight?: NullableFloatFieldUpdateOperationsInput | number | null
+    proteinGoal?: NullableIntFieldUpdateOperationsInput | number | null
+    carbsGoal?: NullableIntFieldUpdateOperationsInput | number | null
+    fatGoal?: NullableIntFieldUpdateOperationsInput | number | null
+    reminderEnabled?: BoolFieldUpdateOperationsInput | boolean
+    reminderTime?: NullableStringFieldUpdateOperationsInput | string | null
+    reminderType?: StringFieldUpdateOperationsInput | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     user?: UserUpdateOneRequiredWithoutProfileNestedInput
   }
@@ -22701,6 +22871,13 @@ export namespace Prisma {
     riskProfile?: NullableStringFieldUpdateOperationsInput | string | null
     disciplineScore?: FloatFieldUpdateOperationsInput | number
     onboardingDone?: BoolFieldUpdateOperationsInput | boolean
+    goalWeight?: NullableFloatFieldUpdateOperationsInput | number | null
+    proteinGoal?: NullableIntFieldUpdateOperationsInput | number | null
+    carbsGoal?: NullableIntFieldUpdateOperationsInput | number | null
+    fatGoal?: NullableIntFieldUpdateOperationsInput | number | null
+    reminderEnabled?: BoolFieldUpdateOperationsInput | boolean
+    reminderTime?: NullableStringFieldUpdateOperationsInput | string | null
+    reminderType?: StringFieldUpdateOperationsInput | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
@@ -22721,6 +22898,13 @@ export namespace Prisma {
     riskProfile?: string | null
     disciplineScore?: number
     onboardingDone?: boolean
+    goalWeight?: number | null
+    proteinGoal?: number | null
+    carbsGoal?: number | null
+    fatGoal?: number | null
+    reminderEnabled?: boolean
+    reminderTime?: string | null
+    reminderType?: string
     updatedAt?: Date | string
   }
 
@@ -22740,6 +22924,13 @@ export namespace Prisma {
     riskProfile?: NullableStringFieldUpdateOperationsInput | string | null
     disciplineScore?: FloatFieldUpdateOperationsInput | number
     onboardingDone?: BoolFieldUpdateOperationsInput | boolean
+    goalWeight?: NullableFloatFieldUpdateOperationsInput | number | null
+    proteinGoal?: NullableIntFieldUpdateOperationsInput | number | null
+    carbsGoal?: NullableIntFieldUpdateOperationsInput | number | null
+    fatGoal?: NullableIntFieldUpdateOperationsInput | number | null
+    reminderEnabled?: BoolFieldUpdateOperationsInput | boolean
+    reminderTime?: NullableStringFieldUpdateOperationsInput | string | null
+    reminderType?: StringFieldUpdateOperationsInput | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
@@ -22760,6 +22951,13 @@ export namespace Prisma {
     riskProfile?: NullableStringFieldUpdateOperationsInput | string | null
     disciplineScore?: FloatFieldUpdateOperationsInput | number
     onboardingDone?: BoolFieldUpdateOperationsInput | boolean
+    goalWeight?: NullableFloatFieldUpdateOperationsInput | number | null
+    proteinGoal?: NullableIntFieldUpdateOperationsInput | number | null
+    carbsGoal?: NullableIntFieldUpdateOperationsInput | number | null
+    fatGoal?: NullableIntFieldUpdateOperationsInput | number | null
+    reminderEnabled?: BoolFieldUpdateOperationsInput | boolean
+    reminderTime?: NullableStringFieldUpdateOperationsInput | string | null
+    reminderType?: StringFieldUpdateOperationsInput | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
@@ -24007,6 +24205,13 @@ export namespace Prisma {
     riskProfile?: SortOrder
     disciplineScore?: SortOrder
     onboardingDone?: SortOrder
+    goalWeight?: SortOrder
+    proteinGoal?: SortOrder
+    carbsGoal?: SortOrder
+    fatGoal?: SortOrder
+    reminderEnabled?: SortOrder
+    reminderTime?: SortOrder
+    reminderType?: SortOrder
     updatedAt?: SortOrder
   }
 
@@ -24016,6 +24221,10 @@ export namespace Prisma {
     weight?: SortOrder
     sleepHours?: SortOrder
     disciplineScore?: SortOrder
+    goalWeight?: SortOrder
+    proteinGoal?: SortOrder
+    carbsGoal?: SortOrder
+    fatGoal?: SortOrder
   }
 
   export type UserProfileMaxOrderByAggregateInput = {
@@ -24035,6 +24244,13 @@ export namespace Prisma {
     riskProfile?: SortOrder
     disciplineScore?: SortOrder
     onboardingDone?: SortOrder
+    goalWeight?: SortOrder
+    proteinGoal?: SortOrder
+    carbsGoal?: SortOrder
+    fatGoal?: SortOrder
+    reminderEnabled?: SortOrder
+    reminderTime?: SortOrder
+    reminderType?: SortOrder
     updatedAt?: SortOrder
   }
 
@@ -24055,6 +24271,13 @@ export namespace Prisma {
     riskProfile?: SortOrder
     disciplineScore?: SortOrder
     onboardingDone?: SortOrder
+    goalWeight?: SortOrder
+    proteinGoal?: SortOrder
+    carbsGoal?: SortOrder
+    fatGoal?: SortOrder
+    reminderEnabled?: SortOrder
+    reminderTime?: SortOrder
+    reminderType?: SortOrder
     updatedAt?: SortOrder
   }
 
@@ -24064,6 +24287,10 @@ export namespace Prisma {
     weight?: SortOrder
     sleepHours?: SortOrder
     disciplineScore?: SortOrder
+    goalWeight?: SortOrder
+    proteinGoal?: SortOrder
+    carbsGoal?: SortOrder
+    fatGoal?: SortOrder
   }
 
   export type FloatWithAggregatesFilter<$PrismaModel = never> = {
@@ -25800,6 +26027,13 @@ export namespace Prisma {
     riskProfile?: string | null
     disciplineScore?: number
     onboardingDone?: boolean
+    goalWeight?: number | null
+    proteinGoal?: number | null
+    carbsGoal?: number | null
+    fatGoal?: number | null
+    reminderEnabled?: boolean
+    reminderTime?: string | null
+    reminderType?: string
     updatedAt?: Date | string
   }
 
@@ -25819,6 +26053,13 @@ export namespace Prisma {
     riskProfile?: string | null
     disciplineScore?: number
     onboardingDone?: boolean
+    goalWeight?: number | null
+    proteinGoal?: number | null
+    carbsGoal?: number | null
+    fatGoal?: number | null
+    reminderEnabled?: boolean
+    reminderTime?: string | null
+    reminderType?: string
     updatedAt?: Date | string
   }
 
@@ -26177,6 +26418,13 @@ export namespace Prisma {
     riskProfile?: NullableStringFieldUpdateOperationsInput | string | null
     disciplineScore?: FloatFieldUpdateOperationsInput | number
     onboardingDone?: BoolFieldUpdateOperationsInput | boolean
+    goalWeight?: NullableFloatFieldUpdateOperationsInput | number | null
+    proteinGoal?: NullableIntFieldUpdateOperationsInput | number | null
+    carbsGoal?: NullableIntFieldUpdateOperationsInput | number | null
+    fatGoal?: NullableIntFieldUpdateOperationsInput | number | null
+    reminderEnabled?: BoolFieldUpdateOperationsInput | boolean
+    reminderTime?: NullableStringFieldUpdateOperationsInput | string | null
+    reminderType?: StringFieldUpdateOperationsInput | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
@@ -26196,6 +26444,13 @@ export namespace Prisma {
     riskProfile?: NullableStringFieldUpdateOperationsInput | string | null
     disciplineScore?: FloatFieldUpdateOperationsInput | number
     onboardingDone?: BoolFieldUpdateOperationsInput | boolean
+    goalWeight?: NullableFloatFieldUpdateOperationsInput | number | null
+    proteinGoal?: NullableIntFieldUpdateOperationsInput | number | null
+    carbsGoal?: NullableIntFieldUpdateOperationsInput | number | null
+    fatGoal?: NullableIntFieldUpdateOperationsInput | number | null
+    reminderEnabled?: BoolFieldUpdateOperationsInput | boolean
+    reminderTime?: NullableStringFieldUpdateOperationsInput | string | null
+    reminderType?: StringFieldUpdateOperationsInput | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 

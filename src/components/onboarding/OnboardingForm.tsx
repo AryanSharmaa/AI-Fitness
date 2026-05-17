@@ -16,6 +16,7 @@ interface FormData {
   age: string
   height: string
   weight: string
+  goalWeight: string
   gender: string
   goal: string
   workSchedule: string
@@ -31,7 +32,7 @@ export default function OnboardingForm() {
   const [step, setStep] = useState(1)
   const [loading, setLoading] = useState(false)
   const [form, setForm] = useState<FormData>({
-    age: '', height: '', weight: '', gender: '',
+    age: '', height: '', weight: '', goalWeight: '', gender: '',
     goal: '', workSchedule: '', sleepHours: '',
     foodPreference: '', medicalNotes: '',
     equipmentAccess: '', cookingSkill: '',
@@ -52,6 +53,7 @@ export default function OnboardingForm() {
           age: parseInt(form.age) || null,
           height: parseFloat(form.height) || null,
           weight: parseFloat(form.weight) || null,
+          goalWeight: parseFloat(form.goalWeight) || null,
           sleepHours: parseFloat(form.sleepHours) || null,
           onboardingDone: true,
         }),
@@ -106,6 +108,10 @@ export default function OnboardingForm() {
                 <Label>Weight (kg)</Label>
                 <Input type="number" placeholder="70" value={form.weight} onChange={e => update('weight', e.target.value)} />
               </div>
+            </div>
+            <div className="space-y-2">
+              <Label>Goal Weight (kg) <span className="text-muted-foreground font-normal">— optional</span></Label>
+              <Input type="number" placeholder="65" value={form.goalWeight} onChange={e => update('goalWeight', e.target.value)} />
             </div>
             <div className="space-y-2">
               <Label>Primary Goal</Label>

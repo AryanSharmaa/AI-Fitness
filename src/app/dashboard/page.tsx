@@ -5,6 +5,8 @@ import { prisma } from '@/lib/prisma'
 import StatsCards from '@/components/dashboard/StatsCard'
 import WaterTracker from '@/components/water/WaterTracker'
 import BodyTracker from '@/components/body/BodyTracker'
+import MonthlyReport from '@/components/dashboard/MonthlyReport'
+import GettingStartedChecklist from '@/components/dashboard/GettingStartedChecklist'
 import Link from 'next/link'
 import { Card, CardContent } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
@@ -78,6 +80,8 @@ export default async function DashboardPage() {
         </div>
       )}
 
+      <GettingStartedChecklist />
+
       <StatsCards data={dataWithName} />
 
       {/* Quick links */}
@@ -100,6 +104,8 @@ export default async function DashboardPage() {
 
       {/* Body tracker */}
       <BodyTracker />
+
+      <MonthlyReport />
 
       {/* AI nudge card */}
       <Card className="border-emerald-200 bg-emerald-50/50 dark:bg-emerald-950/20 dark:border-emerald-800">

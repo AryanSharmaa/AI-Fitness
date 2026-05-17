@@ -21,9 +21,10 @@ export async function POST(req: NextRequest) {
 
   const body = await req.json()
   const {
-    age, height, weight, gender, goal, workSchedule,
+    age, height, weight, goalWeight, gender, goal, workSchedule,
     sleepHours, foodPreference, medicalNotes, equipmentAccess,
     cookingSkill, onboardingDone,
+    proteinGoal, carbsGoal, fatGoal,
   } = body
 
   // Compute risk profile
@@ -35,14 +36,20 @@ export async function POST(req: NextRequest) {
   const profile = await prisma.userProfile.upsert({
     where: { userId },
     create: {
-      userId, age, height, weight, gender, goal, workSchedule,
+      userId, age, height, weight, goalWeight, gender, goal, workSchedule,
       sleepHours, foodPreference, medicalNotes, equipmentAccess,
       cookingSkill, riskProfile, onboardingDone: onboardingDone ?? false,
+      ...(proteinGoal != null && { proteinGoal }),
+      ...(carbsGoal != null && { carbsGoal }),
+      ...(fatGoal != null && { fatGoal }),
     },
     update: {
-      age, height, weight, gender, goal, workSchedule,
+      age, height, weight, goalWeight, gender, goal, workSchedule,
       sleepHours, foodPreference, medicalNotes, equipmentAccess,
       cookingSkill, riskProfile, onboardingDone: onboardingDone ?? false,
+      ...(proteinGoal != null && { proteinGoal }),
+      ...(carbsGoal != null && { carbsGoal }),
+      ...(fatGoal != null && { fatGoal }),
       updatedAt: new Date(),
     },
   })

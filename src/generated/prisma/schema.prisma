@@ -114,6 +114,13 @@ model UserProfile {
   riskProfile     String?
   disciplineScore Float    @default(50)
   onboardingDone  Boolean  @default(false)
+  goalWeight      Float?
+  proteinGoal     Int?
+  carbsGoal       Int?
+  fatGoal         Int?
+  reminderEnabled Boolean  @default(false)
+  reminderTime    String?
+  reminderType    String   @default("daily")
   user            User     @relation(fields: [userId], references: [id], onDelete: Cascade)
   updatedAt       DateTime @updatedAt
 }

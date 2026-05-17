@@ -7,6 +7,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import { Progress } from '@/components/ui/progress'
 import { Plus, Utensils, ChevronLeft, ChevronRight, Trash2, Zap } from 'lucide-react'
 import { toast } from 'sonner'
+import MacroRings from './MacroRings'
 
 interface FoodLog {
   id: string
@@ -196,11 +197,11 @@ export default function FoodLogger() {
               </span>
             </div>
             <Progress value={caloriePercent} className="h-2" />
-            <div className="grid grid-cols-3 gap-4 pt-1">
-              <MacroChip label="Protein" value={`${Math.round(data.totals.protein)}g`} color="blue" />
-              <MacroChip label="Carbs" value={`${Math.round(data.totals.carbs)}g`} color="yellow" />
-              <MacroChip label="Fat" value={`${Math.round(data.totals.fat)}g`} color="orange" />
-            </div>
+            <MacroRings
+              protein={data.totals.protein}
+              carbs={data.totals.carbs}
+              fat={data.totals.fat}
+            />
           </CardContent>
         </Card>
       )}
