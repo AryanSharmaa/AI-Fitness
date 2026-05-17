@@ -6,9 +6,10 @@ import { getDailyCalorieTarget } from '@/lib/engines/nutrition'
 import OpenAI from 'openai'
 
 const MODELS = [
-  'deepseek/deepseek-v4-flash:free',
-  'google/gemma-4-31b-it:free',
+  'deepseek/deepseek-chat-v3-0324:free',
   'meta-llama/llama-3.3-70b-instruct:free',
+  'google/gemma-3-27b-it:free',
+  'mistralai/mistral-7b-instruct:free',
 ]
 
 let _client: OpenAI | null = null
@@ -62,10 +63,18 @@ export interface MealPlanResponse {
   suggestions: MealSuggestion[]
 }
 
+const FALLBACK_SUGGESTIONS: MealSuggestion[] = [
+  { meal: 'Lunch', suggestion: 'Dal tadka with 2 rotis and salad', calories: 420, protein: 18, carbs: 58, fat: 9, reason: 'High protein, balanced meal.' },
+  { meal: 'Dinner', suggestion: 'Paneer bhurji with 2 rotis', calories: 380, protein: 22, carbs: 35, fat: 14, reason: 'Great protein source to end the day.' },
+  { meal: 'Snack', suggestion: 'Handful of mixed nuts and 1 banana', calories: 220, protein: 5, carbs: 28, fat: 10, reason: 'Quick energy + healthy fats.' },
+]
+
 export async function GET(req: NextRequest) {
   const session = await getServerSession(authOptions)
   if (!session?.user?.id) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
   const userId = session.user.id
+
+  try {
 
   const { searchParams } = new URL(req.url)
   const forceRegenerate = searchParams.get('regenerate') === '1'
@@ -196,4 +205,12 @@ Use realistic Indian meal names. The meal field should be one of: Breakfast, Lun
     goals,
     suggestions,
   } satisfies MealPlanResponse)
+  } catch {
+    return NextResponse.json({
+      consumed: { calories: 0, protein: 0, carbs: 0, fat: 0 },
+      remaining: { calories: 2000, protein: 120, carbs: 250, fat: 65 },
+      goals: { calories: 2000, protein: 120, carbs: 250, fat: 65 },
+      suggestions: FALLBACK_SUGGESTIONS,
+    } satisfies MealPlanResponse)
+  }
 }

@@ -5,8 +5,8 @@ import { prisma } from '@/lib/prisma'
 import OpenAI from 'openai'
 
 const MODELS = [
-  'deepseek/deepseek-v4-flash:free',
-  'google/gemma-4-31b-it:free',
+  'deepseek/deepseek-chat-v3-0324:free',
+  'google/gemma-3-27b-it:free',
   'meta-llama/llama-3.3-70b-instruct:free',
 ]
 
