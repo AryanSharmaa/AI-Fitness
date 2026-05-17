@@ -7,7 +7,7 @@ import {
   DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger
 } from '@/components/ui/dropdown-menu'
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
-import { MessageCircle, LayoutDashboard, UtensilsCrossed, Dumbbell, TrendingUp, Menu, X } from 'lucide-react'
+import { MessageCircle, LayoutDashboard, UtensilsCrossed, Dumbbell, TrendingUp, Scale, Menu, X } from 'lucide-react'
 import { useState } from 'react'
 
 const NAV_LINKS = [
@@ -15,6 +15,7 @@ const NAV_LINKS = [
   { href: '/chat', label: 'AI Coach', icon: MessageCircle },
   { href: '/food-log', label: 'Food Log', icon: UtensilsCrossed },
   { href: '/workout', label: 'Workout', icon: Dumbbell },
+  { href: '/body', label: 'Body', icon: Scale },
   { href: '/progress', label: 'Progress', icon: TrendingUp },
 ]
 

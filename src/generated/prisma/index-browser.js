@@ -177,6 +177,18 @@ exports.Prisma.WaterLogScalarFieldEnum = {
   amount: 'amount'
 };
 
+exports.Prisma.BodyLogScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  date: 'date',
+  weight: 'weight',
+  waist: 'waist',
+  chest: 'chest',
+  arms: 'arms',
+  hips: 'hips',
+  notes: 'notes'
+};
+
 exports.Prisma.UserProfileScalarFieldEnum = {
   id: 'id',
   userId: 'userId',
@@ -327,6 +339,7 @@ exports.Prisma.ModelName = {
   User: 'User',
   Subscription: 'Subscription',
   WaterLog: 'WaterLog',
+  BodyLog: 'BodyLog',
   UserProfile: 'UserProfile',
   FoodLog: 'FoodLog',
   WorkoutLog: 'WorkoutLog',

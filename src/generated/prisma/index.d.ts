@@ -44,6 +44,11 @@ export type Subscription = $Result.DefaultSelection<Prisma.$SubscriptionPayload>
  */
 export type WaterLog = $Result.DefaultSelection<Prisma.$WaterLogPayload>
 /**
+ * Model BodyLog
+ * 
+ */
+export type BodyLog = $Result.DefaultSelection<Prisma.$BodyLogPayload>
+/**
  * Model UserProfile
  * 
  */
@@ -269,6 +274,16 @@ export class PrismaClient<
     * ```
     */
   get waterLog(): Prisma.WaterLogDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.bodyLog`: Exposes CRUD operations for the **BodyLog** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more BodyLogs
+    * const bodyLogs = await prisma.bodyLog.findMany()
+    * ```
+    */
+  get bodyLog(): Prisma.BodyLogDelegate<ExtArgs, ClientOptions>;
 
   /**
    * `prisma.userProfile`: Exposes CRUD operations for the **UserProfile** model.
@@ -799,6 +814,7 @@ export namespace Prisma {
     User: 'User',
     Subscription: 'Subscription',
     WaterLog: 'WaterLog',
+    BodyLog: 'BodyLog',
     UserProfile: 'UserProfile',
     FoodLog: 'FoodLog',
     WorkoutLog: 'WorkoutLog',
@@ -823,7 +839,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "account" | "session" | "verificationToken" | "user" | "subscription" | "waterLog" | "userProfile" | "foodLog" | "workoutLog" | "message" | "behaviorLog" | "streak" | "plan" | "mealLibrary" | "workoutLibrary"
+      modelProps: "account" | "session" | "verificationToken" | "user" | "subscription" | "waterLog" | "bodyLog" | "userProfile" | "foodLog" | "workoutLog" | "message" | "behaviorLog" | "streak" | "plan" | "mealLibrary" | "workoutLibrary"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -1268,6 +1284,80 @@ export namespace Prisma {
           count: {
             args: Prisma.WaterLogCountArgs<ExtArgs>
             result: $Utils.Optional<WaterLogCountAggregateOutputType> | number
+          }
+        }
+      }
+      BodyLog: {
+        payload: Prisma.$BodyLogPayload<ExtArgs>
+        fields: Prisma.BodyLogFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.BodyLogFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BodyLogPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.BodyLogFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BodyLogPayload>
+          }
+          findFirst: {
+            args: Prisma.BodyLogFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BodyLogPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.BodyLogFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BodyLogPayload>
+          }
+          findMany: {
+            args: Prisma.BodyLogFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BodyLogPayload>[]
+          }
+          create: {
+            args: Prisma.BodyLogCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BodyLogPayload>
+          }
+          createMany: {
+            args: Prisma.BodyLogCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.BodyLogCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BodyLogPayload>[]
+          }
+          delete: {
+            args: Prisma.BodyLogDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BodyLogPayload>
+          }
+          update: {
+            args: Prisma.BodyLogUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BodyLogPayload>
+          }
+          deleteMany: {
+            args: Prisma.BodyLogDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.BodyLogUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.BodyLogUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BodyLogPayload>[]
+          }
+          upsert: {
+            args: Prisma.BodyLogUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BodyLogPayload>
+          }
+          aggregate: {
+            args: Prisma.BodyLogAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateBodyLog>
+          }
+          groupBy: {
+            args: Prisma.BodyLogGroupByArgs<ExtArgs>
+            result: $Utils.Optional<BodyLogGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.BodyLogCountArgs<ExtArgs>
+            result: $Utils.Optional<BodyLogCountAggregateOutputType> | number
           }
         }
       }
@@ -2051,6 +2141,7 @@ export namespace Prisma {
     user?: UserOmit
     subscription?: SubscriptionOmit
     waterLog?: WaterLogOmit
+    bodyLog?: BodyLogOmit
     userProfile?: UserProfileOmit
     foodLog?: FoodLogOmit
     workoutLog?: WorkoutLogOmit
@@ -2149,6 +2240,7 @@ export namespace Prisma {
     streaks: number
     plans: number
     waterLogs: number
+    bodyLogs: number
   }
 
   export type UserCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -2161,6 +2253,7 @@ export namespace Prisma {
     streaks?: boolean | UserCountOutputTypeCountStreaksArgs
     plans?: boolean | UserCountOutputTypeCountPlansArgs
     waterLogs?: boolean | UserCountOutputTypeCountWaterLogsArgs
+    bodyLogs?: boolean | UserCountOutputTypeCountBodyLogsArgs
   }
 
   // Custom InputTypes
@@ -2235,6 +2328,13 @@ export namespace Prisma {
    */
   export type UserCountOutputTypeCountWaterLogsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: WaterLogWhereInput
+  }
+
+  /**
+   * UserCountOutputType without action
+   */
+  export type UserCountOutputTypeCountBodyLogsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: BodyLogWhereInput
   }
 
 
@@ -5645,6 +5745,7 @@ export namespace Prisma {
     plans?: boolean | User$plansArgs<ExtArgs>
     subscription?: boolean | User$subscriptionArgs<ExtArgs>
     waterLogs?: boolean | User$waterLogsArgs<ExtArgs>
+    bodyLogs?: boolean | User$bodyLogsArgs<ExtArgs>
     _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["user"]>
 
@@ -5691,6 +5792,7 @@ export namespace Prisma {
     plans?: boolean | User$plansArgs<ExtArgs>
     subscription?: boolean | User$subscriptionArgs<ExtArgs>
     waterLogs?: boolean | User$waterLogsArgs<ExtArgs>
+    bodyLogs?: boolean | User$bodyLogsArgs<ExtArgs>
     _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type UserIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
@@ -5710,6 +5812,7 @@ export namespace Prisma {
       plans: Prisma.$PlanPayload<ExtArgs>[]
       subscription: Prisma.$SubscriptionPayload<ExtArgs> | null
       waterLogs: Prisma.$WaterLogPayload<ExtArgs>[]
+      bodyLogs: Prisma.$BodyLogPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -6124,6 +6227,7 @@ export namespace Prisma {
     plans<T extends User$plansArgs<ExtArgs> = {}>(args?: Subset<T, User$plansArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PlanPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     subscription<T extends User$subscriptionArgs<ExtArgs> = {}>(args?: Subset<T, User$subscriptionArgs<ExtArgs>>): Prisma__SubscriptionClient<$Result.GetResult<Prisma.$SubscriptionPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     waterLogs<T extends User$waterLogsArgs<ExtArgs> = {}>(args?: Subset<T, User$waterLogsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$WaterLogPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    bodyLogs<T extends User$bodyLogsArgs<ExtArgs> = {}>(args?: Subset<T, User$bodyLogsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$BodyLogPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -6804,6 +6908,30 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: WaterLogScalarFieldEnum | WaterLogScalarFieldEnum[]
+  }
+
+  /**
+   * User.bodyLogs
+   */
+  export type User$bodyLogsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BodyLog
+     */
+    select?: BodyLogSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the BodyLog
+     */
+    omit?: BodyLogOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BodyLogInclude<ExtArgs> | null
+    where?: BodyLogWhereInput
+    orderBy?: BodyLogOrderByWithRelationInput | BodyLogOrderByWithRelationInput[]
+    cursor?: BodyLogWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: BodyLogScalarFieldEnum | BodyLogScalarFieldEnum[]
   }
 
   /**
@@ -9021,6 +9149,1171 @@ export namespace Prisma {
      * Choose, which related nodes to fetch as well
      */
     include?: WaterLogInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model BodyLog
+   */
+
+  export type AggregateBodyLog = {
+    _count: BodyLogCountAggregateOutputType | null
+    _avg: BodyLogAvgAggregateOutputType | null
+    _sum: BodyLogSumAggregateOutputType | null
+    _min: BodyLogMinAggregateOutputType | null
+    _max: BodyLogMaxAggregateOutputType | null
+  }
+
+  export type BodyLogAvgAggregateOutputType = {
+    weight: number | null
+    waist: number | null
+    chest: number | null
+    arms: number | null
+    hips: number | null
+  }
+
+  export type BodyLogSumAggregateOutputType = {
+    weight: number | null
+    waist: number | null
+    chest: number | null
+    arms: number | null
+    hips: number | null
+  }
+
+  export type BodyLogMinAggregateOutputType = {
+    id: string | null
+    userId: string | null
+    date: Date | null
+    weight: number | null
+    waist: number | null
+    chest: number | null
+    arms: number | null
+    hips: number | null
+    notes: string | null
+  }
+
+  export type BodyLogMaxAggregateOutputType = {
+    id: string | null
+    userId: string | null
+    date: Date | null
+    weight: number | null
+    waist: number | null
+    chest: number | null
+    arms: number | null
+    hips: number | null
+    notes: string | null
+  }
+
+  export type BodyLogCountAggregateOutputType = {
+    id: number
+    userId: number
+    date: number
+    weight: number
+    waist: number
+    chest: number
+    arms: number
+    hips: number
+    notes: number
+    _all: number
+  }
+
+
+  export type BodyLogAvgAggregateInputType = {
+    weight?: true
+    waist?: true
+    chest?: true
+    arms?: true
+    hips?: true
+  }
+
+  export type BodyLogSumAggregateInputType = {
+    weight?: true
+    waist?: true
+    chest?: true
+    arms?: true
+    hips?: true
+  }
+
+  export type BodyLogMinAggregateInputType = {
+    id?: true
+    userId?: true
+    date?: true
+    weight?: true
+    waist?: true
+    chest?: true
+    arms?: true
+    hips?: true
+    notes?: true
+  }
+
+  export type BodyLogMaxAggregateInputType = {
+    id?: true
+    userId?: true
+    date?: true
+    weight?: true
+    waist?: true
+    chest?: true
+    arms?: true
+    hips?: true
+    notes?: true
+  }
+
+  export type BodyLogCountAggregateInputType = {
+    id?: true
+    userId?: true
+    date?: true
+    weight?: true
+    waist?: true
+    chest?: true
+    arms?: true
+    hips?: true
+    notes?: true
+    _all?: true
+  }
+
+  export type BodyLogAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which BodyLog to aggregate.
+     */
+    where?: BodyLogWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of BodyLogs to fetch.
+     */
+    orderBy?: BodyLogOrderByWithRelationInput | BodyLogOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: BodyLogWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` BodyLogs from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` BodyLogs.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned BodyLogs
+    **/
+    _count?: true | BodyLogCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: BodyLogAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: BodyLogSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: BodyLogMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: BodyLogMaxAggregateInputType
+  }
+
+  export type GetBodyLogAggregateType<T extends BodyLogAggregateArgs> = {
+        [P in keyof T & keyof AggregateBodyLog]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateBodyLog[P]>
+      : GetScalarType<T[P], AggregateBodyLog[P]>
+  }
+
+
+
+
+  export type BodyLogGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: BodyLogWhereInput
+    orderBy?: BodyLogOrderByWithAggregationInput | BodyLogOrderByWithAggregationInput[]
+    by: BodyLogScalarFieldEnum[] | BodyLogScalarFieldEnum
+    having?: BodyLogScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: BodyLogCountAggregateInputType | true
+    _avg?: BodyLogAvgAggregateInputType
+    _sum?: BodyLogSumAggregateInputType
+    _min?: BodyLogMinAggregateInputType
+    _max?: BodyLogMaxAggregateInputType
+  }
+
+  export type BodyLogGroupByOutputType = {
+    id: string
+    userId: string
+    date: Date
+    weight: number | null
+    waist: number | null
+    chest: number | null
+    arms: number | null
+    hips: number | null
+    notes: string | null
+    _count: BodyLogCountAggregateOutputType | null
+    _avg: BodyLogAvgAggregateOutputType | null
+    _sum: BodyLogSumAggregateOutputType | null
+    _min: BodyLogMinAggregateOutputType | null
+    _max: BodyLogMaxAggregateOutputType | null
+  }
+
+  type GetBodyLogGroupByPayload<T extends BodyLogGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<BodyLogGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof BodyLogGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], BodyLogGroupByOutputType[P]>
+            : GetScalarType<T[P], BodyLogGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type BodyLogSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    userId?: boolean
+    date?: boolean
+    weight?: boolean
+    waist?: boolean
+    chest?: boolean
+    arms?: boolean
+    hips?: boolean
+    notes?: boolean
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["bodyLog"]>
+
+  export type BodyLogSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    userId?: boolean
+    date?: boolean
+    weight?: boolean
+    waist?: boolean
+    chest?: boolean
+    arms?: boolean
+    hips?: boolean
+    notes?: boolean
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["bodyLog"]>
+
+  export type BodyLogSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    userId?: boolean
+    date?: boolean
+    weight?: boolean
+    waist?: boolean
+    chest?: boolean
+    arms?: boolean
+    hips?: boolean
+    notes?: boolean
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["bodyLog"]>
+
+  export type BodyLogSelectScalar = {
+    id?: boolean
+    userId?: boolean
+    date?: boolean
+    weight?: boolean
+    waist?: boolean
+    chest?: boolean
+    arms?: boolean
+    hips?: boolean
+    notes?: boolean
+  }
+
+  export type BodyLogOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "userId" | "date" | "weight" | "waist" | "chest" | "arms" | "hips" | "notes", ExtArgs["result"]["bodyLog"]>
+  export type BodyLogInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }
+  export type BodyLogIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }
+  export type BodyLogIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }
+
+  export type $BodyLogPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "BodyLog"
+    objects: {
+      user: Prisma.$UserPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      userId: string
+      date: Date
+      weight: number | null
+      waist: number | null
+      chest: number | null
+      arms: number | null
+      hips: number | null
+      notes: string | null
+    }, ExtArgs["result"]["bodyLog"]>
+    composites: {}
+  }
+
+  type BodyLogGetPayload<S extends boolean | null | undefined | BodyLogDefaultArgs> = $Result.GetResult<Prisma.$BodyLogPayload, S>
+
+  type BodyLogCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<BodyLogFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: BodyLogCountAggregateInputType | true
+    }
+
+  export interface BodyLogDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['BodyLog'], meta: { name: 'BodyLog' } }
+    /**
+     * Find zero or one BodyLog that matches the filter.
+     * @param {BodyLogFindUniqueArgs} args - Arguments to find a BodyLog
+     * @example
+     * // Get one BodyLog
+     * const bodyLog = await prisma.bodyLog.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends BodyLogFindUniqueArgs>(args: SelectSubset<T, BodyLogFindUniqueArgs<ExtArgs>>): Prisma__BodyLogClient<$Result.GetResult<Prisma.$BodyLogPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one BodyLog that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {BodyLogFindUniqueOrThrowArgs} args - Arguments to find a BodyLog
+     * @example
+     * // Get one BodyLog
+     * const bodyLog = await prisma.bodyLog.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends BodyLogFindUniqueOrThrowArgs>(args: SelectSubset<T, BodyLogFindUniqueOrThrowArgs<ExtArgs>>): Prisma__BodyLogClient<$Result.GetResult<Prisma.$BodyLogPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first BodyLog that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {BodyLogFindFirstArgs} args - Arguments to find a BodyLog
+     * @example
+     * // Get one BodyLog
+     * const bodyLog = await prisma.bodyLog.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends BodyLogFindFirstArgs>(args?: SelectSubset<T, BodyLogFindFirstArgs<ExtArgs>>): Prisma__BodyLogClient<$Result.GetResult<Prisma.$BodyLogPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first BodyLog that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {BodyLogFindFirstOrThrowArgs} args - Arguments to find a BodyLog
+     * @example
+     * // Get one BodyLog
+     * const bodyLog = await prisma.bodyLog.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends BodyLogFindFirstOrThrowArgs>(args?: SelectSubset<T, BodyLogFindFirstOrThrowArgs<ExtArgs>>): Prisma__BodyLogClient<$Result.GetResult<Prisma.$BodyLogPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more BodyLogs that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {BodyLogFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all BodyLogs
+     * const bodyLogs = await prisma.bodyLog.findMany()
+     * 
+     * // Get first 10 BodyLogs
+     * const bodyLogs = await prisma.bodyLog.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const bodyLogWithIdOnly = await prisma.bodyLog.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends BodyLogFindManyArgs>(args?: SelectSubset<T, BodyLogFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$BodyLogPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a BodyLog.
+     * @param {BodyLogCreateArgs} args - Arguments to create a BodyLog.
+     * @example
+     * // Create one BodyLog
+     * const BodyLog = await prisma.bodyLog.create({
+     *   data: {
+     *     // ... data to create a BodyLog
+     *   }
+     * })
+     * 
+     */
+    create<T extends BodyLogCreateArgs>(args: SelectSubset<T, BodyLogCreateArgs<ExtArgs>>): Prisma__BodyLogClient<$Result.GetResult<Prisma.$BodyLogPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many BodyLogs.
+     * @param {BodyLogCreateManyArgs} args - Arguments to create many BodyLogs.
+     * @example
+     * // Create many BodyLogs
+     * const bodyLog = await prisma.bodyLog.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends BodyLogCreateManyArgs>(args?: SelectSubset<T, BodyLogCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many BodyLogs and returns the data saved in the database.
+     * @param {BodyLogCreateManyAndReturnArgs} args - Arguments to create many BodyLogs.
+     * @example
+     * // Create many BodyLogs
+     * const bodyLog = await prisma.bodyLog.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many BodyLogs and only return the `id`
+     * const bodyLogWithIdOnly = await prisma.bodyLog.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends BodyLogCreateManyAndReturnArgs>(args?: SelectSubset<T, BodyLogCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$BodyLogPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a BodyLog.
+     * @param {BodyLogDeleteArgs} args - Arguments to delete one BodyLog.
+     * @example
+     * // Delete one BodyLog
+     * const BodyLog = await prisma.bodyLog.delete({
+     *   where: {
+     *     // ... filter to delete one BodyLog
+     *   }
+     * })
+     * 
+     */
+    delete<T extends BodyLogDeleteArgs>(args: SelectSubset<T, BodyLogDeleteArgs<ExtArgs>>): Prisma__BodyLogClient<$Result.GetResult<Prisma.$BodyLogPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one BodyLog.
+     * @param {BodyLogUpdateArgs} args - Arguments to update one BodyLog.
+     * @example
+     * // Update one BodyLog
+     * const bodyLog = await prisma.bodyLog.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends BodyLogUpdateArgs>(args: SelectSubset<T, BodyLogUpdateArgs<ExtArgs>>): Prisma__BodyLogClient<$Result.GetResult<Prisma.$BodyLogPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more BodyLogs.
+     * @param {BodyLogDeleteManyArgs} args - Arguments to filter BodyLogs to delete.
+     * @example
+     * // Delete a few BodyLogs
+     * const { count } = await prisma.bodyLog.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends BodyLogDeleteManyArgs>(args?: SelectSubset<T, BodyLogDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more BodyLogs.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {BodyLogUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many BodyLogs
+     * const bodyLog = await prisma.bodyLog.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends BodyLogUpdateManyArgs>(args: SelectSubset<T, BodyLogUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more BodyLogs and returns the data updated in the database.
+     * @param {BodyLogUpdateManyAndReturnArgs} args - Arguments to update many BodyLogs.
+     * @example
+     * // Update many BodyLogs
+     * const bodyLog = await prisma.bodyLog.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more BodyLogs and only return the `id`
+     * const bodyLogWithIdOnly = await prisma.bodyLog.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends BodyLogUpdateManyAndReturnArgs>(args: SelectSubset<T, BodyLogUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$BodyLogPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one BodyLog.
+     * @param {BodyLogUpsertArgs} args - Arguments to update or create a BodyLog.
+     * @example
+     * // Update or create a BodyLog
+     * const bodyLog = await prisma.bodyLog.upsert({
+     *   create: {
+     *     // ... data to create a BodyLog
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the BodyLog we want to update
+     *   }
+     * })
+     */
+    upsert<T extends BodyLogUpsertArgs>(args: SelectSubset<T, BodyLogUpsertArgs<ExtArgs>>): Prisma__BodyLogClient<$Result.GetResult<Prisma.$BodyLogPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of BodyLogs.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {BodyLogCountArgs} args - Arguments to filter BodyLogs to count.
+     * @example
+     * // Count the number of BodyLogs
+     * const count = await prisma.bodyLog.count({
+     *   where: {
+     *     // ... the filter for the BodyLogs we want to count
+     *   }
+     * })
+    **/
+    count<T extends BodyLogCountArgs>(
+      args?: Subset<T, BodyLogCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], BodyLogCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a BodyLog.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {BodyLogAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends BodyLogAggregateArgs>(args: Subset<T, BodyLogAggregateArgs>): Prisma.PrismaPromise<GetBodyLogAggregateType<T>>
+
+    /**
+     * Group by BodyLog.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {BodyLogGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends BodyLogGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: BodyLogGroupByArgs['orderBy'] }
+        : { orderBy?: BodyLogGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, BodyLogGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetBodyLogGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the BodyLog model
+   */
+  readonly fields: BodyLogFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for BodyLog.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__BodyLogClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    user<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the BodyLog model
+   */
+  interface BodyLogFieldRefs {
+    readonly id: FieldRef<"BodyLog", 'String'>
+    readonly userId: FieldRef<"BodyLog", 'String'>
+    readonly date: FieldRef<"BodyLog", 'DateTime'>
+    readonly weight: FieldRef<"BodyLog", 'Float'>
+    readonly waist: FieldRef<"BodyLog", 'Float'>
+    readonly chest: FieldRef<"BodyLog", 'Float'>
+    readonly arms: FieldRef<"BodyLog", 'Float'>
+    readonly hips: FieldRef<"BodyLog", 'Float'>
+    readonly notes: FieldRef<"BodyLog", 'String'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * BodyLog findUnique
+   */
+  export type BodyLogFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BodyLog
+     */
+    select?: BodyLogSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the BodyLog
+     */
+    omit?: BodyLogOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BodyLogInclude<ExtArgs> | null
+    /**
+     * Filter, which BodyLog to fetch.
+     */
+    where: BodyLogWhereUniqueInput
+  }
+
+  /**
+   * BodyLog findUniqueOrThrow
+   */
+  export type BodyLogFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BodyLog
+     */
+    select?: BodyLogSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the BodyLog
+     */
+    omit?: BodyLogOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BodyLogInclude<ExtArgs> | null
+    /**
+     * Filter, which BodyLog to fetch.
+     */
+    where: BodyLogWhereUniqueInput
+  }
+
+  /**
+   * BodyLog findFirst
+   */
+  export type BodyLogFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BodyLog
+     */
+    select?: BodyLogSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the BodyLog
+     */
+    omit?: BodyLogOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BodyLogInclude<ExtArgs> | null
+    /**
+     * Filter, which BodyLog to fetch.
+     */
+    where?: BodyLogWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of BodyLogs to fetch.
+     */
+    orderBy?: BodyLogOrderByWithRelationInput | BodyLogOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for BodyLogs.
+     */
+    cursor?: BodyLogWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` BodyLogs from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` BodyLogs.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of BodyLogs.
+     */
+    distinct?: BodyLogScalarFieldEnum | BodyLogScalarFieldEnum[]
+  }
+
+  /**
+   * BodyLog findFirstOrThrow
+   */
+  export type BodyLogFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BodyLog
+     */
+    select?: BodyLogSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the BodyLog
+     */
+    omit?: BodyLogOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BodyLogInclude<ExtArgs> | null
+    /**
+     * Filter, which BodyLog to fetch.
+     */
+    where?: BodyLogWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of BodyLogs to fetch.
+     */
+    orderBy?: BodyLogOrderByWithRelationInput | BodyLogOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for BodyLogs.
+     */
+    cursor?: BodyLogWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` BodyLogs from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` BodyLogs.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of BodyLogs.
+     */
+    distinct?: BodyLogScalarFieldEnum | BodyLogScalarFieldEnum[]
+  }
+
+  /**
+   * BodyLog findMany
+   */
+  export type BodyLogFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BodyLog
+     */
+    select?: BodyLogSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the BodyLog
+     */
+    omit?: BodyLogOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BodyLogInclude<ExtArgs> | null
+    /**
+     * Filter, which BodyLogs to fetch.
+     */
+    where?: BodyLogWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of BodyLogs to fetch.
+     */
+    orderBy?: BodyLogOrderByWithRelationInput | BodyLogOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing BodyLogs.
+     */
+    cursor?: BodyLogWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` BodyLogs from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` BodyLogs.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of BodyLogs.
+     */
+    distinct?: BodyLogScalarFieldEnum | BodyLogScalarFieldEnum[]
+  }
+
+  /**
+   * BodyLog create
+   */
+  export type BodyLogCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BodyLog
+     */
+    select?: BodyLogSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the BodyLog
+     */
+    omit?: BodyLogOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BodyLogInclude<ExtArgs> | null
+    /**
+     * The data needed to create a BodyLog.
+     */
+    data: XOR<BodyLogCreateInput, BodyLogUncheckedCreateInput>
+  }
+
+  /**
+   * BodyLog createMany
+   */
+  export type BodyLogCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many BodyLogs.
+     */
+    data: BodyLogCreateManyInput | BodyLogCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * BodyLog createManyAndReturn
+   */
+  export type BodyLogCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BodyLog
+     */
+    select?: BodyLogSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the BodyLog
+     */
+    omit?: BodyLogOmit<ExtArgs> | null
+    /**
+     * The data used to create many BodyLogs.
+     */
+    data: BodyLogCreateManyInput | BodyLogCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BodyLogIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * BodyLog update
+   */
+  export type BodyLogUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BodyLog
+     */
+    select?: BodyLogSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the BodyLog
+     */
+    omit?: BodyLogOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BodyLogInclude<ExtArgs> | null
+    /**
+     * The data needed to update a BodyLog.
+     */
+    data: XOR<BodyLogUpdateInput, BodyLogUncheckedUpdateInput>
+    /**
+     * Choose, which BodyLog to update.
+     */
+    where: BodyLogWhereUniqueInput
+  }
+
+  /**
+   * BodyLog updateMany
+   */
+  export type BodyLogUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update BodyLogs.
+     */
+    data: XOR<BodyLogUpdateManyMutationInput, BodyLogUncheckedUpdateManyInput>
+    /**
+     * Filter which BodyLogs to update
+     */
+    where?: BodyLogWhereInput
+    /**
+     * Limit how many BodyLogs to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * BodyLog updateManyAndReturn
+   */
+  export type BodyLogUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BodyLog
+     */
+    select?: BodyLogSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the BodyLog
+     */
+    omit?: BodyLogOmit<ExtArgs> | null
+    /**
+     * The data used to update BodyLogs.
+     */
+    data: XOR<BodyLogUpdateManyMutationInput, BodyLogUncheckedUpdateManyInput>
+    /**
+     * Filter which BodyLogs to update
+     */
+    where?: BodyLogWhereInput
+    /**
+     * Limit how many BodyLogs to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BodyLogIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * BodyLog upsert
+   */
+  export type BodyLogUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BodyLog
+     */
+    select?: BodyLogSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the BodyLog
+     */
+    omit?: BodyLogOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BodyLogInclude<ExtArgs> | null
+    /**
+     * The filter to search for the BodyLog to update in case it exists.
+     */
+    where: BodyLogWhereUniqueInput
+    /**
+     * In case the BodyLog found by the `where` argument doesn't exist, create a new BodyLog with this data.
+     */
+    create: XOR<BodyLogCreateInput, BodyLogUncheckedCreateInput>
+    /**
+     * In case the BodyLog was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<BodyLogUpdateInput, BodyLogUncheckedUpdateInput>
+  }
+
+  /**
+   * BodyLog delete
+   */
+  export type BodyLogDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BodyLog
+     */
+    select?: BodyLogSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the BodyLog
+     */
+    omit?: BodyLogOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BodyLogInclude<ExtArgs> | null
+    /**
+     * Filter which BodyLog to delete.
+     */
+    where: BodyLogWhereUniqueInput
+  }
+
+  /**
+   * BodyLog deleteMany
+   */
+  export type BodyLogDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which BodyLogs to delete
+     */
+    where?: BodyLogWhereInput
+    /**
+     * Limit how many BodyLogs to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * BodyLog without action
+   */
+  export type BodyLogDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BodyLog
+     */
+    select?: BodyLogSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the BodyLog
+     */
+    omit?: BodyLogOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BodyLogInclude<ExtArgs> | null
   }
 
 
@@ -19310,6 +20603,21 @@ export namespace Prisma {
   export type WaterLogScalarFieldEnum = (typeof WaterLogScalarFieldEnum)[keyof typeof WaterLogScalarFieldEnum]
 
 
+  export const BodyLogScalarFieldEnum: {
+    id: 'id',
+    userId: 'userId',
+    date: 'date',
+    weight: 'weight',
+    waist: 'waist',
+    chest: 'chest',
+    arms: 'arms',
+    hips: 'hips',
+    notes: 'notes'
+  };
+
+  export type BodyLogScalarFieldEnum = (typeof BodyLogScalarFieldEnum)[keyof typeof BodyLogScalarFieldEnum]
+
+
   export const UserProfileScalarFieldEnum: {
     id: 'id',
     userId: 'userId',
@@ -19790,6 +21098,7 @@ export namespace Prisma {
     plans?: PlanListRelationFilter
     subscription?: XOR<SubscriptionNullableScalarRelationFilter, SubscriptionWhereInput> | null
     waterLogs?: WaterLogListRelationFilter
+    bodyLogs?: BodyLogListRelationFilter
   }
 
   export type UserOrderByWithRelationInput = {
@@ -19811,6 +21120,7 @@ export namespace Prisma {
     plans?: PlanOrderByRelationAggregateInput
     subscription?: SubscriptionOrderByWithRelationInput
     waterLogs?: WaterLogOrderByRelationAggregateInput
+    bodyLogs?: BodyLogOrderByRelationAggregateInput
   }
 
   export type UserWhereUniqueInput = Prisma.AtLeast<{
@@ -19835,6 +21145,7 @@ export namespace Prisma {
     plans?: PlanListRelationFilter
     subscription?: XOR<SubscriptionNullableScalarRelationFilter, SubscriptionWhereInput> | null
     waterLogs?: WaterLogListRelationFilter
+    bodyLogs?: BodyLogListRelationFilter
   }, "id" | "email">
 
   export type UserOrderByWithAggregationInput = {
@@ -19988,6 +21299,83 @@ export namespace Prisma {
     userId?: StringWithAggregatesFilter<"WaterLog"> | string
     date?: DateTimeWithAggregatesFilter<"WaterLog"> | Date | string
     amount?: IntWithAggregatesFilter<"WaterLog"> | number
+  }
+
+  export type BodyLogWhereInput = {
+    AND?: BodyLogWhereInput | BodyLogWhereInput[]
+    OR?: BodyLogWhereInput[]
+    NOT?: BodyLogWhereInput | BodyLogWhereInput[]
+    id?: StringFilter<"BodyLog"> | string
+    userId?: StringFilter<"BodyLog"> | string
+    date?: DateTimeFilter<"BodyLog"> | Date | string
+    weight?: FloatNullableFilter<"BodyLog"> | number | null
+    waist?: FloatNullableFilter<"BodyLog"> | number | null
+    chest?: FloatNullableFilter<"BodyLog"> | number | null
+    arms?: FloatNullableFilter<"BodyLog"> | number | null
+    hips?: FloatNullableFilter<"BodyLog"> | number | null
+    notes?: StringNullableFilter<"BodyLog"> | string | null
+    user?: XOR<UserScalarRelationFilter, UserWhereInput>
+  }
+
+  export type BodyLogOrderByWithRelationInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    date?: SortOrder
+    weight?: SortOrderInput | SortOrder
+    waist?: SortOrderInput | SortOrder
+    chest?: SortOrderInput | SortOrder
+    arms?: SortOrderInput | SortOrder
+    hips?: SortOrderInput | SortOrder
+    notes?: SortOrderInput | SortOrder
+    user?: UserOrderByWithRelationInput
+  }
+
+  export type BodyLogWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: BodyLogWhereInput | BodyLogWhereInput[]
+    OR?: BodyLogWhereInput[]
+    NOT?: BodyLogWhereInput | BodyLogWhereInput[]
+    userId?: StringFilter<"BodyLog"> | string
+    date?: DateTimeFilter<"BodyLog"> | Date | string
+    weight?: FloatNullableFilter<"BodyLog"> | number | null
+    waist?: FloatNullableFilter<"BodyLog"> | number | null
+    chest?: FloatNullableFilter<"BodyLog"> | number | null
+    arms?: FloatNullableFilter<"BodyLog"> | number | null
+    hips?: FloatNullableFilter<"BodyLog"> | number | null
+    notes?: StringNullableFilter<"BodyLog"> | string | null
+    user?: XOR<UserScalarRelationFilter, UserWhereInput>
+  }, "id">
+
+  export type BodyLogOrderByWithAggregationInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    date?: SortOrder
+    weight?: SortOrderInput | SortOrder
+    waist?: SortOrderInput | SortOrder
+    chest?: SortOrderInput | SortOrder
+    arms?: SortOrderInput | SortOrder
+    hips?: SortOrderInput | SortOrder
+    notes?: SortOrderInput | SortOrder
+    _count?: BodyLogCountOrderByAggregateInput
+    _avg?: BodyLogAvgOrderByAggregateInput
+    _max?: BodyLogMaxOrderByAggregateInput
+    _min?: BodyLogMinOrderByAggregateInput
+    _sum?: BodyLogSumOrderByAggregateInput
+  }
+
+  export type BodyLogScalarWhereWithAggregatesInput = {
+    AND?: BodyLogScalarWhereWithAggregatesInput | BodyLogScalarWhereWithAggregatesInput[]
+    OR?: BodyLogScalarWhereWithAggregatesInput[]
+    NOT?: BodyLogScalarWhereWithAggregatesInput | BodyLogScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"BodyLog"> | string
+    userId?: StringWithAggregatesFilter<"BodyLog"> | string
+    date?: DateTimeWithAggregatesFilter<"BodyLog"> | Date | string
+    weight?: FloatNullableWithAggregatesFilter<"BodyLog"> | number | null
+    waist?: FloatNullableWithAggregatesFilter<"BodyLog"> | number | null
+    chest?: FloatNullableWithAggregatesFilter<"BodyLog"> | number | null
+    arms?: FloatNullableWithAggregatesFilter<"BodyLog"> | number | null
+    hips?: FloatNullableWithAggregatesFilter<"BodyLog"> | number | null
+    notes?: StringNullableWithAggregatesFilter<"BodyLog"> | string | null
   }
 
   export type UserProfileWhereInput = {
@@ -20904,6 +22292,7 @@ export namespace Prisma {
     plans?: PlanCreateNestedManyWithoutUserInput
     subscription?: SubscriptionCreateNestedOneWithoutUserInput
     waterLogs?: WaterLogCreateNestedManyWithoutUserInput
+    bodyLogs?: BodyLogCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateInput = {
@@ -20925,6 +22314,7 @@ export namespace Prisma {
     plans?: PlanUncheckedCreateNestedManyWithoutUserInput
     subscription?: SubscriptionUncheckedCreateNestedOneWithoutUserInput
     waterLogs?: WaterLogUncheckedCreateNestedManyWithoutUserInput
+    bodyLogs?: BodyLogUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserUpdateInput = {
@@ -20946,6 +22336,7 @@ export namespace Prisma {
     plans?: PlanUpdateManyWithoutUserNestedInput
     subscription?: SubscriptionUpdateOneWithoutUserNestedInput
     waterLogs?: WaterLogUpdateManyWithoutUserNestedInput
+    bodyLogs?: BodyLogUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateInput = {
@@ -20967,6 +22358,7 @@ export namespace Prisma {
     plans?: PlanUncheckedUpdateManyWithoutUserNestedInput
     subscription?: SubscriptionUncheckedUpdateOneWithoutUserNestedInput
     waterLogs?: WaterLogUncheckedUpdateManyWithoutUserNestedInput
+    bodyLogs?: BodyLogUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type UserCreateManyInput = {
@@ -21128,6 +22520,89 @@ export namespace Prisma {
     userId?: StringFieldUpdateOperationsInput | string
     date?: DateTimeFieldUpdateOperationsInput | Date | string
     amount?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type BodyLogCreateInput = {
+    id?: string
+    date?: Date | string
+    weight?: number | null
+    waist?: number | null
+    chest?: number | null
+    arms?: number | null
+    hips?: number | null
+    notes?: string | null
+    user: UserCreateNestedOneWithoutBodyLogsInput
+  }
+
+  export type BodyLogUncheckedCreateInput = {
+    id?: string
+    userId: string
+    date?: Date | string
+    weight?: number | null
+    waist?: number | null
+    chest?: number | null
+    arms?: number | null
+    hips?: number | null
+    notes?: string | null
+  }
+
+  export type BodyLogUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
+    weight?: NullableFloatFieldUpdateOperationsInput | number | null
+    waist?: NullableFloatFieldUpdateOperationsInput | number | null
+    chest?: NullableFloatFieldUpdateOperationsInput | number | null
+    arms?: NullableFloatFieldUpdateOperationsInput | number | null
+    hips?: NullableFloatFieldUpdateOperationsInput | number | null
+    notes?: NullableStringFieldUpdateOperationsInput | string | null
+    user?: UserUpdateOneRequiredWithoutBodyLogsNestedInput
+  }
+
+  export type BodyLogUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
+    weight?: NullableFloatFieldUpdateOperationsInput | number | null
+    waist?: NullableFloatFieldUpdateOperationsInput | number | null
+    chest?: NullableFloatFieldUpdateOperationsInput | number | null
+    arms?: NullableFloatFieldUpdateOperationsInput | number | null
+    hips?: NullableFloatFieldUpdateOperationsInput | number | null
+    notes?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type BodyLogCreateManyInput = {
+    id?: string
+    userId: string
+    date?: Date | string
+    weight?: number | null
+    waist?: number | null
+    chest?: number | null
+    arms?: number | null
+    hips?: number | null
+    notes?: string | null
+  }
+
+  export type BodyLogUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
+    weight?: NullableFloatFieldUpdateOperationsInput | number | null
+    waist?: NullableFloatFieldUpdateOperationsInput | number | null
+    chest?: NullableFloatFieldUpdateOperationsInput | number | null
+    arms?: NullableFloatFieldUpdateOperationsInput | number | null
+    hips?: NullableFloatFieldUpdateOperationsInput | number | null
+    notes?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type BodyLogUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
+    weight?: NullableFloatFieldUpdateOperationsInput | number | null
+    waist?: NullableFloatFieldUpdateOperationsInput | number | null
+    chest?: NullableFloatFieldUpdateOperationsInput | number | null
+    arms?: NullableFloatFieldUpdateOperationsInput | number | null
+    hips?: NullableFloatFieldUpdateOperationsInput | number | null
+    notes?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type UserProfileCreateInput = {
@@ -22212,6 +23687,12 @@ export namespace Prisma {
     none?: WaterLogWhereInput
   }
 
+  export type BodyLogListRelationFilter = {
+    every?: BodyLogWhereInput
+    some?: BodyLogWhereInput
+    none?: BodyLogWhereInput
+  }
+
   export type AccountOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
@@ -22245,6 +23726,10 @@ export namespace Prisma {
   }
 
   export type WaterLogOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type BodyLogOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
@@ -22395,6 +23880,74 @@ export namespace Prisma {
     not?: NestedFloatNullableFilter<$PrismaModel> | number | null
   }
 
+  export type BodyLogCountOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    date?: SortOrder
+    weight?: SortOrder
+    waist?: SortOrder
+    chest?: SortOrder
+    arms?: SortOrder
+    hips?: SortOrder
+    notes?: SortOrder
+  }
+
+  export type BodyLogAvgOrderByAggregateInput = {
+    weight?: SortOrder
+    waist?: SortOrder
+    chest?: SortOrder
+    arms?: SortOrder
+    hips?: SortOrder
+  }
+
+  export type BodyLogMaxOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    date?: SortOrder
+    weight?: SortOrder
+    waist?: SortOrder
+    chest?: SortOrder
+    arms?: SortOrder
+    hips?: SortOrder
+    notes?: SortOrder
+  }
+
+  export type BodyLogMinOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    date?: SortOrder
+    weight?: SortOrder
+    waist?: SortOrder
+    chest?: SortOrder
+    arms?: SortOrder
+    hips?: SortOrder
+    notes?: SortOrder
+  }
+
+  export type BodyLogSumOrderByAggregateInput = {
+    weight?: SortOrder
+    waist?: SortOrder
+    chest?: SortOrder
+    arms?: SortOrder
+    hips?: SortOrder
+  }
+
+  export type FloatNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: number | FloatFieldRefInput<$PrismaModel> | null
+    in?: number[] | ListFloatFieldRefInput<$PrismaModel> | null
+    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel> | null
+    lt?: number | FloatFieldRefInput<$PrismaModel>
+    lte?: number | FloatFieldRefInput<$PrismaModel>
+    gt?: number | FloatFieldRefInput<$PrismaModel>
+    gte?: number | FloatFieldRefInput<$PrismaModel>
+    not?: NestedFloatNullableWithAggregatesFilter<$PrismaModel> | number | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _avg?: NestedFloatNullableFilter<$PrismaModel>
+    _sum?: NestedFloatNullableFilter<$PrismaModel>
+    _min?: NestedFloatNullableFilter<$PrismaModel>
+    _max?: NestedFloatNullableFilter<$PrismaModel>
+  }
+
   export type FloatFilter<$PrismaModel = never> = {
     equals?: number | FloatFieldRefInput<$PrismaModel>
     in?: number[] | ListFloatFieldRefInput<$PrismaModel>
@@ -22485,22 +24038,6 @@ export namespace Prisma {
     weight?: SortOrder
     sleepHours?: SortOrder
     disciplineScore?: SortOrder
-  }
-
-  export type FloatNullableWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: number | FloatFieldRefInput<$PrismaModel> | null
-    in?: number[] | ListFloatFieldRefInput<$PrismaModel> | null
-    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel> | null
-    lt?: number | FloatFieldRefInput<$PrismaModel>
-    lte?: number | FloatFieldRefInput<$PrismaModel>
-    gt?: number | FloatFieldRefInput<$PrismaModel>
-    gte?: number | FloatFieldRefInput<$PrismaModel>
-    not?: NestedFloatNullableWithAggregatesFilter<$PrismaModel> | number | null
-    _count?: NestedIntNullableFilter<$PrismaModel>
-    _avg?: NestedFloatNullableFilter<$PrismaModel>
-    _sum?: NestedFloatNullableFilter<$PrismaModel>
-    _min?: NestedFloatNullableFilter<$PrismaModel>
-    _max?: NestedFloatNullableFilter<$PrismaModel>
   }
 
   export type FloatWithAggregatesFilter<$PrismaModel = never> = {
@@ -23080,6 +24617,13 @@ export namespace Prisma {
     connect?: WaterLogWhereUniqueInput | WaterLogWhereUniqueInput[]
   }
 
+  export type BodyLogCreateNestedManyWithoutUserInput = {
+    create?: XOR<BodyLogCreateWithoutUserInput, BodyLogUncheckedCreateWithoutUserInput> | BodyLogCreateWithoutUserInput[] | BodyLogUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: BodyLogCreateOrConnectWithoutUserInput | BodyLogCreateOrConnectWithoutUserInput[]
+    createMany?: BodyLogCreateManyUserInputEnvelope
+    connect?: BodyLogWhereUniqueInput | BodyLogWhereUniqueInput[]
+  }
+
   export type AccountUncheckedCreateNestedManyWithoutUserInput = {
     create?: XOR<AccountCreateWithoutUserInput, AccountUncheckedCreateWithoutUserInput> | AccountCreateWithoutUserInput[] | AccountUncheckedCreateWithoutUserInput[]
     connectOrCreate?: AccountCreateOrConnectWithoutUserInput | AccountCreateOrConnectWithoutUserInput[]
@@ -23153,6 +24697,13 @@ export namespace Prisma {
     connectOrCreate?: WaterLogCreateOrConnectWithoutUserInput | WaterLogCreateOrConnectWithoutUserInput[]
     createMany?: WaterLogCreateManyUserInputEnvelope
     connect?: WaterLogWhereUniqueInput | WaterLogWhereUniqueInput[]
+  }
+
+  export type BodyLogUncheckedCreateNestedManyWithoutUserInput = {
+    create?: XOR<BodyLogCreateWithoutUserInput, BodyLogUncheckedCreateWithoutUserInput> | BodyLogCreateWithoutUserInput[] | BodyLogUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: BodyLogCreateOrConnectWithoutUserInput | BodyLogCreateOrConnectWithoutUserInput[]
+    createMany?: BodyLogCreateManyUserInputEnvelope
+    connect?: BodyLogWhereUniqueInput | BodyLogWhereUniqueInput[]
   }
 
   export type NullableDateTimeFieldUpdateOperationsInput = {
@@ -23305,6 +24856,20 @@ export namespace Prisma {
     deleteMany?: WaterLogScalarWhereInput | WaterLogScalarWhereInput[]
   }
 
+  export type BodyLogUpdateManyWithoutUserNestedInput = {
+    create?: XOR<BodyLogCreateWithoutUserInput, BodyLogUncheckedCreateWithoutUserInput> | BodyLogCreateWithoutUserInput[] | BodyLogUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: BodyLogCreateOrConnectWithoutUserInput | BodyLogCreateOrConnectWithoutUserInput[]
+    upsert?: BodyLogUpsertWithWhereUniqueWithoutUserInput | BodyLogUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: BodyLogCreateManyUserInputEnvelope
+    set?: BodyLogWhereUniqueInput | BodyLogWhereUniqueInput[]
+    disconnect?: BodyLogWhereUniqueInput | BodyLogWhereUniqueInput[]
+    delete?: BodyLogWhereUniqueInput | BodyLogWhereUniqueInput[]
+    connect?: BodyLogWhereUniqueInput | BodyLogWhereUniqueInput[]
+    update?: BodyLogUpdateWithWhereUniqueWithoutUserInput | BodyLogUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: BodyLogUpdateManyWithWhereWithoutUserInput | BodyLogUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: BodyLogScalarWhereInput | BodyLogScalarWhereInput[]
+  }
+
   export type AccountUncheckedUpdateManyWithoutUserNestedInput = {
     create?: XOR<AccountCreateWithoutUserInput, AccountUncheckedCreateWithoutUserInput> | AccountCreateWithoutUserInput[] | AccountUncheckedCreateWithoutUserInput[]
     connectOrCreate?: AccountCreateOrConnectWithoutUserInput | AccountCreateOrConnectWithoutUserInput[]
@@ -23451,6 +25016,20 @@ export namespace Prisma {
     deleteMany?: WaterLogScalarWhereInput | WaterLogScalarWhereInput[]
   }
 
+  export type BodyLogUncheckedUpdateManyWithoutUserNestedInput = {
+    create?: XOR<BodyLogCreateWithoutUserInput, BodyLogUncheckedCreateWithoutUserInput> | BodyLogCreateWithoutUserInput[] | BodyLogUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: BodyLogCreateOrConnectWithoutUserInput | BodyLogCreateOrConnectWithoutUserInput[]
+    upsert?: BodyLogUpsertWithWhereUniqueWithoutUserInput | BodyLogUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: BodyLogCreateManyUserInputEnvelope
+    set?: BodyLogWhereUniqueInput | BodyLogWhereUniqueInput[]
+    disconnect?: BodyLogWhereUniqueInput | BodyLogWhereUniqueInput[]
+    delete?: BodyLogWhereUniqueInput | BodyLogWhereUniqueInput[]
+    connect?: BodyLogWhereUniqueInput | BodyLogWhereUniqueInput[]
+    update?: BodyLogUpdateWithWhereUniqueWithoutUserInput | BodyLogUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: BodyLogUpdateManyWithWhereWithoutUserInput | BodyLogUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: BodyLogScalarWhereInput | BodyLogScalarWhereInput[]
+  }
+
   export type UserCreateNestedOneWithoutSubscriptionInput = {
     create?: XOR<UserCreateWithoutSubscriptionInput, UserUncheckedCreateWithoutSubscriptionInput>
     connectOrCreate?: UserCreateOrConnectWithoutSubscriptionInput
@@ -23487,9 +25066,9 @@ export namespace Prisma {
     update?: XOR<XOR<UserUpdateToOneWithWhereWithoutWaterLogsInput, UserUpdateWithoutWaterLogsInput>, UserUncheckedUpdateWithoutWaterLogsInput>
   }
 
-  export type UserCreateNestedOneWithoutProfileInput = {
-    create?: XOR<UserCreateWithoutProfileInput, UserUncheckedCreateWithoutProfileInput>
-    connectOrCreate?: UserCreateOrConnectWithoutProfileInput
+  export type UserCreateNestedOneWithoutBodyLogsInput = {
+    create?: XOR<UserCreateWithoutBodyLogsInput, UserUncheckedCreateWithoutBodyLogsInput>
+    connectOrCreate?: UserCreateOrConnectWithoutBodyLogsInput
     connect?: UserWhereUniqueInput
   }
 
@@ -23499,6 +25078,20 @@ export namespace Prisma {
     decrement?: number
     multiply?: number
     divide?: number
+  }
+
+  export type UserUpdateOneRequiredWithoutBodyLogsNestedInput = {
+    create?: XOR<UserCreateWithoutBodyLogsInput, UserUncheckedCreateWithoutBodyLogsInput>
+    connectOrCreate?: UserCreateOrConnectWithoutBodyLogsInput
+    upsert?: UserUpsertWithoutBodyLogsInput
+    connect?: UserWhereUniqueInput
+    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutBodyLogsInput, UserUpdateWithoutBodyLogsInput>, UserUncheckedUpdateWithoutBodyLogsInput>
+  }
+
+  export type UserCreateNestedOneWithoutProfileInput = {
+    create?: XOR<UserCreateWithoutProfileInput, UserUncheckedCreateWithoutProfileInput>
+    connectOrCreate?: UserCreateOrConnectWithoutProfileInput
+    connect?: UserWhereUniqueInput
   }
 
   export type FloatFieldUpdateOperationsInput = {
@@ -23811,11 +25404,6 @@ export namespace Prisma {
     not?: NestedFloatFilter<$PrismaModel> | number
   }
 
-  export type NestedBoolFilter<$PrismaModel = never> = {
-    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
-    not?: NestedBoolFilter<$PrismaModel> | boolean
-  }
-
   export type NestedFloatNullableWithAggregatesFilter<$PrismaModel = never> = {
     equals?: number | FloatFieldRefInput<$PrismaModel> | null
     in?: number[] | ListFloatFieldRefInput<$PrismaModel> | null
@@ -23830,6 +25418,11 @@ export namespace Prisma {
     _sum?: NestedFloatNullableFilter<$PrismaModel>
     _min?: NestedFloatNullableFilter<$PrismaModel>
     _max?: NestedFloatNullableFilter<$PrismaModel>
+  }
+
+  export type NestedBoolFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
+    not?: NestedBoolFilter<$PrismaModel> | boolean
   }
 
   export type NestedFloatWithAggregatesFilter<$PrismaModel = never> = {
@@ -23920,6 +25513,7 @@ export namespace Prisma {
     plans?: PlanCreateNestedManyWithoutUserInput
     subscription?: SubscriptionCreateNestedOneWithoutUserInput
     waterLogs?: WaterLogCreateNestedManyWithoutUserInput
+    bodyLogs?: BodyLogCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutAccountsInput = {
@@ -23940,6 +25534,7 @@ export namespace Prisma {
     plans?: PlanUncheckedCreateNestedManyWithoutUserInput
     subscription?: SubscriptionUncheckedCreateNestedOneWithoutUserInput
     waterLogs?: WaterLogUncheckedCreateNestedManyWithoutUserInput
+    bodyLogs?: BodyLogUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutAccountsInput = {
@@ -23976,6 +25571,7 @@ export namespace Prisma {
     plans?: PlanUpdateManyWithoutUserNestedInput
     subscription?: SubscriptionUpdateOneWithoutUserNestedInput
     waterLogs?: WaterLogUpdateManyWithoutUserNestedInput
+    bodyLogs?: BodyLogUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutAccountsInput = {
@@ -23996,6 +25592,7 @@ export namespace Prisma {
     plans?: PlanUncheckedUpdateManyWithoutUserNestedInput
     subscription?: SubscriptionUncheckedUpdateOneWithoutUserNestedInput
     waterLogs?: WaterLogUncheckedUpdateManyWithoutUserNestedInput
+    bodyLogs?: BodyLogUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type UserCreateWithoutSessionsInput = {
@@ -24016,6 +25613,7 @@ export namespace Prisma {
     plans?: PlanCreateNestedManyWithoutUserInput
     subscription?: SubscriptionCreateNestedOneWithoutUserInput
     waterLogs?: WaterLogCreateNestedManyWithoutUserInput
+    bodyLogs?: BodyLogCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutSessionsInput = {
@@ -24036,6 +25634,7 @@ export namespace Prisma {
     plans?: PlanUncheckedCreateNestedManyWithoutUserInput
     subscription?: SubscriptionUncheckedCreateNestedOneWithoutUserInput
     waterLogs?: WaterLogUncheckedCreateNestedManyWithoutUserInput
+    bodyLogs?: BodyLogUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutSessionsInput = {
@@ -24072,6 +25671,7 @@ export namespace Prisma {
     plans?: PlanUpdateManyWithoutUserNestedInput
     subscription?: SubscriptionUpdateOneWithoutUserNestedInput
     waterLogs?: WaterLogUpdateManyWithoutUserNestedInput
+    bodyLogs?: BodyLogUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutSessionsInput = {
@@ -24092,6 +25692,7 @@ export namespace Prisma {
     plans?: PlanUncheckedUpdateManyWithoutUserNestedInput
     subscription?: SubscriptionUncheckedUpdateOneWithoutUserNestedInput
     waterLogs?: WaterLogUncheckedUpdateManyWithoutUserNestedInput
+    bodyLogs?: BodyLogUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type AccountCreateWithoutUserInput = {
@@ -24423,6 +26024,38 @@ export namespace Prisma {
 
   export type WaterLogCreateManyUserInputEnvelope = {
     data: WaterLogCreateManyUserInput | WaterLogCreateManyUserInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type BodyLogCreateWithoutUserInput = {
+    id?: string
+    date?: Date | string
+    weight?: number | null
+    waist?: number | null
+    chest?: number | null
+    arms?: number | null
+    hips?: number | null
+    notes?: string | null
+  }
+
+  export type BodyLogUncheckedCreateWithoutUserInput = {
+    id?: string
+    date?: Date | string
+    weight?: number | null
+    waist?: number | null
+    chest?: number | null
+    arms?: number | null
+    hips?: number | null
+    notes?: string | null
+  }
+
+  export type BodyLogCreateOrConnectWithoutUserInput = {
+    where: BodyLogWhereUniqueInput
+    create: XOR<BodyLogCreateWithoutUserInput, BodyLogUncheckedCreateWithoutUserInput>
+  }
+
+  export type BodyLogCreateManyUserInputEnvelope = {
+    data: BodyLogCreateManyUserInput | BodyLogCreateManyUserInput[]
     skipDuplicates?: boolean
   }
 
@@ -24774,6 +26407,37 @@ export namespace Prisma {
     amount?: IntFilter<"WaterLog"> | number
   }
 
+  export type BodyLogUpsertWithWhereUniqueWithoutUserInput = {
+    where: BodyLogWhereUniqueInput
+    update: XOR<BodyLogUpdateWithoutUserInput, BodyLogUncheckedUpdateWithoutUserInput>
+    create: XOR<BodyLogCreateWithoutUserInput, BodyLogUncheckedCreateWithoutUserInput>
+  }
+
+  export type BodyLogUpdateWithWhereUniqueWithoutUserInput = {
+    where: BodyLogWhereUniqueInput
+    data: XOR<BodyLogUpdateWithoutUserInput, BodyLogUncheckedUpdateWithoutUserInput>
+  }
+
+  export type BodyLogUpdateManyWithWhereWithoutUserInput = {
+    where: BodyLogScalarWhereInput
+    data: XOR<BodyLogUpdateManyMutationInput, BodyLogUncheckedUpdateManyWithoutUserInput>
+  }
+
+  export type BodyLogScalarWhereInput = {
+    AND?: BodyLogScalarWhereInput | BodyLogScalarWhereInput[]
+    OR?: BodyLogScalarWhereInput[]
+    NOT?: BodyLogScalarWhereInput | BodyLogScalarWhereInput[]
+    id?: StringFilter<"BodyLog"> | string
+    userId?: StringFilter<"BodyLog"> | string
+    date?: DateTimeFilter<"BodyLog"> | Date | string
+    weight?: FloatNullableFilter<"BodyLog"> | number | null
+    waist?: FloatNullableFilter<"BodyLog"> | number | null
+    chest?: FloatNullableFilter<"BodyLog"> | number | null
+    arms?: FloatNullableFilter<"BodyLog"> | number | null
+    hips?: FloatNullableFilter<"BodyLog"> | number | null
+    notes?: StringNullableFilter<"BodyLog"> | string | null
+  }
+
   export type UserCreateWithoutSubscriptionInput = {
     id?: string
     name?: string | null
@@ -24792,6 +26456,7 @@ export namespace Prisma {
     streaks?: StreakCreateNestedManyWithoutUserInput
     plans?: PlanCreateNestedManyWithoutUserInput
     waterLogs?: WaterLogCreateNestedManyWithoutUserInput
+    bodyLogs?: BodyLogCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutSubscriptionInput = {
@@ -24812,6 +26477,7 @@ export namespace Prisma {
     streaks?: StreakUncheckedCreateNestedManyWithoutUserInput
     plans?: PlanUncheckedCreateNestedManyWithoutUserInput
     waterLogs?: WaterLogUncheckedCreateNestedManyWithoutUserInput
+    bodyLogs?: BodyLogUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutSubscriptionInput = {
@@ -24848,6 +26514,7 @@ export namespace Prisma {
     streaks?: StreakUpdateManyWithoutUserNestedInput
     plans?: PlanUpdateManyWithoutUserNestedInput
     waterLogs?: WaterLogUpdateManyWithoutUserNestedInput
+    bodyLogs?: BodyLogUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutSubscriptionInput = {
@@ -24868,6 +26535,7 @@ export namespace Prisma {
     streaks?: StreakUncheckedUpdateManyWithoutUserNestedInput
     plans?: PlanUncheckedUpdateManyWithoutUserNestedInput
     waterLogs?: WaterLogUncheckedUpdateManyWithoutUserNestedInput
+    bodyLogs?: BodyLogUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type UserCreateWithoutWaterLogsInput = {
@@ -24888,6 +26556,7 @@ export namespace Prisma {
     streaks?: StreakCreateNestedManyWithoutUserInput
     plans?: PlanCreateNestedManyWithoutUserInput
     subscription?: SubscriptionCreateNestedOneWithoutUserInput
+    bodyLogs?: BodyLogCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutWaterLogsInput = {
@@ -24908,6 +26577,7 @@ export namespace Prisma {
     streaks?: StreakUncheckedCreateNestedManyWithoutUserInput
     plans?: PlanUncheckedCreateNestedManyWithoutUserInput
     subscription?: SubscriptionUncheckedCreateNestedOneWithoutUserInput
+    bodyLogs?: BodyLogUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutWaterLogsInput = {
@@ -24944,6 +26614,7 @@ export namespace Prisma {
     streaks?: StreakUpdateManyWithoutUserNestedInput
     plans?: PlanUpdateManyWithoutUserNestedInput
     subscription?: SubscriptionUpdateOneWithoutUserNestedInput
+    bodyLogs?: BodyLogUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutWaterLogsInput = {
@@ -24964,6 +26635,107 @@ export namespace Prisma {
     streaks?: StreakUncheckedUpdateManyWithoutUserNestedInput
     plans?: PlanUncheckedUpdateManyWithoutUserNestedInput
     subscription?: SubscriptionUncheckedUpdateOneWithoutUserNestedInput
+    bodyLogs?: BodyLogUncheckedUpdateManyWithoutUserNestedInput
+  }
+
+  export type UserCreateWithoutBodyLogsInput = {
+    id?: string
+    name?: string | null
+    email?: string | null
+    emailVerified?: Date | string | null
+    image?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    accounts?: AccountCreateNestedManyWithoutUserInput
+    sessions?: SessionCreateNestedManyWithoutUserInput
+    profile?: UserProfileCreateNestedOneWithoutUserInput
+    foodLogs?: FoodLogCreateNestedManyWithoutUserInput
+    workoutLogs?: WorkoutLogCreateNestedManyWithoutUserInput
+    messages?: MessageCreateNestedManyWithoutUserInput
+    behaviorLogs?: BehaviorLogCreateNestedManyWithoutUserInput
+    streaks?: StreakCreateNestedManyWithoutUserInput
+    plans?: PlanCreateNestedManyWithoutUserInput
+    subscription?: SubscriptionCreateNestedOneWithoutUserInput
+    waterLogs?: WaterLogCreateNestedManyWithoutUserInput
+  }
+
+  export type UserUncheckedCreateWithoutBodyLogsInput = {
+    id?: string
+    name?: string | null
+    email?: string | null
+    emailVerified?: Date | string | null
+    image?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    accounts?: AccountUncheckedCreateNestedManyWithoutUserInput
+    sessions?: SessionUncheckedCreateNestedManyWithoutUserInput
+    profile?: UserProfileUncheckedCreateNestedOneWithoutUserInput
+    foodLogs?: FoodLogUncheckedCreateNestedManyWithoutUserInput
+    workoutLogs?: WorkoutLogUncheckedCreateNestedManyWithoutUserInput
+    messages?: MessageUncheckedCreateNestedManyWithoutUserInput
+    behaviorLogs?: BehaviorLogUncheckedCreateNestedManyWithoutUserInput
+    streaks?: StreakUncheckedCreateNestedManyWithoutUserInput
+    plans?: PlanUncheckedCreateNestedManyWithoutUserInput
+    subscription?: SubscriptionUncheckedCreateNestedOneWithoutUserInput
+    waterLogs?: WaterLogUncheckedCreateNestedManyWithoutUserInput
+  }
+
+  export type UserCreateOrConnectWithoutBodyLogsInput = {
+    where: UserWhereUniqueInput
+    create: XOR<UserCreateWithoutBodyLogsInput, UserUncheckedCreateWithoutBodyLogsInput>
+  }
+
+  export type UserUpsertWithoutBodyLogsInput = {
+    update: XOR<UserUpdateWithoutBodyLogsInput, UserUncheckedUpdateWithoutBodyLogsInput>
+    create: XOR<UserCreateWithoutBodyLogsInput, UserUncheckedCreateWithoutBodyLogsInput>
+    where?: UserWhereInput
+  }
+
+  export type UserUpdateToOneWithWhereWithoutBodyLogsInput = {
+    where?: UserWhereInput
+    data: XOR<UserUpdateWithoutBodyLogsInput, UserUncheckedUpdateWithoutBodyLogsInput>
+  }
+
+  export type UserUpdateWithoutBodyLogsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: NullableStringFieldUpdateOperationsInput | string | null
+    email?: NullableStringFieldUpdateOperationsInput | string | null
+    emailVerified?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    image?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    accounts?: AccountUpdateManyWithoutUserNestedInput
+    sessions?: SessionUpdateManyWithoutUserNestedInput
+    profile?: UserProfileUpdateOneWithoutUserNestedInput
+    foodLogs?: FoodLogUpdateManyWithoutUserNestedInput
+    workoutLogs?: WorkoutLogUpdateManyWithoutUserNestedInput
+    messages?: MessageUpdateManyWithoutUserNestedInput
+    behaviorLogs?: BehaviorLogUpdateManyWithoutUserNestedInput
+    streaks?: StreakUpdateManyWithoutUserNestedInput
+    plans?: PlanUpdateManyWithoutUserNestedInput
+    subscription?: SubscriptionUpdateOneWithoutUserNestedInput
+    waterLogs?: WaterLogUpdateManyWithoutUserNestedInput
+  }
+
+  export type UserUncheckedUpdateWithoutBodyLogsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: NullableStringFieldUpdateOperationsInput | string | null
+    email?: NullableStringFieldUpdateOperationsInput | string | null
+    emailVerified?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    image?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    accounts?: AccountUncheckedUpdateManyWithoutUserNestedInput
+    sessions?: SessionUncheckedUpdateManyWithoutUserNestedInput
+    profile?: UserProfileUncheckedUpdateOneWithoutUserNestedInput
+    foodLogs?: FoodLogUncheckedUpdateManyWithoutUserNestedInput
+    workoutLogs?: WorkoutLogUncheckedUpdateManyWithoutUserNestedInput
+    messages?: MessageUncheckedUpdateManyWithoutUserNestedInput
+    behaviorLogs?: BehaviorLogUncheckedUpdateManyWithoutUserNestedInput
+    streaks?: StreakUncheckedUpdateManyWithoutUserNestedInput
+    plans?: PlanUncheckedUpdateManyWithoutUserNestedInput
+    subscription?: SubscriptionUncheckedUpdateOneWithoutUserNestedInput
+    waterLogs?: WaterLogUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type UserCreateWithoutProfileInput = {
@@ -24984,6 +26756,7 @@ export namespace Prisma {
     plans?: PlanCreateNestedManyWithoutUserInput
     subscription?: SubscriptionCreateNestedOneWithoutUserInput
     waterLogs?: WaterLogCreateNestedManyWithoutUserInput
+    bodyLogs?: BodyLogCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutProfileInput = {
@@ -25004,6 +26777,7 @@ export namespace Prisma {
     plans?: PlanUncheckedCreateNestedManyWithoutUserInput
     subscription?: SubscriptionUncheckedCreateNestedOneWithoutUserInput
     waterLogs?: WaterLogUncheckedCreateNestedManyWithoutUserInput
+    bodyLogs?: BodyLogUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutProfileInput = {
@@ -25040,6 +26814,7 @@ export namespace Prisma {
     plans?: PlanUpdateManyWithoutUserNestedInput
     subscription?: SubscriptionUpdateOneWithoutUserNestedInput
     waterLogs?: WaterLogUpdateManyWithoutUserNestedInput
+    bodyLogs?: BodyLogUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutProfileInput = {
@@ -25060,6 +26835,7 @@ export namespace Prisma {
     plans?: PlanUncheckedUpdateManyWithoutUserNestedInput
     subscription?: SubscriptionUncheckedUpdateOneWithoutUserNestedInput
     waterLogs?: WaterLogUncheckedUpdateManyWithoutUserNestedInput
+    bodyLogs?: BodyLogUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type UserCreateWithoutFoodLogsInput = {
@@ -25080,6 +26856,7 @@ export namespace Prisma {
     plans?: PlanCreateNestedManyWithoutUserInput
     subscription?: SubscriptionCreateNestedOneWithoutUserInput
     waterLogs?: WaterLogCreateNestedManyWithoutUserInput
+    bodyLogs?: BodyLogCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutFoodLogsInput = {
@@ -25100,6 +26877,7 @@ export namespace Prisma {
     plans?: PlanUncheckedCreateNestedManyWithoutUserInput
     subscription?: SubscriptionUncheckedCreateNestedOneWithoutUserInput
     waterLogs?: WaterLogUncheckedCreateNestedManyWithoutUserInput
+    bodyLogs?: BodyLogUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutFoodLogsInput = {
@@ -25136,6 +26914,7 @@ export namespace Prisma {
     plans?: PlanUpdateManyWithoutUserNestedInput
     subscription?: SubscriptionUpdateOneWithoutUserNestedInput
     waterLogs?: WaterLogUpdateManyWithoutUserNestedInput
+    bodyLogs?: BodyLogUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutFoodLogsInput = {
@@ -25156,6 +26935,7 @@ export namespace Prisma {
     plans?: PlanUncheckedUpdateManyWithoutUserNestedInput
     subscription?: SubscriptionUncheckedUpdateOneWithoutUserNestedInput
     waterLogs?: WaterLogUncheckedUpdateManyWithoutUserNestedInput
+    bodyLogs?: BodyLogUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type UserCreateWithoutWorkoutLogsInput = {
@@ -25176,6 +26956,7 @@ export namespace Prisma {
     plans?: PlanCreateNestedManyWithoutUserInput
     subscription?: SubscriptionCreateNestedOneWithoutUserInput
     waterLogs?: WaterLogCreateNestedManyWithoutUserInput
+    bodyLogs?: BodyLogCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutWorkoutLogsInput = {
@@ -25196,6 +26977,7 @@ export namespace Prisma {
     plans?: PlanUncheckedCreateNestedManyWithoutUserInput
     subscription?: SubscriptionUncheckedCreateNestedOneWithoutUserInput
     waterLogs?: WaterLogUncheckedCreateNestedManyWithoutUserInput
+    bodyLogs?: BodyLogUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutWorkoutLogsInput = {
@@ -25232,6 +27014,7 @@ export namespace Prisma {
     plans?: PlanUpdateManyWithoutUserNestedInput
     subscription?: SubscriptionUpdateOneWithoutUserNestedInput
     waterLogs?: WaterLogUpdateManyWithoutUserNestedInput
+    bodyLogs?: BodyLogUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutWorkoutLogsInput = {
@@ -25252,6 +27035,7 @@ export namespace Prisma {
     plans?: PlanUncheckedUpdateManyWithoutUserNestedInput
     subscription?: SubscriptionUncheckedUpdateOneWithoutUserNestedInput
     waterLogs?: WaterLogUncheckedUpdateManyWithoutUserNestedInput
+    bodyLogs?: BodyLogUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type UserCreateWithoutMessagesInput = {
@@ -25272,6 +27056,7 @@ export namespace Prisma {
     plans?: PlanCreateNestedManyWithoutUserInput
     subscription?: SubscriptionCreateNestedOneWithoutUserInput
     waterLogs?: WaterLogCreateNestedManyWithoutUserInput
+    bodyLogs?: BodyLogCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutMessagesInput = {
@@ -25292,6 +27077,7 @@ export namespace Prisma {
     plans?: PlanUncheckedCreateNestedManyWithoutUserInput
     subscription?: SubscriptionUncheckedCreateNestedOneWithoutUserInput
     waterLogs?: WaterLogUncheckedCreateNestedManyWithoutUserInput
+    bodyLogs?: BodyLogUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutMessagesInput = {
@@ -25328,6 +27114,7 @@ export namespace Prisma {
     plans?: PlanUpdateManyWithoutUserNestedInput
     subscription?: SubscriptionUpdateOneWithoutUserNestedInput
     waterLogs?: WaterLogUpdateManyWithoutUserNestedInput
+    bodyLogs?: BodyLogUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutMessagesInput = {
@@ -25348,6 +27135,7 @@ export namespace Prisma {
     plans?: PlanUncheckedUpdateManyWithoutUserNestedInput
     subscription?: SubscriptionUncheckedUpdateOneWithoutUserNestedInput
     waterLogs?: WaterLogUncheckedUpdateManyWithoutUserNestedInput
+    bodyLogs?: BodyLogUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type UserCreateWithoutBehaviorLogsInput = {
@@ -25368,6 +27156,7 @@ export namespace Prisma {
     plans?: PlanCreateNestedManyWithoutUserInput
     subscription?: SubscriptionCreateNestedOneWithoutUserInput
     waterLogs?: WaterLogCreateNestedManyWithoutUserInput
+    bodyLogs?: BodyLogCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutBehaviorLogsInput = {
@@ -25388,6 +27177,7 @@ export namespace Prisma {
     plans?: PlanUncheckedCreateNestedManyWithoutUserInput
     subscription?: SubscriptionUncheckedCreateNestedOneWithoutUserInput
     waterLogs?: WaterLogUncheckedCreateNestedManyWithoutUserInput
+    bodyLogs?: BodyLogUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutBehaviorLogsInput = {
@@ -25424,6 +27214,7 @@ export namespace Prisma {
     plans?: PlanUpdateManyWithoutUserNestedInput
     subscription?: SubscriptionUpdateOneWithoutUserNestedInput
     waterLogs?: WaterLogUpdateManyWithoutUserNestedInput
+    bodyLogs?: BodyLogUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutBehaviorLogsInput = {
@@ -25444,6 +27235,7 @@ export namespace Prisma {
     plans?: PlanUncheckedUpdateManyWithoutUserNestedInput
     subscription?: SubscriptionUncheckedUpdateOneWithoutUserNestedInput
     waterLogs?: WaterLogUncheckedUpdateManyWithoutUserNestedInput
+    bodyLogs?: BodyLogUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type UserCreateWithoutStreaksInput = {
@@ -25464,6 +27256,7 @@ export namespace Prisma {
     plans?: PlanCreateNestedManyWithoutUserInput
     subscription?: SubscriptionCreateNestedOneWithoutUserInput
     waterLogs?: WaterLogCreateNestedManyWithoutUserInput
+    bodyLogs?: BodyLogCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutStreaksInput = {
@@ -25484,6 +27277,7 @@ export namespace Prisma {
     plans?: PlanUncheckedCreateNestedManyWithoutUserInput
     subscription?: SubscriptionUncheckedCreateNestedOneWithoutUserInput
     waterLogs?: WaterLogUncheckedCreateNestedManyWithoutUserInput
+    bodyLogs?: BodyLogUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutStreaksInput = {
@@ -25520,6 +27314,7 @@ export namespace Prisma {
     plans?: PlanUpdateManyWithoutUserNestedInput
     subscription?: SubscriptionUpdateOneWithoutUserNestedInput
     waterLogs?: WaterLogUpdateManyWithoutUserNestedInput
+    bodyLogs?: BodyLogUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutStreaksInput = {
@@ -25540,6 +27335,7 @@ export namespace Prisma {
     plans?: PlanUncheckedUpdateManyWithoutUserNestedInput
     subscription?: SubscriptionUncheckedUpdateOneWithoutUserNestedInput
     waterLogs?: WaterLogUncheckedUpdateManyWithoutUserNestedInput
+    bodyLogs?: BodyLogUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type UserCreateWithoutPlansInput = {
@@ -25560,6 +27356,7 @@ export namespace Prisma {
     streaks?: StreakCreateNestedManyWithoutUserInput
     subscription?: SubscriptionCreateNestedOneWithoutUserInput
     waterLogs?: WaterLogCreateNestedManyWithoutUserInput
+    bodyLogs?: BodyLogCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutPlansInput = {
@@ -25580,6 +27377,7 @@ export namespace Prisma {
     streaks?: StreakUncheckedCreateNestedManyWithoutUserInput
     subscription?: SubscriptionUncheckedCreateNestedOneWithoutUserInput
     waterLogs?: WaterLogUncheckedCreateNestedManyWithoutUserInput
+    bodyLogs?: BodyLogUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutPlansInput = {
@@ -25616,6 +27414,7 @@ export namespace Prisma {
     streaks?: StreakUpdateManyWithoutUserNestedInput
     subscription?: SubscriptionUpdateOneWithoutUserNestedInput
     waterLogs?: WaterLogUpdateManyWithoutUserNestedInput
+    bodyLogs?: BodyLogUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutPlansInput = {
@@ -25636,6 +27435,7 @@ export namespace Prisma {
     streaks?: StreakUncheckedUpdateManyWithoutUserNestedInput
     subscription?: SubscriptionUncheckedUpdateOneWithoutUserNestedInput
     waterLogs?: WaterLogUncheckedUpdateManyWithoutUserNestedInput
+    bodyLogs?: BodyLogUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type AccountCreateManyUserInput = {
@@ -25722,6 +27522,17 @@ export namespace Prisma {
     id?: string
     date?: Date | string
     amount: number
+  }
+
+  export type BodyLogCreateManyUserInput = {
+    id?: string
+    date?: Date | string
+    weight?: number | null
+    waist?: number | null
+    chest?: number | null
+    arms?: number | null
+    hips?: number | null
+    notes?: string | null
   }
 
   export type AccountUpdateWithoutUserInput = {
@@ -25980,6 +27791,39 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     date?: DateTimeFieldUpdateOperationsInput | Date | string
     amount?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type BodyLogUpdateWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
+    weight?: NullableFloatFieldUpdateOperationsInput | number | null
+    waist?: NullableFloatFieldUpdateOperationsInput | number | null
+    chest?: NullableFloatFieldUpdateOperationsInput | number | null
+    arms?: NullableFloatFieldUpdateOperationsInput | number | null
+    hips?: NullableFloatFieldUpdateOperationsInput | number | null
+    notes?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type BodyLogUncheckedUpdateWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
+    weight?: NullableFloatFieldUpdateOperationsInput | number | null
+    waist?: NullableFloatFieldUpdateOperationsInput | number | null
+    chest?: NullableFloatFieldUpdateOperationsInput | number | null
+    arms?: NullableFloatFieldUpdateOperationsInput | number | null
+    hips?: NullableFloatFieldUpdateOperationsInput | number | null
+    notes?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type BodyLogUncheckedUpdateManyWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
+    weight?: NullableFloatFieldUpdateOperationsInput | number | null
+    waist?: NullableFloatFieldUpdateOperationsInput | number | null
+    chest?: NullableFloatFieldUpdateOperationsInput | number | null
+    arms?: NullableFloatFieldUpdateOperationsInput | number | null
+    hips?: NullableFloatFieldUpdateOperationsInput | number | null
+    notes?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
 

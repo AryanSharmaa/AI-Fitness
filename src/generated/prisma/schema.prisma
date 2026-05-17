@@ -60,6 +60,7 @@ model User {
   plans         Plan[]
   subscription  Subscription?
   waterLogs     WaterLog[]
+  bodyLogs      BodyLog[]
 }
 
 model Subscription {
@@ -80,6 +81,19 @@ model WaterLog {
   userId String
   date   DateTime @default(now())
   amount Int // ml
+  user   User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model BodyLog {
+  id     String   @id @default(cuid())
+  userId String
+  date   DateTime @default(now())
+  weight Float? // kg
+  waist  Float? // cm
+  chest  Float? // cm
+  arms   Float? // cm
+  hips   Float? // cm
+  notes  String?
   user   User     @relation(fields: [userId], references: [id], onDelete: Cascade)
 }
 

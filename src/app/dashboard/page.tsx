@@ -4,6 +4,7 @@ import { authOptions } from '@/lib/auth'
 import { prisma } from '@/lib/prisma'
 import StatsCards from '@/components/dashboard/StatsCard'
 import WaterTracker from '@/components/water/WaterTracker'
+import BodyTracker from '@/components/body/BodyTracker'
 import Link from 'next/link'
 import { Card, CardContent } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
@@ -96,6 +97,9 @@ export default async function DashboardPage() {
 
       {/* Water tracker */}
       <WaterTracker />
+
+      {/* Body tracker */}
+      <BodyTracker />
 
       {/* AI nudge card */}
       <Card className="border-emerald-200 bg-emerald-50/50 dark:bg-emerald-950/20 dark:border-emerald-800">
