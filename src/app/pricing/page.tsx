@@ -1,4 +1,6 @@
 import Link from 'next/link'
+import { getServerSession } from 'next-auth'
+import { authOptions } from '@/lib/auth'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
@@ -23,7 +25,10 @@ const PRO_FEATURES = [
   'Priority response time',
 ]
 
-export default function PricingPage() {
+export default async function PricingPage() {
+  const session = await getServerSession(authOptions)
+  const isLoggedIn = !!session?.user?.id
+
   return (
     <div className="max-w-4xl mx-auto px-4 py-16">
       <div className="text-center mb-12">
@@ -48,7 +53,9 @@ export default function PricingPage() {
               ))}
             </ul>
             <Button variant="outline" className="w-full" asChild>
-              <Link href="/login">Get Started Free</Link>
+              <Link href={isLoggedIn ? '/dashboard' : '/login'}>
+                {isLoggedIn ? 'Go to Dashboard' : 'Get Started Free'}
+              </Link>
             </Button>
           </CardContent>
         </Card>
