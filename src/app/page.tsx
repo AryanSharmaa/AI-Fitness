@@ -1,10 +1,9 @@
 import Link from 'next/link'
-import { getServerSession } from 'next-auth'
-import { authOptions } from '@/lib/auth'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
 import HeroButtons from '@/components/landing/HeroButtons'
+import { FreePricingCTA, ProPricingCTA, BottomCTA } from '@/components/landing/PricingCTAs'
 
 const FEATURES = [
   {
@@ -57,11 +56,7 @@ const HOW_IT_WORKS = [
   },
 ]
 
-export default async function LandingPage() {
-  const session = await getServerSession(authOptions)
-  const isLoggedIn = !!session?.user?.id
-  const ctaHref = isLoggedIn ? '/dashboard' : '/login'
-
+export default function LandingPage() {
   return (
     <div className="min-h-screen">
       {/* Hero */}
@@ -197,9 +192,7 @@ export default async function LandingPage() {
                   <li key={f} className="flex items-center gap-2"><span className="text-emerald-500">✓</span>{f}</li>
                 ))}
               </ul>
-              <Button variant="outline" className="w-full" asChild>
-                <Link href={ctaHref}>{isLoggedIn ? 'Go to Dashboard' : 'Get Started'}</Link>
-              </Button>
+              <FreePricingCTA />
             </CardContent>
           </Card>
           <Card className="border-emerald-500 border-2">
@@ -222,9 +215,7 @@ export default async function LandingPage() {
                   <li key={f} className="flex items-center gap-2"><span className="text-emerald-500">✓</span>{f}</li>
                 ))}
               </ul>
-              <Button className="w-full" asChild>
-                <Link href={isLoggedIn ? '/upgrade' : '/login'}>{isLoggedIn ? 'Upgrade to Pro →' : 'Start Free Trial'}</Link>
-              </Button>
+              <ProPricingCTA />
             </CardContent>
           </Card>
         </div>
@@ -235,9 +226,7 @@ export default async function LandingPage() {
         <div className="max-w-2xl mx-auto px-4">
           <h2 className="text-3xl font-bold mb-4">Ready to start for real this time?</h2>
           <p className="text-emerald-100 mb-8">Your AI coach doesn't care about your past failures. It cares about your next decision.</p>
-          <Button size="lg" variant="secondary" asChild className="text-base px-8">
-            <Link href={ctaHref}>{isLoggedIn ? 'Go to Dashboard →' : 'Start Free →'}</Link>
-          </Button>
+          <BottomCTA />
         </div>
       </section>
 
