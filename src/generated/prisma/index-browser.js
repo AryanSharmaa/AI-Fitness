@@ -331,6 +331,36 @@ exports.Prisma.FastingLogScalarFieldEnum = {
   notes: 'notes'
 };
 
+exports.Prisma.CustomRoutineScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  name: 'name',
+  type: 'type',
+  exercises: 'exercises',
+  notes: 'notes',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.MilestoneScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  type: 'type',
+  title: 'title',
+  seenAt: 'seenAt',
+  earnedAt: 'earnedAt'
+};
+
+exports.Prisma.ReferralScalarFieldEnum = {
+  id: 'id',
+  referrerId: 'referrerId',
+  code: 'code',
+  usedBy: 'usedBy',
+  usedAt: 'usedAt',
+  rewarded: 'rewarded',
+  createdAt: 'createdAt'
+};
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -380,7 +410,10 @@ exports.Prisma.ModelName = {
   MealLibrary: 'MealLibrary',
   WorkoutLibrary: 'WorkoutLibrary',
   MoodLog: 'MoodLog',
-  FastingLog: 'FastingLog'
+  FastingLog: 'FastingLog',
+  CustomRoutine: 'CustomRoutine',
+  Milestone: 'Milestone',
+  Referral: 'Referral'
 };
 
 /**

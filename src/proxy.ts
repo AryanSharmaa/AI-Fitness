@@ -24,5 +24,9 @@ export const config = {
     '/onboarding/:path*',
     '/upgrade/:path*',
     '/fasting/:path*',
+    '/referral/:path*',
+    '/export/:path*',
+    '/meal-plan/:path*',
+    '/workout-builder/:path*',
   ],
 }

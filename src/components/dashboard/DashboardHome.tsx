@@ -6,6 +6,8 @@ import { toast } from 'sonner'
 import dynamic from 'next/dynamic'
 const RecoveryCard = dynamic(() => import('./RecoveryCard'), { ssr: false })
 const MoodCheckIn = dynamic(() => import('./MoodCheckIn'), { ssr: false })
+const InsightsFeed = dynamic(() => import('./InsightsFeed'), { ssr: false })
+const MilestoneCelebration = dynamic(() => import('./MilestoneCelebration'), { ssr: false })
 
 interface DashboardData {
   name: string
@@ -121,6 +123,8 @@ export default function DashboardHome() {
   const dateStr = today.toLocaleDateString('en-IN', { weekday: 'long', day: 'numeric', month: 'long' })
 
   return (
+    <>
+    <MilestoneCelebration />
     <div className="max-w-2xl mx-auto px-4 pb-8 space-y-4">
       {/* Header */}
       <div className="flex items-center justify-between pt-4">
@@ -249,6 +253,7 @@ export default function DashboardHome() {
 
           <MoodCheckIn />
           <RecoveryCard />
+          <InsightsFeed />
 
           {/* Today's Activity */}
           <div className="rounded-2xl bg-card border p-4 space-y-3">
@@ -414,5 +419,6 @@ export default function DashboardHome() {
         </div>
       )}
     </div>
+    </>
   )
 }

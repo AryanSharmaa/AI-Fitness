@@ -103,6 +103,21 @@ export type MoodLog = $Result.DefaultSelection<Prisma.$MoodLogPayload>
  * 
  */
 export type FastingLog = $Result.DefaultSelection<Prisma.$FastingLogPayload>
+/**
+ * Model CustomRoutine
+ * 
+ */
+export type CustomRoutine = $Result.DefaultSelection<Prisma.$CustomRoutinePayload>
+/**
+ * Model Milestone
+ * 
+ */
+export type Milestone = $Result.DefaultSelection<Prisma.$MilestonePayload>
+/**
+ * Model Referral
+ * 
+ */
+export type Referral = $Result.DefaultSelection<Prisma.$ReferralPayload>
 
 /**
  * ##  Prisma Client ʲˢ
@@ -404,6 +419,36 @@ export class PrismaClient<
     * ```
     */
   get fastingLog(): Prisma.FastingLogDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.customRoutine`: Exposes CRUD operations for the **CustomRoutine** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more CustomRoutines
+    * const customRoutines = await prisma.customRoutine.findMany()
+    * ```
+    */
+  get customRoutine(): Prisma.CustomRoutineDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.milestone`: Exposes CRUD operations for the **Milestone** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Milestones
+    * const milestones = await prisma.milestone.findMany()
+    * ```
+    */
+  get milestone(): Prisma.MilestoneDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.referral`: Exposes CRUD operations for the **Referral** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Referrals
+    * const referrals = await prisma.referral.findMany()
+    * ```
+    */
+  get referral(): Prisma.ReferralDelegate<ExtArgs, ClientOptions>;
 }
 
 export namespace Prisma {
@@ -855,7 +900,10 @@ export namespace Prisma {
     MealLibrary: 'MealLibrary',
     WorkoutLibrary: 'WorkoutLibrary',
     MoodLog: 'MoodLog',
-    FastingLog: 'FastingLog'
+    FastingLog: 'FastingLog',
+    CustomRoutine: 'CustomRoutine',
+    Milestone: 'Milestone',
+    Referral: 'Referral'
   };
 
   export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -871,7 +919,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "account" | "session" | "verificationToken" | "user" | "subscription" | "waterLog" | "bodyLog" | "userProfile" | "foodLog" | "workoutLog" | "message" | "behaviorLog" | "streak" | "plan" | "mealLibrary" | "workoutLibrary" | "moodLog" | "fastingLog"
+      modelProps: "account" | "session" | "verificationToken" | "user" | "subscription" | "waterLog" | "bodyLog" | "userProfile" | "foodLog" | "workoutLog" | "message" | "behaviorLog" | "streak" | "plan" | "mealLibrary" | "workoutLibrary" | "moodLog" | "fastingLog" | "customRoutine" | "milestone" | "referral"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -2207,6 +2255,228 @@ export namespace Prisma {
           }
         }
       }
+      CustomRoutine: {
+        payload: Prisma.$CustomRoutinePayload<ExtArgs>
+        fields: Prisma.CustomRoutineFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.CustomRoutineFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CustomRoutinePayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.CustomRoutineFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CustomRoutinePayload>
+          }
+          findFirst: {
+            args: Prisma.CustomRoutineFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CustomRoutinePayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.CustomRoutineFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CustomRoutinePayload>
+          }
+          findMany: {
+            args: Prisma.CustomRoutineFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CustomRoutinePayload>[]
+          }
+          create: {
+            args: Prisma.CustomRoutineCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CustomRoutinePayload>
+          }
+          createMany: {
+            args: Prisma.CustomRoutineCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.CustomRoutineCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CustomRoutinePayload>[]
+          }
+          delete: {
+            args: Prisma.CustomRoutineDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CustomRoutinePayload>
+          }
+          update: {
+            args: Prisma.CustomRoutineUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CustomRoutinePayload>
+          }
+          deleteMany: {
+            args: Prisma.CustomRoutineDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.CustomRoutineUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.CustomRoutineUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CustomRoutinePayload>[]
+          }
+          upsert: {
+            args: Prisma.CustomRoutineUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CustomRoutinePayload>
+          }
+          aggregate: {
+            args: Prisma.CustomRoutineAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateCustomRoutine>
+          }
+          groupBy: {
+            args: Prisma.CustomRoutineGroupByArgs<ExtArgs>
+            result: $Utils.Optional<CustomRoutineGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.CustomRoutineCountArgs<ExtArgs>
+            result: $Utils.Optional<CustomRoutineCountAggregateOutputType> | number
+          }
+        }
+      }
+      Milestone: {
+        payload: Prisma.$MilestonePayload<ExtArgs>
+        fields: Prisma.MilestoneFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.MilestoneFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MilestonePayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.MilestoneFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MilestonePayload>
+          }
+          findFirst: {
+            args: Prisma.MilestoneFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MilestonePayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.MilestoneFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MilestonePayload>
+          }
+          findMany: {
+            args: Prisma.MilestoneFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MilestonePayload>[]
+          }
+          create: {
+            args: Prisma.MilestoneCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MilestonePayload>
+          }
+          createMany: {
+            args: Prisma.MilestoneCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.MilestoneCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MilestonePayload>[]
+          }
+          delete: {
+            args: Prisma.MilestoneDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MilestonePayload>
+          }
+          update: {
+            args: Prisma.MilestoneUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MilestonePayload>
+          }
+          deleteMany: {
+            args: Prisma.MilestoneDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.MilestoneUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.MilestoneUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MilestonePayload>[]
+          }
+          upsert: {
+            args: Prisma.MilestoneUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MilestonePayload>
+          }
+          aggregate: {
+            args: Prisma.MilestoneAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateMilestone>
+          }
+          groupBy: {
+            args: Prisma.MilestoneGroupByArgs<ExtArgs>
+            result: $Utils.Optional<MilestoneGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.MilestoneCountArgs<ExtArgs>
+            result: $Utils.Optional<MilestoneCountAggregateOutputType> | number
+          }
+        }
+      }
+      Referral: {
+        payload: Prisma.$ReferralPayload<ExtArgs>
+        fields: Prisma.ReferralFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.ReferralFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ReferralPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.ReferralFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ReferralPayload>
+          }
+          findFirst: {
+            args: Prisma.ReferralFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ReferralPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.ReferralFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ReferralPayload>
+          }
+          findMany: {
+            args: Prisma.ReferralFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ReferralPayload>[]
+          }
+          create: {
+            args: Prisma.ReferralCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ReferralPayload>
+          }
+          createMany: {
+            args: Prisma.ReferralCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.ReferralCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ReferralPayload>[]
+          }
+          delete: {
+            args: Prisma.ReferralDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ReferralPayload>
+          }
+          update: {
+            args: Prisma.ReferralUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ReferralPayload>
+          }
+          deleteMany: {
+            args: Prisma.ReferralDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.ReferralUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.ReferralUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ReferralPayload>[]
+          }
+          upsert: {
+            args: Prisma.ReferralUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ReferralPayload>
+          }
+          aggregate: {
+            args: Prisma.ReferralAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateReferral>
+          }
+          groupBy: {
+            args: Prisma.ReferralGroupByArgs<ExtArgs>
+            result: $Utils.Optional<ReferralGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.ReferralCountArgs<ExtArgs>
+            result: $Utils.Optional<ReferralCountAggregateOutputType> | number
+          }
+        }
+      }
     }
   } & {
     other: {
@@ -2333,6 +2603,9 @@ export namespace Prisma {
     workoutLibrary?: WorkoutLibraryOmit
     moodLog?: MoodLogOmit
     fastingLog?: FastingLogOmit
+    customRoutine?: CustomRoutineOmit
+    milestone?: MilestoneOmit
+    referral?: ReferralOmit
   }
 
   /* Types for Logging */
@@ -2425,6 +2698,9 @@ export namespace Prisma {
     bodyLogs: number
     moodLogs: number
     fastingLogs: number
+    customRoutines: number
+    milestones: number
+    referrals: number
   }
 
   export type UserCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -2440,6 +2716,9 @@ export namespace Prisma {
     bodyLogs?: boolean | UserCountOutputTypeCountBodyLogsArgs
     moodLogs?: boolean | UserCountOutputTypeCountMoodLogsArgs
     fastingLogs?: boolean | UserCountOutputTypeCountFastingLogsArgs
+    customRoutines?: boolean | UserCountOutputTypeCountCustomRoutinesArgs
+    milestones?: boolean | UserCountOutputTypeCountMilestonesArgs
+    referrals?: boolean | UserCountOutputTypeCountReferralsArgs
   }
 
   // Custom InputTypes
@@ -2535,6 +2814,27 @@ export namespace Prisma {
    */
   export type UserCountOutputTypeCountFastingLogsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: FastingLogWhereInput
+  }
+
+  /**
+   * UserCountOutputType without action
+   */
+  export type UserCountOutputTypeCountCustomRoutinesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: CustomRoutineWhereInput
+  }
+
+  /**
+   * UserCountOutputType without action
+   */
+  export type UserCountOutputTypeCountMilestonesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: MilestoneWhereInput
+  }
+
+  /**
+   * UserCountOutputType without action
+   */
+  export type UserCountOutputTypeCountReferralsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ReferralWhereInput
   }
 
 
@@ -5948,6 +6248,9 @@ export namespace Prisma {
     bodyLogs?: boolean | User$bodyLogsArgs<ExtArgs>
     moodLogs?: boolean | User$moodLogsArgs<ExtArgs>
     fastingLogs?: boolean | User$fastingLogsArgs<ExtArgs>
+    customRoutines?: boolean | User$customRoutinesArgs<ExtArgs>
+    milestones?: boolean | User$milestonesArgs<ExtArgs>
+    referrals?: boolean | User$referralsArgs<ExtArgs>
     _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["user"]>
 
@@ -5997,6 +6300,9 @@ export namespace Prisma {
     bodyLogs?: boolean | User$bodyLogsArgs<ExtArgs>
     moodLogs?: boolean | User$moodLogsArgs<ExtArgs>
     fastingLogs?: boolean | User$fastingLogsArgs<ExtArgs>
+    customRoutines?: boolean | User$customRoutinesArgs<ExtArgs>
+    milestones?: boolean | User$milestonesArgs<ExtArgs>
+    referrals?: boolean | User$referralsArgs<ExtArgs>
     _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type UserIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
@@ -6019,6 +6325,9 @@ export namespace Prisma {
       bodyLogs: Prisma.$BodyLogPayload<ExtArgs>[]
       moodLogs: Prisma.$MoodLogPayload<ExtArgs>[]
       fastingLogs: Prisma.$FastingLogPayload<ExtArgs>[]
+      customRoutines: Prisma.$CustomRoutinePayload<ExtArgs>[]
+      milestones: Prisma.$MilestonePayload<ExtArgs>[]
+      referrals: Prisma.$ReferralPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -6436,6 +6745,9 @@ export namespace Prisma {
     bodyLogs<T extends User$bodyLogsArgs<ExtArgs> = {}>(args?: Subset<T, User$bodyLogsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$BodyLogPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     moodLogs<T extends User$moodLogsArgs<ExtArgs> = {}>(args?: Subset<T, User$moodLogsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$MoodLogPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     fastingLogs<T extends User$fastingLogsArgs<ExtArgs> = {}>(args?: Subset<T, User$fastingLogsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$FastingLogPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    customRoutines<T extends User$customRoutinesArgs<ExtArgs> = {}>(args?: Subset<T, User$customRoutinesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$CustomRoutinePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    milestones<T extends User$milestonesArgs<ExtArgs> = {}>(args?: Subset<T, User$milestonesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$MilestonePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    referrals<T extends User$referralsArgs<ExtArgs> = {}>(args?: Subset<T, User$referralsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ReferralPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -7188,6 +7500,78 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: FastingLogScalarFieldEnum | FastingLogScalarFieldEnum[]
+  }
+
+  /**
+   * User.customRoutines
+   */
+  export type User$customRoutinesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CustomRoutine
+     */
+    select?: CustomRoutineSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CustomRoutine
+     */
+    omit?: CustomRoutineOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CustomRoutineInclude<ExtArgs> | null
+    where?: CustomRoutineWhereInput
+    orderBy?: CustomRoutineOrderByWithRelationInput | CustomRoutineOrderByWithRelationInput[]
+    cursor?: CustomRoutineWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: CustomRoutineScalarFieldEnum | CustomRoutineScalarFieldEnum[]
+  }
+
+  /**
+   * User.milestones
+   */
+  export type User$milestonesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Milestone
+     */
+    select?: MilestoneSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Milestone
+     */
+    omit?: MilestoneOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MilestoneInclude<ExtArgs> | null
+    where?: MilestoneWhereInput
+    orderBy?: MilestoneOrderByWithRelationInput | MilestoneOrderByWithRelationInput[]
+    cursor?: MilestoneWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: MilestoneScalarFieldEnum | MilestoneScalarFieldEnum[]
+  }
+
+  /**
+   * User.referrals
+   */
+  export type User$referralsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Referral
+     */
+    select?: ReferralSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Referral
+     */
+    omit?: ReferralOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ReferralInclude<ExtArgs> | null
+    where?: ReferralWhereInput
+    orderBy?: ReferralOrderByWithRelationInput | ReferralOrderByWithRelationInput[]
+    cursor?: ReferralWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: ReferralScalarFieldEnum | ReferralScalarFieldEnum[]
   }
 
   /**
@@ -23179,6 +23563,3269 @@ export namespace Prisma {
 
 
   /**
+   * Model CustomRoutine
+   */
+
+  export type AggregateCustomRoutine = {
+    _count: CustomRoutineCountAggregateOutputType | null
+    _min: CustomRoutineMinAggregateOutputType | null
+    _max: CustomRoutineMaxAggregateOutputType | null
+  }
+
+  export type CustomRoutineMinAggregateOutputType = {
+    id: string | null
+    userId: string | null
+    name: string | null
+    type: string | null
+    notes: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type CustomRoutineMaxAggregateOutputType = {
+    id: string | null
+    userId: string | null
+    name: string | null
+    type: string | null
+    notes: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type CustomRoutineCountAggregateOutputType = {
+    id: number
+    userId: number
+    name: number
+    type: number
+    exercises: number
+    notes: number
+    createdAt: number
+    updatedAt: number
+    _all: number
+  }
+
+
+  export type CustomRoutineMinAggregateInputType = {
+    id?: true
+    userId?: true
+    name?: true
+    type?: true
+    notes?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type CustomRoutineMaxAggregateInputType = {
+    id?: true
+    userId?: true
+    name?: true
+    type?: true
+    notes?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type CustomRoutineCountAggregateInputType = {
+    id?: true
+    userId?: true
+    name?: true
+    type?: true
+    exercises?: true
+    notes?: true
+    createdAt?: true
+    updatedAt?: true
+    _all?: true
+  }
+
+  export type CustomRoutineAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which CustomRoutine to aggregate.
+     */
+    where?: CustomRoutineWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of CustomRoutines to fetch.
+     */
+    orderBy?: CustomRoutineOrderByWithRelationInput | CustomRoutineOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: CustomRoutineWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` CustomRoutines from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` CustomRoutines.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned CustomRoutines
+    **/
+    _count?: true | CustomRoutineCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: CustomRoutineMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: CustomRoutineMaxAggregateInputType
+  }
+
+  export type GetCustomRoutineAggregateType<T extends CustomRoutineAggregateArgs> = {
+        [P in keyof T & keyof AggregateCustomRoutine]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateCustomRoutine[P]>
+      : GetScalarType<T[P], AggregateCustomRoutine[P]>
+  }
+
+
+
+
+  export type CustomRoutineGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: CustomRoutineWhereInput
+    orderBy?: CustomRoutineOrderByWithAggregationInput | CustomRoutineOrderByWithAggregationInput[]
+    by: CustomRoutineScalarFieldEnum[] | CustomRoutineScalarFieldEnum
+    having?: CustomRoutineScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: CustomRoutineCountAggregateInputType | true
+    _min?: CustomRoutineMinAggregateInputType
+    _max?: CustomRoutineMaxAggregateInputType
+  }
+
+  export type CustomRoutineGroupByOutputType = {
+    id: string
+    userId: string
+    name: string
+    type: string
+    exercises: JsonValue
+    notes: string | null
+    createdAt: Date
+    updatedAt: Date
+    _count: CustomRoutineCountAggregateOutputType | null
+    _min: CustomRoutineMinAggregateOutputType | null
+    _max: CustomRoutineMaxAggregateOutputType | null
+  }
+
+  type GetCustomRoutineGroupByPayload<T extends CustomRoutineGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<CustomRoutineGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof CustomRoutineGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], CustomRoutineGroupByOutputType[P]>
+            : GetScalarType<T[P], CustomRoutineGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type CustomRoutineSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    userId?: boolean
+    name?: boolean
+    type?: boolean
+    exercises?: boolean
+    notes?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["customRoutine"]>
+
+  export type CustomRoutineSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    userId?: boolean
+    name?: boolean
+    type?: boolean
+    exercises?: boolean
+    notes?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["customRoutine"]>
+
+  export type CustomRoutineSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    userId?: boolean
+    name?: boolean
+    type?: boolean
+    exercises?: boolean
+    notes?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["customRoutine"]>
+
+  export type CustomRoutineSelectScalar = {
+    id?: boolean
+    userId?: boolean
+    name?: boolean
+    type?: boolean
+    exercises?: boolean
+    notes?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }
+
+  export type CustomRoutineOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "userId" | "name" | "type" | "exercises" | "notes" | "createdAt" | "updatedAt", ExtArgs["result"]["customRoutine"]>
+  export type CustomRoutineInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }
+  export type CustomRoutineIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }
+  export type CustomRoutineIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }
+
+  export type $CustomRoutinePayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "CustomRoutine"
+    objects: {
+      user: Prisma.$UserPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      userId: string
+      name: string
+      type: string
+      exercises: Prisma.JsonValue
+      notes: string | null
+      createdAt: Date
+      updatedAt: Date
+    }, ExtArgs["result"]["customRoutine"]>
+    composites: {}
+  }
+
+  type CustomRoutineGetPayload<S extends boolean | null | undefined | CustomRoutineDefaultArgs> = $Result.GetResult<Prisma.$CustomRoutinePayload, S>
+
+  type CustomRoutineCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<CustomRoutineFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: CustomRoutineCountAggregateInputType | true
+    }
+
+  export interface CustomRoutineDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['CustomRoutine'], meta: { name: 'CustomRoutine' } }
+    /**
+     * Find zero or one CustomRoutine that matches the filter.
+     * @param {CustomRoutineFindUniqueArgs} args - Arguments to find a CustomRoutine
+     * @example
+     * // Get one CustomRoutine
+     * const customRoutine = await prisma.customRoutine.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends CustomRoutineFindUniqueArgs>(args: SelectSubset<T, CustomRoutineFindUniqueArgs<ExtArgs>>): Prisma__CustomRoutineClient<$Result.GetResult<Prisma.$CustomRoutinePayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one CustomRoutine that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {CustomRoutineFindUniqueOrThrowArgs} args - Arguments to find a CustomRoutine
+     * @example
+     * // Get one CustomRoutine
+     * const customRoutine = await prisma.customRoutine.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends CustomRoutineFindUniqueOrThrowArgs>(args: SelectSubset<T, CustomRoutineFindUniqueOrThrowArgs<ExtArgs>>): Prisma__CustomRoutineClient<$Result.GetResult<Prisma.$CustomRoutinePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first CustomRoutine that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CustomRoutineFindFirstArgs} args - Arguments to find a CustomRoutine
+     * @example
+     * // Get one CustomRoutine
+     * const customRoutine = await prisma.customRoutine.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends CustomRoutineFindFirstArgs>(args?: SelectSubset<T, CustomRoutineFindFirstArgs<ExtArgs>>): Prisma__CustomRoutineClient<$Result.GetResult<Prisma.$CustomRoutinePayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first CustomRoutine that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CustomRoutineFindFirstOrThrowArgs} args - Arguments to find a CustomRoutine
+     * @example
+     * // Get one CustomRoutine
+     * const customRoutine = await prisma.customRoutine.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends CustomRoutineFindFirstOrThrowArgs>(args?: SelectSubset<T, CustomRoutineFindFirstOrThrowArgs<ExtArgs>>): Prisma__CustomRoutineClient<$Result.GetResult<Prisma.$CustomRoutinePayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more CustomRoutines that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CustomRoutineFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all CustomRoutines
+     * const customRoutines = await prisma.customRoutine.findMany()
+     * 
+     * // Get first 10 CustomRoutines
+     * const customRoutines = await prisma.customRoutine.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const customRoutineWithIdOnly = await prisma.customRoutine.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends CustomRoutineFindManyArgs>(args?: SelectSubset<T, CustomRoutineFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$CustomRoutinePayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a CustomRoutine.
+     * @param {CustomRoutineCreateArgs} args - Arguments to create a CustomRoutine.
+     * @example
+     * // Create one CustomRoutine
+     * const CustomRoutine = await prisma.customRoutine.create({
+     *   data: {
+     *     // ... data to create a CustomRoutine
+     *   }
+     * })
+     * 
+     */
+    create<T extends CustomRoutineCreateArgs>(args: SelectSubset<T, CustomRoutineCreateArgs<ExtArgs>>): Prisma__CustomRoutineClient<$Result.GetResult<Prisma.$CustomRoutinePayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many CustomRoutines.
+     * @param {CustomRoutineCreateManyArgs} args - Arguments to create many CustomRoutines.
+     * @example
+     * // Create many CustomRoutines
+     * const customRoutine = await prisma.customRoutine.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends CustomRoutineCreateManyArgs>(args?: SelectSubset<T, CustomRoutineCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many CustomRoutines and returns the data saved in the database.
+     * @param {CustomRoutineCreateManyAndReturnArgs} args - Arguments to create many CustomRoutines.
+     * @example
+     * // Create many CustomRoutines
+     * const customRoutine = await prisma.customRoutine.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many CustomRoutines and only return the `id`
+     * const customRoutineWithIdOnly = await prisma.customRoutine.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends CustomRoutineCreateManyAndReturnArgs>(args?: SelectSubset<T, CustomRoutineCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$CustomRoutinePayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a CustomRoutine.
+     * @param {CustomRoutineDeleteArgs} args - Arguments to delete one CustomRoutine.
+     * @example
+     * // Delete one CustomRoutine
+     * const CustomRoutine = await prisma.customRoutine.delete({
+     *   where: {
+     *     // ... filter to delete one CustomRoutine
+     *   }
+     * })
+     * 
+     */
+    delete<T extends CustomRoutineDeleteArgs>(args: SelectSubset<T, CustomRoutineDeleteArgs<ExtArgs>>): Prisma__CustomRoutineClient<$Result.GetResult<Prisma.$CustomRoutinePayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one CustomRoutine.
+     * @param {CustomRoutineUpdateArgs} args - Arguments to update one CustomRoutine.
+     * @example
+     * // Update one CustomRoutine
+     * const customRoutine = await prisma.customRoutine.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends CustomRoutineUpdateArgs>(args: SelectSubset<T, CustomRoutineUpdateArgs<ExtArgs>>): Prisma__CustomRoutineClient<$Result.GetResult<Prisma.$CustomRoutinePayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more CustomRoutines.
+     * @param {CustomRoutineDeleteManyArgs} args - Arguments to filter CustomRoutines to delete.
+     * @example
+     * // Delete a few CustomRoutines
+     * const { count } = await prisma.customRoutine.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends CustomRoutineDeleteManyArgs>(args?: SelectSubset<T, CustomRoutineDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more CustomRoutines.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CustomRoutineUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many CustomRoutines
+     * const customRoutine = await prisma.customRoutine.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends CustomRoutineUpdateManyArgs>(args: SelectSubset<T, CustomRoutineUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more CustomRoutines and returns the data updated in the database.
+     * @param {CustomRoutineUpdateManyAndReturnArgs} args - Arguments to update many CustomRoutines.
+     * @example
+     * // Update many CustomRoutines
+     * const customRoutine = await prisma.customRoutine.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more CustomRoutines and only return the `id`
+     * const customRoutineWithIdOnly = await prisma.customRoutine.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends CustomRoutineUpdateManyAndReturnArgs>(args: SelectSubset<T, CustomRoutineUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$CustomRoutinePayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one CustomRoutine.
+     * @param {CustomRoutineUpsertArgs} args - Arguments to update or create a CustomRoutine.
+     * @example
+     * // Update or create a CustomRoutine
+     * const customRoutine = await prisma.customRoutine.upsert({
+     *   create: {
+     *     // ... data to create a CustomRoutine
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the CustomRoutine we want to update
+     *   }
+     * })
+     */
+    upsert<T extends CustomRoutineUpsertArgs>(args: SelectSubset<T, CustomRoutineUpsertArgs<ExtArgs>>): Prisma__CustomRoutineClient<$Result.GetResult<Prisma.$CustomRoutinePayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of CustomRoutines.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CustomRoutineCountArgs} args - Arguments to filter CustomRoutines to count.
+     * @example
+     * // Count the number of CustomRoutines
+     * const count = await prisma.customRoutine.count({
+     *   where: {
+     *     // ... the filter for the CustomRoutines we want to count
+     *   }
+     * })
+    **/
+    count<T extends CustomRoutineCountArgs>(
+      args?: Subset<T, CustomRoutineCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], CustomRoutineCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a CustomRoutine.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CustomRoutineAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends CustomRoutineAggregateArgs>(args: Subset<T, CustomRoutineAggregateArgs>): Prisma.PrismaPromise<GetCustomRoutineAggregateType<T>>
+
+    /**
+     * Group by CustomRoutine.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CustomRoutineGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends CustomRoutineGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: CustomRoutineGroupByArgs['orderBy'] }
+        : { orderBy?: CustomRoutineGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, CustomRoutineGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetCustomRoutineGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the CustomRoutine model
+   */
+  readonly fields: CustomRoutineFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for CustomRoutine.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__CustomRoutineClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    user<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the CustomRoutine model
+   */
+  interface CustomRoutineFieldRefs {
+    readonly id: FieldRef<"CustomRoutine", 'String'>
+    readonly userId: FieldRef<"CustomRoutine", 'String'>
+    readonly name: FieldRef<"CustomRoutine", 'String'>
+    readonly type: FieldRef<"CustomRoutine", 'String'>
+    readonly exercises: FieldRef<"CustomRoutine", 'Json'>
+    readonly notes: FieldRef<"CustomRoutine", 'String'>
+    readonly createdAt: FieldRef<"CustomRoutine", 'DateTime'>
+    readonly updatedAt: FieldRef<"CustomRoutine", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * CustomRoutine findUnique
+   */
+  export type CustomRoutineFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CustomRoutine
+     */
+    select?: CustomRoutineSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CustomRoutine
+     */
+    omit?: CustomRoutineOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CustomRoutineInclude<ExtArgs> | null
+    /**
+     * Filter, which CustomRoutine to fetch.
+     */
+    where: CustomRoutineWhereUniqueInput
+  }
+
+  /**
+   * CustomRoutine findUniqueOrThrow
+   */
+  export type CustomRoutineFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CustomRoutine
+     */
+    select?: CustomRoutineSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CustomRoutine
+     */
+    omit?: CustomRoutineOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CustomRoutineInclude<ExtArgs> | null
+    /**
+     * Filter, which CustomRoutine to fetch.
+     */
+    where: CustomRoutineWhereUniqueInput
+  }
+
+  /**
+   * CustomRoutine findFirst
+   */
+  export type CustomRoutineFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CustomRoutine
+     */
+    select?: CustomRoutineSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CustomRoutine
+     */
+    omit?: CustomRoutineOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CustomRoutineInclude<ExtArgs> | null
+    /**
+     * Filter, which CustomRoutine to fetch.
+     */
+    where?: CustomRoutineWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of CustomRoutines to fetch.
+     */
+    orderBy?: CustomRoutineOrderByWithRelationInput | CustomRoutineOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for CustomRoutines.
+     */
+    cursor?: CustomRoutineWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` CustomRoutines from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` CustomRoutines.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of CustomRoutines.
+     */
+    distinct?: CustomRoutineScalarFieldEnum | CustomRoutineScalarFieldEnum[]
+  }
+
+  /**
+   * CustomRoutine findFirstOrThrow
+   */
+  export type CustomRoutineFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CustomRoutine
+     */
+    select?: CustomRoutineSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CustomRoutine
+     */
+    omit?: CustomRoutineOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CustomRoutineInclude<ExtArgs> | null
+    /**
+     * Filter, which CustomRoutine to fetch.
+     */
+    where?: CustomRoutineWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of CustomRoutines to fetch.
+     */
+    orderBy?: CustomRoutineOrderByWithRelationInput | CustomRoutineOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for CustomRoutines.
+     */
+    cursor?: CustomRoutineWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` CustomRoutines from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` CustomRoutines.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of CustomRoutines.
+     */
+    distinct?: CustomRoutineScalarFieldEnum | CustomRoutineScalarFieldEnum[]
+  }
+
+  /**
+   * CustomRoutine findMany
+   */
+  export type CustomRoutineFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CustomRoutine
+     */
+    select?: CustomRoutineSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CustomRoutine
+     */
+    omit?: CustomRoutineOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CustomRoutineInclude<ExtArgs> | null
+    /**
+     * Filter, which CustomRoutines to fetch.
+     */
+    where?: CustomRoutineWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of CustomRoutines to fetch.
+     */
+    orderBy?: CustomRoutineOrderByWithRelationInput | CustomRoutineOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing CustomRoutines.
+     */
+    cursor?: CustomRoutineWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` CustomRoutines from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` CustomRoutines.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of CustomRoutines.
+     */
+    distinct?: CustomRoutineScalarFieldEnum | CustomRoutineScalarFieldEnum[]
+  }
+
+  /**
+   * CustomRoutine create
+   */
+  export type CustomRoutineCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CustomRoutine
+     */
+    select?: CustomRoutineSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CustomRoutine
+     */
+    omit?: CustomRoutineOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CustomRoutineInclude<ExtArgs> | null
+    /**
+     * The data needed to create a CustomRoutine.
+     */
+    data: XOR<CustomRoutineCreateInput, CustomRoutineUncheckedCreateInput>
+  }
+
+  /**
+   * CustomRoutine createMany
+   */
+  export type CustomRoutineCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many CustomRoutines.
+     */
+    data: CustomRoutineCreateManyInput | CustomRoutineCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * CustomRoutine createManyAndReturn
+   */
+  export type CustomRoutineCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CustomRoutine
+     */
+    select?: CustomRoutineSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the CustomRoutine
+     */
+    omit?: CustomRoutineOmit<ExtArgs> | null
+    /**
+     * The data used to create many CustomRoutines.
+     */
+    data: CustomRoutineCreateManyInput | CustomRoutineCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CustomRoutineIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * CustomRoutine update
+   */
+  export type CustomRoutineUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CustomRoutine
+     */
+    select?: CustomRoutineSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CustomRoutine
+     */
+    omit?: CustomRoutineOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CustomRoutineInclude<ExtArgs> | null
+    /**
+     * The data needed to update a CustomRoutine.
+     */
+    data: XOR<CustomRoutineUpdateInput, CustomRoutineUncheckedUpdateInput>
+    /**
+     * Choose, which CustomRoutine to update.
+     */
+    where: CustomRoutineWhereUniqueInput
+  }
+
+  /**
+   * CustomRoutine updateMany
+   */
+  export type CustomRoutineUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update CustomRoutines.
+     */
+    data: XOR<CustomRoutineUpdateManyMutationInput, CustomRoutineUncheckedUpdateManyInput>
+    /**
+     * Filter which CustomRoutines to update
+     */
+    where?: CustomRoutineWhereInput
+    /**
+     * Limit how many CustomRoutines to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * CustomRoutine updateManyAndReturn
+   */
+  export type CustomRoutineUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CustomRoutine
+     */
+    select?: CustomRoutineSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the CustomRoutine
+     */
+    omit?: CustomRoutineOmit<ExtArgs> | null
+    /**
+     * The data used to update CustomRoutines.
+     */
+    data: XOR<CustomRoutineUpdateManyMutationInput, CustomRoutineUncheckedUpdateManyInput>
+    /**
+     * Filter which CustomRoutines to update
+     */
+    where?: CustomRoutineWhereInput
+    /**
+     * Limit how many CustomRoutines to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CustomRoutineIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * CustomRoutine upsert
+   */
+  export type CustomRoutineUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CustomRoutine
+     */
+    select?: CustomRoutineSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CustomRoutine
+     */
+    omit?: CustomRoutineOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CustomRoutineInclude<ExtArgs> | null
+    /**
+     * The filter to search for the CustomRoutine to update in case it exists.
+     */
+    where: CustomRoutineWhereUniqueInput
+    /**
+     * In case the CustomRoutine found by the `where` argument doesn't exist, create a new CustomRoutine with this data.
+     */
+    create: XOR<CustomRoutineCreateInput, CustomRoutineUncheckedCreateInput>
+    /**
+     * In case the CustomRoutine was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<CustomRoutineUpdateInput, CustomRoutineUncheckedUpdateInput>
+  }
+
+  /**
+   * CustomRoutine delete
+   */
+  export type CustomRoutineDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CustomRoutine
+     */
+    select?: CustomRoutineSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CustomRoutine
+     */
+    omit?: CustomRoutineOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CustomRoutineInclude<ExtArgs> | null
+    /**
+     * Filter which CustomRoutine to delete.
+     */
+    where: CustomRoutineWhereUniqueInput
+  }
+
+  /**
+   * CustomRoutine deleteMany
+   */
+  export type CustomRoutineDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which CustomRoutines to delete
+     */
+    where?: CustomRoutineWhereInput
+    /**
+     * Limit how many CustomRoutines to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * CustomRoutine without action
+   */
+  export type CustomRoutineDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CustomRoutine
+     */
+    select?: CustomRoutineSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CustomRoutine
+     */
+    omit?: CustomRoutineOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CustomRoutineInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model Milestone
+   */
+
+  export type AggregateMilestone = {
+    _count: MilestoneCountAggregateOutputType | null
+    _min: MilestoneMinAggregateOutputType | null
+    _max: MilestoneMaxAggregateOutputType | null
+  }
+
+  export type MilestoneMinAggregateOutputType = {
+    id: string | null
+    userId: string | null
+    type: string | null
+    title: string | null
+    seenAt: Date | null
+    earnedAt: Date | null
+  }
+
+  export type MilestoneMaxAggregateOutputType = {
+    id: string | null
+    userId: string | null
+    type: string | null
+    title: string | null
+    seenAt: Date | null
+    earnedAt: Date | null
+  }
+
+  export type MilestoneCountAggregateOutputType = {
+    id: number
+    userId: number
+    type: number
+    title: number
+    seenAt: number
+    earnedAt: number
+    _all: number
+  }
+
+
+  export type MilestoneMinAggregateInputType = {
+    id?: true
+    userId?: true
+    type?: true
+    title?: true
+    seenAt?: true
+    earnedAt?: true
+  }
+
+  export type MilestoneMaxAggregateInputType = {
+    id?: true
+    userId?: true
+    type?: true
+    title?: true
+    seenAt?: true
+    earnedAt?: true
+  }
+
+  export type MilestoneCountAggregateInputType = {
+    id?: true
+    userId?: true
+    type?: true
+    title?: true
+    seenAt?: true
+    earnedAt?: true
+    _all?: true
+  }
+
+  export type MilestoneAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Milestone to aggregate.
+     */
+    where?: MilestoneWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Milestones to fetch.
+     */
+    orderBy?: MilestoneOrderByWithRelationInput | MilestoneOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: MilestoneWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Milestones from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Milestones.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned Milestones
+    **/
+    _count?: true | MilestoneCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: MilestoneMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: MilestoneMaxAggregateInputType
+  }
+
+  export type GetMilestoneAggregateType<T extends MilestoneAggregateArgs> = {
+        [P in keyof T & keyof AggregateMilestone]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateMilestone[P]>
+      : GetScalarType<T[P], AggregateMilestone[P]>
+  }
+
+
+
+
+  export type MilestoneGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: MilestoneWhereInput
+    orderBy?: MilestoneOrderByWithAggregationInput | MilestoneOrderByWithAggregationInput[]
+    by: MilestoneScalarFieldEnum[] | MilestoneScalarFieldEnum
+    having?: MilestoneScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: MilestoneCountAggregateInputType | true
+    _min?: MilestoneMinAggregateInputType
+    _max?: MilestoneMaxAggregateInputType
+  }
+
+  export type MilestoneGroupByOutputType = {
+    id: string
+    userId: string
+    type: string
+    title: string
+    seenAt: Date | null
+    earnedAt: Date
+    _count: MilestoneCountAggregateOutputType | null
+    _min: MilestoneMinAggregateOutputType | null
+    _max: MilestoneMaxAggregateOutputType | null
+  }
+
+  type GetMilestoneGroupByPayload<T extends MilestoneGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<MilestoneGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof MilestoneGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], MilestoneGroupByOutputType[P]>
+            : GetScalarType<T[P], MilestoneGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type MilestoneSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    userId?: boolean
+    type?: boolean
+    title?: boolean
+    seenAt?: boolean
+    earnedAt?: boolean
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["milestone"]>
+
+  export type MilestoneSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    userId?: boolean
+    type?: boolean
+    title?: boolean
+    seenAt?: boolean
+    earnedAt?: boolean
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["milestone"]>
+
+  export type MilestoneSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    userId?: boolean
+    type?: boolean
+    title?: boolean
+    seenAt?: boolean
+    earnedAt?: boolean
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["milestone"]>
+
+  export type MilestoneSelectScalar = {
+    id?: boolean
+    userId?: boolean
+    type?: boolean
+    title?: boolean
+    seenAt?: boolean
+    earnedAt?: boolean
+  }
+
+  export type MilestoneOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "userId" | "type" | "title" | "seenAt" | "earnedAt", ExtArgs["result"]["milestone"]>
+  export type MilestoneInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }
+  export type MilestoneIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }
+  export type MilestoneIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }
+
+  export type $MilestonePayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "Milestone"
+    objects: {
+      user: Prisma.$UserPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      userId: string
+      type: string
+      title: string
+      seenAt: Date | null
+      earnedAt: Date
+    }, ExtArgs["result"]["milestone"]>
+    composites: {}
+  }
+
+  type MilestoneGetPayload<S extends boolean | null | undefined | MilestoneDefaultArgs> = $Result.GetResult<Prisma.$MilestonePayload, S>
+
+  type MilestoneCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<MilestoneFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: MilestoneCountAggregateInputType | true
+    }
+
+  export interface MilestoneDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['Milestone'], meta: { name: 'Milestone' } }
+    /**
+     * Find zero or one Milestone that matches the filter.
+     * @param {MilestoneFindUniqueArgs} args - Arguments to find a Milestone
+     * @example
+     * // Get one Milestone
+     * const milestone = await prisma.milestone.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends MilestoneFindUniqueArgs>(args: SelectSubset<T, MilestoneFindUniqueArgs<ExtArgs>>): Prisma__MilestoneClient<$Result.GetResult<Prisma.$MilestonePayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one Milestone that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {MilestoneFindUniqueOrThrowArgs} args - Arguments to find a Milestone
+     * @example
+     * // Get one Milestone
+     * const milestone = await prisma.milestone.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends MilestoneFindUniqueOrThrowArgs>(args: SelectSubset<T, MilestoneFindUniqueOrThrowArgs<ExtArgs>>): Prisma__MilestoneClient<$Result.GetResult<Prisma.$MilestonePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Milestone that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {MilestoneFindFirstArgs} args - Arguments to find a Milestone
+     * @example
+     * // Get one Milestone
+     * const milestone = await prisma.milestone.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends MilestoneFindFirstArgs>(args?: SelectSubset<T, MilestoneFindFirstArgs<ExtArgs>>): Prisma__MilestoneClient<$Result.GetResult<Prisma.$MilestonePayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Milestone that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {MilestoneFindFirstOrThrowArgs} args - Arguments to find a Milestone
+     * @example
+     * // Get one Milestone
+     * const milestone = await prisma.milestone.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends MilestoneFindFirstOrThrowArgs>(args?: SelectSubset<T, MilestoneFindFirstOrThrowArgs<ExtArgs>>): Prisma__MilestoneClient<$Result.GetResult<Prisma.$MilestonePayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more Milestones that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {MilestoneFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all Milestones
+     * const milestones = await prisma.milestone.findMany()
+     * 
+     * // Get first 10 Milestones
+     * const milestones = await prisma.milestone.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const milestoneWithIdOnly = await prisma.milestone.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends MilestoneFindManyArgs>(args?: SelectSubset<T, MilestoneFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$MilestonePayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a Milestone.
+     * @param {MilestoneCreateArgs} args - Arguments to create a Milestone.
+     * @example
+     * // Create one Milestone
+     * const Milestone = await prisma.milestone.create({
+     *   data: {
+     *     // ... data to create a Milestone
+     *   }
+     * })
+     * 
+     */
+    create<T extends MilestoneCreateArgs>(args: SelectSubset<T, MilestoneCreateArgs<ExtArgs>>): Prisma__MilestoneClient<$Result.GetResult<Prisma.$MilestonePayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many Milestones.
+     * @param {MilestoneCreateManyArgs} args - Arguments to create many Milestones.
+     * @example
+     * // Create many Milestones
+     * const milestone = await prisma.milestone.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends MilestoneCreateManyArgs>(args?: SelectSubset<T, MilestoneCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many Milestones and returns the data saved in the database.
+     * @param {MilestoneCreateManyAndReturnArgs} args - Arguments to create many Milestones.
+     * @example
+     * // Create many Milestones
+     * const milestone = await prisma.milestone.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many Milestones and only return the `id`
+     * const milestoneWithIdOnly = await prisma.milestone.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends MilestoneCreateManyAndReturnArgs>(args?: SelectSubset<T, MilestoneCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$MilestonePayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a Milestone.
+     * @param {MilestoneDeleteArgs} args - Arguments to delete one Milestone.
+     * @example
+     * // Delete one Milestone
+     * const Milestone = await prisma.milestone.delete({
+     *   where: {
+     *     // ... filter to delete one Milestone
+     *   }
+     * })
+     * 
+     */
+    delete<T extends MilestoneDeleteArgs>(args: SelectSubset<T, MilestoneDeleteArgs<ExtArgs>>): Prisma__MilestoneClient<$Result.GetResult<Prisma.$MilestonePayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one Milestone.
+     * @param {MilestoneUpdateArgs} args - Arguments to update one Milestone.
+     * @example
+     * // Update one Milestone
+     * const milestone = await prisma.milestone.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends MilestoneUpdateArgs>(args: SelectSubset<T, MilestoneUpdateArgs<ExtArgs>>): Prisma__MilestoneClient<$Result.GetResult<Prisma.$MilestonePayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more Milestones.
+     * @param {MilestoneDeleteManyArgs} args - Arguments to filter Milestones to delete.
+     * @example
+     * // Delete a few Milestones
+     * const { count } = await prisma.milestone.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends MilestoneDeleteManyArgs>(args?: SelectSubset<T, MilestoneDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Milestones.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {MilestoneUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many Milestones
+     * const milestone = await prisma.milestone.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends MilestoneUpdateManyArgs>(args: SelectSubset<T, MilestoneUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Milestones and returns the data updated in the database.
+     * @param {MilestoneUpdateManyAndReturnArgs} args - Arguments to update many Milestones.
+     * @example
+     * // Update many Milestones
+     * const milestone = await prisma.milestone.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more Milestones and only return the `id`
+     * const milestoneWithIdOnly = await prisma.milestone.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends MilestoneUpdateManyAndReturnArgs>(args: SelectSubset<T, MilestoneUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$MilestonePayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one Milestone.
+     * @param {MilestoneUpsertArgs} args - Arguments to update or create a Milestone.
+     * @example
+     * // Update or create a Milestone
+     * const milestone = await prisma.milestone.upsert({
+     *   create: {
+     *     // ... data to create a Milestone
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the Milestone we want to update
+     *   }
+     * })
+     */
+    upsert<T extends MilestoneUpsertArgs>(args: SelectSubset<T, MilestoneUpsertArgs<ExtArgs>>): Prisma__MilestoneClient<$Result.GetResult<Prisma.$MilestonePayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of Milestones.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {MilestoneCountArgs} args - Arguments to filter Milestones to count.
+     * @example
+     * // Count the number of Milestones
+     * const count = await prisma.milestone.count({
+     *   where: {
+     *     // ... the filter for the Milestones we want to count
+     *   }
+     * })
+    **/
+    count<T extends MilestoneCountArgs>(
+      args?: Subset<T, MilestoneCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], MilestoneCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a Milestone.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {MilestoneAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends MilestoneAggregateArgs>(args: Subset<T, MilestoneAggregateArgs>): Prisma.PrismaPromise<GetMilestoneAggregateType<T>>
+
+    /**
+     * Group by Milestone.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {MilestoneGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends MilestoneGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: MilestoneGroupByArgs['orderBy'] }
+        : { orderBy?: MilestoneGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, MilestoneGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetMilestoneGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the Milestone model
+   */
+  readonly fields: MilestoneFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for Milestone.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__MilestoneClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    user<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the Milestone model
+   */
+  interface MilestoneFieldRefs {
+    readonly id: FieldRef<"Milestone", 'String'>
+    readonly userId: FieldRef<"Milestone", 'String'>
+    readonly type: FieldRef<"Milestone", 'String'>
+    readonly title: FieldRef<"Milestone", 'String'>
+    readonly seenAt: FieldRef<"Milestone", 'DateTime'>
+    readonly earnedAt: FieldRef<"Milestone", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * Milestone findUnique
+   */
+  export type MilestoneFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Milestone
+     */
+    select?: MilestoneSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Milestone
+     */
+    omit?: MilestoneOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MilestoneInclude<ExtArgs> | null
+    /**
+     * Filter, which Milestone to fetch.
+     */
+    where: MilestoneWhereUniqueInput
+  }
+
+  /**
+   * Milestone findUniqueOrThrow
+   */
+  export type MilestoneFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Milestone
+     */
+    select?: MilestoneSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Milestone
+     */
+    omit?: MilestoneOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MilestoneInclude<ExtArgs> | null
+    /**
+     * Filter, which Milestone to fetch.
+     */
+    where: MilestoneWhereUniqueInput
+  }
+
+  /**
+   * Milestone findFirst
+   */
+  export type MilestoneFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Milestone
+     */
+    select?: MilestoneSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Milestone
+     */
+    omit?: MilestoneOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MilestoneInclude<ExtArgs> | null
+    /**
+     * Filter, which Milestone to fetch.
+     */
+    where?: MilestoneWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Milestones to fetch.
+     */
+    orderBy?: MilestoneOrderByWithRelationInput | MilestoneOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Milestones.
+     */
+    cursor?: MilestoneWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Milestones from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Milestones.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Milestones.
+     */
+    distinct?: MilestoneScalarFieldEnum | MilestoneScalarFieldEnum[]
+  }
+
+  /**
+   * Milestone findFirstOrThrow
+   */
+  export type MilestoneFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Milestone
+     */
+    select?: MilestoneSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Milestone
+     */
+    omit?: MilestoneOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MilestoneInclude<ExtArgs> | null
+    /**
+     * Filter, which Milestone to fetch.
+     */
+    where?: MilestoneWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Milestones to fetch.
+     */
+    orderBy?: MilestoneOrderByWithRelationInput | MilestoneOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Milestones.
+     */
+    cursor?: MilestoneWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Milestones from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Milestones.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Milestones.
+     */
+    distinct?: MilestoneScalarFieldEnum | MilestoneScalarFieldEnum[]
+  }
+
+  /**
+   * Milestone findMany
+   */
+  export type MilestoneFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Milestone
+     */
+    select?: MilestoneSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Milestone
+     */
+    omit?: MilestoneOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MilestoneInclude<ExtArgs> | null
+    /**
+     * Filter, which Milestones to fetch.
+     */
+    where?: MilestoneWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Milestones to fetch.
+     */
+    orderBy?: MilestoneOrderByWithRelationInput | MilestoneOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing Milestones.
+     */
+    cursor?: MilestoneWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Milestones from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Milestones.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Milestones.
+     */
+    distinct?: MilestoneScalarFieldEnum | MilestoneScalarFieldEnum[]
+  }
+
+  /**
+   * Milestone create
+   */
+  export type MilestoneCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Milestone
+     */
+    select?: MilestoneSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Milestone
+     */
+    omit?: MilestoneOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MilestoneInclude<ExtArgs> | null
+    /**
+     * The data needed to create a Milestone.
+     */
+    data: XOR<MilestoneCreateInput, MilestoneUncheckedCreateInput>
+  }
+
+  /**
+   * Milestone createMany
+   */
+  export type MilestoneCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many Milestones.
+     */
+    data: MilestoneCreateManyInput | MilestoneCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * Milestone createManyAndReturn
+   */
+  export type MilestoneCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Milestone
+     */
+    select?: MilestoneSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the Milestone
+     */
+    omit?: MilestoneOmit<ExtArgs> | null
+    /**
+     * The data used to create many Milestones.
+     */
+    data: MilestoneCreateManyInput | MilestoneCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MilestoneIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * Milestone update
+   */
+  export type MilestoneUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Milestone
+     */
+    select?: MilestoneSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Milestone
+     */
+    omit?: MilestoneOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MilestoneInclude<ExtArgs> | null
+    /**
+     * The data needed to update a Milestone.
+     */
+    data: XOR<MilestoneUpdateInput, MilestoneUncheckedUpdateInput>
+    /**
+     * Choose, which Milestone to update.
+     */
+    where: MilestoneWhereUniqueInput
+  }
+
+  /**
+   * Milestone updateMany
+   */
+  export type MilestoneUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update Milestones.
+     */
+    data: XOR<MilestoneUpdateManyMutationInput, MilestoneUncheckedUpdateManyInput>
+    /**
+     * Filter which Milestones to update
+     */
+    where?: MilestoneWhereInput
+    /**
+     * Limit how many Milestones to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * Milestone updateManyAndReturn
+   */
+  export type MilestoneUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Milestone
+     */
+    select?: MilestoneSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the Milestone
+     */
+    omit?: MilestoneOmit<ExtArgs> | null
+    /**
+     * The data used to update Milestones.
+     */
+    data: XOR<MilestoneUpdateManyMutationInput, MilestoneUncheckedUpdateManyInput>
+    /**
+     * Filter which Milestones to update
+     */
+    where?: MilestoneWhereInput
+    /**
+     * Limit how many Milestones to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MilestoneIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * Milestone upsert
+   */
+  export type MilestoneUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Milestone
+     */
+    select?: MilestoneSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Milestone
+     */
+    omit?: MilestoneOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MilestoneInclude<ExtArgs> | null
+    /**
+     * The filter to search for the Milestone to update in case it exists.
+     */
+    where: MilestoneWhereUniqueInput
+    /**
+     * In case the Milestone found by the `where` argument doesn't exist, create a new Milestone with this data.
+     */
+    create: XOR<MilestoneCreateInput, MilestoneUncheckedCreateInput>
+    /**
+     * In case the Milestone was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<MilestoneUpdateInput, MilestoneUncheckedUpdateInput>
+  }
+
+  /**
+   * Milestone delete
+   */
+  export type MilestoneDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Milestone
+     */
+    select?: MilestoneSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Milestone
+     */
+    omit?: MilestoneOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MilestoneInclude<ExtArgs> | null
+    /**
+     * Filter which Milestone to delete.
+     */
+    where: MilestoneWhereUniqueInput
+  }
+
+  /**
+   * Milestone deleteMany
+   */
+  export type MilestoneDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Milestones to delete
+     */
+    where?: MilestoneWhereInput
+    /**
+     * Limit how many Milestones to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * Milestone without action
+   */
+  export type MilestoneDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Milestone
+     */
+    select?: MilestoneSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Milestone
+     */
+    omit?: MilestoneOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MilestoneInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model Referral
+   */
+
+  export type AggregateReferral = {
+    _count: ReferralCountAggregateOutputType | null
+    _min: ReferralMinAggregateOutputType | null
+    _max: ReferralMaxAggregateOutputType | null
+  }
+
+  export type ReferralMinAggregateOutputType = {
+    id: string | null
+    referrerId: string | null
+    code: string | null
+    usedBy: string | null
+    usedAt: Date | null
+    rewarded: boolean | null
+    createdAt: Date | null
+  }
+
+  export type ReferralMaxAggregateOutputType = {
+    id: string | null
+    referrerId: string | null
+    code: string | null
+    usedBy: string | null
+    usedAt: Date | null
+    rewarded: boolean | null
+    createdAt: Date | null
+  }
+
+  export type ReferralCountAggregateOutputType = {
+    id: number
+    referrerId: number
+    code: number
+    usedBy: number
+    usedAt: number
+    rewarded: number
+    createdAt: number
+    _all: number
+  }
+
+
+  export type ReferralMinAggregateInputType = {
+    id?: true
+    referrerId?: true
+    code?: true
+    usedBy?: true
+    usedAt?: true
+    rewarded?: true
+    createdAt?: true
+  }
+
+  export type ReferralMaxAggregateInputType = {
+    id?: true
+    referrerId?: true
+    code?: true
+    usedBy?: true
+    usedAt?: true
+    rewarded?: true
+    createdAt?: true
+  }
+
+  export type ReferralCountAggregateInputType = {
+    id?: true
+    referrerId?: true
+    code?: true
+    usedBy?: true
+    usedAt?: true
+    rewarded?: true
+    createdAt?: true
+    _all?: true
+  }
+
+  export type ReferralAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Referral to aggregate.
+     */
+    where?: ReferralWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Referrals to fetch.
+     */
+    orderBy?: ReferralOrderByWithRelationInput | ReferralOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: ReferralWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Referrals from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Referrals.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned Referrals
+    **/
+    _count?: true | ReferralCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: ReferralMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: ReferralMaxAggregateInputType
+  }
+
+  export type GetReferralAggregateType<T extends ReferralAggregateArgs> = {
+        [P in keyof T & keyof AggregateReferral]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateReferral[P]>
+      : GetScalarType<T[P], AggregateReferral[P]>
+  }
+
+
+
+
+  export type ReferralGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ReferralWhereInput
+    orderBy?: ReferralOrderByWithAggregationInput | ReferralOrderByWithAggregationInput[]
+    by: ReferralScalarFieldEnum[] | ReferralScalarFieldEnum
+    having?: ReferralScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: ReferralCountAggregateInputType | true
+    _min?: ReferralMinAggregateInputType
+    _max?: ReferralMaxAggregateInputType
+  }
+
+  export type ReferralGroupByOutputType = {
+    id: string
+    referrerId: string
+    code: string
+    usedBy: string | null
+    usedAt: Date | null
+    rewarded: boolean
+    createdAt: Date
+    _count: ReferralCountAggregateOutputType | null
+    _min: ReferralMinAggregateOutputType | null
+    _max: ReferralMaxAggregateOutputType | null
+  }
+
+  type GetReferralGroupByPayload<T extends ReferralGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<ReferralGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof ReferralGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], ReferralGroupByOutputType[P]>
+            : GetScalarType<T[P], ReferralGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type ReferralSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    referrerId?: boolean
+    code?: boolean
+    usedBy?: boolean
+    usedAt?: boolean
+    rewarded?: boolean
+    createdAt?: boolean
+    referrer?: boolean | UserDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["referral"]>
+
+  export type ReferralSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    referrerId?: boolean
+    code?: boolean
+    usedBy?: boolean
+    usedAt?: boolean
+    rewarded?: boolean
+    createdAt?: boolean
+    referrer?: boolean | UserDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["referral"]>
+
+  export type ReferralSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    referrerId?: boolean
+    code?: boolean
+    usedBy?: boolean
+    usedAt?: boolean
+    rewarded?: boolean
+    createdAt?: boolean
+    referrer?: boolean | UserDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["referral"]>
+
+  export type ReferralSelectScalar = {
+    id?: boolean
+    referrerId?: boolean
+    code?: boolean
+    usedBy?: boolean
+    usedAt?: boolean
+    rewarded?: boolean
+    createdAt?: boolean
+  }
+
+  export type ReferralOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "referrerId" | "code" | "usedBy" | "usedAt" | "rewarded" | "createdAt", ExtArgs["result"]["referral"]>
+  export type ReferralInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    referrer?: boolean | UserDefaultArgs<ExtArgs>
+  }
+  export type ReferralIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    referrer?: boolean | UserDefaultArgs<ExtArgs>
+  }
+  export type ReferralIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    referrer?: boolean | UserDefaultArgs<ExtArgs>
+  }
+
+  export type $ReferralPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "Referral"
+    objects: {
+      referrer: Prisma.$UserPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      referrerId: string
+      code: string
+      usedBy: string | null
+      usedAt: Date | null
+      rewarded: boolean
+      createdAt: Date
+    }, ExtArgs["result"]["referral"]>
+    composites: {}
+  }
+
+  type ReferralGetPayload<S extends boolean | null | undefined | ReferralDefaultArgs> = $Result.GetResult<Prisma.$ReferralPayload, S>
+
+  type ReferralCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<ReferralFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: ReferralCountAggregateInputType | true
+    }
+
+  export interface ReferralDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['Referral'], meta: { name: 'Referral' } }
+    /**
+     * Find zero or one Referral that matches the filter.
+     * @param {ReferralFindUniqueArgs} args - Arguments to find a Referral
+     * @example
+     * // Get one Referral
+     * const referral = await prisma.referral.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends ReferralFindUniqueArgs>(args: SelectSubset<T, ReferralFindUniqueArgs<ExtArgs>>): Prisma__ReferralClient<$Result.GetResult<Prisma.$ReferralPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one Referral that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {ReferralFindUniqueOrThrowArgs} args - Arguments to find a Referral
+     * @example
+     * // Get one Referral
+     * const referral = await prisma.referral.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends ReferralFindUniqueOrThrowArgs>(args: SelectSubset<T, ReferralFindUniqueOrThrowArgs<ExtArgs>>): Prisma__ReferralClient<$Result.GetResult<Prisma.$ReferralPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Referral that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ReferralFindFirstArgs} args - Arguments to find a Referral
+     * @example
+     * // Get one Referral
+     * const referral = await prisma.referral.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends ReferralFindFirstArgs>(args?: SelectSubset<T, ReferralFindFirstArgs<ExtArgs>>): Prisma__ReferralClient<$Result.GetResult<Prisma.$ReferralPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Referral that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ReferralFindFirstOrThrowArgs} args - Arguments to find a Referral
+     * @example
+     * // Get one Referral
+     * const referral = await prisma.referral.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends ReferralFindFirstOrThrowArgs>(args?: SelectSubset<T, ReferralFindFirstOrThrowArgs<ExtArgs>>): Prisma__ReferralClient<$Result.GetResult<Prisma.$ReferralPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more Referrals that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ReferralFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all Referrals
+     * const referrals = await prisma.referral.findMany()
+     * 
+     * // Get first 10 Referrals
+     * const referrals = await prisma.referral.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const referralWithIdOnly = await prisma.referral.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends ReferralFindManyArgs>(args?: SelectSubset<T, ReferralFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ReferralPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a Referral.
+     * @param {ReferralCreateArgs} args - Arguments to create a Referral.
+     * @example
+     * // Create one Referral
+     * const Referral = await prisma.referral.create({
+     *   data: {
+     *     // ... data to create a Referral
+     *   }
+     * })
+     * 
+     */
+    create<T extends ReferralCreateArgs>(args: SelectSubset<T, ReferralCreateArgs<ExtArgs>>): Prisma__ReferralClient<$Result.GetResult<Prisma.$ReferralPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many Referrals.
+     * @param {ReferralCreateManyArgs} args - Arguments to create many Referrals.
+     * @example
+     * // Create many Referrals
+     * const referral = await prisma.referral.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends ReferralCreateManyArgs>(args?: SelectSubset<T, ReferralCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many Referrals and returns the data saved in the database.
+     * @param {ReferralCreateManyAndReturnArgs} args - Arguments to create many Referrals.
+     * @example
+     * // Create many Referrals
+     * const referral = await prisma.referral.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many Referrals and only return the `id`
+     * const referralWithIdOnly = await prisma.referral.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends ReferralCreateManyAndReturnArgs>(args?: SelectSubset<T, ReferralCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ReferralPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a Referral.
+     * @param {ReferralDeleteArgs} args - Arguments to delete one Referral.
+     * @example
+     * // Delete one Referral
+     * const Referral = await prisma.referral.delete({
+     *   where: {
+     *     // ... filter to delete one Referral
+     *   }
+     * })
+     * 
+     */
+    delete<T extends ReferralDeleteArgs>(args: SelectSubset<T, ReferralDeleteArgs<ExtArgs>>): Prisma__ReferralClient<$Result.GetResult<Prisma.$ReferralPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one Referral.
+     * @param {ReferralUpdateArgs} args - Arguments to update one Referral.
+     * @example
+     * // Update one Referral
+     * const referral = await prisma.referral.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends ReferralUpdateArgs>(args: SelectSubset<T, ReferralUpdateArgs<ExtArgs>>): Prisma__ReferralClient<$Result.GetResult<Prisma.$ReferralPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more Referrals.
+     * @param {ReferralDeleteManyArgs} args - Arguments to filter Referrals to delete.
+     * @example
+     * // Delete a few Referrals
+     * const { count } = await prisma.referral.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends ReferralDeleteManyArgs>(args?: SelectSubset<T, ReferralDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Referrals.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ReferralUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many Referrals
+     * const referral = await prisma.referral.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends ReferralUpdateManyArgs>(args: SelectSubset<T, ReferralUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Referrals and returns the data updated in the database.
+     * @param {ReferralUpdateManyAndReturnArgs} args - Arguments to update many Referrals.
+     * @example
+     * // Update many Referrals
+     * const referral = await prisma.referral.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more Referrals and only return the `id`
+     * const referralWithIdOnly = await prisma.referral.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends ReferralUpdateManyAndReturnArgs>(args: SelectSubset<T, ReferralUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ReferralPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one Referral.
+     * @param {ReferralUpsertArgs} args - Arguments to update or create a Referral.
+     * @example
+     * // Update or create a Referral
+     * const referral = await prisma.referral.upsert({
+     *   create: {
+     *     // ... data to create a Referral
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the Referral we want to update
+     *   }
+     * })
+     */
+    upsert<T extends ReferralUpsertArgs>(args: SelectSubset<T, ReferralUpsertArgs<ExtArgs>>): Prisma__ReferralClient<$Result.GetResult<Prisma.$ReferralPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of Referrals.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ReferralCountArgs} args - Arguments to filter Referrals to count.
+     * @example
+     * // Count the number of Referrals
+     * const count = await prisma.referral.count({
+     *   where: {
+     *     // ... the filter for the Referrals we want to count
+     *   }
+     * })
+    **/
+    count<T extends ReferralCountArgs>(
+      args?: Subset<T, ReferralCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], ReferralCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a Referral.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ReferralAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends ReferralAggregateArgs>(args: Subset<T, ReferralAggregateArgs>): Prisma.PrismaPromise<GetReferralAggregateType<T>>
+
+    /**
+     * Group by Referral.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ReferralGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends ReferralGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: ReferralGroupByArgs['orderBy'] }
+        : { orderBy?: ReferralGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, ReferralGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetReferralGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the Referral model
+   */
+  readonly fields: ReferralFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for Referral.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__ReferralClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    referrer<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the Referral model
+   */
+  interface ReferralFieldRefs {
+    readonly id: FieldRef<"Referral", 'String'>
+    readonly referrerId: FieldRef<"Referral", 'String'>
+    readonly code: FieldRef<"Referral", 'String'>
+    readonly usedBy: FieldRef<"Referral", 'String'>
+    readonly usedAt: FieldRef<"Referral", 'DateTime'>
+    readonly rewarded: FieldRef<"Referral", 'Boolean'>
+    readonly createdAt: FieldRef<"Referral", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * Referral findUnique
+   */
+  export type ReferralFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Referral
+     */
+    select?: ReferralSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Referral
+     */
+    omit?: ReferralOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ReferralInclude<ExtArgs> | null
+    /**
+     * Filter, which Referral to fetch.
+     */
+    where: ReferralWhereUniqueInput
+  }
+
+  /**
+   * Referral findUniqueOrThrow
+   */
+  export type ReferralFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Referral
+     */
+    select?: ReferralSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Referral
+     */
+    omit?: ReferralOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ReferralInclude<ExtArgs> | null
+    /**
+     * Filter, which Referral to fetch.
+     */
+    where: ReferralWhereUniqueInput
+  }
+
+  /**
+   * Referral findFirst
+   */
+  export type ReferralFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Referral
+     */
+    select?: ReferralSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Referral
+     */
+    omit?: ReferralOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ReferralInclude<ExtArgs> | null
+    /**
+     * Filter, which Referral to fetch.
+     */
+    where?: ReferralWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Referrals to fetch.
+     */
+    orderBy?: ReferralOrderByWithRelationInput | ReferralOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Referrals.
+     */
+    cursor?: ReferralWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Referrals from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Referrals.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Referrals.
+     */
+    distinct?: ReferralScalarFieldEnum | ReferralScalarFieldEnum[]
+  }
+
+  /**
+   * Referral findFirstOrThrow
+   */
+  export type ReferralFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Referral
+     */
+    select?: ReferralSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Referral
+     */
+    omit?: ReferralOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ReferralInclude<ExtArgs> | null
+    /**
+     * Filter, which Referral to fetch.
+     */
+    where?: ReferralWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Referrals to fetch.
+     */
+    orderBy?: ReferralOrderByWithRelationInput | ReferralOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Referrals.
+     */
+    cursor?: ReferralWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Referrals from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Referrals.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Referrals.
+     */
+    distinct?: ReferralScalarFieldEnum | ReferralScalarFieldEnum[]
+  }
+
+  /**
+   * Referral findMany
+   */
+  export type ReferralFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Referral
+     */
+    select?: ReferralSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Referral
+     */
+    omit?: ReferralOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ReferralInclude<ExtArgs> | null
+    /**
+     * Filter, which Referrals to fetch.
+     */
+    where?: ReferralWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Referrals to fetch.
+     */
+    orderBy?: ReferralOrderByWithRelationInput | ReferralOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing Referrals.
+     */
+    cursor?: ReferralWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Referrals from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Referrals.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Referrals.
+     */
+    distinct?: ReferralScalarFieldEnum | ReferralScalarFieldEnum[]
+  }
+
+  /**
+   * Referral create
+   */
+  export type ReferralCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Referral
+     */
+    select?: ReferralSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Referral
+     */
+    omit?: ReferralOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ReferralInclude<ExtArgs> | null
+    /**
+     * The data needed to create a Referral.
+     */
+    data: XOR<ReferralCreateInput, ReferralUncheckedCreateInput>
+  }
+
+  /**
+   * Referral createMany
+   */
+  export type ReferralCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many Referrals.
+     */
+    data: ReferralCreateManyInput | ReferralCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * Referral createManyAndReturn
+   */
+  export type ReferralCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Referral
+     */
+    select?: ReferralSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the Referral
+     */
+    omit?: ReferralOmit<ExtArgs> | null
+    /**
+     * The data used to create many Referrals.
+     */
+    data: ReferralCreateManyInput | ReferralCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ReferralIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * Referral update
+   */
+  export type ReferralUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Referral
+     */
+    select?: ReferralSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Referral
+     */
+    omit?: ReferralOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ReferralInclude<ExtArgs> | null
+    /**
+     * The data needed to update a Referral.
+     */
+    data: XOR<ReferralUpdateInput, ReferralUncheckedUpdateInput>
+    /**
+     * Choose, which Referral to update.
+     */
+    where: ReferralWhereUniqueInput
+  }
+
+  /**
+   * Referral updateMany
+   */
+  export type ReferralUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update Referrals.
+     */
+    data: XOR<ReferralUpdateManyMutationInput, ReferralUncheckedUpdateManyInput>
+    /**
+     * Filter which Referrals to update
+     */
+    where?: ReferralWhereInput
+    /**
+     * Limit how many Referrals to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * Referral updateManyAndReturn
+   */
+  export type ReferralUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Referral
+     */
+    select?: ReferralSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the Referral
+     */
+    omit?: ReferralOmit<ExtArgs> | null
+    /**
+     * The data used to update Referrals.
+     */
+    data: XOR<ReferralUpdateManyMutationInput, ReferralUncheckedUpdateManyInput>
+    /**
+     * Filter which Referrals to update
+     */
+    where?: ReferralWhereInput
+    /**
+     * Limit how many Referrals to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ReferralIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * Referral upsert
+   */
+  export type ReferralUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Referral
+     */
+    select?: ReferralSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Referral
+     */
+    omit?: ReferralOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ReferralInclude<ExtArgs> | null
+    /**
+     * The filter to search for the Referral to update in case it exists.
+     */
+    where: ReferralWhereUniqueInput
+    /**
+     * In case the Referral found by the `where` argument doesn't exist, create a new Referral with this data.
+     */
+    create: XOR<ReferralCreateInput, ReferralUncheckedCreateInput>
+    /**
+     * In case the Referral was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<ReferralUpdateInput, ReferralUncheckedUpdateInput>
+  }
+
+  /**
+   * Referral delete
+   */
+  export type ReferralDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Referral
+     */
+    select?: ReferralSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Referral
+     */
+    omit?: ReferralOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ReferralInclude<ExtArgs> | null
+    /**
+     * Filter which Referral to delete.
+     */
+    where: ReferralWhereUniqueInput
+  }
+
+  /**
+   * Referral deleteMany
+   */
+  export type ReferralDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Referrals to delete
+     */
+    where?: ReferralWhereInput
+    /**
+     * Limit how many Referrals to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * Referral without action
+   */
+  export type ReferralDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Referral
+     */
+    select?: ReferralSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Referral
+     */
+    omit?: ReferralOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ReferralInclude<ExtArgs> | null
+  }
+
+
+  /**
    * Enums
    */
 
@@ -23455,6 +27102,45 @@ export namespace Prisma {
   };
 
   export type FastingLogScalarFieldEnum = (typeof FastingLogScalarFieldEnum)[keyof typeof FastingLogScalarFieldEnum]
+
+
+  export const CustomRoutineScalarFieldEnum: {
+    id: 'id',
+    userId: 'userId',
+    name: 'name',
+    type: 'type',
+    exercises: 'exercises',
+    notes: 'notes',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
+  };
+
+  export type CustomRoutineScalarFieldEnum = (typeof CustomRoutineScalarFieldEnum)[keyof typeof CustomRoutineScalarFieldEnum]
+
+
+  export const MilestoneScalarFieldEnum: {
+    id: 'id',
+    userId: 'userId',
+    type: 'type',
+    title: 'title',
+    seenAt: 'seenAt',
+    earnedAt: 'earnedAt'
+  };
+
+  export type MilestoneScalarFieldEnum = (typeof MilestoneScalarFieldEnum)[keyof typeof MilestoneScalarFieldEnum]
+
+
+  export const ReferralScalarFieldEnum: {
+    id: 'id',
+    referrerId: 'referrerId',
+    code: 'code',
+    usedBy: 'usedBy',
+    usedAt: 'usedAt',
+    rewarded: 'rewarded',
+    createdAt: 'createdAt'
+  };
+
+  export type ReferralScalarFieldEnum = (typeof ReferralScalarFieldEnum)[keyof typeof ReferralScalarFieldEnum]
 
 
   export const SortOrder: {
@@ -23801,6 +27487,9 @@ export namespace Prisma {
     bodyLogs?: BodyLogListRelationFilter
     moodLogs?: MoodLogListRelationFilter
     fastingLogs?: FastingLogListRelationFilter
+    customRoutines?: CustomRoutineListRelationFilter
+    milestones?: MilestoneListRelationFilter
+    referrals?: ReferralListRelationFilter
   }
 
   export type UserOrderByWithRelationInput = {
@@ -23825,6 +27514,9 @@ export namespace Prisma {
     bodyLogs?: BodyLogOrderByRelationAggregateInput
     moodLogs?: MoodLogOrderByRelationAggregateInput
     fastingLogs?: FastingLogOrderByRelationAggregateInput
+    customRoutines?: CustomRoutineOrderByRelationAggregateInput
+    milestones?: MilestoneOrderByRelationAggregateInput
+    referrals?: ReferralOrderByRelationAggregateInput
   }
 
   export type UserWhereUniqueInput = Prisma.AtLeast<{
@@ -23852,6 +27544,9 @@ export namespace Prisma {
     bodyLogs?: BodyLogListRelationFilter
     moodLogs?: MoodLogListRelationFilter
     fastingLogs?: FastingLogListRelationFilter
+    customRoutines?: CustomRoutineListRelationFilter
+    milestones?: MilestoneListRelationFilter
+    referrals?: ReferralListRelationFilter
   }, "id" | "email">
 
   export type UserOrderByWithAggregationInput = {
@@ -24969,6 +28664,201 @@ export namespace Prisma {
     notes?: StringNullableWithAggregatesFilter<"FastingLog"> | string | null
   }
 
+  export type CustomRoutineWhereInput = {
+    AND?: CustomRoutineWhereInput | CustomRoutineWhereInput[]
+    OR?: CustomRoutineWhereInput[]
+    NOT?: CustomRoutineWhereInput | CustomRoutineWhereInput[]
+    id?: StringFilter<"CustomRoutine"> | string
+    userId?: StringFilter<"CustomRoutine"> | string
+    name?: StringFilter<"CustomRoutine"> | string
+    type?: StringFilter<"CustomRoutine"> | string
+    exercises?: JsonFilter<"CustomRoutine">
+    notes?: StringNullableFilter<"CustomRoutine"> | string | null
+    createdAt?: DateTimeFilter<"CustomRoutine"> | Date | string
+    updatedAt?: DateTimeFilter<"CustomRoutine"> | Date | string
+    user?: XOR<UserScalarRelationFilter, UserWhereInput>
+  }
+
+  export type CustomRoutineOrderByWithRelationInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    name?: SortOrder
+    type?: SortOrder
+    exercises?: SortOrder
+    notes?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    user?: UserOrderByWithRelationInput
+  }
+
+  export type CustomRoutineWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: CustomRoutineWhereInput | CustomRoutineWhereInput[]
+    OR?: CustomRoutineWhereInput[]
+    NOT?: CustomRoutineWhereInput | CustomRoutineWhereInput[]
+    userId?: StringFilter<"CustomRoutine"> | string
+    name?: StringFilter<"CustomRoutine"> | string
+    type?: StringFilter<"CustomRoutine"> | string
+    exercises?: JsonFilter<"CustomRoutine">
+    notes?: StringNullableFilter<"CustomRoutine"> | string | null
+    createdAt?: DateTimeFilter<"CustomRoutine"> | Date | string
+    updatedAt?: DateTimeFilter<"CustomRoutine"> | Date | string
+    user?: XOR<UserScalarRelationFilter, UserWhereInput>
+  }, "id">
+
+  export type CustomRoutineOrderByWithAggregationInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    name?: SortOrder
+    type?: SortOrder
+    exercises?: SortOrder
+    notes?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    _count?: CustomRoutineCountOrderByAggregateInput
+    _max?: CustomRoutineMaxOrderByAggregateInput
+    _min?: CustomRoutineMinOrderByAggregateInput
+  }
+
+  export type CustomRoutineScalarWhereWithAggregatesInput = {
+    AND?: CustomRoutineScalarWhereWithAggregatesInput | CustomRoutineScalarWhereWithAggregatesInput[]
+    OR?: CustomRoutineScalarWhereWithAggregatesInput[]
+    NOT?: CustomRoutineScalarWhereWithAggregatesInput | CustomRoutineScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"CustomRoutine"> | string
+    userId?: StringWithAggregatesFilter<"CustomRoutine"> | string
+    name?: StringWithAggregatesFilter<"CustomRoutine"> | string
+    type?: StringWithAggregatesFilter<"CustomRoutine"> | string
+    exercises?: JsonWithAggregatesFilter<"CustomRoutine">
+    notes?: StringNullableWithAggregatesFilter<"CustomRoutine"> | string | null
+    createdAt?: DateTimeWithAggregatesFilter<"CustomRoutine"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"CustomRoutine"> | Date | string
+  }
+
+  export type MilestoneWhereInput = {
+    AND?: MilestoneWhereInput | MilestoneWhereInput[]
+    OR?: MilestoneWhereInput[]
+    NOT?: MilestoneWhereInput | MilestoneWhereInput[]
+    id?: StringFilter<"Milestone"> | string
+    userId?: StringFilter<"Milestone"> | string
+    type?: StringFilter<"Milestone"> | string
+    title?: StringFilter<"Milestone"> | string
+    seenAt?: DateTimeNullableFilter<"Milestone"> | Date | string | null
+    earnedAt?: DateTimeFilter<"Milestone"> | Date | string
+    user?: XOR<UserScalarRelationFilter, UserWhereInput>
+  }
+
+  export type MilestoneOrderByWithRelationInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    type?: SortOrder
+    title?: SortOrder
+    seenAt?: SortOrderInput | SortOrder
+    earnedAt?: SortOrder
+    user?: UserOrderByWithRelationInput
+  }
+
+  export type MilestoneWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: MilestoneWhereInput | MilestoneWhereInput[]
+    OR?: MilestoneWhereInput[]
+    NOT?: MilestoneWhereInput | MilestoneWhereInput[]
+    userId?: StringFilter<"Milestone"> | string
+    type?: StringFilter<"Milestone"> | string
+    title?: StringFilter<"Milestone"> | string
+    seenAt?: DateTimeNullableFilter<"Milestone"> | Date | string | null
+    earnedAt?: DateTimeFilter<"Milestone"> | Date | string
+    user?: XOR<UserScalarRelationFilter, UserWhereInput>
+  }, "id">
+
+  export type MilestoneOrderByWithAggregationInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    type?: SortOrder
+    title?: SortOrder
+    seenAt?: SortOrderInput | SortOrder
+    earnedAt?: SortOrder
+    _count?: MilestoneCountOrderByAggregateInput
+    _max?: MilestoneMaxOrderByAggregateInput
+    _min?: MilestoneMinOrderByAggregateInput
+  }
+
+  export type MilestoneScalarWhereWithAggregatesInput = {
+    AND?: MilestoneScalarWhereWithAggregatesInput | MilestoneScalarWhereWithAggregatesInput[]
+    OR?: MilestoneScalarWhereWithAggregatesInput[]
+    NOT?: MilestoneScalarWhereWithAggregatesInput | MilestoneScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"Milestone"> | string
+    userId?: StringWithAggregatesFilter<"Milestone"> | string
+    type?: StringWithAggregatesFilter<"Milestone"> | string
+    title?: StringWithAggregatesFilter<"Milestone"> | string
+    seenAt?: DateTimeNullableWithAggregatesFilter<"Milestone"> | Date | string | null
+    earnedAt?: DateTimeWithAggregatesFilter<"Milestone"> | Date | string
+  }
+
+  export type ReferralWhereInput = {
+    AND?: ReferralWhereInput | ReferralWhereInput[]
+    OR?: ReferralWhereInput[]
+    NOT?: ReferralWhereInput | ReferralWhereInput[]
+    id?: StringFilter<"Referral"> | string
+    referrerId?: StringFilter<"Referral"> | string
+    code?: StringFilter<"Referral"> | string
+    usedBy?: StringNullableFilter<"Referral"> | string | null
+    usedAt?: DateTimeNullableFilter<"Referral"> | Date | string | null
+    rewarded?: BoolFilter<"Referral"> | boolean
+    createdAt?: DateTimeFilter<"Referral"> | Date | string
+    referrer?: XOR<UserScalarRelationFilter, UserWhereInput>
+  }
+
+  export type ReferralOrderByWithRelationInput = {
+    id?: SortOrder
+    referrerId?: SortOrder
+    code?: SortOrder
+    usedBy?: SortOrderInput | SortOrder
+    usedAt?: SortOrderInput | SortOrder
+    rewarded?: SortOrder
+    createdAt?: SortOrder
+    referrer?: UserOrderByWithRelationInput
+  }
+
+  export type ReferralWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    code?: string
+    AND?: ReferralWhereInput | ReferralWhereInput[]
+    OR?: ReferralWhereInput[]
+    NOT?: ReferralWhereInput | ReferralWhereInput[]
+    referrerId?: StringFilter<"Referral"> | string
+    usedBy?: StringNullableFilter<"Referral"> | string | null
+    usedAt?: DateTimeNullableFilter<"Referral"> | Date | string | null
+    rewarded?: BoolFilter<"Referral"> | boolean
+    createdAt?: DateTimeFilter<"Referral"> | Date | string
+    referrer?: XOR<UserScalarRelationFilter, UserWhereInput>
+  }, "id" | "code">
+
+  export type ReferralOrderByWithAggregationInput = {
+    id?: SortOrder
+    referrerId?: SortOrder
+    code?: SortOrder
+    usedBy?: SortOrderInput | SortOrder
+    usedAt?: SortOrderInput | SortOrder
+    rewarded?: SortOrder
+    createdAt?: SortOrder
+    _count?: ReferralCountOrderByAggregateInput
+    _max?: ReferralMaxOrderByAggregateInput
+    _min?: ReferralMinOrderByAggregateInput
+  }
+
+  export type ReferralScalarWhereWithAggregatesInput = {
+    AND?: ReferralScalarWhereWithAggregatesInput | ReferralScalarWhereWithAggregatesInput[]
+    OR?: ReferralScalarWhereWithAggregatesInput[]
+    NOT?: ReferralScalarWhereWithAggregatesInput | ReferralScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"Referral"> | string
+    referrerId?: StringWithAggregatesFilter<"Referral"> | string
+    code?: StringWithAggregatesFilter<"Referral"> | string
+    usedBy?: StringNullableWithAggregatesFilter<"Referral"> | string | null
+    usedAt?: DateTimeNullableWithAggregatesFilter<"Referral"> | Date | string | null
+    rewarded?: BoolWithAggregatesFilter<"Referral"> | boolean
+    createdAt?: DateTimeWithAggregatesFilter<"Referral"> | Date | string
+  }
+
   export type AccountCreateInput = {
     id?: string
     type: string
@@ -25185,6 +29075,9 @@ export namespace Prisma {
     bodyLogs?: BodyLogCreateNestedManyWithoutUserInput
     moodLogs?: MoodLogCreateNestedManyWithoutUserInput
     fastingLogs?: FastingLogCreateNestedManyWithoutUserInput
+    customRoutines?: CustomRoutineCreateNestedManyWithoutUserInput
+    milestones?: MilestoneCreateNestedManyWithoutUserInput
+    referrals?: ReferralCreateNestedManyWithoutReferrerInput
   }
 
   export type UserUncheckedCreateInput = {
@@ -25209,6 +29102,9 @@ export namespace Prisma {
     bodyLogs?: BodyLogUncheckedCreateNestedManyWithoutUserInput
     moodLogs?: MoodLogUncheckedCreateNestedManyWithoutUserInput
     fastingLogs?: FastingLogUncheckedCreateNestedManyWithoutUserInput
+    customRoutines?: CustomRoutineUncheckedCreateNestedManyWithoutUserInput
+    milestones?: MilestoneUncheckedCreateNestedManyWithoutUserInput
+    referrals?: ReferralUncheckedCreateNestedManyWithoutReferrerInput
   }
 
   export type UserUpdateInput = {
@@ -25233,6 +29129,9 @@ export namespace Prisma {
     bodyLogs?: BodyLogUpdateManyWithoutUserNestedInput
     moodLogs?: MoodLogUpdateManyWithoutUserNestedInput
     fastingLogs?: FastingLogUpdateManyWithoutUserNestedInput
+    customRoutines?: CustomRoutineUpdateManyWithoutUserNestedInput
+    milestones?: MilestoneUpdateManyWithoutUserNestedInput
+    referrals?: ReferralUpdateManyWithoutReferrerNestedInput
   }
 
   export type UserUncheckedUpdateInput = {
@@ -25257,6 +29156,9 @@ export namespace Prisma {
     bodyLogs?: BodyLogUncheckedUpdateManyWithoutUserNestedInput
     moodLogs?: MoodLogUncheckedUpdateManyWithoutUserNestedInput
     fastingLogs?: FastingLogUncheckedUpdateManyWithoutUserNestedInput
+    customRoutines?: CustomRoutineUncheckedUpdateManyWithoutUserNestedInput
+    milestones?: MilestoneUncheckedUpdateManyWithoutUserNestedInput
+    referrals?: ReferralUncheckedUpdateManyWithoutReferrerNestedInput
   }
 
   export type UserCreateManyInput = {
@@ -26488,6 +30390,213 @@ export namespace Prisma {
     notes?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
+  export type CustomRoutineCreateInput = {
+    id?: string
+    name: string
+    type: string
+    exercises: JsonNullValueInput | InputJsonValue
+    notes?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    user: UserCreateNestedOneWithoutCustomRoutinesInput
+  }
+
+  export type CustomRoutineUncheckedCreateInput = {
+    id?: string
+    userId: string
+    name: string
+    type: string
+    exercises: JsonNullValueInput | InputJsonValue
+    notes?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type CustomRoutineUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    type?: StringFieldUpdateOperationsInput | string
+    exercises?: JsonNullValueInput | InputJsonValue
+    notes?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    user?: UserUpdateOneRequiredWithoutCustomRoutinesNestedInput
+  }
+
+  export type CustomRoutineUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    type?: StringFieldUpdateOperationsInput | string
+    exercises?: JsonNullValueInput | InputJsonValue
+    notes?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type CustomRoutineCreateManyInput = {
+    id?: string
+    userId: string
+    name: string
+    type: string
+    exercises: JsonNullValueInput | InputJsonValue
+    notes?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type CustomRoutineUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    type?: StringFieldUpdateOperationsInput | string
+    exercises?: JsonNullValueInput | InputJsonValue
+    notes?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type CustomRoutineUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    type?: StringFieldUpdateOperationsInput | string
+    exercises?: JsonNullValueInput | InputJsonValue
+    notes?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type MilestoneCreateInput = {
+    id?: string
+    type: string
+    title: string
+    seenAt?: Date | string | null
+    earnedAt?: Date | string
+    user: UserCreateNestedOneWithoutMilestonesInput
+  }
+
+  export type MilestoneUncheckedCreateInput = {
+    id?: string
+    userId: string
+    type: string
+    title: string
+    seenAt?: Date | string | null
+    earnedAt?: Date | string
+  }
+
+  export type MilestoneUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    type?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    seenAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    earnedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    user?: UserUpdateOneRequiredWithoutMilestonesNestedInput
+  }
+
+  export type MilestoneUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    type?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    seenAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    earnedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type MilestoneCreateManyInput = {
+    id?: string
+    userId: string
+    type: string
+    title: string
+    seenAt?: Date | string | null
+    earnedAt?: Date | string
+  }
+
+  export type MilestoneUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    type?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    seenAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    earnedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type MilestoneUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    type?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    seenAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    earnedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ReferralCreateInput = {
+    id?: string
+    code: string
+    usedBy?: string | null
+    usedAt?: Date | string | null
+    rewarded?: boolean
+    createdAt?: Date | string
+    referrer: UserCreateNestedOneWithoutReferralsInput
+  }
+
+  export type ReferralUncheckedCreateInput = {
+    id?: string
+    referrerId: string
+    code: string
+    usedBy?: string | null
+    usedAt?: Date | string | null
+    rewarded?: boolean
+    createdAt?: Date | string
+  }
+
+  export type ReferralUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    code?: StringFieldUpdateOperationsInput | string
+    usedBy?: NullableStringFieldUpdateOperationsInput | string | null
+    usedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    rewarded?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    referrer?: UserUpdateOneRequiredWithoutReferralsNestedInput
+  }
+
+  export type ReferralUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    referrerId?: StringFieldUpdateOperationsInput | string
+    code?: StringFieldUpdateOperationsInput | string
+    usedBy?: NullableStringFieldUpdateOperationsInput | string | null
+    usedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    rewarded?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ReferralCreateManyInput = {
+    id?: string
+    referrerId: string
+    code: string
+    usedBy?: string | null
+    usedAt?: Date | string | null
+    rewarded?: boolean
+    createdAt?: Date | string
+  }
+
+  export type ReferralUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    code?: StringFieldUpdateOperationsInput | string
+    usedBy?: NullableStringFieldUpdateOperationsInput | string | null
+    usedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    rewarded?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ReferralUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    referrerId?: StringFieldUpdateOperationsInput | string
+    code?: StringFieldUpdateOperationsInput | string
+    usedBy?: NullableStringFieldUpdateOperationsInput | string | null
+    usedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    rewarded?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
   export type StringFilter<$PrismaModel = never> = {
     equals?: string | StringFieldRefInput<$PrismaModel>
     in?: string[] | ListStringFieldRefInput<$PrismaModel>
@@ -26811,6 +30920,24 @@ export namespace Prisma {
     none?: FastingLogWhereInput
   }
 
+  export type CustomRoutineListRelationFilter = {
+    every?: CustomRoutineWhereInput
+    some?: CustomRoutineWhereInput
+    none?: CustomRoutineWhereInput
+  }
+
+  export type MilestoneListRelationFilter = {
+    every?: MilestoneWhereInput
+    some?: MilestoneWhereInput
+    none?: MilestoneWhereInput
+  }
+
+  export type ReferralListRelationFilter = {
+    every?: ReferralWhereInput
+    some?: ReferralWhereInput
+    none?: ReferralWhereInput
+  }
+
   export type AccountOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
@@ -26856,6 +30983,18 @@ export namespace Prisma {
   }
 
   export type FastingLogOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type CustomRoutineOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type MilestoneOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type ReferralOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
@@ -27742,6 +31881,94 @@ export namespace Prisma {
     targetHours?: SortOrder
   }
 
+  export type CustomRoutineCountOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    name?: SortOrder
+    type?: SortOrder
+    exercises?: SortOrder
+    notes?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type CustomRoutineMaxOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    name?: SortOrder
+    type?: SortOrder
+    notes?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type CustomRoutineMinOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    name?: SortOrder
+    type?: SortOrder
+    notes?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type MilestoneCountOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    type?: SortOrder
+    title?: SortOrder
+    seenAt?: SortOrder
+    earnedAt?: SortOrder
+  }
+
+  export type MilestoneMaxOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    type?: SortOrder
+    title?: SortOrder
+    seenAt?: SortOrder
+    earnedAt?: SortOrder
+  }
+
+  export type MilestoneMinOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    type?: SortOrder
+    title?: SortOrder
+    seenAt?: SortOrder
+    earnedAt?: SortOrder
+  }
+
+  export type ReferralCountOrderByAggregateInput = {
+    id?: SortOrder
+    referrerId?: SortOrder
+    code?: SortOrder
+    usedBy?: SortOrder
+    usedAt?: SortOrder
+    rewarded?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type ReferralMaxOrderByAggregateInput = {
+    id?: SortOrder
+    referrerId?: SortOrder
+    code?: SortOrder
+    usedBy?: SortOrder
+    usedAt?: SortOrder
+    rewarded?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type ReferralMinOrderByAggregateInput = {
+    id?: SortOrder
+    referrerId?: SortOrder
+    code?: SortOrder
+    usedBy?: SortOrder
+    usedAt?: SortOrder
+    rewarded?: SortOrder
+    createdAt?: SortOrder
+  }
+
   export type UserCreateNestedOneWithoutAccountsInput = {
     create?: XOR<UserCreateWithoutAccountsInput, UserUncheckedCreateWithoutAccountsInput>
     connectOrCreate?: UserCreateOrConnectWithoutAccountsInput
@@ -27886,6 +32113,27 @@ export namespace Prisma {
     connect?: FastingLogWhereUniqueInput | FastingLogWhereUniqueInput[]
   }
 
+  export type CustomRoutineCreateNestedManyWithoutUserInput = {
+    create?: XOR<CustomRoutineCreateWithoutUserInput, CustomRoutineUncheckedCreateWithoutUserInput> | CustomRoutineCreateWithoutUserInput[] | CustomRoutineUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: CustomRoutineCreateOrConnectWithoutUserInput | CustomRoutineCreateOrConnectWithoutUserInput[]
+    createMany?: CustomRoutineCreateManyUserInputEnvelope
+    connect?: CustomRoutineWhereUniqueInput | CustomRoutineWhereUniqueInput[]
+  }
+
+  export type MilestoneCreateNestedManyWithoutUserInput = {
+    create?: XOR<MilestoneCreateWithoutUserInput, MilestoneUncheckedCreateWithoutUserInput> | MilestoneCreateWithoutUserInput[] | MilestoneUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: MilestoneCreateOrConnectWithoutUserInput | MilestoneCreateOrConnectWithoutUserInput[]
+    createMany?: MilestoneCreateManyUserInputEnvelope
+    connect?: MilestoneWhereUniqueInput | MilestoneWhereUniqueInput[]
+  }
+
+  export type ReferralCreateNestedManyWithoutReferrerInput = {
+    create?: XOR<ReferralCreateWithoutReferrerInput, ReferralUncheckedCreateWithoutReferrerInput> | ReferralCreateWithoutReferrerInput[] | ReferralUncheckedCreateWithoutReferrerInput[]
+    connectOrCreate?: ReferralCreateOrConnectWithoutReferrerInput | ReferralCreateOrConnectWithoutReferrerInput[]
+    createMany?: ReferralCreateManyReferrerInputEnvelope
+    connect?: ReferralWhereUniqueInput | ReferralWhereUniqueInput[]
+  }
+
   export type AccountUncheckedCreateNestedManyWithoutUserInput = {
     create?: XOR<AccountCreateWithoutUserInput, AccountUncheckedCreateWithoutUserInput> | AccountCreateWithoutUserInput[] | AccountUncheckedCreateWithoutUserInput[]
     connectOrCreate?: AccountCreateOrConnectWithoutUserInput | AccountCreateOrConnectWithoutUserInput[]
@@ -27980,6 +32228,27 @@ export namespace Prisma {
     connectOrCreate?: FastingLogCreateOrConnectWithoutUserInput | FastingLogCreateOrConnectWithoutUserInput[]
     createMany?: FastingLogCreateManyUserInputEnvelope
     connect?: FastingLogWhereUniqueInput | FastingLogWhereUniqueInput[]
+  }
+
+  export type CustomRoutineUncheckedCreateNestedManyWithoutUserInput = {
+    create?: XOR<CustomRoutineCreateWithoutUserInput, CustomRoutineUncheckedCreateWithoutUserInput> | CustomRoutineCreateWithoutUserInput[] | CustomRoutineUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: CustomRoutineCreateOrConnectWithoutUserInput | CustomRoutineCreateOrConnectWithoutUserInput[]
+    createMany?: CustomRoutineCreateManyUserInputEnvelope
+    connect?: CustomRoutineWhereUniqueInput | CustomRoutineWhereUniqueInput[]
+  }
+
+  export type MilestoneUncheckedCreateNestedManyWithoutUserInput = {
+    create?: XOR<MilestoneCreateWithoutUserInput, MilestoneUncheckedCreateWithoutUserInput> | MilestoneCreateWithoutUserInput[] | MilestoneUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: MilestoneCreateOrConnectWithoutUserInput | MilestoneCreateOrConnectWithoutUserInput[]
+    createMany?: MilestoneCreateManyUserInputEnvelope
+    connect?: MilestoneWhereUniqueInput | MilestoneWhereUniqueInput[]
+  }
+
+  export type ReferralUncheckedCreateNestedManyWithoutReferrerInput = {
+    create?: XOR<ReferralCreateWithoutReferrerInput, ReferralUncheckedCreateWithoutReferrerInput> | ReferralCreateWithoutReferrerInput[] | ReferralUncheckedCreateWithoutReferrerInput[]
+    connectOrCreate?: ReferralCreateOrConnectWithoutReferrerInput | ReferralCreateOrConnectWithoutReferrerInput[]
+    createMany?: ReferralCreateManyReferrerInputEnvelope
+    connect?: ReferralWhereUniqueInput | ReferralWhereUniqueInput[]
   }
 
   export type NullableDateTimeFieldUpdateOperationsInput = {
@@ -28174,6 +32443,48 @@ export namespace Prisma {
     deleteMany?: FastingLogScalarWhereInput | FastingLogScalarWhereInput[]
   }
 
+  export type CustomRoutineUpdateManyWithoutUserNestedInput = {
+    create?: XOR<CustomRoutineCreateWithoutUserInput, CustomRoutineUncheckedCreateWithoutUserInput> | CustomRoutineCreateWithoutUserInput[] | CustomRoutineUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: CustomRoutineCreateOrConnectWithoutUserInput | CustomRoutineCreateOrConnectWithoutUserInput[]
+    upsert?: CustomRoutineUpsertWithWhereUniqueWithoutUserInput | CustomRoutineUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: CustomRoutineCreateManyUserInputEnvelope
+    set?: CustomRoutineWhereUniqueInput | CustomRoutineWhereUniqueInput[]
+    disconnect?: CustomRoutineWhereUniqueInput | CustomRoutineWhereUniqueInput[]
+    delete?: CustomRoutineWhereUniqueInput | CustomRoutineWhereUniqueInput[]
+    connect?: CustomRoutineWhereUniqueInput | CustomRoutineWhereUniqueInput[]
+    update?: CustomRoutineUpdateWithWhereUniqueWithoutUserInput | CustomRoutineUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: CustomRoutineUpdateManyWithWhereWithoutUserInput | CustomRoutineUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: CustomRoutineScalarWhereInput | CustomRoutineScalarWhereInput[]
+  }
+
+  export type MilestoneUpdateManyWithoutUserNestedInput = {
+    create?: XOR<MilestoneCreateWithoutUserInput, MilestoneUncheckedCreateWithoutUserInput> | MilestoneCreateWithoutUserInput[] | MilestoneUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: MilestoneCreateOrConnectWithoutUserInput | MilestoneCreateOrConnectWithoutUserInput[]
+    upsert?: MilestoneUpsertWithWhereUniqueWithoutUserInput | MilestoneUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: MilestoneCreateManyUserInputEnvelope
+    set?: MilestoneWhereUniqueInput | MilestoneWhereUniqueInput[]
+    disconnect?: MilestoneWhereUniqueInput | MilestoneWhereUniqueInput[]
+    delete?: MilestoneWhereUniqueInput | MilestoneWhereUniqueInput[]
+    connect?: MilestoneWhereUniqueInput | MilestoneWhereUniqueInput[]
+    update?: MilestoneUpdateWithWhereUniqueWithoutUserInput | MilestoneUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: MilestoneUpdateManyWithWhereWithoutUserInput | MilestoneUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: MilestoneScalarWhereInput | MilestoneScalarWhereInput[]
+  }
+
+  export type ReferralUpdateManyWithoutReferrerNestedInput = {
+    create?: XOR<ReferralCreateWithoutReferrerInput, ReferralUncheckedCreateWithoutReferrerInput> | ReferralCreateWithoutReferrerInput[] | ReferralUncheckedCreateWithoutReferrerInput[]
+    connectOrCreate?: ReferralCreateOrConnectWithoutReferrerInput | ReferralCreateOrConnectWithoutReferrerInput[]
+    upsert?: ReferralUpsertWithWhereUniqueWithoutReferrerInput | ReferralUpsertWithWhereUniqueWithoutReferrerInput[]
+    createMany?: ReferralCreateManyReferrerInputEnvelope
+    set?: ReferralWhereUniqueInput | ReferralWhereUniqueInput[]
+    disconnect?: ReferralWhereUniqueInput | ReferralWhereUniqueInput[]
+    delete?: ReferralWhereUniqueInput | ReferralWhereUniqueInput[]
+    connect?: ReferralWhereUniqueInput | ReferralWhereUniqueInput[]
+    update?: ReferralUpdateWithWhereUniqueWithoutReferrerInput | ReferralUpdateWithWhereUniqueWithoutReferrerInput[]
+    updateMany?: ReferralUpdateManyWithWhereWithoutReferrerInput | ReferralUpdateManyWithWhereWithoutReferrerInput[]
+    deleteMany?: ReferralScalarWhereInput | ReferralScalarWhereInput[]
+  }
+
   export type AccountUncheckedUpdateManyWithoutUserNestedInput = {
     create?: XOR<AccountCreateWithoutUserInput, AccountUncheckedCreateWithoutUserInput> | AccountCreateWithoutUserInput[] | AccountUncheckedCreateWithoutUserInput[]
     connectOrCreate?: AccountCreateOrConnectWithoutUserInput | AccountCreateOrConnectWithoutUserInput[]
@@ -28360,6 +32671,48 @@ export namespace Prisma {
     update?: FastingLogUpdateWithWhereUniqueWithoutUserInput | FastingLogUpdateWithWhereUniqueWithoutUserInput[]
     updateMany?: FastingLogUpdateManyWithWhereWithoutUserInput | FastingLogUpdateManyWithWhereWithoutUserInput[]
     deleteMany?: FastingLogScalarWhereInput | FastingLogScalarWhereInput[]
+  }
+
+  export type CustomRoutineUncheckedUpdateManyWithoutUserNestedInput = {
+    create?: XOR<CustomRoutineCreateWithoutUserInput, CustomRoutineUncheckedCreateWithoutUserInput> | CustomRoutineCreateWithoutUserInput[] | CustomRoutineUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: CustomRoutineCreateOrConnectWithoutUserInput | CustomRoutineCreateOrConnectWithoutUserInput[]
+    upsert?: CustomRoutineUpsertWithWhereUniqueWithoutUserInput | CustomRoutineUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: CustomRoutineCreateManyUserInputEnvelope
+    set?: CustomRoutineWhereUniqueInput | CustomRoutineWhereUniqueInput[]
+    disconnect?: CustomRoutineWhereUniqueInput | CustomRoutineWhereUniqueInput[]
+    delete?: CustomRoutineWhereUniqueInput | CustomRoutineWhereUniqueInput[]
+    connect?: CustomRoutineWhereUniqueInput | CustomRoutineWhereUniqueInput[]
+    update?: CustomRoutineUpdateWithWhereUniqueWithoutUserInput | CustomRoutineUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: CustomRoutineUpdateManyWithWhereWithoutUserInput | CustomRoutineUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: CustomRoutineScalarWhereInput | CustomRoutineScalarWhereInput[]
+  }
+
+  export type MilestoneUncheckedUpdateManyWithoutUserNestedInput = {
+    create?: XOR<MilestoneCreateWithoutUserInput, MilestoneUncheckedCreateWithoutUserInput> | MilestoneCreateWithoutUserInput[] | MilestoneUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: MilestoneCreateOrConnectWithoutUserInput | MilestoneCreateOrConnectWithoutUserInput[]
+    upsert?: MilestoneUpsertWithWhereUniqueWithoutUserInput | MilestoneUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: MilestoneCreateManyUserInputEnvelope
+    set?: MilestoneWhereUniqueInput | MilestoneWhereUniqueInput[]
+    disconnect?: MilestoneWhereUniqueInput | MilestoneWhereUniqueInput[]
+    delete?: MilestoneWhereUniqueInput | MilestoneWhereUniqueInput[]
+    connect?: MilestoneWhereUniqueInput | MilestoneWhereUniqueInput[]
+    update?: MilestoneUpdateWithWhereUniqueWithoutUserInput | MilestoneUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: MilestoneUpdateManyWithWhereWithoutUserInput | MilestoneUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: MilestoneScalarWhereInput | MilestoneScalarWhereInput[]
+  }
+
+  export type ReferralUncheckedUpdateManyWithoutReferrerNestedInput = {
+    create?: XOR<ReferralCreateWithoutReferrerInput, ReferralUncheckedCreateWithoutReferrerInput> | ReferralCreateWithoutReferrerInput[] | ReferralUncheckedCreateWithoutReferrerInput[]
+    connectOrCreate?: ReferralCreateOrConnectWithoutReferrerInput | ReferralCreateOrConnectWithoutReferrerInput[]
+    upsert?: ReferralUpsertWithWhereUniqueWithoutReferrerInput | ReferralUpsertWithWhereUniqueWithoutReferrerInput[]
+    createMany?: ReferralCreateManyReferrerInputEnvelope
+    set?: ReferralWhereUniqueInput | ReferralWhereUniqueInput[]
+    disconnect?: ReferralWhereUniqueInput | ReferralWhereUniqueInput[]
+    delete?: ReferralWhereUniqueInput | ReferralWhereUniqueInput[]
+    connect?: ReferralWhereUniqueInput | ReferralWhereUniqueInput[]
+    update?: ReferralUpdateWithWhereUniqueWithoutReferrerInput | ReferralUpdateWithWhereUniqueWithoutReferrerInput[]
+    updateMany?: ReferralUpdateManyWithWhereWithoutReferrerInput | ReferralUpdateManyWithWhereWithoutReferrerInput[]
+    deleteMany?: ReferralScalarWhereInput | ReferralScalarWhereInput[]
   }
 
   export type UserCreateNestedOneWithoutSubscriptionInput = {
@@ -28574,6 +32927,48 @@ export namespace Prisma {
     upsert?: UserUpsertWithoutFastingLogsInput
     connect?: UserWhereUniqueInput
     update?: XOR<XOR<UserUpdateToOneWithWhereWithoutFastingLogsInput, UserUpdateWithoutFastingLogsInput>, UserUncheckedUpdateWithoutFastingLogsInput>
+  }
+
+  export type UserCreateNestedOneWithoutCustomRoutinesInput = {
+    create?: XOR<UserCreateWithoutCustomRoutinesInput, UserUncheckedCreateWithoutCustomRoutinesInput>
+    connectOrCreate?: UserCreateOrConnectWithoutCustomRoutinesInput
+    connect?: UserWhereUniqueInput
+  }
+
+  export type UserUpdateOneRequiredWithoutCustomRoutinesNestedInput = {
+    create?: XOR<UserCreateWithoutCustomRoutinesInput, UserUncheckedCreateWithoutCustomRoutinesInput>
+    connectOrCreate?: UserCreateOrConnectWithoutCustomRoutinesInput
+    upsert?: UserUpsertWithoutCustomRoutinesInput
+    connect?: UserWhereUniqueInput
+    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutCustomRoutinesInput, UserUpdateWithoutCustomRoutinesInput>, UserUncheckedUpdateWithoutCustomRoutinesInput>
+  }
+
+  export type UserCreateNestedOneWithoutMilestonesInput = {
+    create?: XOR<UserCreateWithoutMilestonesInput, UserUncheckedCreateWithoutMilestonesInput>
+    connectOrCreate?: UserCreateOrConnectWithoutMilestonesInput
+    connect?: UserWhereUniqueInput
+  }
+
+  export type UserUpdateOneRequiredWithoutMilestonesNestedInput = {
+    create?: XOR<UserCreateWithoutMilestonesInput, UserUncheckedCreateWithoutMilestonesInput>
+    connectOrCreate?: UserCreateOrConnectWithoutMilestonesInput
+    upsert?: UserUpsertWithoutMilestonesInput
+    connect?: UserWhereUniqueInput
+    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutMilestonesInput, UserUpdateWithoutMilestonesInput>, UserUncheckedUpdateWithoutMilestonesInput>
+  }
+
+  export type UserCreateNestedOneWithoutReferralsInput = {
+    create?: XOR<UserCreateWithoutReferralsInput, UserUncheckedCreateWithoutReferralsInput>
+    connectOrCreate?: UserCreateOrConnectWithoutReferralsInput
+    connect?: UserWhereUniqueInput
+  }
+
+  export type UserUpdateOneRequiredWithoutReferralsNestedInput = {
+    create?: XOR<UserCreateWithoutReferralsInput, UserUncheckedCreateWithoutReferralsInput>
+    connectOrCreate?: UserCreateOrConnectWithoutReferralsInput
+    upsert?: UserUpsertWithoutReferralsInput
+    connect?: UserWhereUniqueInput
+    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutReferralsInput, UserUpdateWithoutReferralsInput>, UserUncheckedUpdateWithoutReferralsInput>
   }
 
   export type NestedStringFilter<$PrismaModel = never> = {
@@ -28876,6 +33271,9 @@ export namespace Prisma {
     bodyLogs?: BodyLogCreateNestedManyWithoutUserInput
     moodLogs?: MoodLogCreateNestedManyWithoutUserInput
     fastingLogs?: FastingLogCreateNestedManyWithoutUserInput
+    customRoutines?: CustomRoutineCreateNestedManyWithoutUserInput
+    milestones?: MilestoneCreateNestedManyWithoutUserInput
+    referrals?: ReferralCreateNestedManyWithoutReferrerInput
   }
 
   export type UserUncheckedCreateWithoutAccountsInput = {
@@ -28899,6 +33297,9 @@ export namespace Prisma {
     bodyLogs?: BodyLogUncheckedCreateNestedManyWithoutUserInput
     moodLogs?: MoodLogUncheckedCreateNestedManyWithoutUserInput
     fastingLogs?: FastingLogUncheckedCreateNestedManyWithoutUserInput
+    customRoutines?: CustomRoutineUncheckedCreateNestedManyWithoutUserInput
+    milestones?: MilestoneUncheckedCreateNestedManyWithoutUserInput
+    referrals?: ReferralUncheckedCreateNestedManyWithoutReferrerInput
   }
 
   export type UserCreateOrConnectWithoutAccountsInput = {
@@ -28938,6 +33339,9 @@ export namespace Prisma {
     bodyLogs?: BodyLogUpdateManyWithoutUserNestedInput
     moodLogs?: MoodLogUpdateManyWithoutUserNestedInput
     fastingLogs?: FastingLogUpdateManyWithoutUserNestedInput
+    customRoutines?: CustomRoutineUpdateManyWithoutUserNestedInput
+    milestones?: MilestoneUpdateManyWithoutUserNestedInput
+    referrals?: ReferralUpdateManyWithoutReferrerNestedInput
   }
 
   export type UserUncheckedUpdateWithoutAccountsInput = {
@@ -28961,6 +33365,9 @@ export namespace Prisma {
     bodyLogs?: BodyLogUncheckedUpdateManyWithoutUserNestedInput
     moodLogs?: MoodLogUncheckedUpdateManyWithoutUserNestedInput
     fastingLogs?: FastingLogUncheckedUpdateManyWithoutUserNestedInput
+    customRoutines?: CustomRoutineUncheckedUpdateManyWithoutUserNestedInput
+    milestones?: MilestoneUncheckedUpdateManyWithoutUserNestedInput
+    referrals?: ReferralUncheckedUpdateManyWithoutReferrerNestedInput
   }
 
   export type UserCreateWithoutSessionsInput = {
@@ -28984,6 +33391,9 @@ export namespace Prisma {
     bodyLogs?: BodyLogCreateNestedManyWithoutUserInput
     moodLogs?: MoodLogCreateNestedManyWithoutUserInput
     fastingLogs?: FastingLogCreateNestedManyWithoutUserInput
+    customRoutines?: CustomRoutineCreateNestedManyWithoutUserInput
+    milestones?: MilestoneCreateNestedManyWithoutUserInput
+    referrals?: ReferralCreateNestedManyWithoutReferrerInput
   }
 
   export type UserUncheckedCreateWithoutSessionsInput = {
@@ -29007,6 +33417,9 @@ export namespace Prisma {
     bodyLogs?: BodyLogUncheckedCreateNestedManyWithoutUserInput
     moodLogs?: MoodLogUncheckedCreateNestedManyWithoutUserInput
     fastingLogs?: FastingLogUncheckedCreateNestedManyWithoutUserInput
+    customRoutines?: CustomRoutineUncheckedCreateNestedManyWithoutUserInput
+    milestones?: MilestoneUncheckedCreateNestedManyWithoutUserInput
+    referrals?: ReferralUncheckedCreateNestedManyWithoutReferrerInput
   }
 
   export type UserCreateOrConnectWithoutSessionsInput = {
@@ -29046,6 +33459,9 @@ export namespace Prisma {
     bodyLogs?: BodyLogUpdateManyWithoutUserNestedInput
     moodLogs?: MoodLogUpdateManyWithoutUserNestedInput
     fastingLogs?: FastingLogUpdateManyWithoutUserNestedInput
+    customRoutines?: CustomRoutineUpdateManyWithoutUserNestedInput
+    milestones?: MilestoneUpdateManyWithoutUserNestedInput
+    referrals?: ReferralUpdateManyWithoutReferrerNestedInput
   }
 
   export type UserUncheckedUpdateWithoutSessionsInput = {
@@ -29069,6 +33485,9 @@ export namespace Prisma {
     bodyLogs?: BodyLogUncheckedUpdateManyWithoutUserNestedInput
     moodLogs?: MoodLogUncheckedUpdateManyWithoutUserNestedInput
     fastingLogs?: FastingLogUncheckedUpdateManyWithoutUserNestedInput
+    customRoutines?: CustomRoutineUncheckedUpdateManyWithoutUserNestedInput
+    milestones?: MilestoneUncheckedUpdateManyWithoutUserNestedInput
+    referrals?: ReferralUncheckedUpdateManyWithoutReferrerNestedInput
   }
 
   export type AccountCreateWithoutUserInput = {
@@ -29508,6 +33927,90 @@ export namespace Prisma {
 
   export type FastingLogCreateManyUserInputEnvelope = {
     data: FastingLogCreateManyUserInput | FastingLogCreateManyUserInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type CustomRoutineCreateWithoutUserInput = {
+    id?: string
+    name: string
+    type: string
+    exercises: JsonNullValueInput | InputJsonValue
+    notes?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type CustomRoutineUncheckedCreateWithoutUserInput = {
+    id?: string
+    name: string
+    type: string
+    exercises: JsonNullValueInput | InputJsonValue
+    notes?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type CustomRoutineCreateOrConnectWithoutUserInput = {
+    where: CustomRoutineWhereUniqueInput
+    create: XOR<CustomRoutineCreateWithoutUserInput, CustomRoutineUncheckedCreateWithoutUserInput>
+  }
+
+  export type CustomRoutineCreateManyUserInputEnvelope = {
+    data: CustomRoutineCreateManyUserInput | CustomRoutineCreateManyUserInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type MilestoneCreateWithoutUserInput = {
+    id?: string
+    type: string
+    title: string
+    seenAt?: Date | string | null
+    earnedAt?: Date | string
+  }
+
+  export type MilestoneUncheckedCreateWithoutUserInput = {
+    id?: string
+    type: string
+    title: string
+    seenAt?: Date | string | null
+    earnedAt?: Date | string
+  }
+
+  export type MilestoneCreateOrConnectWithoutUserInput = {
+    where: MilestoneWhereUniqueInput
+    create: XOR<MilestoneCreateWithoutUserInput, MilestoneUncheckedCreateWithoutUserInput>
+  }
+
+  export type MilestoneCreateManyUserInputEnvelope = {
+    data: MilestoneCreateManyUserInput | MilestoneCreateManyUserInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type ReferralCreateWithoutReferrerInput = {
+    id?: string
+    code: string
+    usedBy?: string | null
+    usedAt?: Date | string | null
+    rewarded?: boolean
+    createdAt?: Date | string
+  }
+
+  export type ReferralUncheckedCreateWithoutReferrerInput = {
+    id?: string
+    code: string
+    usedBy?: string | null
+    usedAt?: Date | string | null
+    rewarded?: boolean
+    createdAt?: Date | string
+  }
+
+  export type ReferralCreateOrConnectWithoutReferrerInput = {
+    where: ReferralWhereUniqueInput
+    create: XOR<ReferralCreateWithoutReferrerInput, ReferralUncheckedCreateWithoutReferrerInput>
+  }
+
+  export type ReferralCreateManyReferrerInputEnvelope = {
+    data: ReferralCreateManyReferrerInput | ReferralCreateManyReferrerInput[]
     skipDuplicates?: boolean
   }
 
@@ -29965,6 +34468,93 @@ export namespace Prisma {
     notes?: StringNullableFilter<"FastingLog"> | string | null
   }
 
+  export type CustomRoutineUpsertWithWhereUniqueWithoutUserInput = {
+    where: CustomRoutineWhereUniqueInput
+    update: XOR<CustomRoutineUpdateWithoutUserInput, CustomRoutineUncheckedUpdateWithoutUserInput>
+    create: XOR<CustomRoutineCreateWithoutUserInput, CustomRoutineUncheckedCreateWithoutUserInput>
+  }
+
+  export type CustomRoutineUpdateWithWhereUniqueWithoutUserInput = {
+    where: CustomRoutineWhereUniqueInput
+    data: XOR<CustomRoutineUpdateWithoutUserInput, CustomRoutineUncheckedUpdateWithoutUserInput>
+  }
+
+  export type CustomRoutineUpdateManyWithWhereWithoutUserInput = {
+    where: CustomRoutineScalarWhereInput
+    data: XOR<CustomRoutineUpdateManyMutationInput, CustomRoutineUncheckedUpdateManyWithoutUserInput>
+  }
+
+  export type CustomRoutineScalarWhereInput = {
+    AND?: CustomRoutineScalarWhereInput | CustomRoutineScalarWhereInput[]
+    OR?: CustomRoutineScalarWhereInput[]
+    NOT?: CustomRoutineScalarWhereInput | CustomRoutineScalarWhereInput[]
+    id?: StringFilter<"CustomRoutine"> | string
+    userId?: StringFilter<"CustomRoutine"> | string
+    name?: StringFilter<"CustomRoutine"> | string
+    type?: StringFilter<"CustomRoutine"> | string
+    exercises?: JsonFilter<"CustomRoutine">
+    notes?: StringNullableFilter<"CustomRoutine"> | string | null
+    createdAt?: DateTimeFilter<"CustomRoutine"> | Date | string
+    updatedAt?: DateTimeFilter<"CustomRoutine"> | Date | string
+  }
+
+  export type MilestoneUpsertWithWhereUniqueWithoutUserInput = {
+    where: MilestoneWhereUniqueInput
+    update: XOR<MilestoneUpdateWithoutUserInput, MilestoneUncheckedUpdateWithoutUserInput>
+    create: XOR<MilestoneCreateWithoutUserInput, MilestoneUncheckedCreateWithoutUserInput>
+  }
+
+  export type MilestoneUpdateWithWhereUniqueWithoutUserInput = {
+    where: MilestoneWhereUniqueInput
+    data: XOR<MilestoneUpdateWithoutUserInput, MilestoneUncheckedUpdateWithoutUserInput>
+  }
+
+  export type MilestoneUpdateManyWithWhereWithoutUserInput = {
+    where: MilestoneScalarWhereInput
+    data: XOR<MilestoneUpdateManyMutationInput, MilestoneUncheckedUpdateManyWithoutUserInput>
+  }
+
+  export type MilestoneScalarWhereInput = {
+    AND?: MilestoneScalarWhereInput | MilestoneScalarWhereInput[]
+    OR?: MilestoneScalarWhereInput[]
+    NOT?: MilestoneScalarWhereInput | MilestoneScalarWhereInput[]
+    id?: StringFilter<"Milestone"> | string
+    userId?: StringFilter<"Milestone"> | string
+    type?: StringFilter<"Milestone"> | string
+    title?: StringFilter<"Milestone"> | string
+    seenAt?: DateTimeNullableFilter<"Milestone"> | Date | string | null
+    earnedAt?: DateTimeFilter<"Milestone"> | Date | string
+  }
+
+  export type ReferralUpsertWithWhereUniqueWithoutReferrerInput = {
+    where: ReferralWhereUniqueInput
+    update: XOR<ReferralUpdateWithoutReferrerInput, ReferralUncheckedUpdateWithoutReferrerInput>
+    create: XOR<ReferralCreateWithoutReferrerInput, ReferralUncheckedCreateWithoutReferrerInput>
+  }
+
+  export type ReferralUpdateWithWhereUniqueWithoutReferrerInput = {
+    where: ReferralWhereUniqueInput
+    data: XOR<ReferralUpdateWithoutReferrerInput, ReferralUncheckedUpdateWithoutReferrerInput>
+  }
+
+  export type ReferralUpdateManyWithWhereWithoutReferrerInput = {
+    where: ReferralScalarWhereInput
+    data: XOR<ReferralUpdateManyMutationInput, ReferralUncheckedUpdateManyWithoutReferrerInput>
+  }
+
+  export type ReferralScalarWhereInput = {
+    AND?: ReferralScalarWhereInput | ReferralScalarWhereInput[]
+    OR?: ReferralScalarWhereInput[]
+    NOT?: ReferralScalarWhereInput | ReferralScalarWhereInput[]
+    id?: StringFilter<"Referral"> | string
+    referrerId?: StringFilter<"Referral"> | string
+    code?: StringFilter<"Referral"> | string
+    usedBy?: StringNullableFilter<"Referral"> | string | null
+    usedAt?: DateTimeNullableFilter<"Referral"> | Date | string | null
+    rewarded?: BoolFilter<"Referral"> | boolean
+    createdAt?: DateTimeFilter<"Referral"> | Date | string
+  }
+
   export type UserCreateWithoutSubscriptionInput = {
     id?: string
     name?: string | null
@@ -29986,6 +34576,9 @@ export namespace Prisma {
     bodyLogs?: BodyLogCreateNestedManyWithoutUserInput
     moodLogs?: MoodLogCreateNestedManyWithoutUserInput
     fastingLogs?: FastingLogCreateNestedManyWithoutUserInput
+    customRoutines?: CustomRoutineCreateNestedManyWithoutUserInput
+    milestones?: MilestoneCreateNestedManyWithoutUserInput
+    referrals?: ReferralCreateNestedManyWithoutReferrerInput
   }
 
   export type UserUncheckedCreateWithoutSubscriptionInput = {
@@ -30009,6 +34602,9 @@ export namespace Prisma {
     bodyLogs?: BodyLogUncheckedCreateNestedManyWithoutUserInput
     moodLogs?: MoodLogUncheckedCreateNestedManyWithoutUserInput
     fastingLogs?: FastingLogUncheckedCreateNestedManyWithoutUserInput
+    customRoutines?: CustomRoutineUncheckedCreateNestedManyWithoutUserInput
+    milestones?: MilestoneUncheckedCreateNestedManyWithoutUserInput
+    referrals?: ReferralUncheckedCreateNestedManyWithoutReferrerInput
   }
 
   export type UserCreateOrConnectWithoutSubscriptionInput = {
@@ -30048,6 +34644,9 @@ export namespace Prisma {
     bodyLogs?: BodyLogUpdateManyWithoutUserNestedInput
     moodLogs?: MoodLogUpdateManyWithoutUserNestedInput
     fastingLogs?: FastingLogUpdateManyWithoutUserNestedInput
+    customRoutines?: CustomRoutineUpdateManyWithoutUserNestedInput
+    milestones?: MilestoneUpdateManyWithoutUserNestedInput
+    referrals?: ReferralUpdateManyWithoutReferrerNestedInput
   }
 
   export type UserUncheckedUpdateWithoutSubscriptionInput = {
@@ -30071,6 +34670,9 @@ export namespace Prisma {
     bodyLogs?: BodyLogUncheckedUpdateManyWithoutUserNestedInput
     moodLogs?: MoodLogUncheckedUpdateManyWithoutUserNestedInput
     fastingLogs?: FastingLogUncheckedUpdateManyWithoutUserNestedInput
+    customRoutines?: CustomRoutineUncheckedUpdateManyWithoutUserNestedInput
+    milestones?: MilestoneUncheckedUpdateManyWithoutUserNestedInput
+    referrals?: ReferralUncheckedUpdateManyWithoutReferrerNestedInput
   }
 
   export type UserCreateWithoutWaterLogsInput = {
@@ -30094,6 +34696,9 @@ export namespace Prisma {
     bodyLogs?: BodyLogCreateNestedManyWithoutUserInput
     moodLogs?: MoodLogCreateNestedManyWithoutUserInput
     fastingLogs?: FastingLogCreateNestedManyWithoutUserInput
+    customRoutines?: CustomRoutineCreateNestedManyWithoutUserInput
+    milestones?: MilestoneCreateNestedManyWithoutUserInput
+    referrals?: ReferralCreateNestedManyWithoutReferrerInput
   }
 
   export type UserUncheckedCreateWithoutWaterLogsInput = {
@@ -30117,6 +34722,9 @@ export namespace Prisma {
     bodyLogs?: BodyLogUncheckedCreateNestedManyWithoutUserInput
     moodLogs?: MoodLogUncheckedCreateNestedManyWithoutUserInput
     fastingLogs?: FastingLogUncheckedCreateNestedManyWithoutUserInput
+    customRoutines?: CustomRoutineUncheckedCreateNestedManyWithoutUserInput
+    milestones?: MilestoneUncheckedCreateNestedManyWithoutUserInput
+    referrals?: ReferralUncheckedCreateNestedManyWithoutReferrerInput
   }
 
   export type UserCreateOrConnectWithoutWaterLogsInput = {
@@ -30156,6 +34764,9 @@ export namespace Prisma {
     bodyLogs?: BodyLogUpdateManyWithoutUserNestedInput
     moodLogs?: MoodLogUpdateManyWithoutUserNestedInput
     fastingLogs?: FastingLogUpdateManyWithoutUserNestedInput
+    customRoutines?: CustomRoutineUpdateManyWithoutUserNestedInput
+    milestones?: MilestoneUpdateManyWithoutUserNestedInput
+    referrals?: ReferralUpdateManyWithoutReferrerNestedInput
   }
 
   export type UserUncheckedUpdateWithoutWaterLogsInput = {
@@ -30179,6 +34790,9 @@ export namespace Prisma {
     bodyLogs?: BodyLogUncheckedUpdateManyWithoutUserNestedInput
     moodLogs?: MoodLogUncheckedUpdateManyWithoutUserNestedInput
     fastingLogs?: FastingLogUncheckedUpdateManyWithoutUserNestedInput
+    customRoutines?: CustomRoutineUncheckedUpdateManyWithoutUserNestedInput
+    milestones?: MilestoneUncheckedUpdateManyWithoutUserNestedInput
+    referrals?: ReferralUncheckedUpdateManyWithoutReferrerNestedInput
   }
 
   export type UserCreateWithoutBodyLogsInput = {
@@ -30202,6 +34816,9 @@ export namespace Prisma {
     waterLogs?: WaterLogCreateNestedManyWithoutUserInput
     moodLogs?: MoodLogCreateNestedManyWithoutUserInput
     fastingLogs?: FastingLogCreateNestedManyWithoutUserInput
+    customRoutines?: CustomRoutineCreateNestedManyWithoutUserInput
+    milestones?: MilestoneCreateNestedManyWithoutUserInput
+    referrals?: ReferralCreateNestedManyWithoutReferrerInput
   }
 
   export type UserUncheckedCreateWithoutBodyLogsInput = {
@@ -30225,6 +34842,9 @@ export namespace Prisma {
     waterLogs?: WaterLogUncheckedCreateNestedManyWithoutUserInput
     moodLogs?: MoodLogUncheckedCreateNestedManyWithoutUserInput
     fastingLogs?: FastingLogUncheckedCreateNestedManyWithoutUserInput
+    customRoutines?: CustomRoutineUncheckedCreateNestedManyWithoutUserInput
+    milestones?: MilestoneUncheckedCreateNestedManyWithoutUserInput
+    referrals?: ReferralUncheckedCreateNestedManyWithoutReferrerInput
   }
 
   export type UserCreateOrConnectWithoutBodyLogsInput = {
@@ -30264,6 +34884,9 @@ export namespace Prisma {
     waterLogs?: WaterLogUpdateManyWithoutUserNestedInput
     moodLogs?: MoodLogUpdateManyWithoutUserNestedInput
     fastingLogs?: FastingLogUpdateManyWithoutUserNestedInput
+    customRoutines?: CustomRoutineUpdateManyWithoutUserNestedInput
+    milestones?: MilestoneUpdateManyWithoutUserNestedInput
+    referrals?: ReferralUpdateManyWithoutReferrerNestedInput
   }
 
   export type UserUncheckedUpdateWithoutBodyLogsInput = {
@@ -30287,6 +34910,9 @@ export namespace Prisma {
     waterLogs?: WaterLogUncheckedUpdateManyWithoutUserNestedInput
     moodLogs?: MoodLogUncheckedUpdateManyWithoutUserNestedInput
     fastingLogs?: FastingLogUncheckedUpdateManyWithoutUserNestedInput
+    customRoutines?: CustomRoutineUncheckedUpdateManyWithoutUserNestedInput
+    milestones?: MilestoneUncheckedUpdateManyWithoutUserNestedInput
+    referrals?: ReferralUncheckedUpdateManyWithoutReferrerNestedInput
   }
 
   export type UserCreateWithoutProfileInput = {
@@ -30310,6 +34936,9 @@ export namespace Prisma {
     bodyLogs?: BodyLogCreateNestedManyWithoutUserInput
     moodLogs?: MoodLogCreateNestedManyWithoutUserInput
     fastingLogs?: FastingLogCreateNestedManyWithoutUserInput
+    customRoutines?: CustomRoutineCreateNestedManyWithoutUserInput
+    milestones?: MilestoneCreateNestedManyWithoutUserInput
+    referrals?: ReferralCreateNestedManyWithoutReferrerInput
   }
 
   export type UserUncheckedCreateWithoutProfileInput = {
@@ -30333,6 +34962,9 @@ export namespace Prisma {
     bodyLogs?: BodyLogUncheckedCreateNestedManyWithoutUserInput
     moodLogs?: MoodLogUncheckedCreateNestedManyWithoutUserInput
     fastingLogs?: FastingLogUncheckedCreateNestedManyWithoutUserInput
+    customRoutines?: CustomRoutineUncheckedCreateNestedManyWithoutUserInput
+    milestones?: MilestoneUncheckedCreateNestedManyWithoutUserInput
+    referrals?: ReferralUncheckedCreateNestedManyWithoutReferrerInput
   }
 
   export type UserCreateOrConnectWithoutProfileInput = {
@@ -30372,6 +35004,9 @@ export namespace Prisma {
     bodyLogs?: BodyLogUpdateManyWithoutUserNestedInput
     moodLogs?: MoodLogUpdateManyWithoutUserNestedInput
     fastingLogs?: FastingLogUpdateManyWithoutUserNestedInput
+    customRoutines?: CustomRoutineUpdateManyWithoutUserNestedInput
+    milestones?: MilestoneUpdateManyWithoutUserNestedInput
+    referrals?: ReferralUpdateManyWithoutReferrerNestedInput
   }
 
   export type UserUncheckedUpdateWithoutProfileInput = {
@@ -30395,6 +35030,9 @@ export namespace Prisma {
     bodyLogs?: BodyLogUncheckedUpdateManyWithoutUserNestedInput
     moodLogs?: MoodLogUncheckedUpdateManyWithoutUserNestedInput
     fastingLogs?: FastingLogUncheckedUpdateManyWithoutUserNestedInput
+    customRoutines?: CustomRoutineUncheckedUpdateManyWithoutUserNestedInput
+    milestones?: MilestoneUncheckedUpdateManyWithoutUserNestedInput
+    referrals?: ReferralUncheckedUpdateManyWithoutReferrerNestedInput
   }
 
   export type UserCreateWithoutFoodLogsInput = {
@@ -30418,6 +35056,9 @@ export namespace Prisma {
     bodyLogs?: BodyLogCreateNestedManyWithoutUserInput
     moodLogs?: MoodLogCreateNestedManyWithoutUserInput
     fastingLogs?: FastingLogCreateNestedManyWithoutUserInput
+    customRoutines?: CustomRoutineCreateNestedManyWithoutUserInput
+    milestones?: MilestoneCreateNestedManyWithoutUserInput
+    referrals?: ReferralCreateNestedManyWithoutReferrerInput
   }
 
   export type UserUncheckedCreateWithoutFoodLogsInput = {
@@ -30441,6 +35082,9 @@ export namespace Prisma {
     bodyLogs?: BodyLogUncheckedCreateNestedManyWithoutUserInput
     moodLogs?: MoodLogUncheckedCreateNestedManyWithoutUserInput
     fastingLogs?: FastingLogUncheckedCreateNestedManyWithoutUserInput
+    customRoutines?: CustomRoutineUncheckedCreateNestedManyWithoutUserInput
+    milestones?: MilestoneUncheckedCreateNestedManyWithoutUserInput
+    referrals?: ReferralUncheckedCreateNestedManyWithoutReferrerInput
   }
 
   export type UserCreateOrConnectWithoutFoodLogsInput = {
@@ -30480,6 +35124,9 @@ export namespace Prisma {
     bodyLogs?: BodyLogUpdateManyWithoutUserNestedInput
     moodLogs?: MoodLogUpdateManyWithoutUserNestedInput
     fastingLogs?: FastingLogUpdateManyWithoutUserNestedInput
+    customRoutines?: CustomRoutineUpdateManyWithoutUserNestedInput
+    milestones?: MilestoneUpdateManyWithoutUserNestedInput
+    referrals?: ReferralUpdateManyWithoutReferrerNestedInput
   }
 
   export type UserUncheckedUpdateWithoutFoodLogsInput = {
@@ -30503,6 +35150,9 @@ export namespace Prisma {
     bodyLogs?: BodyLogUncheckedUpdateManyWithoutUserNestedInput
     moodLogs?: MoodLogUncheckedUpdateManyWithoutUserNestedInput
     fastingLogs?: FastingLogUncheckedUpdateManyWithoutUserNestedInput
+    customRoutines?: CustomRoutineUncheckedUpdateManyWithoutUserNestedInput
+    milestones?: MilestoneUncheckedUpdateManyWithoutUserNestedInput
+    referrals?: ReferralUncheckedUpdateManyWithoutReferrerNestedInput
   }
 
   export type UserCreateWithoutWorkoutLogsInput = {
@@ -30526,6 +35176,9 @@ export namespace Prisma {
     bodyLogs?: BodyLogCreateNestedManyWithoutUserInput
     moodLogs?: MoodLogCreateNestedManyWithoutUserInput
     fastingLogs?: FastingLogCreateNestedManyWithoutUserInput
+    customRoutines?: CustomRoutineCreateNestedManyWithoutUserInput
+    milestones?: MilestoneCreateNestedManyWithoutUserInput
+    referrals?: ReferralCreateNestedManyWithoutReferrerInput
   }
 
   export type UserUncheckedCreateWithoutWorkoutLogsInput = {
@@ -30549,6 +35202,9 @@ export namespace Prisma {
     bodyLogs?: BodyLogUncheckedCreateNestedManyWithoutUserInput
     moodLogs?: MoodLogUncheckedCreateNestedManyWithoutUserInput
     fastingLogs?: FastingLogUncheckedCreateNestedManyWithoutUserInput
+    customRoutines?: CustomRoutineUncheckedCreateNestedManyWithoutUserInput
+    milestones?: MilestoneUncheckedCreateNestedManyWithoutUserInput
+    referrals?: ReferralUncheckedCreateNestedManyWithoutReferrerInput
   }
 
   export type UserCreateOrConnectWithoutWorkoutLogsInput = {
@@ -30588,6 +35244,9 @@ export namespace Prisma {
     bodyLogs?: BodyLogUpdateManyWithoutUserNestedInput
     moodLogs?: MoodLogUpdateManyWithoutUserNestedInput
     fastingLogs?: FastingLogUpdateManyWithoutUserNestedInput
+    customRoutines?: CustomRoutineUpdateManyWithoutUserNestedInput
+    milestones?: MilestoneUpdateManyWithoutUserNestedInput
+    referrals?: ReferralUpdateManyWithoutReferrerNestedInput
   }
 
   export type UserUncheckedUpdateWithoutWorkoutLogsInput = {
@@ -30611,6 +35270,9 @@ export namespace Prisma {
     bodyLogs?: BodyLogUncheckedUpdateManyWithoutUserNestedInput
     moodLogs?: MoodLogUncheckedUpdateManyWithoutUserNestedInput
     fastingLogs?: FastingLogUncheckedUpdateManyWithoutUserNestedInput
+    customRoutines?: CustomRoutineUncheckedUpdateManyWithoutUserNestedInput
+    milestones?: MilestoneUncheckedUpdateManyWithoutUserNestedInput
+    referrals?: ReferralUncheckedUpdateManyWithoutReferrerNestedInput
   }
 
   export type UserCreateWithoutMessagesInput = {
@@ -30634,6 +35296,9 @@ export namespace Prisma {
     bodyLogs?: BodyLogCreateNestedManyWithoutUserInput
     moodLogs?: MoodLogCreateNestedManyWithoutUserInput
     fastingLogs?: FastingLogCreateNestedManyWithoutUserInput
+    customRoutines?: CustomRoutineCreateNestedManyWithoutUserInput
+    milestones?: MilestoneCreateNestedManyWithoutUserInput
+    referrals?: ReferralCreateNestedManyWithoutReferrerInput
   }
 
   export type UserUncheckedCreateWithoutMessagesInput = {
@@ -30657,6 +35322,9 @@ export namespace Prisma {
     bodyLogs?: BodyLogUncheckedCreateNestedManyWithoutUserInput
     moodLogs?: MoodLogUncheckedCreateNestedManyWithoutUserInput
     fastingLogs?: FastingLogUncheckedCreateNestedManyWithoutUserInput
+    customRoutines?: CustomRoutineUncheckedCreateNestedManyWithoutUserInput
+    milestones?: MilestoneUncheckedCreateNestedManyWithoutUserInput
+    referrals?: ReferralUncheckedCreateNestedManyWithoutReferrerInput
   }
 
   export type UserCreateOrConnectWithoutMessagesInput = {
@@ -30696,6 +35364,9 @@ export namespace Prisma {
     bodyLogs?: BodyLogUpdateManyWithoutUserNestedInput
     moodLogs?: MoodLogUpdateManyWithoutUserNestedInput
     fastingLogs?: FastingLogUpdateManyWithoutUserNestedInput
+    customRoutines?: CustomRoutineUpdateManyWithoutUserNestedInput
+    milestones?: MilestoneUpdateManyWithoutUserNestedInput
+    referrals?: ReferralUpdateManyWithoutReferrerNestedInput
   }
 
   export type UserUncheckedUpdateWithoutMessagesInput = {
@@ -30719,6 +35390,9 @@ export namespace Prisma {
     bodyLogs?: BodyLogUncheckedUpdateManyWithoutUserNestedInput
     moodLogs?: MoodLogUncheckedUpdateManyWithoutUserNestedInput
     fastingLogs?: FastingLogUncheckedUpdateManyWithoutUserNestedInput
+    customRoutines?: CustomRoutineUncheckedUpdateManyWithoutUserNestedInput
+    milestones?: MilestoneUncheckedUpdateManyWithoutUserNestedInput
+    referrals?: ReferralUncheckedUpdateManyWithoutReferrerNestedInput
   }
 
   export type UserCreateWithoutBehaviorLogsInput = {
@@ -30742,6 +35416,9 @@ export namespace Prisma {
     bodyLogs?: BodyLogCreateNestedManyWithoutUserInput
     moodLogs?: MoodLogCreateNestedManyWithoutUserInput
     fastingLogs?: FastingLogCreateNestedManyWithoutUserInput
+    customRoutines?: CustomRoutineCreateNestedManyWithoutUserInput
+    milestones?: MilestoneCreateNestedManyWithoutUserInput
+    referrals?: ReferralCreateNestedManyWithoutReferrerInput
   }
 
   export type UserUncheckedCreateWithoutBehaviorLogsInput = {
@@ -30765,6 +35442,9 @@ export namespace Prisma {
     bodyLogs?: BodyLogUncheckedCreateNestedManyWithoutUserInput
     moodLogs?: MoodLogUncheckedCreateNestedManyWithoutUserInput
     fastingLogs?: FastingLogUncheckedCreateNestedManyWithoutUserInput
+    customRoutines?: CustomRoutineUncheckedCreateNestedManyWithoutUserInput
+    milestones?: MilestoneUncheckedCreateNestedManyWithoutUserInput
+    referrals?: ReferralUncheckedCreateNestedManyWithoutReferrerInput
   }
 
   export type UserCreateOrConnectWithoutBehaviorLogsInput = {
@@ -30804,6 +35484,9 @@ export namespace Prisma {
     bodyLogs?: BodyLogUpdateManyWithoutUserNestedInput
     moodLogs?: MoodLogUpdateManyWithoutUserNestedInput
     fastingLogs?: FastingLogUpdateManyWithoutUserNestedInput
+    customRoutines?: CustomRoutineUpdateManyWithoutUserNestedInput
+    milestones?: MilestoneUpdateManyWithoutUserNestedInput
+    referrals?: ReferralUpdateManyWithoutReferrerNestedInput
   }
 
   export type UserUncheckedUpdateWithoutBehaviorLogsInput = {
@@ -30827,6 +35510,9 @@ export namespace Prisma {
     bodyLogs?: BodyLogUncheckedUpdateManyWithoutUserNestedInput
     moodLogs?: MoodLogUncheckedUpdateManyWithoutUserNestedInput
     fastingLogs?: FastingLogUncheckedUpdateManyWithoutUserNestedInput
+    customRoutines?: CustomRoutineUncheckedUpdateManyWithoutUserNestedInput
+    milestones?: MilestoneUncheckedUpdateManyWithoutUserNestedInput
+    referrals?: ReferralUncheckedUpdateManyWithoutReferrerNestedInput
   }
 
   export type UserCreateWithoutStreaksInput = {
@@ -30850,6 +35536,9 @@ export namespace Prisma {
     bodyLogs?: BodyLogCreateNestedManyWithoutUserInput
     moodLogs?: MoodLogCreateNestedManyWithoutUserInput
     fastingLogs?: FastingLogCreateNestedManyWithoutUserInput
+    customRoutines?: CustomRoutineCreateNestedManyWithoutUserInput
+    milestones?: MilestoneCreateNestedManyWithoutUserInput
+    referrals?: ReferralCreateNestedManyWithoutReferrerInput
   }
 
   export type UserUncheckedCreateWithoutStreaksInput = {
@@ -30873,6 +35562,9 @@ export namespace Prisma {
     bodyLogs?: BodyLogUncheckedCreateNestedManyWithoutUserInput
     moodLogs?: MoodLogUncheckedCreateNestedManyWithoutUserInput
     fastingLogs?: FastingLogUncheckedCreateNestedManyWithoutUserInput
+    customRoutines?: CustomRoutineUncheckedCreateNestedManyWithoutUserInput
+    milestones?: MilestoneUncheckedCreateNestedManyWithoutUserInput
+    referrals?: ReferralUncheckedCreateNestedManyWithoutReferrerInput
   }
 
   export type UserCreateOrConnectWithoutStreaksInput = {
@@ -30912,6 +35604,9 @@ export namespace Prisma {
     bodyLogs?: BodyLogUpdateManyWithoutUserNestedInput
     moodLogs?: MoodLogUpdateManyWithoutUserNestedInput
     fastingLogs?: FastingLogUpdateManyWithoutUserNestedInput
+    customRoutines?: CustomRoutineUpdateManyWithoutUserNestedInput
+    milestones?: MilestoneUpdateManyWithoutUserNestedInput
+    referrals?: ReferralUpdateManyWithoutReferrerNestedInput
   }
 
   export type UserUncheckedUpdateWithoutStreaksInput = {
@@ -30935,6 +35630,9 @@ export namespace Prisma {
     bodyLogs?: BodyLogUncheckedUpdateManyWithoutUserNestedInput
     moodLogs?: MoodLogUncheckedUpdateManyWithoutUserNestedInput
     fastingLogs?: FastingLogUncheckedUpdateManyWithoutUserNestedInput
+    customRoutines?: CustomRoutineUncheckedUpdateManyWithoutUserNestedInput
+    milestones?: MilestoneUncheckedUpdateManyWithoutUserNestedInput
+    referrals?: ReferralUncheckedUpdateManyWithoutReferrerNestedInput
   }
 
   export type UserCreateWithoutPlansInput = {
@@ -30958,6 +35656,9 @@ export namespace Prisma {
     bodyLogs?: BodyLogCreateNestedManyWithoutUserInput
     moodLogs?: MoodLogCreateNestedManyWithoutUserInput
     fastingLogs?: FastingLogCreateNestedManyWithoutUserInput
+    customRoutines?: CustomRoutineCreateNestedManyWithoutUserInput
+    milestones?: MilestoneCreateNestedManyWithoutUserInput
+    referrals?: ReferralCreateNestedManyWithoutReferrerInput
   }
 
   export type UserUncheckedCreateWithoutPlansInput = {
@@ -30981,6 +35682,9 @@ export namespace Prisma {
     bodyLogs?: BodyLogUncheckedCreateNestedManyWithoutUserInput
     moodLogs?: MoodLogUncheckedCreateNestedManyWithoutUserInput
     fastingLogs?: FastingLogUncheckedCreateNestedManyWithoutUserInput
+    customRoutines?: CustomRoutineUncheckedCreateNestedManyWithoutUserInput
+    milestones?: MilestoneUncheckedCreateNestedManyWithoutUserInput
+    referrals?: ReferralUncheckedCreateNestedManyWithoutReferrerInput
   }
 
   export type UserCreateOrConnectWithoutPlansInput = {
@@ -31020,6 +35724,9 @@ export namespace Prisma {
     bodyLogs?: BodyLogUpdateManyWithoutUserNestedInput
     moodLogs?: MoodLogUpdateManyWithoutUserNestedInput
     fastingLogs?: FastingLogUpdateManyWithoutUserNestedInput
+    customRoutines?: CustomRoutineUpdateManyWithoutUserNestedInput
+    milestones?: MilestoneUpdateManyWithoutUserNestedInput
+    referrals?: ReferralUpdateManyWithoutReferrerNestedInput
   }
 
   export type UserUncheckedUpdateWithoutPlansInput = {
@@ -31043,6 +35750,9 @@ export namespace Prisma {
     bodyLogs?: BodyLogUncheckedUpdateManyWithoutUserNestedInput
     moodLogs?: MoodLogUncheckedUpdateManyWithoutUserNestedInput
     fastingLogs?: FastingLogUncheckedUpdateManyWithoutUserNestedInput
+    customRoutines?: CustomRoutineUncheckedUpdateManyWithoutUserNestedInput
+    milestones?: MilestoneUncheckedUpdateManyWithoutUserNestedInput
+    referrals?: ReferralUncheckedUpdateManyWithoutReferrerNestedInput
   }
 
   export type UserCreateWithoutMoodLogsInput = {
@@ -31066,6 +35776,9 @@ export namespace Prisma {
     waterLogs?: WaterLogCreateNestedManyWithoutUserInput
     bodyLogs?: BodyLogCreateNestedManyWithoutUserInput
     fastingLogs?: FastingLogCreateNestedManyWithoutUserInput
+    customRoutines?: CustomRoutineCreateNestedManyWithoutUserInput
+    milestones?: MilestoneCreateNestedManyWithoutUserInput
+    referrals?: ReferralCreateNestedManyWithoutReferrerInput
   }
 
   export type UserUncheckedCreateWithoutMoodLogsInput = {
@@ -31089,6 +35802,9 @@ export namespace Prisma {
     waterLogs?: WaterLogUncheckedCreateNestedManyWithoutUserInput
     bodyLogs?: BodyLogUncheckedCreateNestedManyWithoutUserInput
     fastingLogs?: FastingLogUncheckedCreateNestedManyWithoutUserInput
+    customRoutines?: CustomRoutineUncheckedCreateNestedManyWithoutUserInput
+    milestones?: MilestoneUncheckedCreateNestedManyWithoutUserInput
+    referrals?: ReferralUncheckedCreateNestedManyWithoutReferrerInput
   }
 
   export type UserCreateOrConnectWithoutMoodLogsInput = {
@@ -31128,6 +35844,9 @@ export namespace Prisma {
     waterLogs?: WaterLogUpdateManyWithoutUserNestedInput
     bodyLogs?: BodyLogUpdateManyWithoutUserNestedInput
     fastingLogs?: FastingLogUpdateManyWithoutUserNestedInput
+    customRoutines?: CustomRoutineUpdateManyWithoutUserNestedInput
+    milestones?: MilestoneUpdateManyWithoutUserNestedInput
+    referrals?: ReferralUpdateManyWithoutReferrerNestedInput
   }
 
   export type UserUncheckedUpdateWithoutMoodLogsInput = {
@@ -31151,6 +35870,9 @@ export namespace Prisma {
     waterLogs?: WaterLogUncheckedUpdateManyWithoutUserNestedInput
     bodyLogs?: BodyLogUncheckedUpdateManyWithoutUserNestedInput
     fastingLogs?: FastingLogUncheckedUpdateManyWithoutUserNestedInput
+    customRoutines?: CustomRoutineUncheckedUpdateManyWithoutUserNestedInput
+    milestones?: MilestoneUncheckedUpdateManyWithoutUserNestedInput
+    referrals?: ReferralUncheckedUpdateManyWithoutReferrerNestedInput
   }
 
   export type UserCreateWithoutFastingLogsInput = {
@@ -31174,6 +35896,9 @@ export namespace Prisma {
     waterLogs?: WaterLogCreateNestedManyWithoutUserInput
     bodyLogs?: BodyLogCreateNestedManyWithoutUserInput
     moodLogs?: MoodLogCreateNestedManyWithoutUserInput
+    customRoutines?: CustomRoutineCreateNestedManyWithoutUserInput
+    milestones?: MilestoneCreateNestedManyWithoutUserInput
+    referrals?: ReferralCreateNestedManyWithoutReferrerInput
   }
 
   export type UserUncheckedCreateWithoutFastingLogsInput = {
@@ -31197,6 +35922,9 @@ export namespace Prisma {
     waterLogs?: WaterLogUncheckedCreateNestedManyWithoutUserInput
     bodyLogs?: BodyLogUncheckedCreateNestedManyWithoutUserInput
     moodLogs?: MoodLogUncheckedCreateNestedManyWithoutUserInput
+    customRoutines?: CustomRoutineUncheckedCreateNestedManyWithoutUserInput
+    milestones?: MilestoneUncheckedCreateNestedManyWithoutUserInput
+    referrals?: ReferralUncheckedCreateNestedManyWithoutReferrerInput
   }
 
   export type UserCreateOrConnectWithoutFastingLogsInput = {
@@ -31236,6 +35964,9 @@ export namespace Prisma {
     waterLogs?: WaterLogUpdateManyWithoutUserNestedInput
     bodyLogs?: BodyLogUpdateManyWithoutUserNestedInput
     moodLogs?: MoodLogUpdateManyWithoutUserNestedInput
+    customRoutines?: CustomRoutineUpdateManyWithoutUserNestedInput
+    milestones?: MilestoneUpdateManyWithoutUserNestedInput
+    referrals?: ReferralUpdateManyWithoutReferrerNestedInput
   }
 
   export type UserUncheckedUpdateWithoutFastingLogsInput = {
@@ -31259,6 +35990,369 @@ export namespace Prisma {
     waterLogs?: WaterLogUncheckedUpdateManyWithoutUserNestedInput
     bodyLogs?: BodyLogUncheckedUpdateManyWithoutUserNestedInput
     moodLogs?: MoodLogUncheckedUpdateManyWithoutUserNestedInput
+    customRoutines?: CustomRoutineUncheckedUpdateManyWithoutUserNestedInput
+    milestones?: MilestoneUncheckedUpdateManyWithoutUserNestedInput
+    referrals?: ReferralUncheckedUpdateManyWithoutReferrerNestedInput
+  }
+
+  export type UserCreateWithoutCustomRoutinesInput = {
+    id?: string
+    name?: string | null
+    email?: string | null
+    emailVerified?: Date | string | null
+    image?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    accounts?: AccountCreateNestedManyWithoutUserInput
+    sessions?: SessionCreateNestedManyWithoutUserInput
+    profile?: UserProfileCreateNestedOneWithoutUserInput
+    foodLogs?: FoodLogCreateNestedManyWithoutUserInput
+    workoutLogs?: WorkoutLogCreateNestedManyWithoutUserInput
+    messages?: MessageCreateNestedManyWithoutUserInput
+    behaviorLogs?: BehaviorLogCreateNestedManyWithoutUserInput
+    streaks?: StreakCreateNestedManyWithoutUserInput
+    plans?: PlanCreateNestedManyWithoutUserInput
+    subscription?: SubscriptionCreateNestedOneWithoutUserInput
+    waterLogs?: WaterLogCreateNestedManyWithoutUserInput
+    bodyLogs?: BodyLogCreateNestedManyWithoutUserInput
+    moodLogs?: MoodLogCreateNestedManyWithoutUserInput
+    fastingLogs?: FastingLogCreateNestedManyWithoutUserInput
+    milestones?: MilestoneCreateNestedManyWithoutUserInput
+    referrals?: ReferralCreateNestedManyWithoutReferrerInput
+  }
+
+  export type UserUncheckedCreateWithoutCustomRoutinesInput = {
+    id?: string
+    name?: string | null
+    email?: string | null
+    emailVerified?: Date | string | null
+    image?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    accounts?: AccountUncheckedCreateNestedManyWithoutUserInput
+    sessions?: SessionUncheckedCreateNestedManyWithoutUserInput
+    profile?: UserProfileUncheckedCreateNestedOneWithoutUserInput
+    foodLogs?: FoodLogUncheckedCreateNestedManyWithoutUserInput
+    workoutLogs?: WorkoutLogUncheckedCreateNestedManyWithoutUserInput
+    messages?: MessageUncheckedCreateNestedManyWithoutUserInput
+    behaviorLogs?: BehaviorLogUncheckedCreateNestedManyWithoutUserInput
+    streaks?: StreakUncheckedCreateNestedManyWithoutUserInput
+    plans?: PlanUncheckedCreateNestedManyWithoutUserInput
+    subscription?: SubscriptionUncheckedCreateNestedOneWithoutUserInput
+    waterLogs?: WaterLogUncheckedCreateNestedManyWithoutUserInput
+    bodyLogs?: BodyLogUncheckedCreateNestedManyWithoutUserInput
+    moodLogs?: MoodLogUncheckedCreateNestedManyWithoutUserInput
+    fastingLogs?: FastingLogUncheckedCreateNestedManyWithoutUserInput
+    milestones?: MilestoneUncheckedCreateNestedManyWithoutUserInput
+    referrals?: ReferralUncheckedCreateNestedManyWithoutReferrerInput
+  }
+
+  export type UserCreateOrConnectWithoutCustomRoutinesInput = {
+    where: UserWhereUniqueInput
+    create: XOR<UserCreateWithoutCustomRoutinesInput, UserUncheckedCreateWithoutCustomRoutinesInput>
+  }
+
+  export type UserUpsertWithoutCustomRoutinesInput = {
+    update: XOR<UserUpdateWithoutCustomRoutinesInput, UserUncheckedUpdateWithoutCustomRoutinesInput>
+    create: XOR<UserCreateWithoutCustomRoutinesInput, UserUncheckedCreateWithoutCustomRoutinesInput>
+    where?: UserWhereInput
+  }
+
+  export type UserUpdateToOneWithWhereWithoutCustomRoutinesInput = {
+    where?: UserWhereInput
+    data: XOR<UserUpdateWithoutCustomRoutinesInput, UserUncheckedUpdateWithoutCustomRoutinesInput>
+  }
+
+  export type UserUpdateWithoutCustomRoutinesInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: NullableStringFieldUpdateOperationsInput | string | null
+    email?: NullableStringFieldUpdateOperationsInput | string | null
+    emailVerified?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    image?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    accounts?: AccountUpdateManyWithoutUserNestedInput
+    sessions?: SessionUpdateManyWithoutUserNestedInput
+    profile?: UserProfileUpdateOneWithoutUserNestedInput
+    foodLogs?: FoodLogUpdateManyWithoutUserNestedInput
+    workoutLogs?: WorkoutLogUpdateManyWithoutUserNestedInput
+    messages?: MessageUpdateManyWithoutUserNestedInput
+    behaviorLogs?: BehaviorLogUpdateManyWithoutUserNestedInput
+    streaks?: StreakUpdateManyWithoutUserNestedInput
+    plans?: PlanUpdateManyWithoutUserNestedInput
+    subscription?: SubscriptionUpdateOneWithoutUserNestedInput
+    waterLogs?: WaterLogUpdateManyWithoutUserNestedInput
+    bodyLogs?: BodyLogUpdateManyWithoutUserNestedInput
+    moodLogs?: MoodLogUpdateManyWithoutUserNestedInput
+    fastingLogs?: FastingLogUpdateManyWithoutUserNestedInput
+    milestones?: MilestoneUpdateManyWithoutUserNestedInput
+    referrals?: ReferralUpdateManyWithoutReferrerNestedInput
+  }
+
+  export type UserUncheckedUpdateWithoutCustomRoutinesInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: NullableStringFieldUpdateOperationsInput | string | null
+    email?: NullableStringFieldUpdateOperationsInput | string | null
+    emailVerified?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    image?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    accounts?: AccountUncheckedUpdateManyWithoutUserNestedInput
+    sessions?: SessionUncheckedUpdateManyWithoutUserNestedInput
+    profile?: UserProfileUncheckedUpdateOneWithoutUserNestedInput
+    foodLogs?: FoodLogUncheckedUpdateManyWithoutUserNestedInput
+    workoutLogs?: WorkoutLogUncheckedUpdateManyWithoutUserNestedInput
+    messages?: MessageUncheckedUpdateManyWithoutUserNestedInput
+    behaviorLogs?: BehaviorLogUncheckedUpdateManyWithoutUserNestedInput
+    streaks?: StreakUncheckedUpdateManyWithoutUserNestedInput
+    plans?: PlanUncheckedUpdateManyWithoutUserNestedInput
+    subscription?: SubscriptionUncheckedUpdateOneWithoutUserNestedInput
+    waterLogs?: WaterLogUncheckedUpdateManyWithoutUserNestedInput
+    bodyLogs?: BodyLogUncheckedUpdateManyWithoutUserNestedInput
+    moodLogs?: MoodLogUncheckedUpdateManyWithoutUserNestedInput
+    fastingLogs?: FastingLogUncheckedUpdateManyWithoutUserNestedInput
+    milestones?: MilestoneUncheckedUpdateManyWithoutUserNestedInput
+    referrals?: ReferralUncheckedUpdateManyWithoutReferrerNestedInput
+  }
+
+  export type UserCreateWithoutMilestonesInput = {
+    id?: string
+    name?: string | null
+    email?: string | null
+    emailVerified?: Date | string | null
+    image?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    accounts?: AccountCreateNestedManyWithoutUserInput
+    sessions?: SessionCreateNestedManyWithoutUserInput
+    profile?: UserProfileCreateNestedOneWithoutUserInput
+    foodLogs?: FoodLogCreateNestedManyWithoutUserInput
+    workoutLogs?: WorkoutLogCreateNestedManyWithoutUserInput
+    messages?: MessageCreateNestedManyWithoutUserInput
+    behaviorLogs?: BehaviorLogCreateNestedManyWithoutUserInput
+    streaks?: StreakCreateNestedManyWithoutUserInput
+    plans?: PlanCreateNestedManyWithoutUserInput
+    subscription?: SubscriptionCreateNestedOneWithoutUserInput
+    waterLogs?: WaterLogCreateNestedManyWithoutUserInput
+    bodyLogs?: BodyLogCreateNestedManyWithoutUserInput
+    moodLogs?: MoodLogCreateNestedManyWithoutUserInput
+    fastingLogs?: FastingLogCreateNestedManyWithoutUserInput
+    customRoutines?: CustomRoutineCreateNestedManyWithoutUserInput
+    referrals?: ReferralCreateNestedManyWithoutReferrerInput
+  }
+
+  export type UserUncheckedCreateWithoutMilestonesInput = {
+    id?: string
+    name?: string | null
+    email?: string | null
+    emailVerified?: Date | string | null
+    image?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    accounts?: AccountUncheckedCreateNestedManyWithoutUserInput
+    sessions?: SessionUncheckedCreateNestedManyWithoutUserInput
+    profile?: UserProfileUncheckedCreateNestedOneWithoutUserInput
+    foodLogs?: FoodLogUncheckedCreateNestedManyWithoutUserInput
+    workoutLogs?: WorkoutLogUncheckedCreateNestedManyWithoutUserInput
+    messages?: MessageUncheckedCreateNestedManyWithoutUserInput
+    behaviorLogs?: BehaviorLogUncheckedCreateNestedManyWithoutUserInput
+    streaks?: StreakUncheckedCreateNestedManyWithoutUserInput
+    plans?: PlanUncheckedCreateNestedManyWithoutUserInput
+    subscription?: SubscriptionUncheckedCreateNestedOneWithoutUserInput
+    waterLogs?: WaterLogUncheckedCreateNestedManyWithoutUserInput
+    bodyLogs?: BodyLogUncheckedCreateNestedManyWithoutUserInput
+    moodLogs?: MoodLogUncheckedCreateNestedManyWithoutUserInput
+    fastingLogs?: FastingLogUncheckedCreateNestedManyWithoutUserInput
+    customRoutines?: CustomRoutineUncheckedCreateNestedManyWithoutUserInput
+    referrals?: ReferralUncheckedCreateNestedManyWithoutReferrerInput
+  }
+
+  export type UserCreateOrConnectWithoutMilestonesInput = {
+    where: UserWhereUniqueInput
+    create: XOR<UserCreateWithoutMilestonesInput, UserUncheckedCreateWithoutMilestonesInput>
+  }
+
+  export type UserUpsertWithoutMilestonesInput = {
+    update: XOR<UserUpdateWithoutMilestonesInput, UserUncheckedUpdateWithoutMilestonesInput>
+    create: XOR<UserCreateWithoutMilestonesInput, UserUncheckedCreateWithoutMilestonesInput>
+    where?: UserWhereInput
+  }
+
+  export type UserUpdateToOneWithWhereWithoutMilestonesInput = {
+    where?: UserWhereInput
+    data: XOR<UserUpdateWithoutMilestonesInput, UserUncheckedUpdateWithoutMilestonesInput>
+  }
+
+  export type UserUpdateWithoutMilestonesInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: NullableStringFieldUpdateOperationsInput | string | null
+    email?: NullableStringFieldUpdateOperationsInput | string | null
+    emailVerified?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    image?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    accounts?: AccountUpdateManyWithoutUserNestedInput
+    sessions?: SessionUpdateManyWithoutUserNestedInput
+    profile?: UserProfileUpdateOneWithoutUserNestedInput
+    foodLogs?: FoodLogUpdateManyWithoutUserNestedInput
+    workoutLogs?: WorkoutLogUpdateManyWithoutUserNestedInput
+    messages?: MessageUpdateManyWithoutUserNestedInput
+    behaviorLogs?: BehaviorLogUpdateManyWithoutUserNestedInput
+    streaks?: StreakUpdateManyWithoutUserNestedInput
+    plans?: PlanUpdateManyWithoutUserNestedInput
+    subscription?: SubscriptionUpdateOneWithoutUserNestedInput
+    waterLogs?: WaterLogUpdateManyWithoutUserNestedInput
+    bodyLogs?: BodyLogUpdateManyWithoutUserNestedInput
+    moodLogs?: MoodLogUpdateManyWithoutUserNestedInput
+    fastingLogs?: FastingLogUpdateManyWithoutUserNestedInput
+    customRoutines?: CustomRoutineUpdateManyWithoutUserNestedInput
+    referrals?: ReferralUpdateManyWithoutReferrerNestedInput
+  }
+
+  export type UserUncheckedUpdateWithoutMilestonesInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: NullableStringFieldUpdateOperationsInput | string | null
+    email?: NullableStringFieldUpdateOperationsInput | string | null
+    emailVerified?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    image?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    accounts?: AccountUncheckedUpdateManyWithoutUserNestedInput
+    sessions?: SessionUncheckedUpdateManyWithoutUserNestedInput
+    profile?: UserProfileUncheckedUpdateOneWithoutUserNestedInput
+    foodLogs?: FoodLogUncheckedUpdateManyWithoutUserNestedInput
+    workoutLogs?: WorkoutLogUncheckedUpdateManyWithoutUserNestedInput
+    messages?: MessageUncheckedUpdateManyWithoutUserNestedInput
+    behaviorLogs?: BehaviorLogUncheckedUpdateManyWithoutUserNestedInput
+    streaks?: StreakUncheckedUpdateManyWithoutUserNestedInput
+    plans?: PlanUncheckedUpdateManyWithoutUserNestedInput
+    subscription?: SubscriptionUncheckedUpdateOneWithoutUserNestedInput
+    waterLogs?: WaterLogUncheckedUpdateManyWithoutUserNestedInput
+    bodyLogs?: BodyLogUncheckedUpdateManyWithoutUserNestedInput
+    moodLogs?: MoodLogUncheckedUpdateManyWithoutUserNestedInput
+    fastingLogs?: FastingLogUncheckedUpdateManyWithoutUserNestedInput
+    customRoutines?: CustomRoutineUncheckedUpdateManyWithoutUserNestedInput
+    referrals?: ReferralUncheckedUpdateManyWithoutReferrerNestedInput
+  }
+
+  export type UserCreateWithoutReferralsInput = {
+    id?: string
+    name?: string | null
+    email?: string | null
+    emailVerified?: Date | string | null
+    image?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    accounts?: AccountCreateNestedManyWithoutUserInput
+    sessions?: SessionCreateNestedManyWithoutUserInput
+    profile?: UserProfileCreateNestedOneWithoutUserInput
+    foodLogs?: FoodLogCreateNestedManyWithoutUserInput
+    workoutLogs?: WorkoutLogCreateNestedManyWithoutUserInput
+    messages?: MessageCreateNestedManyWithoutUserInput
+    behaviorLogs?: BehaviorLogCreateNestedManyWithoutUserInput
+    streaks?: StreakCreateNestedManyWithoutUserInput
+    plans?: PlanCreateNestedManyWithoutUserInput
+    subscription?: SubscriptionCreateNestedOneWithoutUserInput
+    waterLogs?: WaterLogCreateNestedManyWithoutUserInput
+    bodyLogs?: BodyLogCreateNestedManyWithoutUserInput
+    moodLogs?: MoodLogCreateNestedManyWithoutUserInput
+    fastingLogs?: FastingLogCreateNestedManyWithoutUserInput
+    customRoutines?: CustomRoutineCreateNestedManyWithoutUserInput
+    milestones?: MilestoneCreateNestedManyWithoutUserInput
+  }
+
+  export type UserUncheckedCreateWithoutReferralsInput = {
+    id?: string
+    name?: string | null
+    email?: string | null
+    emailVerified?: Date | string | null
+    image?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    accounts?: AccountUncheckedCreateNestedManyWithoutUserInput
+    sessions?: SessionUncheckedCreateNestedManyWithoutUserInput
+    profile?: UserProfileUncheckedCreateNestedOneWithoutUserInput
+    foodLogs?: FoodLogUncheckedCreateNestedManyWithoutUserInput
+    workoutLogs?: WorkoutLogUncheckedCreateNestedManyWithoutUserInput
+    messages?: MessageUncheckedCreateNestedManyWithoutUserInput
+    behaviorLogs?: BehaviorLogUncheckedCreateNestedManyWithoutUserInput
+    streaks?: StreakUncheckedCreateNestedManyWithoutUserInput
+    plans?: PlanUncheckedCreateNestedManyWithoutUserInput
+    subscription?: SubscriptionUncheckedCreateNestedOneWithoutUserInput
+    waterLogs?: WaterLogUncheckedCreateNestedManyWithoutUserInput
+    bodyLogs?: BodyLogUncheckedCreateNestedManyWithoutUserInput
+    moodLogs?: MoodLogUncheckedCreateNestedManyWithoutUserInput
+    fastingLogs?: FastingLogUncheckedCreateNestedManyWithoutUserInput
+    customRoutines?: CustomRoutineUncheckedCreateNestedManyWithoutUserInput
+    milestones?: MilestoneUncheckedCreateNestedManyWithoutUserInput
+  }
+
+  export type UserCreateOrConnectWithoutReferralsInput = {
+    where: UserWhereUniqueInput
+    create: XOR<UserCreateWithoutReferralsInput, UserUncheckedCreateWithoutReferralsInput>
+  }
+
+  export type UserUpsertWithoutReferralsInput = {
+    update: XOR<UserUpdateWithoutReferralsInput, UserUncheckedUpdateWithoutReferralsInput>
+    create: XOR<UserCreateWithoutReferralsInput, UserUncheckedCreateWithoutReferralsInput>
+    where?: UserWhereInput
+  }
+
+  export type UserUpdateToOneWithWhereWithoutReferralsInput = {
+    where?: UserWhereInput
+    data: XOR<UserUpdateWithoutReferralsInput, UserUncheckedUpdateWithoutReferralsInput>
+  }
+
+  export type UserUpdateWithoutReferralsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: NullableStringFieldUpdateOperationsInput | string | null
+    email?: NullableStringFieldUpdateOperationsInput | string | null
+    emailVerified?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    image?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    accounts?: AccountUpdateManyWithoutUserNestedInput
+    sessions?: SessionUpdateManyWithoutUserNestedInput
+    profile?: UserProfileUpdateOneWithoutUserNestedInput
+    foodLogs?: FoodLogUpdateManyWithoutUserNestedInput
+    workoutLogs?: WorkoutLogUpdateManyWithoutUserNestedInput
+    messages?: MessageUpdateManyWithoutUserNestedInput
+    behaviorLogs?: BehaviorLogUpdateManyWithoutUserNestedInput
+    streaks?: StreakUpdateManyWithoutUserNestedInput
+    plans?: PlanUpdateManyWithoutUserNestedInput
+    subscription?: SubscriptionUpdateOneWithoutUserNestedInput
+    waterLogs?: WaterLogUpdateManyWithoutUserNestedInput
+    bodyLogs?: BodyLogUpdateManyWithoutUserNestedInput
+    moodLogs?: MoodLogUpdateManyWithoutUserNestedInput
+    fastingLogs?: FastingLogUpdateManyWithoutUserNestedInput
+    customRoutines?: CustomRoutineUpdateManyWithoutUserNestedInput
+    milestones?: MilestoneUpdateManyWithoutUserNestedInput
+  }
+
+  export type UserUncheckedUpdateWithoutReferralsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: NullableStringFieldUpdateOperationsInput | string | null
+    email?: NullableStringFieldUpdateOperationsInput | string | null
+    emailVerified?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    image?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    accounts?: AccountUncheckedUpdateManyWithoutUserNestedInput
+    sessions?: SessionUncheckedUpdateManyWithoutUserNestedInput
+    profile?: UserProfileUncheckedUpdateOneWithoutUserNestedInput
+    foodLogs?: FoodLogUncheckedUpdateManyWithoutUserNestedInput
+    workoutLogs?: WorkoutLogUncheckedUpdateManyWithoutUserNestedInput
+    messages?: MessageUncheckedUpdateManyWithoutUserNestedInput
+    behaviorLogs?: BehaviorLogUncheckedUpdateManyWithoutUserNestedInput
+    streaks?: StreakUncheckedUpdateManyWithoutUserNestedInput
+    plans?: PlanUncheckedUpdateManyWithoutUserNestedInput
+    subscription?: SubscriptionUncheckedUpdateOneWithoutUserNestedInput
+    waterLogs?: WaterLogUncheckedUpdateManyWithoutUserNestedInput
+    bodyLogs?: BodyLogUncheckedUpdateManyWithoutUserNestedInput
+    moodLogs?: MoodLogUncheckedUpdateManyWithoutUserNestedInput
+    fastingLogs?: FastingLogUncheckedUpdateManyWithoutUserNestedInput
+    customRoutines?: CustomRoutineUncheckedUpdateManyWithoutUserNestedInput
+    milestones?: MilestoneUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type AccountCreateManyUserInput = {
@@ -31377,6 +36471,33 @@ export namespace Prisma {
     targetHours: number
     completed?: boolean
     notes?: string | null
+  }
+
+  export type CustomRoutineCreateManyUserInput = {
+    id?: string
+    name: string
+    type: string
+    exercises: JsonNullValueInput | InputJsonValue
+    notes?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type MilestoneCreateManyUserInput = {
+    id?: string
+    type: string
+    title: string
+    seenAt?: Date | string | null
+    earnedAt?: Date | string
+  }
+
+  export type ReferralCreateManyReferrerInput = {
+    id?: string
+    code: string
+    usedBy?: string | null
+    usedAt?: Date | string | null
+    rewarded?: boolean
+    createdAt?: Date | string
   }
 
   export type AccountUpdateWithoutUserInput = {
@@ -31731,6 +36852,87 @@ export namespace Prisma {
     targetHours?: IntFieldUpdateOperationsInput | number
     completed?: BoolFieldUpdateOperationsInput | boolean
     notes?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type CustomRoutineUpdateWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    type?: StringFieldUpdateOperationsInput | string
+    exercises?: JsonNullValueInput | InputJsonValue
+    notes?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type CustomRoutineUncheckedUpdateWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    type?: StringFieldUpdateOperationsInput | string
+    exercises?: JsonNullValueInput | InputJsonValue
+    notes?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type CustomRoutineUncheckedUpdateManyWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    type?: StringFieldUpdateOperationsInput | string
+    exercises?: JsonNullValueInput | InputJsonValue
+    notes?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type MilestoneUpdateWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    type?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    seenAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    earnedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type MilestoneUncheckedUpdateWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    type?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    seenAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    earnedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type MilestoneUncheckedUpdateManyWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    type?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    seenAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    earnedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ReferralUpdateWithoutReferrerInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    code?: StringFieldUpdateOperationsInput | string
+    usedBy?: NullableStringFieldUpdateOperationsInput | string | null
+    usedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    rewarded?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ReferralUncheckedUpdateWithoutReferrerInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    code?: StringFieldUpdateOperationsInput | string
+    usedBy?: NullableStringFieldUpdateOperationsInput | string | null
+    usedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    rewarded?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ReferralUncheckedUpdateManyWithoutReferrerInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    code?: StringFieldUpdateOperationsInput | string
+    usedBy?: NullableStringFieldUpdateOperationsInput | string | null
+    usedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    rewarded?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
 

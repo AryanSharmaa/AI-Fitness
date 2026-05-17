@@ -7,7 +7,7 @@ import {
   DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger
 } from '@/components/ui/dropdown-menu'
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
-import { MessageCircle, LayoutDashboard, UtensilsCrossed, Dumbbell, TrendingUp, Scale, Menu, X, CalendarDays, Timer } from 'lucide-react'
+import { MessageCircle, LayoutDashboard, UtensilsCrossed, Dumbbell, TrendingUp, Scale, Menu, X, CalendarDays, Timer, Wrench } from 'lucide-react'
 import { useState } from 'react'
 import ThemeToggle from './ThemeToggle'
 
@@ -19,6 +19,7 @@ const NAV_LINKS = [
   { href: '/body', label: 'Body', icon: Scale },
   { href: '/plan', label: 'Plan', icon: CalendarDays },
   { href: '/fasting', label: 'Fasting', icon: Timer },
+  { href: '/workout-builder', label: 'Builder', icon: Wrench },
   { href: '/progress', label: 'Progress', icon: TrendingUp },
 ]
 
@@ -75,8 +76,17 @@ export default function Navbar() {
                   <DropdownMenuItem onClick={() => router.push('/profile')}>
                     Profile
                   </DropdownMenuItem>
+                  <DropdownMenuItem onClick={() => router.push('/meal-plan')}>
+                    Smart Meal Plan
+                  </DropdownMenuItem>
                   <DropdownMenuItem onClick={() => router.push('/settings')}>
                     Settings
+                  </DropdownMenuItem>
+                  <DropdownMenuItem onClick={() => router.push('/export')}>
+                    Export Data
+                  </DropdownMenuItem>
+                  <DropdownMenuItem onClick={() => router.push('/referral')}>
+                    Refer &amp; Earn
                   </DropdownMenuItem>
                   <DropdownMenuItem onClick={() => signOut({ callbackUrl: '/' })} variant="destructive">
                     Sign out
