@@ -4,10 +4,10 @@ import Link from 'next/link'
 import { Flame, Footprints, Clock, Plus, ArrowUpRight, Dumbbell, TrendingUp } from 'lucide-react'
 import { toast } from 'sonner'
 import dynamic from 'next/dynamic'
-const RecoveryCard = dynamic(() => import('./RecoveryCard'), { ssr: false })
-const MoodCheckIn = dynamic(() => import('./MoodCheckIn'), { ssr: false })
-const InsightsFeed = dynamic(() => import('./InsightsFeed'), { ssr: false })
-const MilestoneCelebration = dynamic(() => import('./MilestoneCelebration'), { ssr: false })
+const RecoveryCard = dynamic(() => import('./RecoveryCard'), { ssr: false, loading: () => null })
+const MoodCheckIn = dynamic(() => import('./MoodCheckIn'), { ssr: false, loading: () => null })
+const InsightsFeed = dynamic(() => import('./InsightsFeed'), { ssr: false, loading: () => null })
+const MilestoneCelebration = dynamic(() => import('./MilestoneCelebration'), { ssr: false, loading: () => null })
 
 interface DashboardData {
   name: string

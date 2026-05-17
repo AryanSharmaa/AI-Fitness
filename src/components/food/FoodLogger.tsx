@@ -10,7 +10,8 @@ import { useRef } from 'react'
 import { toast } from 'sonner'
 import MacroRings from './MacroRings'
 import dynamic from 'next/dynamic'
-const BarcodeScanner = dynamic(() => import('./BarcodeScanner'), { ssr: false })
+const BarcodeScannerImport = () => import('./BarcodeScanner')
+const BarcodeScanner = dynamic(BarcodeScannerImport, { ssr: false, loading: () => null })
 
 interface FoodLog {
   id: string
@@ -88,6 +89,9 @@ export default function FoodLogger() {
   const [deleting, setDeleting] = useState<string | null>(null)
   const [showBarcode, setShowBarcode] = useState(false)
   const fileInputRef = useRef<HTMLInputElement>(null)
+
+  // Preload barcode scanner chunk so clicking Scan is instant
+  useEffect(() => { BarcodeScannerImport() }, [])
 
   const loadLogs = useCallback(async (date: string) => {
     setPageLoading(true)
