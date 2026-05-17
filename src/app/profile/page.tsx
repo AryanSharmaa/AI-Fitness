@@ -4,7 +4,7 @@ import { authOptions } from '@/lib/auth'
 import { prisma } from '@/lib/prisma'
 import ProfileEditor from '@/components/profile/ProfileEditor'
 import Link from 'next/link'
-import { ChevronLeft } from 'lucide-react'
+import { ChevronLeft, RefreshCcw } from 'lucide-react'
 
 export default async function ProfilePage() {
   const session = await getServerSession(authOptions)
@@ -51,6 +51,20 @@ export default async function ProfilePage() {
         userEmail={session.user.email ?? ''}
         userName={user?.name ?? session.user.name ?? null}
       />
+
+      {/* Recalibrate CTA */}
+      <Link href="/recalibrate" className="block group">
+        <div className="rounded-2xl border-2 border-dashed border-orange-200 dark:border-orange-900/40 bg-orange-50 dark:bg-orange-950/20 p-5 flex items-center gap-4 hover:border-orange-400 dark:hover:border-orange-700 hover:bg-orange-100 dark:hover:bg-orange-950/30 transition-all">
+          <div className="h-11 w-11 rounded-xl bg-orange-500 flex items-center justify-center shrink-0 group-hover:scale-105 transition-transform">
+            <RefreshCcw className="h-5 w-5 text-white" />
+          </div>
+          <div className="flex-1 min-w-0">
+            <p className="font-semibold text-sm text-foreground">Recalibrate your goals</p>
+            <p className="text-xs text-muted-foreground mt-0.5">Lost weight? Changed your goal? Walk through setup again to recalculate your calorie target, macros, and AI plan.</p>
+          </div>
+          <ChevronLeft className="h-4 w-4 text-muted-foreground rotate-180 shrink-0" />
+        </div>
+      </Link>
     </div>
   )
 }

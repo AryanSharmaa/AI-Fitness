@@ -28,5 +28,6 @@ export const config = {
     '/export/:path*',
     '/meal-plan/:path*',
     '/workout-builder/:path*',
+    '/recalibrate/:path*',
   ],
 }

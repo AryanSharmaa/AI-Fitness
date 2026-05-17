@@ -27,15 +27,44 @@ interface FormData {
   cookingSkill: string
 }
 
-export default function OnboardingForm() {
+interface InitialData {
+  age?: number | null
+  height?: number | null
+  weight?: number | null
+  goalWeight?: number | null
+  gender?: string | null
+  goal?: string | null
+  workSchedule?: string | null
+  sleepHours?: number | null
+  foodPreference?: string | null
+  medicalNotes?: string | null
+  equipmentAccess?: string | null
+  cookingSkill?: string | null
+}
+
+interface OnboardingFormProps {
+  mode?: 'onboarding' | 'recalibrate'
+  initialData?: InitialData | null
+}
+
+export default function OnboardingForm({ mode = 'onboarding', initialData }: OnboardingFormProps) {
+  const isRecalibrate = mode === 'recalibrate'
   const router = useRouter()
   const [step, setStep] = useState(1)
   const [loading, setLoading] = useState(false)
   const [form, setForm] = useState<FormData>({
-    age: '', height: '', weight: '', goalWeight: '', gender: '',
-    goal: '', workSchedule: '', sleepHours: '',
-    foodPreference: '', medicalNotes: '',
-    equipmentAccess: '', cookingSkill: '',
+    age: initialData?.age != null ? String(initialData.age) : '',
+    height: initialData?.height != null ? String(initialData.height) : '',
+    weight: initialData?.weight != null ? String(initialData.weight) : '',
+    goalWeight: initialData?.goalWeight != null ? String(initialData.goalWeight) : '',
+    gender: initialData?.gender ?? '',
+    goal: initialData?.goal ?? '',
+    workSchedule: initialData?.workSchedule ?? '',
+    sleepHours: initialData?.sleepHours != null ? String(initialData.sleepHours) : '',
+    foodPreference: initialData?.foodPreference ?? '',
+    medicalNotes: initialData?.medicalNotes ?? '',
+    equipmentAccess: initialData?.equipmentAccess ?? '',
+    cookingSkill: initialData?.cookingSkill ?? '',
   })
 
   function update(key: keyof FormData, val: string) {
@@ -59,8 +88,15 @@ export default function OnboardingForm() {
         }),
       })
       if (!res.ok) throw new Error()
-      toast.success("Profile saved! Let's build your plan.")
-      router.push('/chat')
+      if (isRecalibrate) {
+        // Bust cached AI plans so they regenerate with new stats
+        await fetch('/api/profile/clear-plans', { method: 'POST' }).catch(() => {})
+        toast.success('Goals recalibrated! Your AI coach is updated.')
+        router.push('/dashboard')
+      } else {
+        toast.success("Profile saved! Let's build your plan.")
+        router.push('/chat')
+      }
     } catch {
       toast.error('Failed to save profile. Please try again.')
     } finally {
@@ -70,6 +106,13 @@ export default function OnboardingForm() {
 
   return (
     <div className="max-w-lg mx-auto py-8 px-4">
+      {isRecalibrate && (
+        <div className="mb-6 rounded-2xl bg-gradient-to-br from-orange-500 to-amber-500 p-5 text-white">
+          <p className="text-xs font-semibold uppercase tracking-widest opacity-80">Recalibrate</p>
+          <h2 className="text-xl font-bold mt-0.5">Update your goals</h2>
+          <p className="text-sm opacity-80 mt-1">Your body and goals have changed — let's update everything so your AI coach stays accurate.</p>
+        </div>
+      )}
       <div className="mb-8">
         <Progress value={(step / TOTAL_STEPS) * 100} className="h-2" />
         <p className="text-sm text-muted-foreground mt-2">Step {step} of {TOTAL_STEPS}</p>
@@ -288,7 +331,7 @@ export default function OnboardingForm() {
           </Button>
         ) : (
           <Button onClick={submit} disabled={loading} className="flex-1">
-            {loading ? 'Saving...' : "Build My Plan →"}
+            {loading ? 'Saving...' : isRecalibrate ? 'Save & Recalibrate →' : 'Build My Plan →'}
           </Button>
         )}
       </div>
