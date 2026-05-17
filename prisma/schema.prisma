@@ -153,6 +153,7 @@ model Message {
   role      String   // user, assistant
   content   String   @db.Text
   agentType String?  // planner, critic, behavior, safety
+  topic     String   @default("general") // general, workout, nutrition, mindset
   createdAt DateTime @default(now())
   user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
 }

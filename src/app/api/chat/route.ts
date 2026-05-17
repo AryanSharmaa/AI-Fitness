@@ -15,7 +15,8 @@ export async function POST(req: NextRequest) {
 
   try {
     const body = await req.json()
-    const { message, todayContext } = body as { message: string; todayContext?: TodayContext }
+    const { message, todayContext, topic = 'general' } = body as { message: string; todayContext?: TodayContext; topic?: string }
+    const safeTopic = ['general', 'workout', 'nutrition', 'mindset'].includes(topic) ? topic : 'general'
 
     if (!message?.trim()) {
       return NextResponse.json({ error: 'Message required' }, { status: 400 })
@@ -25,7 +26,7 @@ export async function POST(req: NextRequest) {
     const [profile, recentMessages, behaviorLogs] = await Promise.all([
       prisma.userProfile.findUnique({ where: { userId } }),
       prisma.message.findMany({
-        where: { userId },
+        where: { userId, topic: safeTopic },
         orderBy: { createdAt: 'desc' },
         take: 12,
       }),
@@ -58,7 +59,7 @@ export async function POST(req: NextRequest) {
 
     // Save user message
     await prisma.message.create({
-      data: { userId, role: 'user', content: message },
+      data: { userId, role: 'user', content: message, topic: safeTopic },
     })
 
     const encoder = new TextEncoder()
@@ -85,7 +86,7 @@ export async function POST(req: NextRequest) {
 
           // Persist AI response
           await prisma.message.create({
-            data: { userId, role: 'assistant', content: fullResponse, agentType: agentUsed },
+            data: { userId, role: 'assistant', content: fullResponse, agentType: agentUsed, topic: safeTopic },
           })
 
           // Fire-and-forget: extract memory + update behavior logs in background

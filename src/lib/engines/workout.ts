@@ -130,40 +130,54 @@ export function selectWorkout(params: {
   lastWorkoutType?: string
   hasDOMS: boolean
   hasInjury: boolean
-  hasTime: number // minutes available
+  hasTime: number
   isNightShift: boolean
+  exclude?: string[] // names to skip for "suggest different"
 }): WorkoutPlan {
-  const { equipment, sleepHours, hasInjury, hasDOMS, hasTime, isNightShift } = params
+  const { equipment, sleepHours, hasInjury, hasDOMS, hasTime, isNightShift, exclude = [] } = params
 
-  // Injury → rest only
-  if (hasInjury) return HOME_WORKOUTS.recovery
+  // Build a candidate list based on conditions, then pick first not in exclude
+  const candidates: WorkoutPlan[] = []
 
-  // Sleep deprived or night shift ending → minimal or recovery
-  if (sleepHours < 5 || (isNightShift && sleepHours < 6)) {
-    return hasTime >= 20 ? HOME_WORKOUTS.recovery : HOME_WORKOUTS.minimal_10min
-  }
-
-  // DOMS → recovery or yoga
-  if (hasDOMS) return HOME_WORKOUTS.yoga_morning
-
-  // Very short time
-  if (hasTime <= 15) return HOME_WORKOUTS.minimal_10min
-
-  // No equipment
-  if (equipment === 'none') {
-    return hasTime >= 25 ? HOME_WORKOUTS.intermediate_hiit : HOME_WORKOUTS.beginner_strength
-  }
-
-  // Gym access
-  if (equipment === 'gym') {
+  if (hasInjury) {
+    candidates.push(HOME_WORKOUTS.recovery, HOME_WORKOUTS.minimal_10min, HOME_WORKOUTS.yoga_morning)
+  } else if (sleepHours < 5 || (isNightShift && sleepHours < 6)) {
+    candidates.push(HOME_WORKOUTS.recovery, HOME_WORKOUTS.minimal_10min, HOME_WORKOUTS.yoga_morning)
+  } else if (hasDOMS) {
+    candidates.push(HOME_WORKOUTS.yoga_morning, HOME_WORKOUTS.recovery, HOME_WORKOUTS.minimal_10min, HOME_WORKOUTS.beginner_strength)
+  } else if (hasTime <= 15) {
+    candidates.push(HOME_WORKOUTS.minimal_10min, HOME_WORKOUTS.beginner_strength)
+  } else if (equipment === 'gym') {
     const lastType = params.lastWorkoutType
-    if (lastType === 'push') return GYM_WORKOUTS.pull_day
-    if (lastType === 'pull') return GYM_WORKOUTS.leg_day
-    return GYM_WORKOUTS.push_day
+    if (lastType === 'push') {
+      candidates.push(GYM_WORKOUTS.pull_day, GYM_WORKOUTS.leg_day, GYM_WORKOUTS.push_day)
+    } else if (lastType === 'pull') {
+      candidates.push(GYM_WORKOUTS.leg_day, GYM_WORKOUTS.push_day, GYM_WORKOUTS.pull_day)
+    } else {
+      candidates.push(GYM_WORKOUTS.push_day, GYM_WORKOUTS.pull_day, GYM_WORKOUTS.leg_day)
+    }
+    // also add home options as fallback alternates
+    candidates.push(HOME_WORKOUTS.intermediate_hiit, HOME_WORKOUTS.beginner_strength)
+  } else if (equipment === 'none') {
+    candidates.push(
+      hasTime >= 25 ? HOME_WORKOUTS.intermediate_hiit : HOME_WORKOUTS.beginner_strength,
+      HOME_WORKOUTS.beginner_strength,
+      HOME_WORKOUTS.intermediate_hiit,
+      HOME_WORKOUTS.yoga_morning,
+      HOME_WORKOUTS.minimal_10min,
+    )
+  } else {
+    candidates.push(
+      HOME_WORKOUTS.beginner_strength,
+      HOME_WORKOUTS.intermediate_hiit,
+      HOME_WORKOUTS.yoga_morning,
+      HOME_WORKOUTS.minimal_10min,
+    )
   }
 
-  // Home with equipment
-  return HOME_WORKOUTS.beginner_strength
+  // Return first candidate not in the exclude list
+  const pick = candidates.find(c => !exclude.includes(c.name))
+  return pick ?? candidates[0]
 }
 
 export function formatWorkoutForDisplay(plan: WorkoutPlan): string {

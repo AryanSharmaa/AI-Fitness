@@ -31,16 +31,23 @@ export default function WorkoutTracker() {
   const [skipReason, setSkipReason] = useState('')
   const [showSkipForm, setShowSkipForm] = useState(false)
   const [completed, setCompleted] = useState<Set<string>>(new Set())
+  const [shownNames, setShownNames] = useState<string[]>([])
 
   useEffect(() => { loadSuggestion() }, [])
 
-  async function loadSuggestion() {
+  async function loadSuggestion(different = false) {
     setLoading(true)
+    setCompleted(new Set())
     try {
-      const res = await fetch('/api/workout?action=suggest')
+      const exclude = different ? shownNames.join('|') : ''
+      const url = `/api/workout?action=suggest${exclude ? `&exclude=${encodeURIComponent(exclude)}` : ''}`
+      const res = await fetch(url)
       if (res.ok) {
         const data = await res.json()
         setSuggested(data.workout)
+        if (data.workout?.name) {
+          setShownNames(prev => [...new Set([...prev, data.workout.name])])
+        }
       }
     } finally {
       setLoading(false)
@@ -226,7 +233,7 @@ export default function WorkoutTracker() {
         variant="ghost"
         size="sm"
         className="w-full text-muted-foreground"
-        onClick={loadSuggestion}
+        onClick={() => loadSuggestion(true)}
       >
         <Zap className="h-4 w-4 mr-1" />
         Suggest a different workout

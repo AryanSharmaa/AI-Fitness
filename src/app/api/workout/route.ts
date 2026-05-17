@@ -33,6 +33,9 @@ export async function GET(req: NextRequest) {
       (new Date().getTime() - lastWorkout.date.getTime()) < 48 * 60 * 60 * 1000 &&
       lastWorkout.type === 'strength'
 
+    const excludeParam = searchParams.get('exclude')
+    const exclude = excludeParam ? excludeParam.split('|') : []
+
     const workout = selectWorkout({
       equipment: profile?.equipmentAccess || 'none',
       sleepHours: profile?.sleepHours || 7,
@@ -42,6 +45,7 @@ export async function GET(req: NextRequest) {
       hasInjury,
       hasTime: 45,
       isNightShift: profile?.workSchedule === 'night',
+      exclude,
     })
 
     return NextResponse.json({ workout, formatted: formatWorkoutForDisplay(workout) })

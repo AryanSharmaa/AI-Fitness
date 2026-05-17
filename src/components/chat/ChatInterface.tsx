@@ -1,5 +1,6 @@
 'use client'
 import { useState, useRef, useEffect } from 'react'
+import { useRouter } from 'next/navigation'
 import { Button } from '@/components/ui/button'
 import { Textarea } from '@/components/ui/textarea'
 import { Badge } from '@/components/ui/badge'
@@ -21,16 +22,40 @@ interface TodayContext {
   stressLevel?: 'low' | 'medium' | 'high'
 }
 
-const QUICK_ACTIONS = [
-  { label: "Give me today's full plan", emoji: "📋" },
-  { label: "I messed up — help me reset", emoji: "🔄" },
-  { label: "Suggest today's workout", emoji: "💪" },
-  { label: "I skipped my workout", emoji: "😔" },
-  { label: "Festival food help", emoji: "🎉" },
-  { label: "I'm burnt out, what now?", emoji: "🔥" },
-  { label: "Check my discipline pattern", emoji: "📊" },
-  { label: "I'm travelling today", emoji: "✈️" },
-]
+const TOPICS = [
+  { id: 'general',   label: 'General',    emoji: '🧠' },
+  { id: 'workout',   label: 'Workout',    emoji: '💪' },
+  { id: 'nutrition', label: 'Nutrition',  emoji: '🍱' },
+  { id: 'mindset',   label: 'Mindset',    emoji: '🧘' },
+] as const
+type Topic = typeof TOPICS[number]['id']
+
+const QUICK_ACTIONS: Record<Topic, { label: string; emoji: string }[]> = {
+  general: [
+    { label: "Give me today's full plan", emoji: "📋" },
+    { label: "I messed up — help me reset", emoji: "🔄" },
+    { label: "Check my discipline pattern", emoji: "📊" },
+    { label: "I'm travelling today", emoji: "✈️" },
+  ],
+  workout: [
+    { label: "Suggest today's workout", emoji: "💪" },
+    { label: "I skipped my workout", emoji: "😔" },
+    { label: "I'm burnt out, what now?", emoji: "🔥" },
+    { label: "I have only 15 minutes", emoji: "⏱️" },
+  ],
+  nutrition: [
+    { label: "Festival food help", emoji: "🎉" },
+    { label: "What should I eat post-workout?", emoji: "🥗" },
+    { label: "I had a cheat day", emoji: "🍕" },
+    { label: "High protein Indian meals", emoji: "💪" },
+  ],
+  mindset: [
+    { label: "I feel like giving up", emoji: "😞" },
+    { label: "Help me stay consistent", emoji: "🎯" },
+    { label: "I'm stressed and eating badly", emoji: "😰" },
+    { label: "Motivate me right now", emoji: "⚡" },
+  ],
+}
 
 const AGENT_LABELS: Record<string, string> = {
   safety:             '🛡️ Safety',
@@ -187,7 +212,11 @@ function ContextPanel({
   )
 }
 
-export default function ChatInterface({ initialMessages = [] }: { initialMessages?: Message[] }) {
+export default function ChatInterface({ initialMessages = [], initialTopic = 'general' }: { initialMessages?: Message[]; initialTopic?: string }) {
+  const router = useRouter()
+  const [topic, setTopic] = useState<Topic>(
+    TOPICS.some(t => t.id === initialTopic) ? initialTopic as Topic : 'general'
+  )
   const [messages, setMessages] = useState<Message[]>(initialMessages)
   const [input, setInput] = useState('')
   const [streaming, setStreaming] = useState(false)
@@ -195,6 +224,11 @@ export default function ChatInterface({ initialMessages = [] }: { initialMessage
   const [todayContext, setTodayContext] = useState<TodayContext>({})
   const [showContext, setShowContext] = useState(false)
   const bottomRef = useRef<HTMLDivElement>(null)
+
+  function switchTopic(newTopic: Topic) {
+    setTopic(newTopic)
+    router.push(`/chat?topic=${newTopic}`)
+  }
 
   useEffect(() => {
     bottomRef.current?.scrollIntoView({ behavior: 'smooth' })
@@ -220,6 +254,7 @@ export default function ChatInterface({ initialMessages = [] }: { initialMessage
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           message: messageText,
+          topic,
           todayContext: Object.keys(todayContext).length > 0 ? todayContext : undefined,
         }),
       })
@@ -283,6 +318,24 @@ export default function ChatInterface({ initialMessages = [] }: { initialMessage
   return (
     <div className="flex flex-col h-[calc(100vh-4rem)]">
 
+      {/* Topic tabs */}
+      <div className="flex gap-1 px-4 pt-3 pb-2 border-b bg-background overflow-x-auto">
+        {TOPICS.map(t => (
+          <button
+            key={t.id}
+            onClick={() => switchTopic(t.id)}
+            className={`shrink-0 flex items-center gap-1.5 px-3 py-1.5 rounded-full text-sm font-medium transition-colors ${
+              topic === t.id
+                ? 'bg-emerald-500 text-white'
+                : 'bg-muted text-muted-foreground hover:bg-accent hover:text-foreground'
+            }`}
+          >
+            <span>{t.emoji}</span>
+            {t.label}
+          </button>
+        ))}
+      </div>
+
       {/* Messages */}
       <div className="flex-1 overflow-y-auto p-4 space-y-4">
         {isEmpty && (
@@ -298,7 +351,7 @@ export default function ChatInterface({ initialMessages = [] }: { initialMessage
               </p>
             </div>
             <div className="grid grid-cols-2 gap-2 w-full max-w-md mt-2">
-              {QUICK_ACTIONS.map(action => (
+              {QUICK_ACTIONS[topic].map(action => (
                 <button
                   key={action.label}
                   onClick={() => sendMessage(action.label)}

@@ -244,6 +244,7 @@ exports.Prisma.MessageScalarFieldEnum = {
   role: 'role',
   content: 'content',
   agentType: 'agentType',
+  topic: 'topic',
   createdAt: 'createdAt'
 };
 

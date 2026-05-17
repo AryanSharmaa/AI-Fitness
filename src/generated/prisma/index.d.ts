@@ -13973,6 +13973,7 @@ export namespace Prisma {
     role: string | null
     content: string | null
     agentType: string | null
+    topic: string | null
     createdAt: Date | null
   }
 
@@ -13982,6 +13983,7 @@ export namespace Prisma {
     role: string | null
     content: string | null
     agentType: string | null
+    topic: string | null
     createdAt: Date | null
   }
 
@@ -13991,6 +13993,7 @@ export namespace Prisma {
     role: number
     content: number
     agentType: number
+    topic: number
     createdAt: number
     _all: number
   }
@@ -14002,6 +14005,7 @@ export namespace Prisma {
     role?: true
     content?: true
     agentType?: true
+    topic?: true
     createdAt?: true
   }
 
@@ -14011,6 +14015,7 @@ export namespace Prisma {
     role?: true
     content?: true
     agentType?: true
+    topic?: true
     createdAt?: true
   }
 
@@ -14020,6 +14025,7 @@ export namespace Prisma {
     role?: true
     content?: true
     agentType?: true
+    topic?: true
     createdAt?: true
     _all?: true
   }
@@ -14102,6 +14108,7 @@ export namespace Prisma {
     role: string
     content: string
     agentType: string | null
+    topic: string
     createdAt: Date
     _count: MessageCountAggregateOutputType | null
     _min: MessageMinAggregateOutputType | null
@@ -14128,6 +14135,7 @@ export namespace Prisma {
     role?: boolean
     content?: boolean
     agentType?: boolean
+    topic?: boolean
     createdAt?: boolean
     user?: boolean | UserDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["message"]>
@@ -14138,6 +14146,7 @@ export namespace Prisma {
     role?: boolean
     content?: boolean
     agentType?: boolean
+    topic?: boolean
     createdAt?: boolean
     user?: boolean | UserDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["message"]>
@@ -14148,6 +14157,7 @@ export namespace Prisma {
     role?: boolean
     content?: boolean
     agentType?: boolean
+    topic?: boolean
     createdAt?: boolean
     user?: boolean | UserDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["message"]>
@@ -14158,10 +14168,11 @@ export namespace Prisma {
     role?: boolean
     content?: boolean
     agentType?: boolean
+    topic?: boolean
     createdAt?: boolean
   }
 
-  export type MessageOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "userId" | "role" | "content" | "agentType" | "createdAt", ExtArgs["result"]["message"]>
+  export type MessageOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "userId" | "role" | "content" | "agentType" | "topic" | "createdAt", ExtArgs["result"]["message"]>
   export type MessageInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     user?: boolean | UserDefaultArgs<ExtArgs>
   }
@@ -14183,6 +14194,7 @@ export namespace Prisma {
       role: string
       content: string
       agentType: string | null
+      topic: string
       createdAt: Date
     }, ExtArgs["result"]["message"]>
     composites: {}
@@ -14613,6 +14625,7 @@ export namespace Prisma {
     readonly role: FieldRef<"Message", 'String'>
     readonly content: FieldRef<"Message", 'String'>
     readonly agentType: FieldRef<"Message", 'String'>
+    readonly topic: FieldRef<"Message", 'String'>
     readonly createdAt: FieldRef<"Message", 'DateTime'>
   }
     
@@ -20682,6 +20695,7 @@ export namespace Prisma {
     role: 'role',
     content: 'content',
     agentType: 'agentType',
+    topic: 'topic',
     createdAt: 'createdAt'
   };
 
@@ -21683,6 +21697,7 @@ export namespace Prisma {
     role?: StringFilter<"Message"> | string
     content?: StringFilter<"Message"> | string
     agentType?: StringNullableFilter<"Message"> | string | null
+    topic?: StringFilter<"Message"> | string
     createdAt?: DateTimeFilter<"Message"> | Date | string
     user?: XOR<UserScalarRelationFilter, UserWhereInput>
   }
@@ -21693,6 +21708,7 @@ export namespace Prisma {
     role?: SortOrder
     content?: SortOrder
     agentType?: SortOrderInput | SortOrder
+    topic?: SortOrder
     createdAt?: SortOrder
     user?: UserOrderByWithRelationInput
   }
@@ -21706,6 +21722,7 @@ export namespace Prisma {
     role?: StringFilter<"Message"> | string
     content?: StringFilter<"Message"> | string
     agentType?: StringNullableFilter<"Message"> | string | null
+    topic?: StringFilter<"Message"> | string
     createdAt?: DateTimeFilter<"Message"> | Date | string
     user?: XOR<UserScalarRelationFilter, UserWhereInput>
   }, "id">
@@ -21716,6 +21733,7 @@ export namespace Prisma {
     role?: SortOrder
     content?: SortOrder
     agentType?: SortOrderInput | SortOrder
+    topic?: SortOrder
     createdAt?: SortOrder
     _count?: MessageCountOrderByAggregateInput
     _max?: MessageMaxOrderByAggregateInput
@@ -21731,6 +21749,7 @@ export namespace Prisma {
     role?: StringWithAggregatesFilter<"Message"> | string
     content?: StringWithAggregatesFilter<"Message"> | string
     agentType?: StringNullableWithAggregatesFilter<"Message"> | string | null
+    topic?: StringWithAggregatesFilter<"Message"> | string
     createdAt?: DateTimeWithAggregatesFilter<"Message"> | Date | string
   }
 
@@ -22950,6 +22969,7 @@ export namespace Prisma {
     role: string
     content: string
     agentType?: string | null
+    topic?: string
     createdAt?: Date | string
     user: UserCreateNestedOneWithoutMessagesInput
   }
@@ -22960,6 +22980,7 @@ export namespace Prisma {
     role: string
     content: string
     agentType?: string | null
+    topic?: string
     createdAt?: Date | string
   }
 
@@ -22968,6 +22989,7 @@ export namespace Prisma {
     role?: StringFieldUpdateOperationsInput | string
     content?: StringFieldUpdateOperationsInput | string
     agentType?: NullableStringFieldUpdateOperationsInput | string | null
+    topic?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     user?: UserUpdateOneRequiredWithoutMessagesNestedInput
   }
@@ -22978,6 +23000,7 @@ export namespace Prisma {
     role?: StringFieldUpdateOperationsInput | string
     content?: StringFieldUpdateOperationsInput | string
     agentType?: NullableStringFieldUpdateOperationsInput | string | null
+    topic?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
@@ -22987,6 +23010,7 @@ export namespace Prisma {
     role: string
     content: string
     agentType?: string | null
+    topic?: string
     createdAt?: Date | string
   }
 
@@ -22995,6 +23019,7 @@ export namespace Prisma {
     role?: StringFieldUpdateOperationsInput | string
     content?: StringFieldUpdateOperationsInput | string
     agentType?: NullableStringFieldUpdateOperationsInput | string | null
+    topic?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
@@ -23004,6 +23029,7 @@ export namespace Prisma {
     role?: StringFieldUpdateOperationsInput | string
     content?: StringFieldUpdateOperationsInput | string
     agentType?: NullableStringFieldUpdateOperationsInput | string | null
+    topic?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
@@ -24226,6 +24252,7 @@ export namespace Prisma {
     role?: SortOrder
     content?: SortOrder
     agentType?: SortOrder
+    topic?: SortOrder
     createdAt?: SortOrder
   }
 
@@ -24235,6 +24262,7 @@ export namespace Prisma {
     role?: SortOrder
     content?: SortOrder
     agentType?: SortOrder
+    topic?: SortOrder
     createdAt?: SortOrder
   }
 
@@ -24244,6 +24272,7 @@ export namespace Prisma {
     role?: SortOrder
     content?: SortOrder
     agentType?: SortOrder
+    topic?: SortOrder
     createdAt?: SortOrder
   }
 
@@ -25877,6 +25906,7 @@ export namespace Prisma {
     role: string
     content: string
     agentType?: string | null
+    topic?: string
     createdAt?: Date | string
   }
 
@@ -25885,6 +25915,7 @@ export namespace Prisma {
     role: string
     content: string
     agentType?: string | null
+    topic?: string
     createdAt?: Date | string
   }
 
@@ -26260,6 +26291,7 @@ export namespace Prisma {
     role?: StringFilter<"Message"> | string
     content?: StringFilter<"Message"> | string
     agentType?: StringNullableFilter<"Message"> | string | null
+    topic?: StringFilter<"Message"> | string
     createdAt?: DateTimeFilter<"Message"> | Date | string
   }
 
@@ -27490,6 +27522,7 @@ export namespace Prisma {
     role: string
     content: string
     agentType?: string | null
+    topic?: string
     createdAt?: Date | string
   }
 
@@ -27681,6 +27714,7 @@ export namespace Prisma {
     role?: StringFieldUpdateOperationsInput | string
     content?: StringFieldUpdateOperationsInput | string
     agentType?: NullableStringFieldUpdateOperationsInput | string | null
+    topic?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
@@ -27689,6 +27723,7 @@ export namespace Prisma {
     role?: StringFieldUpdateOperationsInput | string
     content?: StringFieldUpdateOperationsInput | string
     agentType?: NullableStringFieldUpdateOperationsInput | string | null
+    topic?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
@@ -27697,6 +27732,7 @@ export namespace Prisma {
     role?: StringFieldUpdateOperationsInput | string
     content?: StringFieldUpdateOperationsInput | string
     agentType?: NullableStringFieldUpdateOperationsInput | string | null
+    topic?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
