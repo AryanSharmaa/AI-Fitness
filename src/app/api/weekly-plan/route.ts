@@ -3,6 +3,7 @@ import { NextResponse } from 'next/server'
 import { authOptions } from '@/lib/auth'
 import { prisma } from '@/lib/prisma'
 import { getUserPlan } from '@/lib/plan'
+import { buildPrompt, WEEKLY_PLAN_PROMPT } from '@/lib/prompts'
 import OpenAI from 'openai'
 
 const MODELS = [
@@ -105,43 +106,24 @@ export async function GET(req: Request) {
     ? Math.round(recentWorkouts.filter(w => w.completed).length / recentWorkouts.length * 100)
     : 0
 
-  const prompt = `You are a professional Indian fitness and nutrition coach. Generate a personalized 7-day plan.
-
-USER PROFILE:
-- Goal: ${profile?.goal ?? 'general fitness'}
-- Age: ${profile?.age ?? 'unknown'}, Gender: ${profile?.gender ?? 'unknown'}
-- Height: ${profile?.height ?? '?'}cm, Weight: ${profile?.weight ?? '?'}kg
-- Equipment: ${profile?.equipmentAccess ?? 'none/home'}
-- Food preference: ${profile?.foodPreference ?? 'vegetarian'}
-- Sleep: ${profile?.sleepHours ?? 7} hrs/night
-- Schedule: ${profile?.workSchedule ?? 'standard'}
-- Medical notes: ${profile?.medicalNotes ?? 'none'}
-- Discipline score: ${profile?.disciplineScore ?? 50}/100
-
-RECENT ACTIVITY (last 2 weeks):
-- Workout completion rate: ${completionRate}%
-- Current workout streak: ${workoutStreak} days
-- Avg daily calories logged: ${avgCalories} kcal
-- Recent workout types: ${[...new Set(recentWorkouts.map(w => w.type))].join(', ') || 'none logged'}
-
-Return ONLY a valid JSON object in this exact format (no markdown, no explanation):
-{
-  "generatedAt": "${new Date().toISOString()}",
-  "summary": "2-sentence personalized summary of this week's plan and why",
-  "days": [
-    {
-      "day": "Monday",
-      "workout": "specific workout description with duration",
-      "meals": {
-        "breakfast": "specific Indian meal",
-        "lunch": "specific Indian meal",
-        "dinner": "specific Indian meal",
-        "snack": "specific snack"
-      }
-    }
-  ]
-}
-Include all 7 days (Monday through Sunday). Keep workouts realistic for the user's equipment and discipline score. Focus on Indian foods.`
+  const prompt = buildPrompt(WEEKLY_PLAN_PROMPT, {
+    goal: profile?.goal ?? 'general fitness',
+    age: profile?.age ?? 'unknown',
+    gender: profile?.gender ?? 'unknown',
+    height: profile?.height ?? '?',
+    weight: profile?.weight ?? '?',
+    equipment: profile?.equipmentAccess ?? 'none/home',
+    foodPreference: profile?.foodPreference ?? 'vegetarian',
+    sleepHours: profile?.sleepHours ?? 7,
+    workSchedule: profile?.workSchedule ?? 'standard',
+    medicalNotes: profile?.medicalNotes ?? 'none',
+    disciplineScore: profile?.disciplineScore ?? 50,
+    completionRate,
+    workoutStreak,
+    avgCalories,
+    recentWorkoutTypes: [...new Set(recentWorkouts.map(w => w.type))].join(', ') || 'none logged',
+    generatedAt: new Date().toISOString(),
+  })
 
   try {
     const raw = await callAI(prompt)

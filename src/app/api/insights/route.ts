@@ -2,6 +2,7 @@ import { NextResponse } from 'next/server'
 import { getServerSession } from 'next-auth'
 import { authOptions } from '@/lib/auth'
 import { prisma } from '@/lib/prisma'
+import { buildPrompt, INSIGHTS_PROMPT } from '@/lib/prompts'
 import OpenAI from 'openai'
 
 const MODELS = [
@@ -160,21 +161,37 @@ export async function GET() {
     .filter(Boolean)
     .join('\n')
 
-  const prompt = `Here is a summary of a fitness app user's recent data:\n${dataDescription}\n\nGenerate exactly 3 personalised, actionable insights for this user. Return a JSON array with 3 objects, each with these keys:\n- "type": one of "nutrition", "workout", "recovery", "mindset"\n- "icon": a single relevant emoji\n- "title": short title (max 6 words)\n- "body": 1–2 sentences that are specific to the user's data above\n\nExample format: [{"type":"nutrition","icon":"🥗","title":"Boost your protein","body":"Your average protein is below target. Try adding eggs or paneer to each meal."},...]`
+  const profile = await prisma.userProfile.findUnique({
+    where: { userId },
+    select: { goal: true, disciplineScore: true, proteinGoal: true },
+  })
+
+  const prompt = buildPrompt(INSIGHTS_PROMPT, {
+    goal: profile?.goal ?? 'general fitness',
+    disciplineScore: profile?.disciplineScore ?? 50,
+    avgKcal: avgCalories ?? 0,
+    targetKcal: 2000,
+    avgProtein: avgProtein ?? 0,
+    proteinGoal: profile?.proteinGoal ?? 120,
+    weeklyWorkoutsDone: workoutCount,
+    weeklyWorkoutsTarget: 4,
+    avgMood: todayMood?.mood ?? 3,
+    avgEnergy: todayMood?.energy ?? 3,
+    streak,
+  })
 
   // --- Call AI ---
   let insights: Insight[] = STATIC_INSIGHTS
   try {
     const raw = await callAI(prompt)
-    // Strip possible markdown fences
     const cleaned = raw.replace(/^```(?:json)?\s*/i, '').replace(/\s*```$/i, '').trim()
     const parsed: unknown = JSON.parse(cleaned)
-    if (
-      Array.isArray(parsed) &&
-      parsed.length >= 1 &&
-      typeof (parsed[0] as Record<string, unknown>).type === 'string'
-    ) {
-      insights = (parsed as Insight[]).slice(0, 3)
+    // Handle both array format and {insights:[...]} format
+    const arr = Array.isArray(parsed)
+      ? parsed
+      : (parsed as { insights?: unknown[] })?.insights ?? []
+    if (Array.isArray(arr) && arr.length >= 1 && typeof (arr[0] as Record<string, unknown>).type === 'string') {
+      insights = (arr as Insight[]).slice(0, 3)
     }
   } catch {
     // Fall back to static insights

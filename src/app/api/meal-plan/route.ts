@@ -3,6 +3,7 @@ import { getServerSession } from 'next-auth'
 import { authOptions } from '@/lib/auth'
 import { prisma } from '@/lib/prisma'
 import { getDailyCalorieTarget } from '@/lib/engines/nutrition'
+import { buildPrompt, MEAL_SUGGESTION_PROMPT } from '@/lib/prompts'
 import OpenAI from 'openai'
 
 const MODELS = [
@@ -154,12 +155,21 @@ export async function GET(req: NextRequest) {
   }
 
   // Generate AI suggestions
-  const preference = profile?.foodPreference ?? 'vegetarian'
-  const prompt = `You are a nutrition coach. Given the user's remaining macros for today, suggest 2-3 specific Indian meals they can eat.
-User has consumed ${Math.round(consumed.calories)}cal, has ${remaining.calories}cal remaining, needs ${remaining.protein}g protein / ${remaining.carbs}g carbs / ${remaining.fat}g fat more. Food preference: ${preference}.
-Return ONLY a valid JSON array (no markdown, no explanation):
-[{ "meal": "Dinner", "suggestion": "specific dish name", "calories": N, "protein": N, "carbs": N, "fat": N, "reason": "why this fits" }]
-Use realistic Indian meal names. The meal field should be one of: Breakfast, Lunch, Dinner, Snack.`
+  const hour = new Date().getHours()
+  const timeOfDay = hour < 11 ? 'morning' : hour < 14 ? 'afternoon' : hour < 18 ? 'evening' : 'night'
+  const todaySummary = todayFoodLogs.length > 0
+    ? todayFoodLogs.map(l => l.description).slice(0, 5).join(', ')
+    : 'Nothing logged yet today'
+
+  const prompt = buildPrompt(MEAL_SUGGESTION_PROMPT, {
+    todayFoodLog: todaySummary,
+    remainingKcal: remaining.calories,
+    remainingProtein: remaining.protein,
+    remainingCarbs: remaining.carbs,
+    remainingFat: remaining.fat,
+    foodPreference: profile?.foodPreference ?? 'vegetarian',
+    timeOfDay,
+  })
 
   let suggestions: MealSuggestion[] = []
   try {

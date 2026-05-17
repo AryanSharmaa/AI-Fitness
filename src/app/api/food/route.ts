@@ -3,6 +3,7 @@ import { getServerSession } from 'next-auth'
 import { authOptions } from '@/lib/auth'
 import { prisma } from '@/lib/prisma'
 import { estimateMealNutrition, getDailyCalorieTarget, getNextMealAdjustment } from '@/lib/engines/nutrition'
+import { buildPrompt, FOOD_PARSER_PROMPT } from '@/lib/prompts'
 import OpenAI from 'openai'
 
 const MODELS = [
@@ -82,9 +83,14 @@ export async function POST(req: NextRequest) {
       dailyTarget
     )
 
+    const parserPrompt = buildPrompt(FOOD_PARSER_PROMPT, {
+      foodPreference: profile?.foodPreference ?? 'vegetarian',
+      targetKcal: dailyTarget,
+      mealDescription: description,
+    })
     aiAnalysis = await callAI(
-      'You are a non-judgmental Indian fitness nutrition coach. Be brief, warm, and practical.',
-      `User logged: "${description}" for ${mealType}. Estimated: ~${nutrition.estimatedCalories} cal, ${nutrition.estimatedProtein}g protein. Today's total so far: ~${todayTotal} cal out of ${dailyTarget} target. Give a 1-2 sentence non-judgmental feedback and the adjustment note: "${adjustment}"`
+      parserPrompt,
+      `Meal: "${description}" (${mealType}). Today total: ~${todayTotal} kcal of ${dailyTarget} goal. Adjustment note: "${adjustment}". Give 1-2 sentence warm, non-judgmental feedback.`
     )
   } catch {}
 
