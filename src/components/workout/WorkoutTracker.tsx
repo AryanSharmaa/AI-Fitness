@@ -94,17 +94,15 @@ export default function WorkoutTracker() {
 
   if (loading) {
     return (
-      <div className="max-w-2xl mx-auto py-8 px-4">
-        <div className="animate-pulse space-y-4">
-          <div className="h-8 bg-muted rounded w-1/3" />
-          <div className="h-48 bg-muted rounded" />
-        </div>
+      <div className="animate-pulse space-y-4">
+        <div className="h-8 bg-muted rounded w-1/3" />
+        <div className="h-48 bg-muted rounded" />
       </div>
     )
   }
 
   return (
-    <div className="max-w-2xl mx-auto py-6 px-4 space-y-4">
+    <div className="space-y-4">
       <h1 className="text-2xl font-bold">Today's Workout</h1>
 
       {suggested && (
