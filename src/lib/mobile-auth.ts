@@ -1,26 +1,36 @@
 import { NextRequest } from 'next/server'
-import { jwtVerify } from 'jose'
 import { getServerSession } from 'next-auth'
 import { authOptions } from './auth'
-import { prisma } from './prisma'
 
 interface MobileSession {
   userId: string
   email: string
 }
 
+function verifyToken(token: string): { uid: string; email: string } | null {
+  try {
+    const crypto = require('crypto')
+    const parts = token.split('.')
+    if (parts.length !== 3) return null
+    const [header, body, sig] = parts
+    const secret = process.env.NEXTAUTH_SECRET ?? 'fitmind-secret'
+    const expected = crypto.createHmac('sha256', secret).update(`${header}.${body}`).digest('base64').replace(/\+/g, '-').replace(/\//g, '_').replace(/=/g, '')
+    if (sig !== expected) return null
+    const payload = JSON.parse(Buffer.from(body, 'base64').toString())
+    if (payload.exp < Math.floor(Date.now() / 1000)) return null
+    return { uid: payload.uid, email: payload.email }
+  } catch {
+    return null
+  }
+}
+
 export async function getMobileSession(req: NextRequest): Promise<MobileSession | null> {
   const auth = req.headers.get('authorization')
   if (auth?.startsWith('Bearer ')) {
     const token = auth.slice(7)
-    try {
-      const secret = new TextEncoder().encode(process.env.NEXTAUTH_SECRET ?? 'secret')
-      const { payload } = await jwtVerify(token, secret)
-      if (payload.uid && payload.email) {
-        return { userId: payload.uid as string, email: payload.email as string }
-      }
-    } catch {
-      return null
+    const payload = verifyToken(token)
+    if (payload) {
+      return { userId: payload.uid, email: payload.email }
     }
   }
   return null

@@ -1,23 +1,40 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { SignJWT } from 'jose'
 import { prisma } from '@/lib/prisma'
+
+// Simple base64url encode (no external deps)
+function base64url(str: string) {
+  return Buffer.from(str).toString('base64').replace(/\+/g, '-').replace(/\//g, '_').replace(/=/g, '')
+}
+
+function makeToken(payload: object): string {
+  const header = base64url(JSON.stringify({ alg: 'HS256', typ: 'JWT' }))
+  const body = base64url(JSON.stringify({ ...payload, iat: Math.floor(Date.now() / 1000), exp: Math.floor(Date.now() / 1000) + 30 * 24 * 3600 }))
+  // For mobile-only use: sign with a simple HMAC using Node crypto
+  const crypto = require('crypto')
+  const secret = process.env.NEXTAUTH_SECRET ?? 'fitmind-secret'
+  const sig = crypto.createHmac('sha256', secret).update(`${header}.${body}`).digest('base64').replace(/\+/g, '-').replace(/\//g, '_').replace(/=/g, '')
+  return `${header}.${body}.${sig}`
+}
 
 export async function POST(req: NextRequest) {
   try {
-    const { email, otp } = await req.json()
+    const body = await req.json()
+    const { email, otp } = body
+
     if (!email || !otp) {
       return NextResponse.json({ error: 'email and otp required' }, { status: 400 })
     }
 
-    const normalised = email.toLowerCase().trim()
+    const normalised = (email as string).toLowerCase().trim()
 
     const record = await prisma.verificationToken.findFirst({
       where: {
         identifier: normalised,
-        token: otp.trim(),
+        token: (otp as string).trim(),
         expires: { gt: new Date() },
       },
     })
+
     if (!record) {
       return NextResponse.json({ error: 'Invalid or expired OTP' }, { status: 401 })
     }
@@ -31,12 +48,7 @@ export async function POST(req: NextRequest) {
       select: { id: true, email: true, name: true, plan: true },
     })
 
-    const secret = new TextEncoder().encode(process.env.NEXTAUTH_SECRET ?? 'secret')
-    const token = await new SignJWT({ uid: user.id, email: user.email })
-      .setProtectedHeader({ alg: 'HS256' })
-      .setIssuedAt()
-      .setExpirationTime('30d')
-      .sign(secret)
+    const token = makeToken({ uid: user.id, email: user.email })
 
     return NextResponse.json({
       token,
@@ -44,11 +56,11 @@ export async function POST(req: NextRequest) {
         id: user.id,
         email: user.email,
         name: user.name,
-        plan: (user.plan === 'pro' ? 'PRO' : 'FREE') as 'FREE' | 'PRO',
+        plan: user.plan === 'pro' ? 'PRO' : 'FREE',
       },
     })
-  } catch (err) {
-    console.error('verify-otp error', err)
-    return NextResponse.json({ error: 'Server error' }, { status: 500 })
+  } catch (err: any) {
+    console.error('verify-otp error:', err?.message, err?.stack)
+    return NextResponse.json({ error: 'Server error', detail: err?.message }, { status: 500 })
   }
 }
